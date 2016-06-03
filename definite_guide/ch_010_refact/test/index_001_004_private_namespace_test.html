@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>도형 클래스의 모듈 테스트</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.23.1.css">
+</head>
+<body>
+<!-- Qunit 테스트 결과 표시 -->
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+
+<script src="https://code.jquery.com/qunit/qunit-1.23.1.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/com.js"></script>
+<script src="../js/com/yb.js"></script>
+<script src="../js/com/yb/counterVo.js"></script>
+<script>
+    QUnit.test( "all object has loaded test", function( assert ) {
+        assert.ok( com, "com has loaded");
+        assert.ok( com.yb, "com.yb has loaded");
+        assert.ok( com.yb.counterVo, "com.yb.counterVo has loaded");
+    });
+</script>
+</body>
+</html>

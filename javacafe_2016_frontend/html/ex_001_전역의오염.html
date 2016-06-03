@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>전역의 오염</title>
+</head>
+<body>
+    <script src="../js/a.js"></script>
+    <!--
+    ...
+    여러 개의 js가 import
+    ...
+    -->
+    <script src="../js/a2.js"></script>
+    <script>
+        console.dir(window);
+    </script>
+</body>
+</html>

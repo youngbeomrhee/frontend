@@ -16,15 +16,15 @@ if(!com.yb.counterVo) {
     cntVo.getCounter = function() {
         console.log('counter : ' + counter);
         return counter;
-    }
+    };
 
     cntVo.addCounter = function() {
         console.log('counter++');
         counter++;
-    }
+    };
 
     cntVo.resetCounter = function() {
         console.log('counter\'s initialized');
         counter = 0;
-    }
+    };
 })();
