@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>도형 클래스의 모듈</title>
+</head>
+<body>
+
+<script src="../js/common.js"></script>
+<script src="../js/com.js"></script>
+<script src="../js/com/yb.js"></script>
+<script src="../js/com/yb/counterVo.js"></script>
+<script>
+    (function() {
+        var cnt = com.yb.counterVo;
+        cnt.getCounter();
+        cnt.addCounter();
+        cnt.getCounter();
+        cnt.addCounter();
+        cnt.addCounter();
+        cnt.getCounter();
+        cnt.resetCounter();
+        cnt.getCounter();
+        cnt.counter;
+    })();
+</script>
+</body>
+</html>
