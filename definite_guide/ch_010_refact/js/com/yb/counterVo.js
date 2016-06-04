@@ -9,6 +9,7 @@ if(!com.yb.counterVo) {
 }
 
 (function(){
+    debugger;
     var cntVo = com.yb.counterVo;
 
     var counter = 0;

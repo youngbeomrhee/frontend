@@ -20,8 +20,8 @@
     var d2 = $.Deferred();
 
     $.when( mockHttpRequest(d1, 5000), mockHttpRequest(d2, 3000) ).done(function ( v1, v2 ) {
-        console.log( v1 ); // "Fish"
-        console.log( v2 ); // "Pizza"
+        console.log( v1 ); // ""
+        console.log( v2 ); // ""
     });
 
 </script>
