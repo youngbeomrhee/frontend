@@ -3,8 +3,8 @@
  * 네임스페이스 패턴
  */
 
-// 수정 전 : 전역 변수 5개,
-// 경고 : 안티패턴이다.
+// 수정 전: 전역 변수 5개
+// 경고: 안티패턴이다.
 
 // 생성자 함수 2개
 function Parent() {}
@@ -19,7 +19,7 @@ module1.data = {a: 1, b: 2};
 var module2 = {};
 
 
-// 수정 후 : 전역 변수 1개
+// 수정 후: 전역 변수 1개
 
 // 전역 객체
 var MYAPP = {};
@@ -38,4 +38,3 @@ MYAPP.modules = {};
 MYAPP.modules.module1 = {};
 MYAPP.modules.module1.data = {a: 1, b: 2};
 MYAPP.modules.module2 = {};
-
