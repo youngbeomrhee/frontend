@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cross-site scripting</title>
+</head>
+<body>
+
+<script>
+    var name = decodeURIComponent(window.location.search.substring(6)) || "";
+    document.write("Hello, " + name);
+</script>
+</body>
+</html>
