@@ -10,7 +10,8 @@
     <div id="qunit-fixture"></div>
     <script src="https://code.jquery.com/qunit/qunit-1.23.1.js"></script>
     <script>
-/*
+
+        /*
         QUnit.test( "ok test", function( assert ) {
             assert.ok( true, "true succeeds" );
             assert.ok( "non-empty", "non-empty string succeeds" );
@@ -20,9 +21,9 @@
             assert.ok( "", "empty string fails" );
             assert.ok( null, "null fails" );
             assert.ok( undefined, "undefined fails" );
+            assert.ok( "0", "문자 0" );
         });
 */
-
 /*
         QUnit.test( "equal test", function( assert ) {
             assert.equal( 0, 0, "Zero, Zero; equal succeeds" );
@@ -32,9 +33,11 @@
 
             assert.equal( "three", 3, "Three, 3; equal fails" );
             assert.equal( null, false, "null, false; equal fails" );
+            assert.equal( null, undefined, "null, false; equal fails" );
         });
+
         */
-/*
+        /*
         QUnit.test( "deepEqual test", function( assert ) {
             var obj = { foo: "bar" };
             assert.deepEqual( obj, { foo: "bar" }, "Two objects can be the same in value" );
@@ -60,6 +63,8 @@
                 done();
             }, 500 );
         });
+        /*
+        */
     </script>
 </body>
 </html>

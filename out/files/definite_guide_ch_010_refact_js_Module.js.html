@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>definite_guide\ch_010_refact\js\Module.js</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/MYAPP.math_stuff.html">MYAPP.math_stuff</a></li>
+                                <li><a href="../classes/MYAPP.Person.html">MYAPP.Person</a></li>
+                            </ul>
+                
+                
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/myapp.html">myapp</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: definite_guide\ch_010_refact\js\Module.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * Created by yblee on 2016-06-03.
+ * Module.js: 모듈과 네임스페이스 유틸리티
+ *
+ * 다음은 모듈과 관련된 유틸리티 함수들의 모듈이며 JSAN 타입의 모듈과 호환된다.
+ * 이 모듈은 Module이라는 네임스페이스를 정의한다.
+ */
+
+var Module;
+if(Moduel &amp;&amp; (typeof Module !== &#x27;object&#x27; || Module.NAME)) {
+    throw new Error(&quot;Namespace &#x27;Module&#x27; already exists&quot;);
+}
+
+Module = {};
+
+Module.NAME = &quot;Module&quot;;
+Module.VERSION = 0.1;
+
+Module.EXPORT = [&quot;require&quot;, &quot;importSymbols&quot;];
+
+Module.EXPORT_OK = [&quot;createNamespace&quot;, &quot;isDefined&quot;, &quot;registerInitializationFunction&quot;, &quot;runInitializationFunctions&quot;, &quot;modules&quot;, &quot;globalNamespace&quot;];
+
+Module.globalNamespace = this;
+Module.modules = {&quot;Module&quot;: Module};
+
+Module.createNamespace = function (name, version) {
+    if(!name) {
+        throw new Error(&quot;Module.createNamespace(): name required&quot;);
+    }
+    if(name.charAt(0) == &#x27;.&#x27; || name.charAt(name.length-1) == &#x27;.&#x27; || name.indexOf(&quot;..&quot;) != -1) {
+        throw new Error(&quot;Module.createNamespace(): illegal name: &quot; + name);
+    }
+
+    var parts = name.split(&#x27;.&#x27;);
+
+    var container = Module.globalNamespace;
+    for (var i = 0; i &lt; parts.length; i++) {
+        var part = parts[i];
+        if(!container[part]) {
+            container[part] = {};
+        } else if(typeof container[part] !== &quot;object&quot;) {
+            var n = parts.slice(0, i).join(&#x27;.&#x27;);
+            throw new Error(n + &quot; already exists and is not an object&quot;);
+        }
+        container = container[part];
+    }
+
+    var namespace = container;
+
+    if(namespace.NAME) {
+        throw new Error(&quot;Module &quot; + name + &quot; has already defined&quot;);
+    }
+
+    namespace.NAME = name;
+    if(version) {
+        namespace.VERSION = version;
+    }
+
+    Module.modules[name] = namespace;
+
+    return namespace;
+};
+
+Module.require = function (name, version) {
+    if(!(name in Module.modules)) {
+        throw new Error(&quot;Module &quot; + name + &quot; is not defined&quot;);
+    }
+
+    if(!version) {
+        return;
+    }
+
+    if(!n.VERSION || n.VERSION &lt; version) {
+        throw new Error(&quot;Module &quot; + name + &quot; has version &quot; + n.VERSION + &quot; but version &quot; + version + &quot; or greater is required&quot;);
+    }
+};
+
+Module.importSymbols = function (from) {
+    if(typeof from === &quot;string&quot;) {
+        from = Module.modules[from];
+    }
+    if(!from || typeof from !== &quot;object&quot;) {
+        throw new Error(&quot;Module.importSymbols(): &quot; + &quot; myNs object required&quot;);
+    }
+
+    var to = Module.globalNamespace;
+    var symbols = [];
+    var firstsymbol = 1;
+
+    if(arguments.length &gt; 1 &amp;&amp; typeof arguments[1] === &quot;object&quot;) {
+        if(arguments[1] != null) {
+            to = arguments[1];
+        }
+        firstsymbol = 2;
+    }
+
+    for (var a = fistsymbol; a &lt; arguments.length; a++) {
+        symbols.push(arguments[a]);
+
+        // 치다가 포기... 안해!
+    }
+
+};
+
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

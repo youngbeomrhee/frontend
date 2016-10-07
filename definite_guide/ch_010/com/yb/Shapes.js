@@ -20,7 +20,7 @@ var define = com.yb.Class.define;
 // 알았기 때문에 여기서 따로 생성하지 않아도 된다.
 // 따라서, 그냥 이 네임스페이스에서 도형들을 생성한다.
 if(com.yb.shapes) {
-    throw new Error("com.yb.shapes namespace alread exists");
+    throw new Error("com.yb.shapes myNs alread exists");
 }
 
 // 네임스페이스를 생성한다.

@@ -1,0 +1,1139 @@
+{
+    "project": {},
+    "files": {
+        "definite_guide\\ch_010\\com\\yb\\Class.js": {
+            "name": "definite_guide\\ch_010\\com\\yb\\Class.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "definite_guide\\ch_010\\com\\yb\\Complex.js": {
+            "name": "definite_guide\\ch_010\\com\\yb\\Complex.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "definite_guide\\ch_010\\com\\yb\\Shapes.js": {
+            "name": "definite_guide\\ch_010\\com\\yb\\Shapes.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "definite_guide\\ch_010\\com\\yb.js": {
+            "name": "definite_guide\\ch_010\\com\\yb.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "definite_guide\\ch_010\\com.js": {
+            "name": "definite_guide\\ch_010\\com.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "definite_guide\\ch_010_refact\\js\\com\\yb\\Class.js": {
+            "name": "definite_guide\\ch_010_refact\\js\\com\\yb\\Class.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "definite_guide\\ch_010_refact\\js\\com\\yb\\Complex.js": {
+            "name": "definite_guide\\ch_010_refact\\js\\com\\yb\\Complex.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "definite_guide\\ch_010_refact\\js\\com\\yb\\Shapes.js": {
+            "name": "definite_guide\\ch_010_refact\\js\\com\\yb\\Shapes.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "definite_guide\\ch_010_refact\\js\\com\\yb\\clz.js": {
+            "name": "definite_guide\\ch_010_refact\\js\\com\\yb\\clz.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "definite_guide\\ch_010_refact\\js\\com\\yb\\counterVo.js": {
+            "name": "definite_guide\\ch_010_refact\\js\\com\\yb\\counterVo.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "definite_guide\\ch_010_refact\\js\\com\\yb.js": {
+            "name": "definite_guide\\ch_010_refact\\js\\com\\yb.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "definite_guide\\ch_010_refact\\js\\Module.js": {
+            "name": "definite_guide\\ch_010_refact\\js\\Module.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "definite_guide\\ch_010_refact\\js\\com.js": {
+            "name": "definite_guide\\ch_010_refact\\js\\com.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "definite_guide\\ch_010_refact\\js\\common.js": {
+            "name": "definite_guide\\ch_010_refact\\js\\common.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "definite_guide\\ch_013\\ex_002_004_defer.js": {
+            "name": "definite_guide\\ch_013\\ex_002_004_defer.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "for_web_developer\\ch_005\\ex_005_003_predicate.js": {
+            "name": "for_web_developer\\ch_005\\ex_005_003_predicate.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "inside_javascript\\functional\\ex001_reduce.js": {
+            "name": "inside_javascript\\functional\\ex001_reduce.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "inside_javascript\\functional\\ex002_get_cost.js": {
+            "name": "inside_javascript\\functional\\ex002_get_cost.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "inside_javascript\\functional\\ex003_memoization.js": {
+            "name": "inside_javascript\\functional\\ex003_memoization.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "inside_javascript\\functional\\ex004_cache_fibonacci.js": {
+            "name": "inside_javascript\\functional\\ex004_cache_fibonacci.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "inside_javascript\\functional\\ex005_cache_abstract.js": {
+            "name": "inside_javascript\\functional\\ex005_cache_abstract.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "inside_javascript\\functional\\ex006_curry.js": {
+            "name": "inside_javascript\\functional\\ex006_curry.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "inside_javascript\\functional\\ex007_bind.js": {
+            "name": "inside_javascript\\functional\\ex007_bind.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "inside_javascript\\functional\\ex008_each.js": {
+            "name": "inside_javascript\\functional\\ex008_each.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "inside_javascript\\functional\\ex009_map.js": {
+            "name": "inside_javascript\\functional\\ex009_map.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "inside_javascript\\functional\\ex010_reduce.js": {
+            "name": "inside_javascript\\functional\\ex010_reduce.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "javascript_pattern\\ch_002\\ex_000.js": {
+            "name": "javascript_pattern\\ch_002\\ex_000.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "javascript_pattern\\ch_002\\ex_006_switch.js": {
+            "name": "javascript_pattern\\ch_002\\ex_006_switch.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "javascript_pattern\\ch_002\\ex_007_eval.js": {
+            "name": "javascript_pattern\\ch_002\\ex_007_eval.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "javascript_pattern\\ch_003\\ex_003_self_construct.js": {
+            "name": "javascript_pattern\\ch_003\\ex_003_self_construct.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "javascript_pattern\\ch_005\\ex_001_namespace.js": {
+            "name": "javascript_pattern\\ch_005\\ex_001_namespace.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "javascript_pattern\\ch_005\\ex_001_namespace_func.js": {
+            "name": "javascript_pattern\\ch_005\\ex_001_namespace_func.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "javascript_pattern\\ch_005\\ex_003_private_member.js": {
+            "name": "javascript_pattern\\ch_005\\ex_003_private_member.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "javascript_pattern\\ch_005\\ex_004_module_pattern.js": {
+            "name": "javascript_pattern\\ch_005\\ex_004_module_pattern.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "ninja\\ch_002\\ex_004_assert.js": {
+            "name": "ninja\\ch_002\\ex_004_assert.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "jquery-3.1.1.js": {
+            "name": "jquery-3.1.1.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "node_compress_sample.js": {
+            "name": "node_compress_sample.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "yuidoc_sample.js": {
+            "name": "yuidoc_sample.js",
+            "modules": {
+                "myapp": 1
+            },
+            "classes": {
+                "MYAPP.math_stuff": 1,
+                "MYAPP.Person": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "MYAPP": 1
+            }
+        }
+    },
+    "modules": {
+        "myapp": {
+            "name": "myapp",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "MYAPP.math_stuff": 1,
+                "MYAPP.Person": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "MYAPP": 1
+            },
+            "tag": "module",
+            "file": "yuidoc_sample.js",
+            "line": 40,
+            "description": "나의 자바스크립트 애플리케이션"
+        }
+    },
+    "classes": {
+        "MYAPP.math_stuff": {
+            "name": "MYAPP.math_stuff",
+            "shortname": "MYAPP.math_stuff",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "myapp",
+            "namespace": "MYAPP",
+            "file": "yuidoc_sample.js",
+            "line": 10,
+            "description": "수학 계산 유틸리티"
+        },
+        "MYAPP.Person": {
+            "name": "MYAPP.Person",
+            "shortname": "MYAPP.Person",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "myapp",
+            "namespace": "MYAPP",
+            "file": "yuidoc_sample.js",
+            "line": 40,
+            "description": "Person 객체를 생성한다.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "first",
+                    "description": "이름",
+                    "type": "String"
+                },
+                {
+                    "name": "last",
+                    "description": "성",
+                    "type": "String"
+                }
+            ]
+        }
+    },
+    "elements": {},
+    "classitems": [
+        {
+            "file": "definite_guide\\ch_010\\com\\yb\\Class.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-02.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "definite_guide\\ch_010\\com\\yb\\Complex.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-02.\n10.1.2 모듈로 사용되는 클래스\n\n com/yb/Complex.js\n 이 모듈은 com.yb.Complex()라는 생성자 함수를 정의한다.\n 이 모듈은 com/yb/Class.js 모듈을 필요로 한다.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "definite_guide\\ch_010\\com\\yb\\Shapes.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-02.\n\ncom/yb/Shapes.js : 도형을 표현하는 클래스들의 모듈\n\n이 모듈은 네임스페이스 com.yb.shapes 안에서 클래스를 정의한다.\n이 모듈은 com/yb/Class.js 모듈을 필요로 한다.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "definite_guide\\ch_010\\com\\yb.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-02.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "definite_guide\\ch_010\\com.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-02.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "definite_guide\\ch_010_refact\\js\\com\\yb\\Class.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-02.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "definite_guide\\ch_010_refact\\js\\com\\yb\\Complex.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-02.\nch.10.1.2 모듈로 사용되는 클래스\n\n com/yb/complex.js\n 이 모듈은 com.yb.Complex()라는 생성자 함수를 정의한다.\n 이 모듈은 com/yb/clz.js 모듈을 필요로 한다.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "definite_guide\\ch_010_refact\\js\\com\\yb\\Shapes.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-02.\n\ncom/yb/Shapes.js : 도형을 표현하는 클래스들의 모듈\n\n이 모듈은 네임스페이스 com.yb.shapes 안에서 클래스를 정의한다.\n이 모듈은 com/yb/Class.js 모듈을 필요로 한다.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "definite_guide\\ch_010_refact\\js\\com\\yb\\clz.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-02.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "definite_guide\\ch_010_refact\\js\\com\\yb\\counterVo.js",
+            "line": 1,
+            "description": "Created by yblee on 2016-06-03.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "definite_guide\\ch_010_refact\\js\\com\\yb.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-02.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "definite_guide\\ch_010_refact\\js\\Module.js",
+            "line": 1,
+            "description": "Created by yblee on 2016-06-03.\nModule.js: 모듈과 네임스페이스 유틸리티\n\n다음은 모듈과 관련된 유틸리티 함수들의 모듈이며 JSAN 타입의 모듈과 호환된다.\n이 모듈은 Module이라는 네임스페이스를 정의한다.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "definite_guide\\ch_010_refact\\js\\com.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-02.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "definite_guide\\ch_010_refact\\js\\common.js",
+            "line": 1,
+            "description": "Created by yblee on 2016-06-03.\n\n이 프로젝트에서는 모든 html에 이 common.js를 import\nfunction 선언문이 여러 파일에서 사용될 경우에 전역이 오염될 가능성이 있으므로\n전역에 선언되는 모든 function은 여기에 기술\n단, 특정 모듈에서 function이 필요한 경우에는 해당 객체의 프로퍼티로 매핑\n(예 : com.myFunc = function(){};)",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "definite_guide\\ch_013\\ex_002_004_defer.js",
+            "line": 1,
+            "description": "Created by YB on 2016-09-24.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "for_web_developer\\ch_005\\ex_005_003_predicate.js",
+            "line": 1,
+            "description": "Created by yblee on 2016-06-10.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "inside_javascript\\functional\\ex001_reduce.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-18.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "inside_javascript\\functional\\ex002_get_cost.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-18.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "inside_javascript\\functional\\ex003_memoization.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-18.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "inside_javascript\\functional\\ex004_cache_fibonacci.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-18.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "inside_javascript\\functional\\ex005_cache_abstract.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-18.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "inside_javascript\\functional\\ex006_curry.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-18.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "inside_javascript\\functional\\ex007_bind.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-18.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "inside_javascript\\functional\\ex008_each.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-18.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "inside_javascript\\functional\\ex009_map.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-18.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "inside_javascript\\functional\\ex010_reduce.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-18.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "javascript_pattern\\ch_002\\ex_000.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-04.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "javascript_pattern\\ch_002\\ex_006_switch.js",
+            "line": 1,
+            "description": "Created by YB on 2016-09-23.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "javascript_pattern\\ch_002\\ex_007_eval.js",
+            "line": 1,
+            "description": "Created by YB on 2016-09-23.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "javascript_pattern\\ch_003\\ex_003_self_construct.js",
+            "line": 1,
+            "description": "Created by YB on 2016-09-24.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "javascript_pattern\\ch_005\\ex_001_namespace.js",
+            "line": 1,
+            "description": "Created by yblee on 2016-06-17.\n네임스페이스 패턴",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "javascript_pattern\\ch_005\\ex_001_namespace_func.js",
+            "line": 1,
+            "description": "Created by yblee on 2016-06-17.\n범용 네임스페이스 함수",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "javascript_pattern\\ch_005\\ex_003_private_member.js",
+            "line": 1,
+            "description": "Created by yblee on 2016-06-17.\n모듈 패턴",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "javascript_pattern\\ch_005\\ex_004_module_pattern.js",
+            "line": 1,
+            "description": "Created by yblee on 2016-06-17.\n모듈 패턴",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "ninja\\ch_002\\ex_004_assert.js",
+            "line": 1,
+            "description": "Created by YB on 2016-06-03.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "jquery-3.1.1.js",
+            "line": 893,
+            "description": "Create key-value caches of limited size",
+            "return": {
+                "description": "Returns the Object data after storing it on itself with\n\tproperty name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)\n\tdeleting the oldest entry",
+                "type": "Function(string, object)"
+            },
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "jquery-3.1.1.js",
+            "line": 913,
+            "description": "Mark a function for special use by Sizzle",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "The function to mark",
+                    "type": "Function"
+                }
+            ],
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "jquery-3.1.1.js",
+            "line": 922,
+            "description": "Support testing using an element",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "Passed the created element and returns a boolean result",
+                    "type": "Function"
+                }
+            ],
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "jquery-3.1.1.js",
+            "line": 943,
+            "description": "Adds the same handler for all of the specified attrs",
+            "params": [
+                {
+                    "name": "attrs",
+                    "description": "Pipe-separated list of attributes",
+                    "type": "String"
+                },
+                {
+                    "name": "handler",
+                    "description": "The method that will be applied",
+                    "type": "Function"
+                }
+            ],
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "jquery-3.1.1.js",
+            "line": 957,
+            "description": "Checks document order of two siblings",
+            "params": [
+                {
+                    "name": "a",
+                    "description": "",
+                    "type": "Element"
+                },
+                {
+                    "name": "b",
+                    "description": "",
+                    "type": "Element"
+                }
+            ],
+            "return": {
+                "description": "Returns less than 0 if a precedes b, greater than 0 if a follows b",
+                "type": "Number"
+            },
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "jquery-3.1.1.js",
+            "line": 985,
+            "description": "Returns a function to use in pseudos for input types",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "jquery-3.1.1.js",
+            "line": 996,
+            "description": "Returns a function to use in pseudos for buttons",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "jquery-3.1.1.js",
+            "line": 1007,
+            "description": "Returns a function to use in pseudos for :enabled/:disabled",
+            "params": [
+                {
+                    "name": "disabled",
+                    "description": "true for :disabled; false for :enabled",
+                    "type": "Boolean"
+                }
+            ],
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "jquery-3.1.1.js",
+            "line": 1063,
+            "description": "Returns a function to use in pseudos for positionals",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "jquery-3.1.1.js",
+            "line": 1085,
+            "description": "Checks a node for validity as a Sizzle context",
+            "params": [
+                {
+                    "name": "context",
+                    "description": "",
+                    "type": "Element|Object="
+                }
+            ],
+            "return": {
+                "description": "The input node if acceptable, otherwise a falsy value",
+                "type": "Element|Object|Boolean"
+            },
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "jquery-3.1.1.js",
+            "line": 1097,
+            "description": "Detects XML nodes",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "An element or a document",
+                    "type": "Element|Object"
+                }
+            ],
+            "return": {
+                "description": "True iff elem is a non-HTML XML node",
+                "type": "Boolean"
+            },
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "jquery-3.1.1.js",
+            "line": 1109,
+            "description": "Sets document-related variables once based on the current document",
+            "params": [
+                {
+                    "name": "doc",
+                    "description": "An element or document object to use to set the document",
+                    "type": "Element|Object",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Returns the current document",
+                "type": "Object"
+            },
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "jquery-3.1.1.js",
+            "line": 1589,
+            "description": "Document sorting and removing duplicates",
+            "params": [
+                {
+                    "name": "results",
+                    "description": "",
+                    "type": "ArrayLike"
+                }
+            ],
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "jquery-3.1.1.js",
+            "line": 1622,
+            "description": "Utility function for retrieving the text value of an array of DOM nodes",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "",
+                    "type": "Array|Element"
+                }
+            ],
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "jquery-3.1.1.js",
+            "line": 2653,
+            "description": "A low-level selection function that works with Sizzle's compiled\n selector functions",
+            "params": [
+                {
+                    "name": "selector",
+                    "description": "A selector or a pre-compiled\n selector function built with Sizzle.compile",
+                    "type": "String|Function"
+                },
+                {
+                    "name": "context",
+                    "description": "",
+                    "type": "Element"
+                },
+                {
+                    "name": "results",
+                    "description": "",
+                    "type": "Array",
+                    "optional": true
+                },
+                {
+                    "name": "seed",
+                    "description": "A set of elements to match against",
+                    "type": "Array",
+                    "optional": true
+                }
+            ],
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "jquery-3.1.1.js",
+            "line": 9787,
+            "description": "Load a url into a page",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "jquery-3.1.1.js",
+            "line": 9879,
+            "description": "Gets a window from an element",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "node_compress_sample.js",
+            "line": 1,
+            "description": "Created by YB on 2016-09-24.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "yuidoc_sample.js",
+            "line": 1,
+            "description": "Created by YB on 2016-09-24.",
+            "class": "MYAPP.math_stuff"
+        },
+        {
+            "file": "yuidoc_sample.js",
+            "line": 16,
+            "description": "두 숫자를 더한다.",
+            "itemtype": "method",
+            "name": "sum",
+            "params": [
+                {
+                    "name": "a",
+                    "description": "첫번째 숫자",
+                    "type": "Number"
+                },
+                {
+                    "name": "b",
+                    "description": "두번째 숫자",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "두숫자를 더한 값",
+                "type": "Number"
+            },
+            "class": "MYAPP.math_stuff",
+            "module": "myapp",
+            "namespace": "MYAPP"
+        },
+        {
+            "file": "yuidoc_sample.js",
+            "line": 27,
+            "description": "두 숫자를 곱한다.",
+            "itemtype": "method",
+            "name": "multi",
+            "params": [
+                {
+                    "name": "a",
+                    "description": "첫번째 숫자",
+                    "type": "Number"
+                },
+                {
+                    "name": "b",
+                    "description": "두번째 숫자",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "두 숫자를 곱한 값",
+                "type": "Number"
+            },
+            "class": "MYAPP.math_stuff",
+            "module": "myapp",
+            "namespace": "MYAPP"
+        },
+        {
+            "file": "yuidoc_sample.js",
+            "line": 49,
+            "description": "사람의 이름",
+            "itemtype": "property",
+            "name": "first_name",
+            "type": "String",
+            "class": "MYAPP.Person",
+            "module": "myapp",
+            "namespace": "MYAPP"
+        },
+        {
+            "file": "yuidoc_sample.js",
+            "line": 55,
+            "description": "사람의 성",
+            "itemtype": "property",
+            "name": "last_name",
+            "type": "String",
+            "class": "MYAPP.Person",
+            "module": "myapp",
+            "namespace": "MYAPP"
+        },
+        {
+            "file": "yuidoc_sample.js",
+            "line": 63,
+            "description": "person 객체의 성명을 반환한다.",
+            "itemtype": "method",
+            "name": "getName",
+            "return": {
+                "description": "사람의 성명",
+                "type": "String"
+            },
+            "class": "MYAPP.Person",
+            "module": "myapp",
+            "namespace": "MYAPP"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " jquery-3.1.1.js:893"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " jquery-3.1.1.js:957"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " jquery-3.1.1.js:1085"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " jquery-3.1.1.js:1097"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " jquery-3.1.1.js:1109"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-02.",
+            "line": " definite_guide\\ch_010\\com\\yb\\Class.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-02.\n10.1.2 모듈로 사용되는 클래스\n\n com/yb/Complex.js\n 이 모듈은 com.yb.Complex()라는 생성자 함수를 정의한다.\n 이 모듈은 com/yb/Class.js 모듈을 필요로 한다.",
+            "line": " definite_guide\\ch_010\\com\\yb\\Complex.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-02.\n\ncom/yb/Shapes.js : 도형을 표현하는 클래스들의 모듈\n\n이 모듈은 네임스페이스 com.yb.shapes 안에서 클래스를 정의한다.\n이 모듈은 com/yb/Class.js 모듈을 필요로 한다.",
+            "line": " definite_guide\\ch_010\\com\\yb\\Shapes.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-02.",
+            "line": " definite_guide\\ch_010\\com\\yb.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-02.",
+            "line": " definite_guide\\ch_010\\com.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-02.",
+            "line": " definite_guide\\ch_010_refact\\js\\com\\yb\\Class.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-02.\nch.10.1.2 모듈로 사용되는 클래스\n\n com/yb/complex.js\n 이 모듈은 com.yb.Complex()라는 생성자 함수를 정의한다.\n 이 모듈은 com/yb/clz.js 모듈을 필요로 한다.",
+            "line": " definite_guide\\ch_010_refact\\js\\com\\yb\\Complex.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-02.\n\ncom/yb/Shapes.js : 도형을 표현하는 클래스들의 모듈\n\n이 모듈은 네임스페이스 com.yb.shapes 안에서 클래스를 정의한다.\n이 모듈은 com/yb/Class.js 모듈을 필요로 한다.",
+            "line": " definite_guide\\ch_010_refact\\js\\com\\yb\\Shapes.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-02.",
+            "line": " definite_guide\\ch_010_refact\\js\\com\\yb\\clz.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by yblee on 2016-06-03.",
+            "line": " definite_guide\\ch_010_refact\\js\\com\\yb\\counterVo.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-02.",
+            "line": " definite_guide\\ch_010_refact\\js\\com\\yb.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by yblee on 2016-06-03.\nModule.js: 모듈과 네임스페이스 유틸리티\n\n다음은 모듈과 관련된 유틸리티 함수들의 모듈이며 JSAN 타입의 모듈과 호환된다.\n이 모듈은 Module이라는 네임스페이스를 정의한다.",
+            "line": " definite_guide\\ch_010_refact\\js\\Module.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-02.",
+            "line": " definite_guide\\ch_010_refact\\js\\com.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by yblee on 2016-06-03.\n\n이 프로젝트에서는 모든 html에 이 common.js를 import\nfunction 선언문이 여러 파일에서 사용될 경우에 전역이 오염될 가능성이 있으므로\n전역에 선언되는 모든 function은 여기에 기술\n단, 특정 모듈에서 function이 필요한 경우에는 해당 객체의 프로퍼티로 매핑\n(예 : com.myFunc = function(){};)",
+            "line": " definite_guide\\ch_010_refact\\js\\common.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-09-24.",
+            "line": " definite_guide\\ch_013\\ex_002_004_defer.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by yblee on 2016-06-10.",
+            "line": " for_web_developer\\ch_005\\ex_005_003_predicate.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-18.",
+            "line": " inside_javascript\\functional\\ex001_reduce.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-18.",
+            "line": " inside_javascript\\functional\\ex002_get_cost.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-18.",
+            "line": " inside_javascript\\functional\\ex003_memoization.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-18.",
+            "line": " inside_javascript\\functional\\ex004_cache_fibonacci.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-18.",
+            "line": " inside_javascript\\functional\\ex005_cache_abstract.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-18.",
+            "line": " inside_javascript\\functional\\ex006_curry.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-18.",
+            "line": " inside_javascript\\functional\\ex007_bind.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-18.",
+            "line": " inside_javascript\\functional\\ex008_each.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-18.",
+            "line": " inside_javascript\\functional\\ex009_map.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-18.",
+            "line": " inside_javascript\\functional\\ex010_reduce.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-04.",
+            "line": " javascript_pattern\\ch_002\\ex_000.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-09-23.",
+            "line": " javascript_pattern\\ch_002\\ex_006_switch.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-09-23.",
+            "line": " javascript_pattern\\ch_002\\ex_007_eval.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-09-24.",
+            "line": " javascript_pattern\\ch_003\\ex_003_self_construct.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by yblee on 2016-06-17.\n네임스페이스 패턴",
+            "line": " javascript_pattern\\ch_005\\ex_001_namespace.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by yblee on 2016-06-17.\n범용 네임스페이스 함수",
+            "line": " javascript_pattern\\ch_005\\ex_001_namespace_func.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by yblee on 2016-06-17.\n모듈 패턴",
+            "line": " javascript_pattern\\ch_005\\ex_003_private_member.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by yblee on 2016-06-17.\n모듈 패턴",
+            "line": " javascript_pattern\\ch_005\\ex_004_module_pattern.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-06-03.",
+            "line": " ninja\\ch_002\\ex_004_assert.js:1"
+        },
+        {
+            "message": "Missing item type\nCreate key-value caches of limited size",
+            "line": " jquery-3.1.1.js:893"
+        },
+        {
+            "message": "Missing item type\nMark a function for special use by Sizzle",
+            "line": " jquery-3.1.1.js:913"
+        },
+        {
+            "message": "Missing item type\nSupport testing using an element",
+            "line": " jquery-3.1.1.js:922"
+        },
+        {
+            "message": "Missing item type\nAdds the same handler for all of the specified attrs",
+            "line": " jquery-3.1.1.js:943"
+        },
+        {
+            "message": "Missing item type\nChecks document order of two siblings",
+            "line": " jquery-3.1.1.js:957"
+        },
+        {
+            "message": "Missing item type\nReturns a function to use in pseudos for input types",
+            "line": " jquery-3.1.1.js:985"
+        },
+        {
+            "message": "Missing item type\nReturns a function to use in pseudos for buttons",
+            "line": " jquery-3.1.1.js:996"
+        },
+        {
+            "message": "Missing item type\nReturns a function to use in pseudos for :enabled/:disabled",
+            "line": " jquery-3.1.1.js:1007"
+        },
+        {
+            "message": "Missing item type\nReturns a function to use in pseudos for positionals",
+            "line": " jquery-3.1.1.js:1063"
+        },
+        {
+            "message": "Missing item type\nChecks a node for validity as a Sizzle context",
+            "line": " jquery-3.1.1.js:1085"
+        },
+        {
+            "message": "Missing item type\nDetects XML nodes",
+            "line": " jquery-3.1.1.js:1097"
+        },
+        {
+            "message": "Missing item type\nSets document-related variables once based on the current document",
+            "line": " jquery-3.1.1.js:1109"
+        },
+        {
+            "message": "Missing item type\nDocument sorting and removing duplicates",
+            "line": " jquery-3.1.1.js:1589"
+        },
+        {
+            "message": "Missing item type\nUtility function for retrieving the text value of an array of DOM nodes",
+            "line": " jquery-3.1.1.js:1622"
+        },
+        {
+            "message": "Missing item type\nA low-level selection function that works with Sizzle's compiled\n selector functions",
+            "line": " jquery-3.1.1.js:2653"
+        },
+        {
+            "message": "Missing item type\nLoad a url into a page",
+            "line": " jquery-3.1.1.js:9787"
+        },
+        {
+            "message": "Missing item type\nGets a window from an element",
+            "line": " jquery-3.1.1.js:9879"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-09-24.",
+            "line": " node_compress_sample.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated by YB on 2016-09-24.",
+            "line": " yuidoc_sample.js:1"
+        }
+    ]
+}

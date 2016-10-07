@@ -80,7 +80,7 @@ Module.importSymbols = function (from) {
         from = Module.modules[from];
     }
     if(!from || typeof from !== "object") {
-        throw new Error("Module.importSymbols(): " + " namespace object required");
+        throw new Error("Module.importSymbols(): " + " myNs object required");
     }
 
     var to = Module.globalNamespace;
