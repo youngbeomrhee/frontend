@@ -2,6 +2,7 @@
  * Created by YB on 2016-09-24.
  */
 var compressor = require('node-minify');
+/*
 
 new compressor.minify({
     type: 'uglifyjs',
@@ -17,6 +18,17 @@ new compressor.minify({
     type: 'uglifyjs',
     fileIn: 'jquery-3.1.1.js',
     fileOut: 'jquery-3.1.1.min.js',
+    callback: function(err, min){
+        console.log(err);
+        //console.log(min);
+    }
+});
+*/
+
+new compressor.minify({
+    type: 'uglifyjs',
+    fileIn: 'lab/bookmarklet_modify_elements.js',
+    fileOut: 'lab/bookmarklet_modify_elements.min.js',
     callback: function(err, min){
         console.log(err);
         //console.log(min);
