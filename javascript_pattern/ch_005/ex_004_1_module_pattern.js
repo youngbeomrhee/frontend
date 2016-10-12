@@ -10,6 +10,7 @@ var myNs = (function () {
     var privateMethod2 = function () { console.log('privateMethod2 has called'); };
     var privateProperty1 = 'foobar';
 
+    // 공개할 영역
     return {
         // 외부에 공개할 메서드를 매핑한다.
         publicMethod1: privateMethod1,

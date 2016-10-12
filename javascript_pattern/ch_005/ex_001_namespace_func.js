@@ -9,6 +9,7 @@ MYAPP.makeNS = function (ns_string) {
     var parts = ns_string.split('.'),
         parent = MYAPP,
         i;
+
     // 처음에 중복되는 전역 객체명은 제거한다.
     if(parts[0] === "MYAPP") {
         parts = parts.slice(1);
@@ -34,5 +35,7 @@ MYAPP.makeNS('modules.module51');
 
 // 아주 긴 네임스페이스를 만들어보자.
 MYAPP.makeNS('once.upon.a.time.there.was.this.long.nested.property');
+
+debugger;
 
 console.dir(MYAPP);
