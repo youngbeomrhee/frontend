@@ -49,6 +49,46 @@ Sandbox.prototype = {
     }
 };
 
-Sandbox(Array.prototype.concat, function (box) {
-    console.dir(box);
-});
+Sandbox.modules = {};
+
+Sandbox.modules.dom = function (box) {
+    box.getElement = function () {
+        console.log('getElement has called');
+    };
+    box.getStyle = function () {
+        console.log('getStyle has called');
+    };
+    box.sameName = function () {
+        console.log('dom.sameName has called');
+    };
+    box.foo = 'bar';
+}
+
+Sandbox.modules.event = function (box) {
+    // 필요에 따라 다음과 같이 Sandbox 프로토타입에 접근할 수 있다.
+    // box.constructor.prototype.m = 'mmm';
+    box.attachEvent = function () {
+        console.log('attachEvent has called');
+    };
+    box.detachEvent = function () {
+        console.log('detachEvent has called');
+    };
+    box.sameName = function () {
+        console.log('event.sameName has called');
+    };
+}
+
+Sandbox.modules.ajax = function (box) {
+    box.makeRequest = function () {
+        console.log('makeRequest has called');
+    };
+    box.getResponse = function () {
+        console.log('getResponse has called');
+    };
+}
+
+Sandbox(['dom','event'], function (box) {
+    box.getElement();
+    box.sameName();
+})
+
