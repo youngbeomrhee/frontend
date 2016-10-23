@@ -12,6 +12,9 @@ function Cat() {
 function Bird() {
   this.wings = 2;
   this.fly = true;
+  this.say = function() {   // 이름이 같은 경우 덮어씌어진다
+    return 'beapbeap';
+  }
 }
 
 function CatWings() {
@@ -20,6 +23,5 @@ function CatWings() {
 }
 
 var jane = new CatWings();
-console.dir(jane);
-
+console.log(`CatWings has "${jane.legs}" legs and "${jane.wings}" wings and sounds '${jane.say()}'.`);
 
