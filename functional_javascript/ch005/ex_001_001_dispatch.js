@@ -6,6 +6,10 @@ var _ = require('underscore');
 
 console.log('\n### 함수 조립의 핵심');
 
+/**
+ * 여러 invoker를 조립해서 다형적인 함수를 만들거나 인자에 따라 다른 동작을 수행하는 함수
+ * @returns {Function}
+ */
 function dispatch(/* funs */) {
   var funs = _.toArray(arguments);
   var size = funs.length;
@@ -18,7 +22,7 @@ function dispatch(/* funs */) {
       var fun = funs[funIndex];
       ret = fun.apply(fun, fjs.construct(target, args));
 
-      if (existy(ret)) return ret;
+      if (fjs.existy(ret)) return ret;
     }
 
     return ret;
