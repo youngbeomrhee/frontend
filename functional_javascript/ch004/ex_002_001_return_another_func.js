@@ -27,7 +27,7 @@ function invoker (NAME, METHOD) {
         var args = _.rest(arguments);
         
         // targetMethod가 처음에 생성될때 넘겨준 함수와 동일한 경우에만 실행
-        return fjs.doWhen((fjs.existy(targetMethod) && METHOD === targetMethod), function() {
+        return fjs.doWhen((fjs.existy(targetMethod) && METHOD === targetMethod), function()     {
             return targetMethod.apply(target, args);
         });
     };
