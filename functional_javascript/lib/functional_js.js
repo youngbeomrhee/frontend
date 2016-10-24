@@ -4,17 +4,48 @@
 var _ = require('underscore');
 var $ = require('jquery');
 
+
+
+// chapter01.js start ===============================================>
+
+/**
+ * 함수를 인자로 받아서 다른 함수를 리턴
+ * @param fun
+ * @returns {Function}
+ */
 function splat(fun) {
     return function(array) {
         return fun.apply(null, array);
     };
 }
 
+/*
+var addArrayElements = splat(function(x, y) { return x + y });
+
+addArrayElements([1, 2]);
+//=> 3
+*/
+/**
+ * splat과 반대로 작동. 함수를 인자로 받아 다른 함수로 리턴.
+ * 반환되는 함수는 다수의 인자를 받을 수 있고 원래 함수를 주어진 인자들의 배열값으로 호출한다.
+ * @param fun
+ * @returns {Function}
+ */
 function unsplat(fun) {
     return function() {
         return fun.call(null, _.toArray(arguments));
     };
 }
+
+/*
+var joinElements = unsplat(function(array) { return array.join(' ') });
+
+joinElements(1, 2);
+//=> "1 2"
+
+joinElements('-', '$', '/', '!', ':');
+//=> "- $ / ! :"
+*/
 
 function parseAge(age) {
     if (!_.isString(age)) throw new Error("Expecting a string");
@@ -59,14 +90,37 @@ function parseAge(age) {
     return a;
 }
 
+/*
+var letters = ['a', 'b', 'c'];
+
+letters[1];
+//=> 'b'
+*/
+
+/**
+ * 배열 인덱싱 동작을 추상화화 * @param a
+ * @param index
+ * @returns {*}
+ */
 function naiveNth(a, index) {
     return a[index];
 }
+
+/*
+naiveNth('letters', 1);
+//=> e
+*/
 
 function isIndexed(data) {
     return _.isArray(data) || _.isString(data);
 }
 
+/**
+ * isIndexed 추상화를 이용해서 naiveNth의 추상화 구현
+ * @param a
+ * @param index
+ * @returns {*}
+ */
 function nth(a, index) {
     if (!_.isNumber(index)) fail("Expected a number as the index");
     if (!isIndexed(a)) fail("Not supported on non-indexed type");
@@ -76,6 +130,11 @@ function nth(a, index) {
     return a[index];
 }
 
+/**
+ * nth를 이용해서 다른 함수를 추상화
+ * @param a
+ * @returns {*}
+ */
 function second(a) {
     return nth(a, 1);
 }
@@ -85,11 +144,27 @@ function compareLessThanOrEqual(x, y) {
     if (y < x) return  1;
     return 0;
 }
+// 이런 함수는 조건절(Boolean(true,false)로 판단)하는 경우에는 맞지 않다
 
+/*
+[2, 3, -1, -6, 0, -108, 42, 10].sort(compareLessThanOrEqual);
+//=> [-108, -6, -1, 0, 2, 3, 10, 42]
+*/
+/**
+ * compareLessThanOrEqual보다 아래처럼 찬반형(predicate) 형태로 구현하는 것이 더 바람직하다
+ * @param x
+ * @param y
+ * @returns {boolean}
+ */
 function lessOrEqual(x, y) {
     return x <= y;
 }
 
+/**
+ * compareLessThanOrEqual을 이제 기존 함수의 조합을 사용해서 만들 수 있다
+ * @param pred
+ * @returns {Function}
+ */
 function comparator(pred) {
     return function(x, y) {
         if (truthy(pred(x, y)))
@@ -99,7 +174,9 @@ function comparator(pred) {
         else
             return 0;
     };
-};
+}
+
+
 
 function lameCSV(str) {
     return _.reduce(str.split("\n"), function(table, row) {
@@ -107,6 +184,15 @@ function lameCSV(str) {
         return table;
     }, []);
 };
+
+/*
+var peopleTable = lameCSV("name,age,hair\nMerble,35,red\nBob,64,blonde");
+
+peopleTable;
+//=> [["name",  "age",  "hair"],
+//    ["Merble", "35",  "red"],
+//    ["Bob",    "64",  "blonde"]]
+*/
 
 function selectNames(table) {
     return _.rest(_.map(table, _.first));
@@ -121,6 +207,10 @@ function selectHairColor(table) {
         return nth(row, 2);
     }));
 }
+
+/*
+var mergeResults = _.zip;
+*/
 
 function existy(x) { return x != null }
 
@@ -140,6 +230,12 @@ function executeIfHasField(target, name) {
         return result;
     });
 }
+
+// ===============================================> chapter01.js end
+
+
+
+
 
 function lyricSegment(n) {
     return _.chain([])
@@ -370,6 +466,12 @@ function always(VALUE) {
     };
 }
 
+/**
+ * 생성시에 넣어둔 메서드가 실행할때 넘어오는 target의 요소인 경우에만 실행되는 함수를 반환
+ * @param NAME
+ * @param METHOD
+ * @returns {Function}
+ */
 function invoker (NAME, METHOD) {
     return function(target /* args ... */) {
         if (!existy(target)) fail("Must provide a target");
@@ -377,6 +479,7 @@ function invoker (NAME, METHOD) {
         var targetMethod = target[NAME];
         var args = _.rest(arguments);
 
+        // targetMethod가 처음에 생성될때 넘겨준 함수와 동일한 경우에만 실행
         return doWhen((existy(targetMethod) && METHOD === targetMethod), function() {
             return targetMethod.apply(target, args);
         });

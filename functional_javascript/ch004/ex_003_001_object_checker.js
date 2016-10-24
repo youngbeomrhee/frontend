@@ -1,7 +1,7 @@
 /**
  * Created by YB on 2016-10-22.
  */
-var lib = require('../lib/lib.js');
+var fjs = require('../lib/functional_js.js');
 
 function checker (/* 검증자 */) {
     var validators = Array.from(arguments);
@@ -16,5 +16,5 @@ function checker (/* 검증자 */) {
     };
 }
 
-var alwaysPasses = checker(lib.always(true))
+var alwaysPasses = checker(fjs.always(true))
 
