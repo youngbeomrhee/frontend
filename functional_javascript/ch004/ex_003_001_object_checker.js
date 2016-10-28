@@ -16,5 +16,5 @@ function checker (/* 검증자 */) {
     };
 }
 
-var alwaysPasses = checker(fjs.always(true))
+var alwaysPasses = checker(fjs.always(true));
 
