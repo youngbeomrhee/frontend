@@ -712,11 +712,10 @@ var performTrialUserCommand = dispatch(
   performCommand
 );
 
+/*
 console.log(`performTrialUserCommand({type: 'join', target: 'foo'}) : ${performTrialUserCommand({type: 'join', target: 'foo'})}`);
 console.log(`performTrialUserCommand({type: 'notify', message: 'Hi new user'}) : ${performTrialUserCommand({type: 'notify', message: 'Hi new user'})}`);
-
-
-
+*/
 
 
 function rightAwayInvoker() {
