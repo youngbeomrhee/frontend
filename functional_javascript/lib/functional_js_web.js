@@ -1,10 +1,6 @@
 /**
- * node 환경에서 돌리기 위한 버젼
- * 필요한 사전 작업 : underscore, jquery 설치(npm install *)
  * Created by YB on 2016-10-23.
  */
-var _ = require('underscore');
-var $ = require('jquery');
 
 // chapter01.js start ===============================================>
 
@@ -587,47 +583,47 @@ function dispatch(/* funs */) {
 }
 
 /*
-var str = dispatch(invoker('toString', Array.prototype.toString),
-invoker('toString', String.prototype.toString));
+ var str = dispatch(invoker('toString', Array.prototype.toString),
+ invoker('toString', String.prototype.toString));
 
-console.log(`str('a') : ${str('a')}`);
-console.log(`str(_.range(10)) : ${str(_.range(10))}`);
+ console.log(`str('a') : ${str('a')}`);
+ console.log(`str(_.range(10)) : ${str(_.range(10))}`);
 
-Object.prototype.stringify = function() {
-    return Object.keys(this).map((key)=> key + ' : ' + this[key]).join(', ');
-};
+ Object.prototype.stringify = function() {
+ return Object.keys(this).map((key)=> key + ' : ' + this[key]).join(', ');
+ };
 
-var toStr = dispatch(
-    invoker('toString', Array.prototype.toString),
-    invoker('toString', String.prototype.toString),
-    invoker('stringify', Object.prototype.stringify),
-    invoker('toString', Boolean.prototype.toString),
-    invoker('toString', Number.prototype.toString)
-);
-
-
-console.log(`toStr(1) : ${toStr(1)}`);
-console.log(`toStr('a') : ${toStr('a')}`);
-console.log(`toStr(_.range(10)) : ${toStr(_.range(10))}`);
-console.log(`toStr({a:1, b:2, c:'str'}) : ${toStr({a:1, b:2, c:'str'})}`);
-console.log(`toStr(false) : ${toStr(false)}`);
+ var toStr = dispatch(
+ invoker('toString', Array.prototype.toString),
+ invoker('toString', String.prototype.toString),
+ invoker('stringify', Object.prototype.stringify),
+ invoker('toString', Boolean.prototype.toString),
+ invoker('toString', Number.prototype.toString)
+ );
 
 
-var polyToString = dispatch(
-    function(s) { return _.isString(s) ? s : undefined },
-    function(s) { return _.isArray(s) ? stringifyArray(s) : undefined },
-    function(s) { return _.isObject(s) ? JSON.stringify(s) : undefined },
-    function(s) { return s.toString() }
-);
+ console.log(`toStr(1) : ${toStr(1)}`);
+ console.log(`toStr('a') : ${toStr('a')}`);
+ console.log(`toStr(_.range(10)) : ${toStr(_.range(10))}`);
+ console.log(`toStr({a:1, b:2, c:'str'}) : ${toStr({a:1, b:2, c:'str'})}`);
+ console.log(`toStr(false) : ${toStr(false)}`);
 
 
-console.log(`polyToString(1) : ${polyToString(1)}`);
-console.log(`polyToString('a') : ${polyToString('a')}`);
-console.log(`polyToString(_.range(10)) : ${polyToString(_.range(10))}`);
-console.log(`polyToString({a:1, b:2, c:'str'}) : ${polyToString({a:1, b:2, c:'str'})}`);
-console.log(`polyToString(false) : ${polyToString(false)}`);
+ var polyToString = dispatch(
+ function(s) { return _.isString(s) ? s : undefined },
+ function(s) { return _.isArray(s) ? stringifyArray(s) : undefined },
+ function(s) { return _.isObject(s) ? JSON.stringify(s) : undefined },
+ function(s) { return s.toString() }
+ );
 
-*/
+
+ console.log(`polyToString(1) : ${polyToString(1)}`);
+ console.log(`polyToString('a') : ${polyToString('a')}`);
+ console.log(`polyToString(_.range(10)) : ${polyToString(_.range(10))}`);
+ console.log(`polyToString({a:1, b:2, c:'str'}) : ${polyToString({a:1, b:2, c:'str'})}`);
+ console.log(`polyToString(false) : ${polyToString(false)}`);
+
+ */
 
 
 function stringReverse(s) {
@@ -636,21 +632,21 @@ function stringReverse(s) {
 }
 
 /*
-// dispatch로 만든 함수를 dispatch의 인자로 제공함으로써 유연성을 극대화할 수 있다
-var sillyReverse = dispatch(rev, fjs.always("Can't reverse"));
+ // dispatch로 만든 함수를 dispatch의 인자로 제공함으로써 유연성을 극대화할 수 있다
+ var sillyReverse = dispatch(rev, fjs.always("Can't reverse"));
 
-console.log(`sillyReverse([1,2,3]) : ${sillyReverse([1,2,3])}`);
-console.log(`sillyReverse('asdfas') : ${sillyReverse('asdfas')}`);
-console.log(`sillyReverse(234) : ${sillyReverse(234)}`);
-*/
+ console.log(`sillyReverse([1,2,3]) : ${sillyReverse([1,2,3])}`);
+ console.log(`sillyReverse('asdfas') : ${sillyReverse('asdfas')}`);
+ console.log(`sillyReverse(234) : ${sillyReverse(234)}`);
+ */
 
 // 수동적으로 명령을 분류하는 switch 문을 dispatch로 대체할 수 있다.
 function notify(msg) {
-    console.log('# notify : ' + msg);
+    return '# notify : ' + msg;
 }
 
 function changeView(target) {
-    console.log(target, 'has chaged');
+    return target + ' has changed';
 }
 
 function performCommandHardcoded(command) {
@@ -665,11 +661,18 @@ function performCommandHardcoded(command) {
             result = changeView(command.target);
             break;
         default:
-            alert(command.type);
+            return command.type;
+            break;
     }
 
     return result;
 }
+
+/*
+console.log(`performCommandHardcoded({type: 'notify', message: 'hi!'}) : ${performCommandHardcoded({type: 'notify', message: 'hi!'})}`);
+console.log(`performCommandHardcoded({type: 'join', target: 'waiting-room!'}) : ${performCommandHardcoded({type: 'join', target: 'waiting-room!'})}`);
+console.log(`performCommandHardcoded({type: 'wat'}) : ${performCommandHardcoded({type: 'wat'})}`);
+*/
 
 function isa(type, action) {
     return function(obj) {
@@ -677,6 +680,43 @@ function isa(type, action) {
             return action(obj);
     }
 }
+
+var performCommand = dispatch(
+    isa('notify', function(obj) { return notify(obj.message); }),
+    isa('join', function(obj) { return changeView(obj.target); }),
+    function(obj) { return obj.type; }
+)
+
+
+/*
+console.log(`performCommand({type: 'notify', message: 'hi!'}) : ${performCommandHardcoded({type: 'notify', message: 'hi!'})}`);
+console.log(`performCommand({type: 'join', target: 'waiting-room!'}) : ${performCommandHardcoded({type: 'join', target: 'waiting-room!'})}`);
+console.log(`performCommand({type: 'wat'}) : ${performCommandHardcoded({type: 'wat'})}`);
+*/
+
+// performCommandHardcoded 함수의 기능을 확장하려면 switch 문 자체를 고쳐야 하지만 dispatch 함수를 쓰면 간단하게 새 기능을 추가할 수 있다.
+var performAdminCommand = dispatch(
+  isa('kill', /* function (obj) { return shutdown(obj.hostname) }} */ (obj)=>'shutdown '+obj.hostname),
+  performCommand
+);
+
+/*
+console.log(`performAdminCommand({type: 'kill', hostname: 'localhost'}) : ${performAdminCommand({type: 'kill', hostname: 'localhost'})}`);
+console.log(`performAdminCommand({type: 'flail'}) : ${performAdminCommand({type: 'flail'})}`);
+console.log(`performAdminCommand({type: 'join', target: 'foo'}) : ${performAdminCommand({type: 'join', target: 'foo'})}`);
+*/
+
+// 두 개 이상의 dispatch가 연결된 dispatch 체인에서 특정 명령을 오버라이드해서 그 명령이 수행되지 않도록 할 수도 있다.
+var performTrialUserCommand = dispatch(
+  isa('join', function (obj) { console.log('Cannot join until approved'); }),
+  performCommand
+);
+
+/*
+console.log(`performTrialUserCommand({type: 'join', target: 'foo'}) : ${performTrialUserCommand({type: 'join', target: 'foo'})}`);
+console.log(`performTrialUserCommand({type: 'notify', message: 'Hi new user'}) : ${performTrialUserCommand({type: 'notify', message: 'Hi new user'})}`);
+*/
+
 
 function rightAwayInvoker() {
     var args = _.toArray(arguments);
@@ -1654,128 +1694,3 @@ var compareAndSwap = invoker('swap', CAS.prototype.swap);
 
 function snapshot(o) { return o.snapshot() }
 function addWatcher(o, fun) { o.watch(fun) }
-
-
-
-module.exports = {
-    splat: splat,
-    unsplat: unsplat,
-    parseAge: parseAge,
-    fail: fail,
-    warn: warn,
-    note: note,
-    parseAge: parseAge,
-    naiveNth: naiveNth,
-    isIndexed: isIndexed,
-    nth: nth,
-    second: second,
-    compareLessThanOrEqual: compareLessThanOrEqual,
-    lessOrEqual: lessOrEqual,
-    comparator: comparator,
-    lameCSV: lameCSV,
-    selectNames: selectNames,
-    selectAges: selectAges,
-    selectHairColor: selectHairColor,
-    existy: existy,
-    truthy: truthy,
-    doWhen: doWhen,
-    executeIfHasField: executeIfHasField,
-    lyricSegment: lyricSegment,
-    song: song,
-    doubleAll: doubleAll,
-    average: average,
-    onlyEven: onlyEven,
-    allOf: allOf,
-    anyOf: anyOf,
-    complement: complement,
-    cat: cat,
-    construct: construct,
-    mapcat: mapcat,
-    butLast: butLast,
-    interpose: interpose,
-    project: project,
-    rename: rename,
-    as: as,
-    restrict: restrict,
-    makeEmptyObject: makeEmptyObject,
-    makeBindFun: makeBindFun,
-    f: f,
-    g: g,
-    strangeIdentity: strangeIdentity,
-    strangerIdentity: strangerIdentity,
-    createScaleFunction: createScaleFunction,
-    createWeirdScaleFunction: createWeirdScaleFunction,
-    makeAdder: makeAdder,
-    averageDamp: averageDamp,
-    complement: complement,
-    isEven: isEven,
-    plucker: plucker,
-    finder: finder,
-    best: best,
-    repeat: repeat,
-    repeatedly: repeatedly,
-    iterateUntil: iterateUntil,
-    always: always,
-    invoker: invoker,
-    uniqueString: uniqueString,
-    uniqueStringPrefix: uniqueStringPrefix,
-    makeUniqueStringFunction: makeUniqueStringFunction,
-    fnull: fnull,
-    defaults: defaults,
-    doSomething: doSomething,
-    checker: checker,
-    validator: validator,
-    aMap: aMap,
-    hasKeys: hasKeys,
-    dispatch: dispatch,
-    stringReverse: stringReverse,
-    performCommandHardcoded: performCommandHardcoded,
-    isa: isa,
-    rightAwayInvoker: rightAwayInvoker,
-    leftCurryDiv: leftCurryDiv,
-    rightCurryDiv: rightCurryDiv,
-    curry: curry,
-    curry2: curry2,
-    div: div,
-    songToString: songToString,
-    curry3: curry3,
-    toHex: toHex,
-    rgbToHexString: rgbToHexString,
-    divPart: divPart,
-    partial1: partial1,
-    partial2: partial2,
-    partial: partial,
-    sqr: sqr,
-    condition1: condition1,
-    uncheckedSqr: uncheckedSqr,
-    not: not,
-    myLength: myLength,
-    cycle: cycle,
-    constructPair: constructPair,
-    unzip: unzip,
-    nexts: nexts,
-    depthSearch: depthSearch,
-    tcLength: tcLength,
-    andify: andify,
-    orify: orify,
-    evenSteven: evenSteven,
-    oddJohn: oddJohn,
-    flat: flat,
-    deepClone: deepClone,
-    visit: visit,
-    postDepth: postDepth,
-    preDepth: preDepth,
-    influencedWithStrategy: influencedWithStrategy,
-    evenOline: evenOline,
-    oddOline: oddOline,
-    trampoline: trampoline,
-    isEvenSafe: isEvenSafe,
-    isOddSafe: isOddSafe,
-    generator: generator,
-    genHead: genHead,
-    genTail: genTail,
-    genTake: genTake,
-    asyncGetAny: asyncGetAny,
-    influenced: influenced
-}
-
