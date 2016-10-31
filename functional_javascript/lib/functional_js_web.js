@@ -777,12 +777,33 @@ function rgbToHexString(r, g, b) {
     return ["#", toHex(r), toHex(g), toHex(b)].join('');
 }
 
+/* 커링을 이용한 플루언트 API */
+var greaterThan = curry2(function (lhs, rhs) { return lhs > rhs });
+var lessThan = curry2(function (lhs, rhs) { return lhs < rhs });
+
+var withinRange = checker(
+  validator('arg must be greater than 10', greaterThan(10)),
+  validator('arg must be less than 20', lessThan(20))
+);
+
+console.log(`withinRange(15) : ${withinRange(15)}`);
+console.log(`withinRange(1) : ${withinRange(1)}`);
+console.log(`withinRange(100) : ${withinRange(100)}`);
+
+
 function divPart(n) {
     return function(d) {
         return n / d;
     };
 }
 
+/*
+var over10Part = divPart(10);
+console.log(`over10Part(2) : ${over10Part(2)}`);
+*/
+
+
+// 첫 번째 인자를 부분 적용하는 함수 예제
 function partial1(fun, arg1) {
     return function(/* args */) {
         var args = construct(arg1, arguments);
@@ -790,6 +811,12 @@ function partial1(fun, arg1) {
     };
 }
 
+/*
+var over10part1 = partial1(div, 10);
+console.log(`over10part1(5) : ${over10part1(5)}`);
+*/
+
+// 두 개의 인자를 부분 적용하는 함수
 function partial2(fun, arg1, arg2) {
     return function(/* args */) {
         var args = cat([arg1, arg2], arguments);
@@ -797,14 +824,42 @@ function partial2(fun, arg1, arg2) {
     };
 }
 
+/*
+var div10By2 = partial2(div, 10, 2);
+console.log(`div10By2() : ${div10By2()}`);
+*/
+
+
+// 임의의 수의 인자를 부분 적용
 function partial(fun /*, pargs */) {
     var pargs = _.rest(arguments);
 
+    // 몇 몇 인자를 캡처해서 그들을 최종 호출 시 자신의 인자 앞에 붙여 사용하도록 함수를 반환
     return function(/* arguments */) {
         var args = cat(pargs, _.toArray(arguments));
         return fun.apply(fun, args);
     };
 }
+
+/*
+var over10Partial = partial(div, 10);
+console.log(`over10Partial(2) : ${over10Partial(2)}`);
+
+var div10By2 = partial(div, 10, 2);
+console.log(`div10By2() : ${div10By2()}`);
+
+// 실제 연산에 사용될 함수가 사용하는 인자 수를 초과할 경우에 나머지 인자들은 무시된다.
+var div10By2By4By5000Partial = partial(div, 10, 2, 4, 5000);
+console.log(`div10By2By4By5000Partial() : ${div10By2By4By5000Partial()}`);
+*/
+
+// 고차원 함수 validator는 검증 찬반형을 인자로 받아서 에러가 발생한 항목 정보를 포함하는 배열을 반환한다.
+// 반환된 에러 배열이 비었다는 것은 전혀 에러가 발생하지 않았음을 가리킨다.
+// validator는 함수 인자 수동 검증과 같은 다양한 용도로 활용할 수 있다.
+// console.log(`validator('arg must be a map', aMap)(42) : ${validator('arg must be a map', aMap)(42)}`);
+
+var zero = validator('cannot be zero', function (n) { return 0 === n });
+var number = validator('arg must be a number', _.isNumber);
 
 function sqr(n) {
     if (!number(n)) throw new Error(number.message);
@@ -813,6 +868,13 @@ function sqr(n) {
     return n * n;
 }
 
+/*
+console.log(`sqr(10) : ${sqr(10)}`);
+console.log(`sqr(0) : ${sqr(0)}`);
+console.log(`sqr('') : ${sqr('')}`);
+*/
+
+// 핵심적인 계산 로직과는 독립적으로 선행조건을 추가하도록 부분 적용을 이용할 수 있다.
 function condition1(/* validators */) {
     var validators = _.toArray(arguments);
 
@@ -828,7 +890,70 @@ function condition1(/* validators */) {
     };
 }
 
+var sqrPre = condition1(
+  validator('arg must not be zero', complement(zero)),
+  validator('arg must be a number', _.isNumber)
+);
+
+/*
+console.log(`sqrPre(_.identity, 10) : ${sqrPre(_.identity, 10)}`);
+console.log(`sqrPre(_.identity, '') : ${sqrPre(_.identity, '')}`);
+console.log(`sqrPre(_.identity, 0) : ${sqrPre(_.identity, 0)}`);
+*/
+
+// 불안정한 sqr 정의 버젼
 function uncheckedSqr(n) { return n * n };
+// console.log(`uncheckedSqr('') : ${uncheckedSqr('')}`);
+
+// 안전한 sqr 정의 버젼
+// 핵심 계산 과정과 검증 단계가 분리된 sqr 버젼
+var checkedSqr = partial1(sqrPre, uncheckedSqr);
+
+/*
+console.log(`checkedSqr(10) : ${checkedSqr(10)}`);
+console.log(`checkedSqr('') : ${checkedSqr('')}`);
+console.log(`checkedSqr(0) : ${checkedSqr(0)}`);
+*/
+
+// ... 이어서
+// 함수에 조건을 적용하지 않도록 조건 확인 기능을 완전히 제거할 수 있으며 심지어 나중에 새로운 검증을 혼합할 수도 있다.
+var sillySquare = partial1(
+  condition1(validator('shoud be even', isEven)),
+  checkedSqr
+)
+
+/*
+console.log(`sillySquare(10) : ${sillySquare(10)}`);
+console.log(`sillySquare(11) : ${sillySquare(11)}`);
+console.log(`sillySquare('') : ${sillySquare('')}`);
+console.log(`sillySquare(0) : ${sillySquare(0)}`);
+*/
+
+var validateCommand = condition1(
+  validator('arg must be a map', _.isObject),
+  validator('arg must have the correct keys', hasKeys('msg', 'type'))
+);
+
+var createCommand = partial(validateCommand, _.identity);
+
+/*
+console.log(`createCommand({}) : ${createCommand({})}`);
+console.log(`createCommand(21) : ${createCommand(21)}`);
+console.log(`createCommand({msg: "", type: ""}) : ${createCommand({msg: "", type: ""})}`);
+*/
+
+var createLaunchCommand = partial1(
+  condition1(
+    validator('arg must hve the count down', hasKeys('countDown'))
+  ), createCommand
+);
+
+/*
+console.log(`createCommand({msg: '', type: ''}) : ${createCommand({msg: '', type: ''})}`);
+console.log(`createCommand({msg: '', type: '', countDown: 10}) : ${createCommand({msg: '', type: '', countDown: 10})}`);
+*/
+
+
 
 function not(x) { return !x }
 
