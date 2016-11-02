@@ -16,5 +16,5 @@ function allNodeShow(root) {
     console.log(root.nodeType, root);
 
     var kids = root.childNodes;
-    for(var i=0; i<kids.length; i++) allNodeLoop(kids[i]);
+    for(var i=0; i<kids.length; i++) allNodeShow(kids[i]);
 }
