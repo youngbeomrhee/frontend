@@ -786,11 +786,9 @@ var withinRange = checker(
   validator('arg must be less than 20', lessThan(20))
 );
 
-/*
 console.log(`withinRange(15) : ${withinRange(15)}`);
 console.log(`withinRange(1) : ${withinRange(1)}`);
 console.log(`withinRange(100) : ${withinRange(100)}`);
-*/
 
 
 function divPart(n) {
@@ -931,7 +929,6 @@ console.log(`sillySquare('') : ${sillySquare('')}`);
 console.log(`sillySquare(0) : ${sillySquare(0)}`);
 */
 
-
 var validateCommand = condition1(
   validator('arg must be a map', _.isObject),
   validator('arg must have the correct keys', hasKeys('msg', 'type'))
@@ -955,11 +952,6 @@ var createLaunchCommand = partial1(
 console.log(`createCommand({msg: '', type: ''}) : ${createCommand({msg: '', type: ''})}`);
 console.log(`createCommand({msg: '', type: '', countDown: 10}) : ${createCommand({msg: '', type: '', countDown: 10})}`);
 */
-
-
-var isntString = _.compose(function(x) { return !x }, _.isString);
-
-console.log(`isntString([]) : ${isntString([])}`);
 
 
 
