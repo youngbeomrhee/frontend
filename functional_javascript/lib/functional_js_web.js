@@ -300,6 +300,7 @@ function construct(head, tail) {
     return cat([head], _.toArray(tail));
 }
 
+// collection을 함수로 가공 처리한 결과(map 한) 배열로 catenate
 function mapcat(fun, coll) {
     return cat.apply(null, _.map(coll, fun));
 }
@@ -407,6 +408,8 @@ function averageDamp(FUN) {
     }
 }
 
+// predicate(찬반형함수)를 받아서 실행 가능한 상태로 스텐바이
+// 실행시점에는 받아온 인자를 모두 넘겨서 실행한 결과의 부정값을 리턴
 function complement(PRED) {
     return function() {
         return !PRED.apply(null, _.toArray(arguments));
@@ -524,19 +527,26 @@ function doSomething(config) {
 }
 
 function checker(/* validators */) {
+    // 처음 실행시에는 validation 할 함수리스트만 세팅
     var validators = _.toArray(arguments);
-
     return function(obj) {
+        // 두 번째 실행시
+        // validation 루프
+        // reduce의 마지막 인자로 에러 정보를 담을 빈 배열 선언
         return _.reduce(validators, function(errs, check) {
-            if (check(obj))
+            if (check(obj)) {   // validation 통과시에는 현재 errs 넘김
                 return errs;
-            else
+            } else {    // 조건을 만족하지 못할 경우에는
                 return _.chain(errs).push(check.message).value();
+            }
         }, []);
     };
 }
 
-function validator(message, fun) {
+// 검증을 통과하지 못했을때 보여줄 메시지와 검증찬반형 함수를 인자로 받아서
+// 실행준비된 검증찬반형함수에 실패했을 때의 메시지를 'message' 프로퍼티에 넣어서 리턴
+function validator(message, /* 찬반형 */fun) {
+    // 함수를 실행한 결과를
     var f = function(/* args */) {
         return fun.apply(fun, arguments);
     };
@@ -782,14 +792,17 @@ var greaterThan = curry2(function (lhs, rhs) { return lhs > rhs });
 var lessThan = curry2(function (lhs, rhs) { return lhs < rhs });
 
 var withinRange = checker(
+  validator('arg must be a integer', Number.isInteger),
   validator('arg must be greater than 10', greaterThan(10)),
   validator('arg must be less than 20', lessThan(20))
 );
 
+/*
 console.log(`withinRange(15) : ${withinRange(15)}`);
 console.log(`withinRange(1) : ${withinRange(1)}`);
 console.log(`withinRange(100) : ${withinRange(100)}`);
-
+console.log(`withinRange('str') : ${withinRange('str')}`);
+*/
 
 function divPart(n) {
     return function(d) {
@@ -802,9 +815,9 @@ var over10Part = divPart(10);
 console.log(`over10Part(2) : ${over10Part(2)}`);
 */
 
-
 // 첫 번째 인자를 부분 적용하는 함수 예제
 function partial1(fun, arg1) {
+    // 처음 실행 결과로 실행될 함수(fun)과 첫 번째 파라미터(arg1)이 고정됨
     return function(/* args */) {
         var args = construct(arg1, arguments);
         return fun.apply(fun, args);
@@ -839,7 +852,7 @@ function partial(fun /*, pargs */) {
         var args = cat(pargs, _.toArray(arguments));
         return fun.apply(fun, args);
     };
-}
+};
 
 /*
 var over10Partial = partial(div, 10);
@@ -853,7 +866,6 @@ var div10By2By4By5000Partial = partial(div, 10, 2, 4, 5000);
 console.log(`div10By2By4By5000Partial() : ${div10By2By4By5000Partial()}`);
 */
 
-// 고차원 함수 validator는 검증 찬반형을 인자로 받아서 에러가 발생한 항목 정보를 포함하는 배열을 반환한다.
 // 반환된 에러 배열이 비었다는 것은 전혀 에러가 발생하지 않았음을 가리킨다.
 // validator는 함수 인자 수동 검증과 같은 다양한 용도로 활용할 수 있다.
 // console.log(`validator('arg must be a map', aMap)(42) : ${validator('arg must be a map', aMap)(42)}`);
@@ -861,6 +873,7 @@ console.log(`div10By2By4By5000Partial() : ${div10By2By4By5000Partial()}`);
 var zero = validator('cannot be zero', function (n) { return 0 === n });
 var number = validator('arg must be a number', _.isNumber);
 
+// 제곱을 구하는 함수
 function sqr(n) {
     if (!number(n)) throw new Error(number.message);
     if (zero(n))    throw new Error(zero.message);
@@ -876,9 +889,13 @@ console.log(`sqr('') : ${sqr('')}`);
 
 // 핵심적인 계산 로직과는 독립적으로 선행조건을 추가하도록 부분 적용을 이용할 수 있다.
 function condition1(/* validators */) {
+    // 검사에 사용될 validation 함수들을 추가
     var validators = _.toArray(arguments);
-
     return function(fun, arg) {
+        debugger;
+        // validators를 하나하나 확인하면서 에러배열에 메시지 삽입
+        // validators interface : 실행 결과는 Boolean, 실패시(return false) 프로퍼티에 담길 message
+        // function validator(message, /* 찬반형 */fun) { return function(){};}
         var errors = mapcat(function(isValid) {
             return isValid(arg) ? [] : [isValid.message];
         }, validators);
@@ -886,16 +903,18 @@ function condition1(/* validators */) {
         if (!_.isEmpty(errors))
             throw new Error(errors.join(", "));
 
+        // 모든 validation 통과시에 함수 실행
         return fun(arg);
     };
 }
 
 var sqrPre = condition1(
-  validator('arg must not be zero', complement(zero)),
+  validator('arg must not be zero', complement(zero)),  // validator('msg', validator('msg2', func))의 형태
   validator('arg must be a number', _.isNumber)
 );
 
 /*
+// sqrPre가 제대로 동작하는지 검증
 console.log(`sqrPre(_.identity, 10) : ${sqrPre(_.identity, 10)}`);
 console.log(`sqrPre(_.identity, '') : ${sqrPre(_.identity, '')}`);
 console.log(`sqrPre(_.identity, 0) : ${sqrPre(_.identity, 0)}`);
@@ -908,7 +927,7 @@ function uncheckedSqr(n) { return n * n };
 // 안전한 sqr 정의 버젼
 // 핵심 계산 과정과 검증 단계가 분리된 sqr 버젼
 var checkedSqr = partial1(sqrPre, uncheckedSqr);
-
+// => sqrPre(uncheckedSqr, 실행시에 넘어올 arguments)
 /*
 console.log(`checkedSqr(10) : ${checkedSqr(10)}`);
 console.log(`checkedSqr('') : ${checkedSqr('')}`);
@@ -918,9 +937,9 @@ console.log(`checkedSqr(0) : ${checkedSqr(0)}`);
 // ... 이어서
 // 함수에 조건을 적용하지 않도록 조건 확인 기능을 완전히 제거할 수 있으며 심지어 나중에 새로운 검증을 혼합할 수도 있다.
 var sillySquare = partial1(
-  condition1(validator('shoud be even', isEven)),
+  condition1(validator('shoud be even', isEven)),   // condition1은 검증에 사용될 여러 validator를 받아서 조건에 문제가 없으면 실행
   checkedSqr
-)
+);
 
 /*
 console.log(`sillySquare(10) : ${sillySquare(10)}`);
@@ -944,13 +963,13 @@ console.log(`createCommand({msg: "", type: ""}) : ${createCommand({msg: "", type
 
 var createLaunchCommand = partial1(
   condition1(
-    validator('arg must hve the count down', hasKeys('countDown'))
+    validator('arg must have the count down', hasKeys('countDown'))
   ), createCommand
 );
 
 /*
-console.log(`createCommand({msg: '', type: ''}) : ${createCommand({msg: '', type: ''})}`);
-console.log(`createCommand({msg: '', type: '', countDown: 10}) : ${createCommand({msg: '', type: '', countDown: 10})}`);
+console.log(`createLaunchCommand({msg: '', type: ''}) : ${createLaunchCommand({msg: '', type: ''})}`);
+console.log(`createLaunchCommand({msg: '', type: '', countDown: 10}) : ${createLaunchCommand({msg: '', type: '', countDown: 10})}`);
 */
 
 
