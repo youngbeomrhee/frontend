@@ -888,11 +888,11 @@ console.log(`sqr('') : ${sqr('')}`);
 */
 
 // 핵심적인 계산 로직과는 독립적으로 선행조건을 추가하도록 부분 적용을 이용할 수 있다.
+// 후행조건에도 사용될 수 있다
 function condition1(/* validators */) {
     // 검사에 사용될 validation 함수들을 추가
     var validators = _.toArray(arguments);
     return function(fun, arg) {
-        debugger;
         // validators를 하나하나 확인하면서 에러배열에 메시지 삽입
         // validators interface : 실행 결과는 Boolean, 실패시(return false) 프로퍼티에 담길 message
         // function validator(message, /* 찬반형 */fun) { return function(){};}
@@ -972,10 +972,61 @@ console.log(`createLaunchCommand({msg: '', type: ''}) : ${createLaunchCommand({m
 console.log(`createLaunchCommand({msg: '', type: '', countDown: 10}) : ${createLaunchCommand({msg: '', type: '', countDown: 10})}`);
 */
 
+/* 함수의 끝을 서로 연결하는 함수 조립 */
+// 한 쪽으로 데이터를 넣으면 반대편으로 완전히 새로운 데이터가 나올 수 있도록 함수의 파이프라인 만들기
 
+// !rhk _.isString 사이에서 파이프라인이 만들어짐
+!_.isString(name);
 
+function isntString(str) {
+    return !_.isString(str);
+}
+
+// console.log(`isntString(1) : ${isntString(1)}`);
+
+// 언더스코어의 _.compose 함수를 이용해서 함수를 조립
+// _.compose : Returns the composition of a list of functions, where each function consumes the return value of the function that follows
+var isntString = _.compose(function (x) { return !x }, _.isString);
+
+// console.log(`isntString([]) : ${isntString([])}`);
+
+// ! 연산자를 함수로 캡슐화
 function not(x) { return !x }
 
+var isntString = _.compose(not, _.isString);
+
+/*
+console.log(`isntString('str') : ${isntString('str')}`);
+console.log(`isntString(1) : ${isntString(1)}`);
+console.log(`isntString([]) : ${isntString([])}`);
+*/
+
+// 이전에 정의한 mapcat 함수를 다음과 같이 정의할 수 있다.
+var composedMapcat = _.compose(splat(cat), _.map);
+
+// console.log(`composedMapcat([[1,2], [3,4], [5]]) : ${composedMapcat([[1,2], [3,4], [5]])}`);
+
+/* 조립을 이용해서 선행조건과 후행조건 만들기 */
+var sqrPost = condition1(
+    validator('result shoud be a number', _.isNumber),
+    validator('result shoud not be zero', complement(zero)),
+    validator('result shoud be positive', greaterThan(0))
+);
+
+// console.log(`sqrPost(_.identity, 0) : ${sqrPost(_.identity, 0)}`);
+// console.log(`sqrPost(_.identity, -1) : ${sqrPost(_.identity, -1)}`);
+// console.log(`sqrPost(_.identity, '') : ${sqrPost(_.identity, '')}`);
+// console.log(`sqrPost(_.identity, 100) : ${sqrPost(_.identity, 100)}`);
+
+var megaCheckedSqr = _.compose(partial(sqrPost, _.identity), checkedSqr);
+
+// console.log(`megaCheckedSqr(10) : ${megaCheckedSqr(10)}`);
+// console.log(`megaCheckedSqr(0) : ${megaCheckedSqr(0)}`);
+// console.log(`megaCheckedSqr(NaN) : ${megaCheckedSqr(NaN)}`);
+
+
+
+/* 재귀 */
 function myLength(ary) {
     if (_.isEmpty(ary))
         return 0;
