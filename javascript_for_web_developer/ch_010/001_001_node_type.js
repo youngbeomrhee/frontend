@@ -19,7 +19,6 @@ var nodeTypes = (function() {
 })();
 
 
-
 function convertToArray (nodes) {
   var array = null;
   // quirks 탐지 방법 중 하나
@@ -38,6 +37,35 @@ var bodyNode = convertToArray(document.body.childNodes);
 console.dir(bodyNode);
 
 
+// hasChildNodes() : 자식노드가 있는지 확인
+console.log(`document.body.hasChildNodes() : ${document.body.hasChildNodes()}`);
 
+// insertBefore
+document.body.innerHTML = '<ul><li>1</li><li>2</li><li>3</li></ul>';
+var newLi = document.createElement('li');
+newLi.innerHTML = 'new';
+var ul = document.querySelector('ul');
+ul.insertBefore(newLi, ul.childNodes[0]);
+ul.insertBefore(newLi, ul.childNodes[1]);
+ul.insertBefore(newLi, null);
+// 할당도 가능
+var newNode = ul.insertBefore(newLi, null);
+
+// replaceChild : 교체
+var returndNode = ul.replaceChild(newLi, ul.childNodes[0]);
+
+// removeChild : 제거
+var returndNode = ul.removeChild(ul.childNodes[1]);
+
+
+
+document.body.innerHTML = '<ul><li>1</li><li>2</li><li>3</li></ul>';
+
+var ul = document.querySelector('ul');
+var deepList = ul.cloneNode(true);
+console.log(deepList);
+
+var shallowList = ul.cloneNode(false);
+console.log(shallowList);
 
 
