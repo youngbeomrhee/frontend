@@ -58,7 +58,7 @@ var returndNode = ul.replaceChild(newLi, ul.childNodes[0]);
 var returndNode = ul.removeChild(ul.childNodes[1]);
 
 
-
+/* cloneNode deep or shallow */
 document.body.innerHTML = '<ul><li>1</li><li>2</li><li>3</li></ul>';
 
 var ul = document.querySelector('ul');
@@ -67,5 +67,58 @@ console.log(deepList);
 
 var shallowList = ul.cloneNode(false);
 console.log(shallowList);
+
+
+/* getAttribute, setAttribute */
+document.body.innerHTML = '<div id="myDiv" class="content"></div>';
+console.log(`document.querySelector('div').getAttribute('id') : ${document.querySelector('div').getAttribute('id')}`);
+
+
+/* 동적스크립트 */
+window.location = "about:blank";
+console.log(`_ : ${_}`);
+
+function loadScript (url) {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = url;
+  document.body.appendChild(script);
+}
+
+loadScript('https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js');
+
+console.log(`_ : ${_}`);
+
+/* 동적 css */
+function loadStyles (url) {
+  var link = document.createElement('link');
+  link.rel = "stylesheet";
+  link.type = 'text/css';
+  link.href = url;
+  var head = document.getElementsByTagName("head")[0];
+  head.appendChild(link);
+}
+
+document.body.innerHTML =
+    `<table class="table table-bordered">
+        <tr>
+          <th>h1</th>
+          <th>h2</th>
+          <th>h3</th>
+        </tr>
+        <tr>
+          <td>1-1</td>
+          <td>1-2</td>
+          <td>1-3</td>
+        </tr>
+        <tr>
+          <td>2-1</td>
+          <td>2-2</td>
+          <td>2-3</td>
+        </tr>
+    </table>`;
+
+loadStyles('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+
 
 
