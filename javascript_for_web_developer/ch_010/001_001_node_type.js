@@ -122,3 +122,11 @@ loadStyles('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.cs
 
 
 
+document.body.innerHTML = '<ul><li>1</li><li>2</li><li>3</li></ul>';
+var ul = document.querySelector('ul');
+console.log(ul.firstChild);
+console.log(ul.lastChild);
+
+
+
+
