@@ -908,6 +908,40 @@ function condition1(/* validators */) {
     };
 }
 
+function conditionAll(/* validators */) {
+    // 검사에 사용될 validation 함수들을 추가
+    var validators = _.toArray(arguments);
+    return function(fun) {
+        // validators를 하나하나 확인하면서 에러배열에 메시지 삽입
+        // validators interface : 실행 결과는 Boolean, 실패시(return false) 프로퍼티에 담길 message
+        // function validator(message, /* 찬반형 */fun) { return function(){};}
+        var args = Array.prototype.slice.call(arguments, 0);
+        for (var i = 0; i < args.length; i++) {
+            var arg = args[i];
+
+            var errors = mapcat(function(isValid) {
+                return isValid(arg) ? [] : [isValid.message];
+            }, validators);
+
+            if (!_.isEmpty(errors))
+                throw new Error(errors.join(", "));
+        }
+
+        // 모든 validation 통과시에 함수 실행
+        return fun.apply(args);
+    };
+}
+
+
+function checkArgsLength(argsLen) {
+    return arguments.length === argsLen;
+}
+
+function paramIsInteger() {
+    Array.prototype.every.call(arguments, (arg)=>Number.isInteger(arg));
+}
+
+
 var sqrPre = condition1(
   validator('arg must not be zero', complement(zero)),  // validator('msg', validator('msg2', func))의 형태
   validator('arg must be a number', _.isNumber)
@@ -947,6 +981,14 @@ console.log(`sillySquare(11) : ${sillySquare(11)}`);
 console.log(`sillySquare('') : ${sillySquare('')}`);
 console.log(`sillySquare(0) : ${sillySquare(0)}`);
 */
+
+// 함수의 인자 2개를 validation
+var validArgs = conditionAll(
+    validator('인자는 2개입니다', checkArgsLength(2)),
+    validator('모든 인자는 정수형이어야 합니다.', paramIsInteger)
+);
+
+
 
 var validateCommand = condition1(
   validator('arg must be a map', _.isObject),
