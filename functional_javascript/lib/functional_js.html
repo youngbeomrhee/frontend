@@ -3,11 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>functional_js_테스트페이지</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/jasmine.min.css">
 </head>
 <body>
     <h1>Functional JS 테스트페이지</h1>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/jasmine.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/jasmine-html.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/boot.min.js"></script>
     <script src="functional_js_web.js"></script>
+    <script>
+        function helloWorld() {
+            return "Hello world!";
+        }
+        describe("Hello world", function () {
+            it("says hello", function () {
+                debugger;
+                expect(helloWorld()).toEqual("Hello world!");
+            });
+        });
+    </script>
 </body>
 </html>

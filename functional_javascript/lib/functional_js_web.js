@@ -1316,7 +1316,17 @@ function influenced(graph, node) {
     return _.map(groupFrom(graph)[node], second);
 }
 
+// _.random 함수의 시작점을 1로 고정
+var rand = partial1(_.random, 1);
 
+// 1~10까지의 랜덤수 출력
+// console.log(`rand(10) : ${rand(10)}`);
+
+// partial1을 사용하여 나머지 파라미터도 10으로 고정한 함수를 10번 실행시키기
+// console.log(`repeatedly(10, partial1(rand, 10)) : ${repeatedly(10, partial1(rand, 10))}`);
+
+
+// 소문자 랜덤 아스키 코드 생성기
 function randString(len) {
     var ascii = repeatedly(len,  partial1(rand, 26));
 
@@ -1325,11 +1335,21 @@ function randString(len) {
     }).join('');
 }
 
+
+
 PI = 3.14;
 
 function areaOfACircle(radius) {
     return PI * sqr(radius);
 }
+// console.log(`areaOfACircle(3) : ${areaOfACircle(3)}`);
+
+PI = 'Magnum';
+// console.log(`areaOfACircle(3) : ${areaOfACircle(3)}`);
+
+
+
+/*Separating the Pure from the Impure*/
 
 function generateRandomCharacter() {
     return rand(26).toString(36);
@@ -1338,6 +1358,13 @@ function generateRandomCharacter() {
 function generateString(charGen, len) {
     return repeatedly(len, charGen).join('');
 }
+
+// console.log(`generateString(generateRandomCharacter, 20) : ${generateString(generateRandomCharacter, 20)}`);
+
+// generateString이 더 고차원 함수이기 때문에 아래와 같이 partial 사용 가능
+var composedRandomString = partial1(generateString, generateRandomCharacter);
+
+console.log(`composedRandomString(10) : ${composedRandomString(10)}`);
 
 function skipTake(n, coll) {
     var ret = [];
