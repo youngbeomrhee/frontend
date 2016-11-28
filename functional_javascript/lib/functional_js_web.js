@@ -1665,17 +1665,36 @@ var q = new SaferQueue(seed);
 var q2 = q.enqueue(36);
 seed.push(1000);
 
-console.log('q : ', q);
-console.log('q2 : ', q2);
+// console.log('q : ', q);
+// console.log('q2 : ', q2);
 
+
+// new를 강제하는 패턴
 function queue() {
     return new SaferQueue(_.toArray(arguments));
 }
+
+var q = queue(1, 2, 3);
+
+// 또한 invoker 함수를 이용해서 enqueue로 위임할 함수를 만들 수 있다.
+var enqueue = invoker('enqueue', SaferQueue.prototype.enqueue);
+
+var q2 = enqueue(q, 42);
+// console.log('q : ', q);
+// console.log('q2 : ', q2);
+
+
+/* 변화 제어 정책 */
 
 function Container(init) {
     this._value = init;
 };
 
+var aNumber = new Container(42);
+
+// console.log('aNumber : ', aNumber);
+
+// update 메서드 추가
 Container.prototype = {
     update: function(fun /*, args */) {
         var args = _.rest(arguments);
@@ -1686,6 +1705,18 @@ Container.prototype = {
         return this._value;
     }
 };
+
+var aNumber = new Container(15);
+aNumber.update(function (n) { return n+1; });
+// console.log('aNumber : ', aNumber);
+
+// 여러 인자를 갖는 예제
+aNumber.update(function (n, x, y, z) { return n/x/y/z; }, 2, 2, 2);
+// console.log('aNumber : ', aNumber);
+
+// 정상적이지 않은 상황
+aNumber.update(_.compose(megaCheckedSqr, always(0)));
+
 
 function createPerson() {
     var firstName = "";
@@ -2047,12 +2078,12 @@ var CASClass = HoleClass.extend({
 });
 */
 
-function Container(val) {
+function Container2(val) {
     this._value = val;
     this.init(val);
 }
 
-Container.prototype.init = _.identity;
+Container2.prototype.init = _.identity;
 
 var HoleMixin = {
     setValue: function(newValue) {
@@ -2066,7 +2097,7 @@ var HoleMixin = {
 };
 
 var Hole = function(val) {
-    Container.call(this, val);
+    Container2.call(this, val);
 }
 
 var ObserverMixin = (function() {
@@ -2153,7 +2184,7 @@ _.extend(CAS.prototype
     , SnapshotMixin);
 
 function contain(value) {
-    return new Container(value);
+    return new Container2(value);
 }
 
 function hole(val /*, validator */) {
