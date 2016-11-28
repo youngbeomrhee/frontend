@@ -44,7 +44,7 @@ document.styleSheets[1].cssRules[0].style.__proto__ === CSSStyleDeclaration.prot
 document.styleSheets[1].cssRules[1].cssText;
 
 var rules = document.styleSheets[1].cssRules[1];
-ules.style.cssText += 'border: 2px solid blue';
+rules.style.cssText += 'border: 2px solid blue';
 
 /* insertRule() */
 /*
