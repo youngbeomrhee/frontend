@@ -485,6 +485,11 @@ function invoker (NAME, METHOD) {
     };
 }
 
+var rev = invoker('reverse', Array.prototype.reverse);
+
+// console.log(`_.map([[1, 2, 3]], rev) : ${_.map([[1, 2, 3]], rev)}`);
+
+
 function uniqueString(len) {
     return Math.random().toString(36).substr(2, len);
 }
@@ -1076,6 +1081,21 @@ function myLength(ary) {
         return 1 + myLength(_.rest(ary));
 }
 
+// console.log(`myLength(_.range(10)) : ${myLength(_.range(10))}`);
+// console.log(`myLength([]) : ${myLength([])}`);
+// console.log(`myLength(_.range(1000)) : ${myLength(_.range(1000))}`);
+
+// 골치 아픈 상황을 피하고 싶다면 재귀 함수에 주어진 인자는 바꾸지 않는 것이 좋다
+// var a = _.range(10);
+// console.log(`myLength(a) : ${myLength(a)}`);
+// console.log(a);
+// a = [];
+// console.log(`myLength(a) : ${myLength(a)}`);
+
+
+
+/* 재귀함수는 인자를 소비하지 않는다 */
+
 function cycle(times, ary) {
     if (times <= 0)
         return [];
@@ -1083,16 +1103,41 @@ function cycle(times, ary) {
         return cat(ary, cycle(times - 1, ary));
 }
 
+// console.log(`cycle(2, [1, 2, 3]) : ${cycle(2, [1, 2, 3])}`);
+// console.log(`_.take(cycle(20, [1, 2, 3]), 11) : ${_.take(cycle(20, [1, 2, 3]), 11)}`);
+
+
+/* _.zip 함수의 반대 동작을 수행하는 unzip 함수 만들기 */
+
+// var zipped1 = [['a', 1]];
+
 function constructPair(pair, rests) {
     return [construct(_.first(pair), _.first(rests)),
         construct(second(pair),  second(rests))];
 }
+
+// console.log(constructPair(['a', 1], [[], []]));
+// console.log(`_.zip(['a'], [1]) : ${_.zip(['a'], [1])}`);
+// console.log(`_.zip.apply(null, constructPair(['a', 1], [[], []])) : ${_.zip.apply(null, constructPair(['a', 1], [[], []]))}`);
 
 function unzip(pairs) {
     if (_.isEmpty(pairs)) return [[],[]];
 
     return constructPair(_.first(pairs), unzip(_.rest(pairs)));
 }
+
+
+/* 재귀를 이용한 그래프 탐색 */
+
+var influences = [
+    ['Lisp', 'Smalltalk'],
+    ['Lisp', 'Scheme'],
+    ['Smalltalk', 'Self'],
+    ['Scheme', 'JavaScript'],
+    ['Scheme', 'Lua'],
+    ['Self', 'Lua'],
+    ['Self', 'JavaScript']];
+
 
 function nexts(graph, node) {
     if (_.isEmpty(graph)) return [];
@@ -1108,7 +1153,14 @@ function nexts(graph, node) {
         return nexts(more, node);
 }
 
+// console.log(`nexts(influences, 'Lisp') : ${nexts(influences, 'Lisp')}`);
+
+
+
+/* 메모리에서 깊이 우선 재귀 탐색하기 */
+
 function depthSearch(graph, nodes, seen) {
+    debugger;
     if (_.isEmpty(nodes)) return rev(seen);
 
     var node = _.first(nodes);
@@ -1121,6 +1173,12 @@ function depthSearch(graph, nodes, seen) {
             cat(nexts(graph, node), more),
             construct(node, seen));
 }
+
+
+console.log(`depthSearch(influences, ['Lisp'], []) : ${depthSearch(influences, ['Lisp'], [])}`);
+// console.log(`depthSearch(influences, ['Smalltalk', 'Self'], []) : ${depthSearch(influences, ['Smalltalk', 'Self'], [])}`);
+// console.log(`depthSearch(construct(['Lua', 'Io'], influences), ['Lisp'], []) : ${depthSearch(construct(['Lua', 'Io'], influences), ['Lisp'], [])}`);
+
 
 function tcLength(ary, n) {
     var l = n ? n : 0;
@@ -1707,15 +1765,15 @@ Container.prototype = {
 };
 
 var aNumber = new Container(15);
-aNumber.update(function (n) { return n+1; });
+// aNumber.update(function (n) { return n+1; });
 // console.log('aNumber : ', aNumber);
 
 // 여러 인자를 갖는 예제
-aNumber.update(function (n, x, y, z) { return n/x/y/z; }, 2, 2, 2);
+// aNumber.update(function (n, x, y, z) { return n/x/y/z; }, 2, 2, 2);
 // console.log('aNumber : ', aNumber);
 
 // 정상적이지 않은 상황
-aNumber.update(_.compose(megaCheckedSqr, always(0)));
+// aNumber.update(_.compose(megaCheckedSqr, always(0)));
 
 
 function createPerson() {
