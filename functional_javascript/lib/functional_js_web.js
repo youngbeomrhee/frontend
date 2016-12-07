@@ -316,6 +316,12 @@ function interpose (inter, coll) {
         coll));
 }
 
+var library = [{title: "SICP", isbn: "0262010771", ed: 1},
+    {title: "SICP", isbn: "0262510871", ed: 2},
+    {title: "Joy of Clojure", isbn: "1935182641", ed: 1}];
+
+_.findWhere(library, {title: "SICP", ed: 2});
+
 function project(table, keys) {
     return _.map(table, function(obj) {
         return _.pick.apply(null, construct(obj, keys));
@@ -1120,6 +1126,14 @@ function constructPair(pair, rests) {
 // console.log(`_.zip(['a'], [1]) : ${_.zip(['a'], [1])}`);
 // console.log(`_.zip.apply(null, constructPair(['a', 1], [[], []])) : ${_.zip.apply(null, constructPair(['a', 1], [[], []]))}`);
 
+/*
+console.log(
+    constructPair(['a', 1],
+        constructPair(['b', 2],
+            constructPair(['c', 3], [[], []])))
+);
+*/
+
 function unzip(pairs) {
     if (_.isEmpty(pairs)) return [[],[]];
 
@@ -1160,7 +1174,6 @@ function nexts(graph, node) {
 /* 메모리에서 깊이 우선 재귀 탐색하기 */
 
 function depthSearch(graph, nodes, seen) {
-    debugger;
     if (_.isEmpty(nodes)) return rev(seen);
 
     var node = _.first(nodes);
@@ -1800,8 +1813,68 @@ function createPerson() {
     };
 }
 
+/*
+console.log(
+    createPerson()
+        .setFirstName('Mike')
+        .setLastName('Fogus')
+        .setAge(108)
+        .toString()
+);
+*/
+
+
+// _.chain : Returns a wrapped object.
+//  Calling methods on this object will continue to return wrapped objects until value is called.
+
+/*
+console.log(
+    _.chain(library)
+        .pluck('title')
+        .sort()
+);
+*/
+
+/*
+console.log(
+    _.chain(library)
+        .pluck('title')
+        .sort()
+        .value()
+);
+*/
+
+
 var TITLE_KEY = 'titel';
 
+// ... 꽤 많은 코드
+
+/*
+console.log(
+    _.chain(library)
+        .pluck(TITLE_KEY)
+        .sort()
+        .value()
+);
+*/
+
+// Invokes interceptor with the object, and then returns object. The primary purpose of this method is to "tap into" a method chain, in order to perform operations on intermediate results within the chain.
+
+/*
+_.chain(library)
+    .tap(function (o) { console.log(o); })
+    .pluck(TITLE_KEY)
+    .sort()
+    .value();
+*/
+
+/*
+_.chain(library)
+    .pluck(TITLE_KEY)
+    .tap(function (o) { console.log(o); })
+    .sort()
+    .value();
+*/
 
 function LazyChain(obj) {
     this._calls  = [];
@@ -1899,7 +1972,7 @@ function firstEditions(table) {
         , function(t) { return restrict(t, function(book) {
             return book.edition === 1;
         });
-        });
+    });
 }
 
 var RQL = {
