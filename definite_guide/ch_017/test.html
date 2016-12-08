@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>Click me</div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        (function () {
+            function eveHandle() {
+                alert('hi');
+            }
+            document.querySelector('div').onclick = eveHandle;
+        })();
+
+
+    </script>
+</body>
+</html>
