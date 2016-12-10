@@ -16,7 +16,7 @@ document.body.innerHTML =
         <input type="button" value="Echo Username" onclick="alert(username.value)">
      </form>   
     `
-
+;
 
 //
 var obj = {

@@ -603,48 +603,47 @@ function dispatch(/* funs */) {
     };
 }
 
+var str = dispatch(invoker('toString', Array.prototype.toString), invoker('toString', String.prototype.toString));
+
+// console.log(`str('a') : ${str('a')}`);
+// console.log(`str(_.range(10)) : ${str(_.range(10))}`);
+
 /*
- var str = dispatch(invoker('toString', Array.prototype.toString),
- invoker('toString', String.prototype.toString));
+Object.prototype.stringify = function() {
+    return Object.keys(this).map((key)=> key + ' : ' + this[key]).join(', ');
+};
+*/
 
- console.log(`str('a') : ${str('a')}`);
- console.log(`str(_.range(10)) : ${str(_.range(10))}`);
+var toStr = dispatch(
+    invoker('toString', Array.prototype.toString),
+    invoker('toString', String.prototype.toString),
+    invoker('stringify', Object.prototype.stringify),
+    invoker('toString', Boolean.prototype.toString),
+    invoker('toString', Number.prototype.toString)
+);
 
- Object.prototype.stringify = function() {
- return Object.keys(this).map((key)=> key + ' : ' + this[key]).join(', ');
- };
-
- var toStr = dispatch(
- invoker('toString', Array.prototype.toString),
- invoker('toString', String.prototype.toString),
- invoker('stringify', Object.prototype.stringify),
- invoker('toString', Boolean.prototype.toString),
- invoker('toString', Number.prototype.toString)
- );
-
-
- console.log(`toStr(1) : ${toStr(1)}`);
- console.log(`toStr('a') : ${toStr('a')}`);
- console.log(`toStr(_.range(10)) : ${toStr(_.range(10))}`);
- console.log(`toStr({a:1, b:2, c:'str'}) : ${toStr({a:1, b:2, c:'str'})}`);
- console.log(`toStr(false) : ${toStr(false)}`);
+// console.log(`toStr(1) : ${toStr(1)}`);
+// console.log(`toStr('a') : ${toStr('a')}`);
+// console.log(`toStr(_.range(10)) : ${toStr(_.range(10))}`);
+// console.log(`toStr({a:1, b:2, c:'str'}) : ${toStr({a:1, b:2, c:'str'})}`);
+// console.log(`toStr(false) : ${toStr(false)}`);
 
 
- var polyToString = dispatch(
- function(s) { return _.isString(s) ? s : undefined },
- function(s) { return _.isArray(s) ? stringifyArray(s) : undefined },
- function(s) { return _.isObject(s) ? JSON.stringify(s) : undefined },
- function(s) { return s.toString() }
- );
+/* 뒤에 나옴
+var polyToString = dispatch(
+    function(s) { return _.isString(s) ? s : undefined },
+    function(s) { return _.isArray(s) ? stringifyArray(s) : undefined },
+    function(s) { return _.isObject(s) ? JSON.stringify(s) : undefined },
+    function(s) { return s.toString() }
+);
+*/
 
 
- console.log(`polyToString(1) : ${polyToString(1)}`);
- console.log(`polyToString('a') : ${polyToString('a')}`);
- console.log(`polyToString(_.range(10)) : ${polyToString(_.range(10))}`);
- console.log(`polyToString({a:1, b:2, c:'str'}) : ${polyToString({a:1, b:2, c:'str'})}`);
- console.log(`polyToString(false) : ${polyToString(false)}`);
-
- */
+// console.log(`polyToString(1) : ${polyToString(1)}`);
+// console.log(`polyToString('a') : ${polyToString('a')}`);
+// console.log(`polyToString(_.range(10)) : ${polyToString(_.range(10))}`);
+// console.log(`polyToString({a:1, b:2, c:'str'}) : ${polyToString({a:1, b:2, c:'str'})}`);
+// console.log(`polyToString(false) : ${polyToString(false)}`);
 
 
 function stringReverse(s) {
@@ -652,14 +651,12 @@ function stringReverse(s) {
     return s.split('').reverse().join("");
 }
 
-/*
- // dispatch로 만든 함수를 dispatch의 인자로 제공함으로써 유연성을 극대화할 수 있다
- var sillyReverse = dispatch(rev, fjs.always("Can't reverse"));
+// dispatch로 만든 함수를 dispatch의 인자로 제공함으로써 유연성을 극대화할 수 있다
+var sillyReverse = dispatch(rev, always("Can't reverse"));
 
- console.log(`sillyReverse([1,2,3]) : ${sillyReverse([1,2,3])}`);
- console.log(`sillyReverse('asdfas') : ${sillyReverse('asdfas')}`);
- console.log(`sillyReverse(234) : ${sillyReverse(234)}`);
- */
+// console.log(`sillyReverse([1,2,3]) : ${sillyReverse([1,2,3])}`);
+// console.log(`sillyReverse('asdfas') : ${sillyReverse('asdfas')}`);
+// console.log(`sillyReverse(234) : ${sillyReverse(234)}`);
 
 // 수동적으로 명령을 분류하는 switch 문을 dispatch로 대체할 수 있다.
 function notify(msg) {
@@ -1188,7 +1185,7 @@ function depthSearch(graph, nodes, seen) {
 }
 
 
-console.log(`depthSearch(influences, ['Lisp'], []) : ${depthSearch(influences, ['Lisp'], [])}`);
+// console.log(`depthSearch(influences, ['Lisp'], []) : ${depthSearch(influences, ['Lisp'], [])}`);
 // console.log(`depthSearch(influences, ['Smalltalk', 'Self'], []) : ${depthSearch(influences, ['Smalltalk', 'Self'], [])}`);
 // console.log(`depthSearch(construct(['Lua', 'Io'], influences), ['Lisp'], []) : ${depthSearch(construct(['Lua', 'Io'], influences), ['Lisp'], [])}`);
 
@@ -2075,38 +2072,60 @@ var stackAction = actions([
         return values;
     });
 
-function lazyChain(obj) {
-    var calls = [];
+/* Ch.9 클래스를 이용하지 않는 프로그래밍 */
+
+
+/* 9.1. 데이터지향 */
+
+function lazyChain(initData) {
+    var calls = [];     // force가 호출됐을때 실행할 함수를 배열에 넣어둠
 
     return {
-        invoke: function(methodName /* args */) {
+        invoke: function(methodName /* args */) {   // invoke를 실행할때 method를 넘겨줌
             var args = _.rest(arguments);
 
-            calls.push(function(target) {
-                var meth = target[methodName];
+            calls.push(function(target) {   // 나중에 실행할 수 있는 함수를 calls 배열에 넣어줌
+                var meth = target[methodName];  // 넘어온 target(데이터)의 메서드 추출
 
-                return meth.apply(target, args);
+                return meth.apply(target, args);    // 실행시 넘어온 target과 invoke 시점에 미리 넣어둔 args를 둘 다 넘기면서 메서드 실행
             });
 
             return this;
         },
         force:  function() {
-            return _.reduce(calls, function(ret, thunk) {
+            return _.reduce(calls, function(ret, thunk) {   // ret : memo, thunk : calls 배열에 들어있는 함수
                 return thunk(ret);
-            }, obj);
+            }, initData);
         }
     };
 }
 
+var lazyOp = lazyChain([2, 1, 3])
+    .invoke('concat', [7, 7, 8, 9, 0])
+    .invoke('sort');
+
+// console.log(lazyOp.force());
+
+
+/* 9.1.1. 함수를 이용하는 프로그래밍 */
+
+// 체인정의과정. 게으른 체인은 함수로 특정한 인스턴스의 액션을 정의하지만 객체의 종류와 관계없이 동작하는 게으른 동작을 구현하는 방법도 있다.
 function deferredSort(ary) {
     return lazyChain(ary).invoke('sort');
 }
 
+// 다음 예제처럼 함수 호출을 이용해서 게으르게 배열을 정렬하는 동작을 만들 수 있다.
+var deferredSorts = _.map([[2, 1, 3], [7, 7, 1], [0, 9, 5]], deferredSort);
 
+// 함수를 이용해서 메서드 호출을 캡슐화하는 방식으로 성크를 호출한다.
 function force(thunk) {
     return thunk.force();
 }
 
+// 이제 원하는 대로 게으른 체인을 호출할 수 있다.
+// console.log(_.map(deferredSorts, force));
+
+// 메서드 호출 대신 함수형 애플리케이션 형식을 이용하는 덕분에 원자 단위로 데이터 처리를 하는 다양한 함수를 정의해서 사용할 수 있다.
 var validateTriples  = validator(
     "Each array should have three elements",
     function (arrays) {
@@ -2117,10 +2136,15 @@ var validateTriples  = validator(
 
 var validateTripleStore = partial1(condition1(validateTriples), _.identity);
 
+// console.log(validateTripleStore([[2, 1, 3], [7, 7, 1], [0, 9, 5]]));
+// console.log(validateTripleStore([[2, 1, 3], [7, 7, 1], [0, 9, 5, 7, 7, 7, 7, 7, 7]]));
+
+// (반드시 게으르게 동작해야 하는 것은 아니지만) 게으르게 동작하는 다른 처리 과정도 정의할 수 있다.
 function postProcess(arrays) {
     return _.map(arrays, second);
 }
 
+// 지금까지 정의한 함수로 도메인 전용의 고수준 동작을 정의할 수 있다.
 function processTriples(data) {
     return pipeline(data
         , JSON.parse
@@ -2132,18 +2156,58 @@ function processTriples(data) {
         , str);
 }
 
+// processTriples("[[2, 1, 3], [7, 7, 1], [0, 9, 5]]");
+// processTriples("[[2, 1, 3], [7, 7, 1], [0, 9, 5, 7, 7, 7, 7, 7, 7]]");
+
+// 비슷한 검증을 요구하는 다양한 파이프라인에서 검증 함수를 재활용
+/*
+$.get("http://djhkjhkdj.com", function (data) {
+    $('#result').text(processTriples(data));
+});
+*/
+
+// 결국 리포트 로직을 추상화해서 더 일반적인 검증 과정을 만들 수 있다
 var reportDataPackets = _.compose(
-    function(s) { $('#result').text(s) },
+    function(s) { console.log(s) },
     processTriples);
 
-function polyToString(obj) {
+// reportDataPackets("[[2, 1, 3], [7, 7, 1], [0, 9, 5]]");
+
+// 지금까지 완성한 함수를 원하는 곳에서 자유롭게 활용할 수 있다
+// $.get("http://djhkjhkdj.com", reportDataPackets);
+
+
+/* 9.2 믹스인 */
+// 인자로 받은 객체를 문자열 표현으로 반환
+function oldPolyToString(obj) {
     if (obj instanceof String)
         return obj;
     else if (obj instanceof Array)
-        return stringifyArray(obj);
+        return oldStringifyArray(obj);
 
     return obj.toString();
 }
+
+function oldStringifyArray(ary) {
+    return ["[", _.map(ary, oldPolyToString).join(","), "]"].join('');
+}
+
+// console.log(`oldPolyToString([1, 2, 3]) : ${oldPolyToString([1, 2, 3])}`);
+// console.log(`oldPolyToString([1, 2, [3, 4]]) : ${oldPolyToString([1, 2, [3, 4]])}`);
+
+// 더 다양한 객체를 처리하기 위해서 if 대신에 dispatch를 활용
+var oldPolyToString2 = dispatch(
+    function(s) { return _.isString(s) ? s : undefined },
+    function(s) { return _.isArray(s) ? oldStringifyArray(s) : undefined },
+    function(s) { return s.toString() });
+
+// console.log(`oldPolyToString2(42) : ${oldPolyToString2(42)}`);
+// console.log(`oldPolyToString2([1, 2, [3, 4]]) : ${oldPolyToString2([1, 2, [3, 4]])}`);
+// console.log(`oldPolyToString2('a') : ${oldPolyToString2('a')}`);
+
+// 객체에 #toString 구현이 제대로 되어 있지 않으면 코드가 작동하지 않을 수 있다.
+// console.log(`oldPolyToString2({a: 1, b: 2}) : ${oldPolyToString2({a: 1, b: 2})}`);
+
 
 function stringifyArray(ary) {
     return ["[", _.map(ary, polyToString).join(","), "]"].join('');
@@ -2152,13 +2216,39 @@ function stringifyArray(ary) {
 var polyToString = dispatch(
     function(s) { return _.isString(s) ? s : undefined },
     function(s) { return _.isArray(s) ? stringifyArray(s) : undefined },
-    function(s) { return _.isObject(s) ? JSON.stringify(s) : undefined },
-    function(s) { return s.toString() });
+    function(s) { return _.isObject(s) ? JSON.stringify(s) : undefined },   // 추가된 부분
+    function(s) { return s.toString() }
+);
 
+// console.log(`polyToString([1, 2, {a: 42, b: [4, 5, 6]}, 77]) : ${polyToString([1, 2, {a: 42, b: [4, 5, 6]}, 77])}`);
+
+// 이런 방식은 Container 같은 생성자를 사용했을때 문제가 있다
+// console.log(`polyToString(new Container(_.range(5))) : ${polyToString(new Container(_.range(5)))}`);
+
+// 믹스인 기반 확장을 살펴보기 전에 확인할 두 가지 옵션
+// 1. 코어 프로토타입이 변경됨.
+// 2. 클래스 계층이 생김
+
+
+
+/* 9.2.1 코어 프로토타입 개조 */
+
+// 문자열 전용 메서드를 Container의 prototype에 부착
 Container.prototype.toString = function() {
     return ["@<", polyToString(this._value), ">"].join('');
 }
 
+// console.log(`(new Container(42)).toString() : ${(new Container(42)).toString()}`);
+// console.log(`(new Container({a: 42, b: [1, 2, 3]})).toString() : ${(new Container({a: 42, b: [1, 2, 3]})).toString()}`);
+
+// 코어 오브젝트에 어떤 기능을 추가하려면 코어 프로토타입을 건드리는 수밖에 없다? -> 절대로 하면 안된다
+Array.prototype.toString = function () {
+    return "DON'T DO THIS";
+}
+
+console.log(`[1, 2, 3].toString() : ${[1, 2, 3].toString()}`);
+
+// 커스텀 형식을 대신할 별도의 함수를 이용하는 것이 좋다.
 
 /*
 function ContainerClass() {}
