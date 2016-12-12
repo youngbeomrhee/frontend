@@ -424,6 +424,13 @@ function complement(PRED) {
 
 function isEven(n) { return (n%2) === 0 }
 
+var isOdd = complement(isEven);
+
+// isOdd(2);
+
+// isOdd(413);
+
+
 function plucker(FIELD) {
     return function(obj) {
         return (obj && obj[FIELD]);
@@ -2242,11 +2249,13 @@ Container.prototype.toString = function() {
 // console.log(`(new Container({a: 42, b: [1, 2, 3]})).toString() : ${(new Container({a: 42, b: [1, 2, 3]})).toString()}`);
 
 // 코어 오브젝트에 어떤 기능을 추가하려면 코어 프로토타입을 건드리는 수밖에 없다? -> 절대로 하면 안된다
+/*
 Array.prototype.toString = function () {
     return "DON'T DO THIS";
 }
+*/
 
-console.log(`[1, 2, 3].toString() : ${[1, 2, 3].toString()}`);
+// console.log(`[1, 2, 3].toString() : ${[1, 2, 3].toString()}`);
 
 // 커스텀 형식을 대신할 별도의 함수를 이용하는 것이 좋다.
 
@@ -2321,6 +2330,7 @@ var Hole = function(val) {
     Container2.call(this, val);
 }
 
+// Hole 형식을 완성하려면 직접 구현하거나 아니면 ObserverMixin과 ValidateMixin을 혼합해야 한다
 var ObserverMixin = (function() {
     var _watchers = [];
 
@@ -2347,17 +2357,53 @@ var ValidateMixin = {
         this.validate(val);
     },
     validate: function(val) {
-        if (existy(this._validator) &&
-            !this._validator(val))
+        if (existy(this._validator) && !this._validator(val))
             fail("Attempted to set invalid value " + polyToString(val));
     }
 };
 
+// 두 가지 믹스인을 준비했으므로 다음처럼 Hole 형식의 요구사항을 모두 만족할 수 있다.
 _.extend(Hole.prototype
     , HoleMixin
     , ValidateMixin
     , ObserverMixin);
 
+var h = new Hole(42);
+
+// 항상 실패로 끝나는 검증자를 추가
+// h.addValidator(always(false));
+// h.setValue(9);
+
+/*
+
+// 짝수만 허용하는 검증자 추가
+h.addValidator(isEven);
+// h.setValue(9);
+h.setValue(108);
+// console.dir(h);
+
+// watch 메서드를 이용해서 감시자 추가
+h.watch(function (old, nu) {
+    note(["changing", old, "to", nu].join(' '));
+});
+
+h.setValue(42);
+
+// 감시자 추가
+h.watch(function (old, nu) {
+    note(["Veranderende", old, "to", nu].join(' '));
+});
+
+h.setValue(36);
+*/
+
+
+/* 9.2.5 믹스인 확장을 이용해서 새 기능 추가 */
+/*
+- 프로토콜
+확장 프로토콜 : setValue 메서드와 _value 프로퍼티를 반드시 제공해야 한다.
+인터페이스 프로토콜 : swap 메서드 제공
+*/
 var SwapMixin = {
     swap: function(fun /* , args... */) {
         var args = _.rest(arguments)
@@ -2367,12 +2413,18 @@ var SwapMixin = {
     }
 };
 
+var o = {_value: 0, setValue: _.identity};
+_.extend(o, SwapMixin);
+// console.log(`o.swap(construct, [1, 2, 3]) : ${o.swap(construct, [1, 2, 3])}`);
+
+// Hole 인스턴스에서 안전하게 값을 검출하는 방식을 제공하는 또 다른 믹스인 SnapshotMixin 구현
 var SnapshotMixin = {
     snapshot: function() {
         return deepClone(this._value);
     }
 };
 
+// Hole의 새 규격명세
 _.extend(Hole.prototype
     , HoleMixin
     , ValidateMixin
@@ -2380,10 +2432,19 @@ _.extend(Hole.prototype
     , SwapMixin
     , SnapshotMixin);
 
+var h = new Hole(42);
+h.swap(always(99));
+// console.log(`h.snapshot() : ${h.snapshot()}`);
+
+
+
+/* 9.2.6 믹스인 믹싱을 이용한 새로운 형식 */
+// 비교 후 교환 기능을 수행하는 CAS. 즉, 기존 값이 무엇인지 알고 있어야만 형식에 변화를 줄 수 있다.
 var CAS = function(val) {
     Hole.call(this, val);
 }
 
+// CASMixin은 SwapMixin의 swap 메서드를 오버라이드한다는 점이 흥미롭다
 var CASMixin = {
     swap: function(oldVal, f) {
         if (this._value === oldVal) {
@@ -2396,6 +2457,8 @@ var CASMixin = {
     }
 };
 
+// SwapMixin을 CASMixin으로 대체할수도 있지만 _.extend가 오버라이드를 처리할 수 있게 믹스인 배치 순서를 활용한다.
+// 현시점에서는 CASMixin이 SwapMixin의 기능을 모두 포함하고 있지만 나중에 SwapMixin의 swap 기능이 확장될 수 있기 때문에 확장 체인에 SwapMixin을 남겨둔다
 _.extend(CAS.prototype
     , HoleMixin
     , ValidateMixin
@@ -2404,10 +2467,28 @@ _.extend(CAS.prototype
     , CASMixin
     , SnapshotMixin);
 
+var c = new CAS(42);
+
+/*
+c.swap(42, always(-1));
+console.log(`c.snapshot() : ${c.snapshot()}`);
+
+c.swap('not the value', always(100000));
+console.log(`c.snapshot() : ${c.snapshot()}`);
+*/
+
+
+
+/* 9.2.7 메서드는 저수준 동작이다 */
+
+// 컨테이너 형식에 접근하고 컨테이너를 조작하는 함수형 API
 function contain(value) {
     return new Container2(value);
 }
 
+contain(42);
+
+// Hole 함수형 API
 function hole(val /*, validator */) {
     var h = new Hole();
     var v = _.toArray(arguments)[1];
@@ -2419,8 +2500,21 @@ function hole(val /*, validator */) {
     return h;
 }
 
+// 많은 검증로직을 hole 함수 내부로 캡슐화했다. 따라서 원하는 대로 저수준 메서드를 조립할 수 있다.
+// Hole 생성자와 addValidator 메서드를 합친 것에 비해 훨씬 간단하게 hole 함수를 이용할 수 있다.
+
+
+// var x = hole(42, always(false));
+// setValue는 Hole 타입의 메서드이므로 외부로 기능을 노출할 이유가 없다. 따라서 swap과 snapshot 함수만 노출한다.
+
 var swap = invoker('swap', Hole.prototype.swap);
 
+// swap 함수는 첫 번째 인자로 대상 객체를 받으며 여타 호출자에 종속된 메서드처럼 동작한다.
+var x = hole(42);
+
+// console.log(`swap(x, sqr) : ${swap(x, sqr)}`);
+
+// Hole과 비슷한 방법으로 CAS 형식의 기능을 노출시킬 수 있다.
 function cas(val /*, args */) {
     var h = hole.apply(this, arguments);
     var c = new CAS(val);
@@ -2431,5 +2525,19 @@ function cas(val /*, args */) {
 
 var compareAndSwap = invoker('swap', CAS.prototype.swap);
 
+
+// 일반적인 위임을 이용해서 나머지 컨테이너 함수를 구현할 수 있다.
 function snapshot(o) { return o.snapshot() }
 function addWatcher(o, fun) { o.watch(fun) }
+
+var x = hole(42);
+
+addWatcher(x, note);
+
+console.log(`swap(x, sqr) : ${swap(x, sqr)}`);
+
+var y = cas(9, isOdd);
+
+console.log(`compareAndSwap(y, 9, always(1)) : ${compareAndSwap(y, 9, always(1))}`);
+
+console.log(`snapshot(y) : ${snapshot(y)}`);
