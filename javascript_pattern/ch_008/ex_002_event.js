@@ -29,9 +29,14 @@ if(document.addEventListener) { // W3C
 function myHandler (e) {
   var src, parts;
 
-  // 이벤트 객체와 소스 엘리먼트를 가져온다.
+  // 이벤트 객체와 이벤트가 발생한 엘리먼트를 가져온다.
   e = e || window.event;
   src = e.target || e.srcElement;
+
+  if (src.nodeName.toLowerCase() !== 'button') {
+    return;
+  }
+
 
   // 버튼의 라벨을 변경한다.
   parts = src.innerHTML.split(': ');
@@ -54,6 +59,14 @@ function myHandler (e) {
     e.returnValue = false;
   }
 }
+
+document.body.innerHTML = `
+  <div id="click-wrap">
+    <button>Click me : 0</button>
+    <button>Click me too : 0</button>
+    <button>Click me three : 0</button>
+  </div>
+`;
 
 
 
