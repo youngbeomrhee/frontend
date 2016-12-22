@@ -33,10 +33,9 @@ function myHandler (e) {
   e = e || window.event;
   src = e.target || e.srcElement;
 
-  if (src.nodeName.toLowerCase() !== 'button') {
-    return;
-  }
-
+  // if (src.nodeName.toLowerCase() !== 'button') {
+  //   return;
+  // }
 
   // 버튼의 라벨을 변경한다.
   parts = src.innerHTML.split(': ');
