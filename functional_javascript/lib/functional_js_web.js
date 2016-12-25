@@ -2256,10 +2256,13 @@ Array.prototype.toString = function () {
 */
 
 // console.log(`[1, 2, 3].toString() : ${[1, 2, 3].toString()}`);
+// console.log(`[1, 2, 3].toString() : ${[1, 2, 3].toString()}`);
 
 // 커스텀 형식을 대신할 별도의 함수를 이용하는 것이 좋다.
 
-/*
+
+/* 9.2.2 클래스 계층 */
+
 function ContainerClass() {}
 function ObservedContainerClass() {}
 function HoleClass() {}
@@ -2271,25 +2274,94 @@ HoleClass.prototype = new ObservedContainerClass();
 CASClass.prototype = new HoleClass();
 TableBaseClass.prototype = new HoleClass();
 
+// console.log(`(new CASClass()) instanceof HoleClass : ${(new CASClass()) instanceof HoleClass}`);
+// console.log(`(new TableBaseClass()) instanceof HoleClass : ${(new TableBaseClass()) instanceof HoleClass}`);
+// console.log(`(new HoleClass()) instanceof CASClass : ${(new HoleClass()) instanceof CASClass}`);
+
+
+(function(){
+    var initializing = false, fnTest = /xyz/.test(function(){xyz;}) ? /\b_super\b/ : /.*/;
+    // The base Class implementation (does nothing)
+    this.Class = function(){};
+
+    // Create a new Class that inherits from this class
+    Class.extend = function(prop) {
+        var _super = this.prototype;
+
+        // Instantiate a base class (but only create the instance,
+        // don't run the init constructor)
+        initializing = true;
+        var prototype = new this();
+        initializing = false;
+
+        // Copy the properties over onto the new prototype
+        for (var name in prop) {
+            // Check if we're overwriting an existing function
+            prototype[name] = typeof prop[name] == "function" &&
+            typeof _super[name] == "function" && fnTest.test(prop[name]) ?
+                (function(name, fn){
+                    return function() {
+                        var tmp = this._super;
+
+                        // Add a new ._super() method that is the same method
+                        // but on the super-class
+                        this._super = _super[name];
+
+                        // The method only need to be bound temporarily, so we
+                        // remove it when we're done executing
+                        var ret = fn.apply(this, arguments);
+                        this._super = tmp;
+
+                        return ret;
+                    };
+                })(name, prop[name]) :
+                prop[name];
+        }
+
+        // The dummy class constructor
+        function Class() {
+            // All construction is actually done in the init method
+            if ( !initializing && this.init )
+                this.init.apply(this, arguments);
+        }
+
+        // Populate our constructed prototype object
+        Class.prototype = prototype;
+
+        // Enforce the constructor to be what we expect
+        Class.prototype.constructor = Class;
+
+        // And make this class extendable
+        Class.extend = arguments.callee;
+
+        return Class;
+    };
+})();
+
+
 var ContainerClass = Class.extend({
     init: function(val) {
         this._value = val;
     },
 });
 
-var c = new ContainerClass(42);
+// var c = new ContainerClass(42);
 
-c;
+// console.log('c : ', c);
 //=> {_value: 42 ...}
 
-c instanceof Class;
+// console.log(`c instanceof Class : ${c instanceof Class}`);
 //=> true
 
+
+// ContainerClass는 단순히 값을 유지하는 반면 ObservedContainerClass는 추가적인 기능을 제공
 var ObservedContainerClass = ContainerClass.extend({
     observe: function(f) { note("set observer") },
     notify: function() { note("notifying observers") }
 });
 
+// 물론 ObservedContainerClass가 자체적으로 처리하는 일은 많지 않다.
+// 다음처럼 값을 설정하거나 통지하는 기능을 추가할 수 있다.
 var HoleClass = ObservedContainerClass.extend({
     init: function(val) { this.setValue(val) },
     setValue: function(val) {
@@ -2299,6 +2371,14 @@ var HoleClass = ObservedContainerClass.extend({
     }
 });
 
+// 이제 계층 구조에서 추가된 기능을 새로운 HoleClass 인스턴스에서 이용할 수 있다
+// var h = new HoleClass(42);
+
+// h.observe(null);
+
+// console.log(`h.setValue(108) : ${h.setValue(108)}`);
+
+// 가장 하위계층에는 다음처럼 새 기능을 추가할 수 있다
 var CASClass = HoleClass.extend({
     swap: function(oldVal, newVal) {
         if (!_.isEqual(oldVal, this._value)) fail("No match");
@@ -2306,7 +2386,13 @@ var CASClass = HoleClass.extend({
         return this.setValue(newVal);
     }
 });
-*/
+
+// var c = new CASClass(42);
+
+// console.log(`c.swap(42, 43) : ${c.swap(42, 43)}`);
+
+// console.log(`c.swap('not the value', 44) : ${c.swap('not the value', 44)}`);
+
 
 function Container2(val) {
     this._value = val;
@@ -2314,6 +2400,11 @@ function Container2(val) {
 }
 
 Container2.prototype.init = _.identity;
+
+// var c2 = new Container2(42);
+
+// console.log('c2 :', c2);
+
 
 var HoleMixin = {
     setValue: function(newValue) {
@@ -2329,6 +2420,8 @@ var HoleMixin = {
 var Hole = function(val) {
     Container2.call(this, val);
 }
+
+// var h = new Hole(42);
 
 // Hole 형식을 완성하려면 직접 구현하거나 아니면 ObserverMixin과 ValidateMixin을 혼합해야 한다
 var ObserverMixin = (function() {
@@ -2532,6 +2625,7 @@ function addWatcher(o, fun) { o.watch(fun) }
 
 var x = hole(42);
 
+/*
 addWatcher(x, note);
 
 console.log(`swap(x, sqr) : ${swap(x, sqr)}`);
@@ -2539,5 +2633,6 @@ console.log(`swap(x, sqr) : ${swap(x, sqr)}`);
 var y = cas(9, isOdd);
 
 console.log(`compareAndSwap(y, 9, always(1)) : ${compareAndSwap(y, 9, always(1))}`);
-
 console.log(`snapshot(y) : ${snapshot(y)}`);
+*/
+
