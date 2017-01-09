@@ -1,7 +1,6 @@
 /**
  * Created by whybe on 2016. 12. 31..
  */
-
 describe('createReservation(passsenger, flight)', function () {
     var testPassenger = null,
         testFlight = null,
@@ -25,7 +24,7 @@ describe('createReservation(passsenger, flight)', function () {
 
         testReservation = createReservation(testPassenger, testFlight, testSaver);
     });
-
+    
     it('passenger를 passengerInformation 프로퍼티에 할당한다', function () {
         expect(testReservation.passengerInformation).toBe(testPassenger);
     });
