@@ -1,4 +1,4 @@
-﻿var Conference = Conference || {};
+﻿﻿var Conference = Conference || {};
 
 Conference.checkInService = function(checkInRecorder) {
   "use strict";

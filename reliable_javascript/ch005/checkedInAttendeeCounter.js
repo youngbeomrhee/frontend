@@ -1,4 +1,4 @@
-﻿/*
+﻿﻿/*
 var Conference = Conference || {};
 
 Conference.checkedInAttendeeCounter = function() {

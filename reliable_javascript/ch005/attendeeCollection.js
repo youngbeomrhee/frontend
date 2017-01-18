@@ -1,4 +1,4 @@
-﻿var Conference = Conference || {};
+﻿﻿var Conference = Conference || {};
 Conference.attendeeCollection = function() {
   "use strict";
 

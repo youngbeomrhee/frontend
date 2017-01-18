@@ -1,4 +1,4 @@
-﻿describe('Conference.attendeeCollection', function() {
+﻿﻿describe('Conference.attendeeCollection', function() {
   'use strict';
 
   describe('contains(attendee)', function() {

@@ -1,4 +1,4 @@
-﻿describe('Conference.checkInService', function() {
+﻿﻿describe('Conference.checkInService', function() {
   'use strict';
 
   var checkInService,

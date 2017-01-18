@@ -1,4 +1,4 @@
-﻿describe('Conference.checkedInAttendeeCounter', function() {
+﻿﻿describe('Conference.checkedInAttendeeCounter', function() {
   'use strict';
 
   var counter;
