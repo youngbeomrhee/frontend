@@ -1067,7 +1067,7 @@ var composedMapcat = _.compose(splat(cat), _.map);
 var sqrPost = condition1(
     validator('result shoud be a number', _.isNumber),
     validator('result shoud not be zero', complement(zero)),
-    validator('result shoud be positive', greaterThan(0))
+    validator('result shoud be greater than 100', greaterThan(100))
 );
 
 // console.log(`sqrPost(_.identity, 0) : ${sqrPost(_.identity, 0)}`);
