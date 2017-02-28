@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1-4 박스의 너비를 지정 - 한쪽 박스의 너비를 픽셀로 고정 - BOX2의 너비를 고정하는 경우</title>
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .box {
+            border: 1px solid black;
+            line-height: 200px;
+            text-align: center;
+        }
+        .boxA:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .box1 {
+
+        }
+        .box2 {
+            float: left;
+            width: 300px;
+        }
+        .box3 {
+            /*
+            float: left;
+            width: 50%;
+            */
+            float: none;
+            width: auto;
+            margin-left: 300px;
+            height: 300px;
+            border: 1px solid black;
+        }
+        .box4 {
+        }
+
+    </style>
+</head>
+<body>
+1-4 박스의 너비를 지정 - 한쪽 박스의 너비를 픽셀로 고정 - BOX2의 너비를 고정하는 경우
+<div class="box1 box">
+    BOX1
+</div>
+<div class="boxA">
+    <div class="box2 box">
+        BOX2
+    </div>
+    <div class="box3">
+        BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3 BOX3
+    </div>
+</div>
+<div class="box4 box">
+    BOX4
+</div>
+</body>
+</html>

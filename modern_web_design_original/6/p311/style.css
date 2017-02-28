@@ -1,0 +1,481 @@
+@charset "UTF-8";
+
+
+body	{margin: 0;
+	font-family: '맑은 고딕', 'Apple SD Gothic Neo', sans-serif}
+
+
+/* 사이트 이름 */
+.site h1 a	{color: #000000;
+	text-decoration: none}
+
+.site h1	{margin: 0;
+	font-size: 30px}
+
+.site img	{border: none}
+
+
+/* 헤더 그림 */
+.topimg	{max-width: 100%;
+	height: auto;
+	vertical-align: bottom}
+
+/* 개요 문장 */
+.catch	{margin: 0;
+	padding: 15px;
+	background-color: rgba(255,255,255,0.7);
+	font-size: 28px}
+
+/* 헤더 그림에 개요 문장을 중첩 */
+.top	{position: relative}
+
+.catch	{position: absolute;
+	bottom: 7%;
+	left: 3%}
+
+
+
+/* 개요 */
+.summary a	{display: block;
+	background-color: #222222;
+	color: #ffffff;
+	text-align: center;
+	text-decoration: none}
+
+.summary a:hover	{opacity: 0.8}
+
+.summary i	{display: block;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	font-size: 38px}
+
+.summary .fa-database	{background-color: #bfbd13}
+
+.summary .fa-bar-chart-o	{background-color: #c58839}
+
+.summary .fa-envelope	{background-color: #859f46}
+
+.summary h1	{margin-top: 0;
+	margin-bottom: 0;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	font-size: 20px;
+	font-weight: normal}
+
+.summary p	{margin-top: 0;
+	margin-bottom: 0;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	background-color: #524e3c;
+	font-size: 12px}
+
+
+/* 공지사항 */
+.news	{padding: 20px;
+	border: solid 5px #dddddd}
+
+.news h1	{margin-top: 0;
+	margin-bottom: 5px;
+	font-size: 18px;
+	color: #666666}
+
+.news ul	{margin: 0;
+	padding: 0;
+	list-style: none}
+
+.news li a	{display: block;
+	padding: 5px;
+	border-bottom: dotted 2px #dddddd;
+	color: #000000;
+	font-size: 14px;
+	text-decoration: none}
+
+.news li a:hover	{background-color: #eeeeee}
+
+.news time	{color: #888888;
+	font-weight: bold}
+
+.news a:after	{content: "";
+	display: block;
+	clear: both}
+
+.news time	{float: left;
+	width: 60px}
+
+.news .text	{float: none;
+	width: auto;
+	margin-left: 60px}
+
+
+/* SNS 메뉴 */
+.follow ul	{margin: 0;
+	padding: 0;
+	list-style: none}
+
+.follow li a	{display: block;
+	margin-bottom: 10px;
+	padding: 10px;
+	border-radius: 4px;
+	color: #ffffff;
+	font-size: 14px;
+	text-decoration: none}
+
+.follow li a:hover	{opacity: 0.8}
+
+.follow-tw	{background-color: #63bafb}
+.follow-fb	{background-color: #5288f7}
+.follow-gp	{background-color: #f65d4a}
+
+.follow i	{margin-right: 10px;
+	font-size: 24px;
+	vertical-align: middle}
+
+
+/* 추가 설명 */
+.follow-info	{margin-top: 0;
+	margin-bottom: 20px;
+	padding: 10px;
+	background-color: #dddddd;
+	font-size: 14px;
+	text-align: center}
+
+.follow-info {
+	position: relative;
+	background: #dddddd;
+}
+.follow-info:after {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-color: rgba(221, 221, 221, 0);
+	border-top-color: #dddddd;
+	border-width: 15px;
+	margin-left: -15px;
+}
+
+
+
+/* 기사 */
+.story h1	{margin-top: 0;
+	margin-bottom: 20px;
+	padding-left: 20px;
+	border-left: solid 20px #c50018;
+	font-size: 36px;
+	font-weight: normal}
+
+.story h2	{margin-top: 50px;
+	margin-bottom: 20px;
+	border-bottom: solid 1px #dddddd;
+	font-size: 28px;
+	font-weight: normal}
+
+.story h2 i	{margin-right: 7px;
+	color: #888888}
+
+.story p	{max-width: 640px;
+	margin-top: 0;
+	margin-bottom: 20px}
+
+.story .lead	{max-width: 100%;
+	font-size: 20px;
+	color: #666666}
+
+.story .story	{max-width: 100%;
+	height: auto}
+
+.story-img	{max-width: 100%;
+	height: auto;
+	margin-bottom: 20px}
+
+/* 본문 */
+.story-body	{margin-top: 40px;
+  -moz-column-count: 2;
+  -moz-column-gap: 40px;
+  -webkit-column-count: 2;
+  -webkit-column-gap: 40px;
+  column-count: 2;
+  column-gap: 40px;
+}
+
+
+
+
+/* 빵 부스러기 리스트 */
+.bread	{margin-bottom: 20px}
+
+.bread ol	{margin: 0;
+	padding: 0;
+	list-style: none}
+
+.bread li a	{display: inline-block;
+	padding: 5px;
+	color: #000000;
+	font-size: 14px;
+	text-decoration: none}
+
+.bread li a:hover	{background-color: #eeeeee}
+
+.bread ol:after	{content: "";
+	display: block;
+	clear: both}
+
+.bread li	{float: left;
+	width: auto}
+
+.bread li:after	{content: '\003e';
+	margin-left: 10px;
+	margin-right: 10px;
+	color: #888888}
+
+
+/* 사이드 메뉴 */
+.sidemenu	{border: solid 6px #dddddd}
+
+.sidemenu h1	{margin: 0;
+	padding: 10px;
+	font-size: 16px;
+	font-weight: normal}
+
+.sidemenu h1 i	{margin-right: 5px;
+	color: #8abc60;
+	font-size: larger}
+
+.sidemenu ul	{margin: 0;
+	padding: 0;
+	list-style: none}
+
+.sidemenu li a	{display: block;
+	padding: 10px;
+	border-top: solid 1px #dddddd;
+	color: #000000;
+	font-size: 14px;
+	text-decoration: none}
+
+.sidemenu li a:hover	{background-color: #eeeeee}
+
+
+
+/* 저작권 */
+.copyright p	{margin: 0;
+	color: #666666;
+	font-size: 14px}
+
+
+/* BOX A의 아래에 테두리 삽입(콘텐츠 페이지만) */
+.contents .boxA	{border-bottom: solid 1px #dddddd}
+
+
+/* BOX5를 바의 형태로 디자인 */
+.box5	{padding-top: 15px;
+	padding-bottom: 15px;
+	background-color: #dddddd}
+
+
+/* 박스의 왼쪽 오른쪽 */
+.boxA, .box4, .box5, .box6, .box7
+	{padding-left: 15px;
+	padding-right: 15px}
+
+
+/* 박스의 위 아래 */
+.boxA	{padding-top: 20px;
+	padding-bottom: 10px}
+
+.box4	{padding-top: 20px;
+	padding-bottom: 20px}
+
+.box4-1	{padding-bottom: 20px}
+
+.box6	{padding-top: 20px}
+
+.box6-1, .box6-2, .box6-3
+	{padding-bottom: 10px}
+
+.box7	{padding-top: 25px;
+	padding-bottom: 25px}
+
+
+/* ########### 359px 이하 ########### */
+@media (max-width: 359px) {
+
+/* 사이트 이름 */
+.site img	{width: 225px;
+	height: auto}
+
+}
+
+
+/* ########### 599px 이하 ########### */
+@media (max-width: 599px) {
+
+/* 내비게이션 */
+.menu li a	{padding: 10px 7px;
+	font-size: 11px}
+
+/* 개요 문장 */
+.catch	{padding: 5px 10px;
+	font-size: 12px}
+
+/* 기사 */
+.story h1	{font-size: 26px}
+
+.story h2	{font-size: 20px}
+
+.story .lead	{font-size: 16px}
+
+}
+
+
+
+/* ########### 767px 이하 ########### */
+@media (max-width: 767px) {
+
+/* 토글 버튼 */
+#menubtn	{padding: 6px 12px;
+	border: solid 1px #aaaaaa;
+	border-radius: 5px;
+	background-color: #ffffff;
+	position: absolute;
+	top: 20px;
+	right: 15px;
+	cursor: pointer}
+
+#menubtn:hover	{background-color: #dddddd}
+
+#menubtn:focus	{outline: none}
+
+#menubtn i	{color: #888888;
+	font-size: 18px}
+
+#menubtn span	{display: inline-block;
+	text-indent: -9999px}
+
+/* 내비게이션 메뉴(세로 정렬) */
+.menu	{display: none}
+
+.menu ul	{margin: 0;
+	padding: 0;
+	list-style: none}
+
+.menu li a	{display: block;
+	padding: 5px;
+	color: #000000;
+	font-size: 14px;
+	text-decoration: none}
+
+.menu li a:hover	{background-color: #eeeeee}
+
+}
+
+
+/* ########### 768px 이상 ########### */
+@media (min-width: 768px) {
+
+/* 토글 버튼 */
+#menubtn	{display: none}
+
+/* 내비게이션 */
+#menu	{display: block !important}
+
+.menu ul	{margin: 0;
+	padding: 0;
+	list-style: none}
+
+.menu li a	{display: block;
+	padding: 10px 15px;
+	color: #000000;
+	font-size: 14px;
+	text-decoration: none}
+
+.menu li a:hover	{background-color: #eeeeee}
+
+.menu ul:after	{content: "";
+	display: block;
+	clear: both}
+
+.menu li	{float: left;
+	width: auto}
+
+/* BOX1과 BOX2를 가로 정렬하는 설정 */
+.boxA:after	{content: "";
+	display: block;
+	clear: both}
+
+.box1	{float: left;
+	width: auto}
+
+.box2	{float: right;
+	width: auto}
+
+/* BOX4-1과 BOX4-2를 가로 정렬하는 설정 */
+.box4:after	{content: "";
+	display: block;
+	clear: both}
+
+.box4-1	{float: left;
+	width: 70%;
+	padding-right: 35px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box}
+
+.box4-2	{float: left;
+	width: 30%}
+
+
+/* BOX6-1, BOX6-2, BOX6-3을 가로 정렬하는 설정 */
+.box6:after	{content: "";
+	display: block;
+	clear: both}
+
+.box6-1	{float: left;
+	width: 32%;
+	margin-right: 2%}
+
+.box6-2	{float: left;
+	width: 32%;
+	margin-right: 2%}
+
+.box6-3	{float: left;
+	width: 32%}
+
+
+/* BOX7-1과 BOX7-2를 가로 정렬하는 설정 */
+.box7:after	{content: "";
+	display: block;
+	clear: both}
+
+.box7-1	{float: right;
+	width: 80%;
+	padding-left: 50px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box}
+
+.box7-2	{float: left;
+	width: 20%}
+
+
+}
+
+
+/* ########### 1190px 이상 ########### */
+@media (min-width: 1190px) {
+
+/* 전체 너비를 고정 */
+.box3, .box4, .boxA-inner, .box5-inner, .box6, .box7
+	{width: 1140px;
+	margin-left: auto;
+	margin-right: auto}
+
+/* BOX A의 아래에 테두리 삽입 */
+.boxA	{margin-bottom: 20px;
+	border-bottom: solid 1px #dddddd}
+
+}
+

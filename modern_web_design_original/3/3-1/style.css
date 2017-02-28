@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+body	{font-family: '맑은 고딕', 'Apple SD Gothic Neo', sans-serif}
+
+
+@media (min-width: 768px) {
+
+/* BOX3과 BOX4를 가로 정렬하는 설정 */
+.boxA:after	{content: "";
+	display: block;
+	clear: both}
+
+.box3	{float: left;
+	width: 70%}
+
+.box4	{float: left;
+	width: 30%}
+
+}

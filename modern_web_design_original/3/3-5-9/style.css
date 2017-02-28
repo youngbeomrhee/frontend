@@ -1,0 +1,391 @@
+@charset "UTF-8";
+
+
+body	{font-family: '맑은 고딕', 'Apple SD Gothic Neo', sans-serif}
+
+
+/* 사이트 이름 */
+.site h1 a	{color: #83a4a8;
+	text-decoration: none}
+
+.site h1	{margin: 0;
+	font-size: 30px;
+	font-family: 'Paytone One', sans-serif;
+	font-weight: normal}
+
+
+/* 내비게이션 */
+.menu ul	{margin: 0;
+	padding: 0;
+	list-style: none}
+
+.menu li a	{display: block;
+	padding: 15px;
+	color: #000000;
+	font-size: 14px;
+	text-decoration: none}
+
+.menu li a:hover	{background-color: #75dbe7}
+
+.menu ul:after	{content: "";
+	display: block;
+	clear: both}
+
+.menu li	{float: left;
+	width: auto}
+
+
+/* 기사 */
+.story h1	{margin-top: 0;
+	margin-bottom: 20px;
+	font-size: 36px}
+
+.story p	{margin-top: 0;
+	margin-bottom: 20px}
+
+.story img	{max-width: 100%;
+	height: auto}
+
+
+/* 기사의 소제목 */
+.story h2	{margin-top: 40px;
+	padding-left: 10px;
+	border-left: solid 10px #7cbac1;
+	font-weight: normal}
+
+
+/* 기사의 작성일 */
+.story-info	{margin-top: -10px;
+	margin-bottom: 20px}
+
+.story-info i	{margin-right: 5px;
+	color: #aaaaaa;
+	font-size: 20px}
+
+
+/* 기사 분류 */
+.story-cat	{margin-bottom: 25px}
+
+.story-cat ul	{margin: 0;
+	padding: 0;
+	list-style: none}
+
+.story-cat li a	{display: block;
+	margin-right: 5px;
+	padding: 3px 5px;
+	border-radius: 2px;
+	background-color: #75dbe7;
+	color: #ffffff;
+	font-size: 12px;
+	text-decoration: none}
+
+.story-cat li a:hover	{background-color: #94ecf6}
+
+.story-cat ul:after	{content: "";
+	display: block;
+	clear: both}
+
+.story-cat li	{float: left;
+	width: auto}
+
+
+
+/* SNS 공유 버튼 */
+.share	{margin-top: 40px}
+
+.share ul	{margin: 0;
+	padding: 0;
+	list-style: none}
+
+.share li a	{display: block;
+	padding: 10px 5px;
+	color: #ffffff;
+	font-size: 14px;
+	text-align: center;
+	text-decoration: none}
+
+.share-tw	{background-color: #55acee}
+.share-fb	{background-color: #3b5998}
+.share-gp	{background-color: #dd4b39}
+
+.share li a:hover	{opacity: 0.8}
+
+.share ul:after	{content: "";
+	display: block;
+	clear: both}
+
+.share li	{float: left;
+	width: 33.3333%}
+
+
+
+/* 관련 기사 메뉴 */
+.relation	{margin-top: 40px;
+	padding: 20px;
+	background-color: #f0f0d4}
+
+.relation h1	{margin-top: 0;
+	margin-bottom: 5px;
+	color: #727224;
+	font-size: 20px;
+	font-weight: normal}
+
+.relation ul	{margin: 0;
+	padding: 0;
+	list-style: none}
+
+.relation li a	{display: block;
+	padding: 5px;
+	color: #000000;
+	font-size: 14px;
+	text-decoration: none}
+
+.relation li a:hover	{text-decoration: underline}
+
+.relation ul:after	{content: "";
+	display: block;
+	clear: both}
+
+.relation li	{float: left;
+	width: 25%}
+
+.relation img	{max-width: 100%;
+	height: auto;
+	border: none}
+
+
+
+/* 사이드 메뉴 */
+.sidemenu	{margin-bottom: 30px}
+
+.sidemenu ul	{margin: 0;
+	padding: 0;
+	list-style: none}
+
+.sidemenu li a	{display: block;
+	padding: 5px;
+	color: #000000;
+	font-size: 14px;
+	text-decoration: none}
+
+.sidemenu li a:hover	{background-color: #eeeeee}
+
+.sidemenu h1	{margin-top: 0;
+	margin-bottom: 10px;
+	border-bottom: dotted 2px #dddddd;
+	color: #666666;
+	font-size: 18px}
+
+.sidemenu i	{margin-right: 5px;
+	color: #888888}
+
+
+/* 추천 기사 메뉴 */
+.recommend	{margin-bottom: 30px}
+
+.recommend ul	{margin: 0;
+	padding: 0;
+	list-style: none}
+
+.recommend li a	{display: block;
+	margin-bottom: 10px;
+	padding: 0;
+	color: #000000;
+	font-size: 14px;
+	text-decoration: none}
+
+.recommend li a:hover	{background-color: #eeeeee;
+	opacity: 0.8}
+
+.recommend h1	{margin-top: 0;
+	margin-bottom: 10px;
+	border-bottom: dotted 2px #dddddd;
+	color: #666666;
+	font-size: 18px}
+
+.recommend img	{width: 100%;
+	height: auto;
+	border: none;
+	vertical-align: bottom}
+
+.recommend .text	{padding: 5px 10px;
+	background-color: rgba(0,0,0,0.5);
+	color: #ffffff}
+
+/* 추천 기사 메뉴의 글자를 중첩하는 설정 */
+.recommend a	{position: relative}
+
+.recommend .text	{position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box}
+
+
+/* 인기 기사 메뉴 */
+.popular ul	{margin: 0;
+	padding: 0;
+	list-style: none}
+
+.popular li a	{display: block;
+	padding: 5px;
+	border-bottom: dotted 1px #dddddd;
+	color: #2288bb;
+	font-size: 14px;
+	text-decoration: none}
+
+.popular li a:hover	{background-color: #eeeeee}
+
+.popular li a img	{border: none}
+
+.popular h1	{margin-top: 0;
+	margin-bottom: 10px;
+	border-bottom: dotted 2px #dddddd;
+	color: #666666;
+	font-size: 18px}
+
+.popular a:after	{content: "";
+	display: block;
+	clear: both}
+
+.popular img	{float: left;
+	width: 60px}
+
+.popular .text	{float: none;
+	width: auto;
+	margin-left: 60px;
+	padding-left: 15px}
+
+.popular span	{display: block;
+	color: #666666;
+	font-size: 12px}
+
+
+/* 저작권 */
+.copyright p	{margin: 0;
+	color: #666666;
+	font-size: 14px}
+
+
+/* BOX2를 바의 형태로 디자인 */
+.box2	{background-color: #7cbac1}
+
+
+/* BOX5 위에 구분선을 추가 */
+.box5	{border-top: solid 1px #dddddd}
+
+
+/* 박스의 위아래 간격 */
+.box1	{padding-top: 8px;
+	padding-bottom: 8px}
+
+.box3	{padding-top: 40px;
+	padding-bottom: 30px}
+
+.box4	{padding-top: 40px;
+	padding-bottom: 30px}
+
+.box5	{padding-top: 15px;
+	padding-bottom: 15px}
+
+
+
+/* ########### 599px 이하 ########### */
+@media (max-width: 599px) {
+
+/* 내비게이션 */
+.menu li a	{padding: 10px 3px;
+	font-size: 11px}
+
+/* 사이트 이름과 기사의 제목 */
+.site h1	{font-size: 20px}
+
+.story h1	{font-size: 26px}
+
+/* 박스의 위아래 간격 */
+.box1	{padding-top: 4px;
+	padding-bottom: 4px}
+
+.box3	{padding-top: 25px}
+
+/* SNS 공유 버튼 */
+.share span	{display: inline-block;
+	text-indent: -9999px}
+
+/* 관련 기사 메뉴 */
+.relation	{padding: 10px}
+
+.relation li	{width: 50%}
+
+.relation li:nth-child(3)	{clear: both}
+
+}
+
+
+
+/* ########### 600px 이상 ~ 767px 이하 ########### */
+@media (min-width: 600px) and (max-width: 767px) {
+
+/* BOX4-1과 BOX4-2를 가로 정렬하는 설정 */
+.box4:after	{content: "";
+	display: block;
+	clear: both}
+
+.box4-1	{float: left;
+	width: 50%}
+
+.box4-2	{float: left;
+	width: 50%}
+
+/* BOX4-1와 BOX4-2의 왼쪽 오른쪽의 간격 */
+.box4-1	{padding-right: 20px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box}
+
+.box4-2	{padding-left: 20px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box}
+
+}
+
+
+
+
+/* ########### 768px 이상 ########### */
+@media (min-width: 768px) {
+
+/* BOX3과 BOX4를 가로 정렬하는 설정 */
+.boxA:after	{content: "";
+	display: block;
+	clear: both}
+
+.box3	{float: left;
+	width: 70%}
+
+.box4	{float: left;
+	width: 30%}
+
+/* BOX3과 BOX4의 왼쪽 오른쪽의 간격 */
+.box3	{padding-right: 50px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box}
+
+}
+
+
+
+/* ########### 1040px 이상 ########### */
+@media (min-width: 1040px) {
+
+/* 전체 너비를 고정 */
+.box1, .box2, .boxA, .box5
+	{width: 1000px;
+	margin-left: auto;
+	margin-right: auto}
+
+}
