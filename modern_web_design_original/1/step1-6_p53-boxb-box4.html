@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>샘플</title>
+<link rel="stylesheet" href="grid-guide-middle2.css">
+
+<style>
+
+@media (min-width: 768px) {
+
+.boxA:after	{content: "";
+	display: block;
+	clear: both}
+
+.boxB	{float: left;
+	width: 80%}
+
+.box4	{float: left;
+	width: 20%}
+
+.boxB:after	{content: "";
+	display: block;
+	clear: both}
+
+.box2	{float: right;
+	width: 75%}
+
+.box3	{float: left;
+	width: 25%}
+
+}
+
+@media (min-width: 600px) and (max-width: 767px) {
+
+.boxB:after	{content: "";
+	display: block;
+	clear: both}
+
+.box2	{float: right;
+	width: 75%}
+
+.box3	{float: left;
+	width: 25%}
+
+}
+
+
+
+</style>
+</head>
+<body>
+
+
+<div class="box1">
+BOX1
+</div>
+
+<div class="boxA">
+<div class="boxB">
+	<div class="box2">
+	BOX2
+	</div>
+
+	<div class="box3">
+	BOX3
+	</div>
+</div>
+
+<div class="box4">
+BOX4
+</div>
+</div>
+
+
+
+
+</body>
+</html>

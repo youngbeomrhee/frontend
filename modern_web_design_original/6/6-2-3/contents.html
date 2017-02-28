@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>샘플</title>
+<meta name="viewport" content="width=device-width">
+
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script>
+$(function(){
+
+	$("#menubtn").click(function(){
+		$("#menu").slideToggle();
+	});
+
+});
+</script>
+</head>
+<body class="contents">
+
+<div class="boxA">
+<div class="boxA-inner">
+<div class="box1">
+	<div class="site">
+	<h1><a href="#"><img src="img/logo-large.png" alt="TimeSwitch" width="250" height="33"></a></h1>
+	</div>
+</div>
+
+<div class="box2">
+
+	<button type="button" id="menubtn">
+	<i class="fa fa-bars"></i><span>MENU</span>
+	</button>
+
+	<nav class="menu" id="menu">
+	<ul>
+	<li><a href="#">메인</a></li>
+	<li><a href="#">연혁</a></li>
+	<li><a href="#">사업 소개</a></li>
+	<li><a href="#">채용 정보</a></li>
+	<li><a href="#">문의</a></li>
+	</ul>
+	</nav>
+</div>
+</div>
+</div>
+
+
+<div class="box7">
+<div class="box7-1">
+
+	<article class="story">
+
+	<div class="bread">
+	<ol>
+	<li><a href="#">메인</a></li>
+	<li><a href="#">사업 소개</a></li>
+	</ol>
+	</div>
+
+	<h1>데이터 분석/해석</h1>
+
+	<img src="img/header-data.jpg" alt="" class="story-img">
+
+	<p class="lead">축적된 데이터를 활용하려면 어떻게 분석/해석할지가 중요합니다. TimeSwitch에서는 표준적인 분석 방법과 활용 목적에 따른 해석을 제공합니다.</p>
+
+	<h2><i class="fa fa-check-square-o"></i>평균값 확인</h2>
+
+	<p>기본적인 평균입니다. 대상 데이터들의 대표적인 수치를 확인할 수 있습니다. 다만 평균만으로는 데이터 쏠림 등의 문제를 확인할 수 없습니다.</p>
+
+
+	<h2><i class="fa fa-check-square-o"></i>분산 확인</h2>
+
+	<p>분산 확인
+통계적인 방법을 사용해서 축적된 데이터의 분산을 확인합니다. 분산을 사용하면 평균값으로는 보이지 않는 문제와 특징을 찾아낼 수 있습니다.</p>
+
+
+	<h2><i class="fa fa-check-square-o"></i>상관관계/인과관계 도출</h2>
+
+	<p>여러 개의 데이터를 조합하고 분석/해석해서 상관관계와 인과 관계가 있다고 생각되는 데이터를 추출합니다.</p>
+
+	</article>
+
+</div>
+<div class="box7-2">
+
+	<aside class="sidemenu">
+	<h1><i class="fa fa-caret-square-o-down"></i>사업 소개</h1>
+	<ul>
+	<li><a href="#">데이터 축적</a></li>
+	<li><a href="#">데이터 분석/해석</a></li>
+	<li><a href="#">데이터 시각화</a></li>
+	<li><a href="#">애플리케이션 활용</a></li>
+	<li><a href="#">24시간 지원</a></li>
+	<li><a href="#">실적 소개</a></li>
+	</ul>
+	</aside>
+
+</div>
+</div>
+
+
+<div class="box5">
+<div class="box5-inner">
+	<div class="copyright">
+	<p>Copyright &copy; TimeSwitch</p>
+	</div>
+</div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>모던 웹사이트 디자인의 정석</title>
+<meta name="viewport" content="width=device-width">
+
+<style>
+body	{margin: 0;
+	background-color: #eeeeee;
+	font-family: '맑은 고딕', 'Apple SD Gothic Neo', sans-serif}
+
+.contents	{max-width: 640px;
+	margin: 0 auto;
+	background-color: #ffffff;
+	padding:  30px 80px;}
+
+h1	{margin-bottom: 40px;
+	padding: 20px 10px;
+	border: solid 8px #63a4c2;
+	text-align: center}
+
+h1 span	{display: block;
+	margin-top: 10px;
+	color: #aaaaaa;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 28px}
+
+h2	{margin-top: 60px;
+	padding-bottom: 5px;
+	border-bottom: solid 4px #63a4c2;}
+
+h2 span	{display: block;
+	margin-bottom: 5px;
+	color: #63a4c2;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 30px}
+
+ul	{margin: 0;
+	padding: 0;
+	list-style: none}
+
+li a	{display: block;
+	padding: 5px;
+	padding-left: 10px;
+	color: #000000;
+	font-size: 14px;
+	text-decoration: none}
+
+li a:hover	{background-color: #eeeeee}
+
+
+ul li	{margin-top: 0;
+	margin-bottom: 10px}
+
+ul ul	{margin-top: 15px;
+	margin-bottom: 30px}
+
+ul ul li	{margin-left: 50px;
+	margin-top: 0;
+	border-left: solid 5px #63a4c2;
+	line-height: 1}
+
+.appendix li	{margin-left: 10px}
+
+.num	{margin-right: 10px;
+	color: #63a4c2;
+	font-family: Arial, Helvetica, sans-serif}
+
+.contents > ul > li > span.num,
+.contents > ul > li > a > span.num
+	{margin-right: 10px;
+	font-size: 20px}
+
+.contents > ul > li > a	{padding: 0;
+	font-size: 16px}
+
+
+.copyright p	{margin: 50px 0 0;
+	padding-top: 10px;
+	border-top: solid 2px #cccccc;
+	color: #666666;
+	font-size: 14px}
+
+
+@media (max-width: 720px) {
+
+.contents	{padding: 20px 25px}
+
+}
+
+@media (max-width: 640px) {
+
+.contents	{padding: 10px}
+
+ul ul li	{margin-left: 10px}
+
+}
+
+</style>
+</head>
+<body>
+
+
+
+<div class="contents">
+<h1>모던 웹사이트 디자인의 정석<span>예제</span></h1>
+
+<h2><span>1장</span>웹 페이지의 단 구조</h2>
+<ul>
+<li><span class="num">1-2</span><span class="title">박스 가로 정렬</span></li><li><ul>
+<li><a href="1/step1-2.html"><span>박스 가로 정렬</span></a></li>
+<li><a href="1/step1-2_pattern1.html"><span>가로 정렬할 대상 변경 - BOX1&amp;BOX2</span></a></li>
+<li><a href="1/step1-2_pattern2.html"><span>가로 정렬할 대상 변경 - BOX3&amp;BOX4</span></a></li>
+<li><a href="1/step1-2_pattern3.html"><span>가로 정렬할 대상 변경 - BOX1~BOX4</span></a></li>
+<li><a href="1/step1-2_pattern4.html"><span>가로 정렬할 박스의 개수 변경 - BOX1~BOX3</span></a></li>
+<li><a href="1/step1-2_pattern5.html"><span>가로 정렬할 박스의 개수 변경 - BOX1~BOX4</span></a></li>
+<li><a href="1/p30.html"><span class="num">칼럼</span><span class="title">clearfix 구조</span></a></li>
+</ul></li><li><span class="num">1-3</span><span class="title">박스 분할</span></li><li><ul>
+<li><a href="1/step1-3_2.html"><span>박스 분할 (２)</span></a></li>
+<li><a href="1/step1-3_3.html"><span>박스 분할 (３)</span></a></li>
+<li><a href="1/step1-3_pattern1.html"><span>분할하고 싶은 만큼 박스 개수를 추가</span></a></li>
+</ul></li><li><span class="num">1-4</span><span class="title">박스의 너비를 지정</span></li><li><ul>
+<li><a href="1/step1-4_pattern1.html"><span>박스의 너비를 지정 - 2분할</span></a></li>
+<li><a href="1/step1-4_pattern2.html"><span>박스의 너비를 지정 - 3분할</span></a></li>
+<li><a href="1/step1-4_pattern3.html"><span>박스의 너비를 지정 - 7:3</span></a></li>
+<li><a href="1/step1-4_pattern4.html"><span>박스의 너비를 지정 - 2:1:1</span></a></li>
+<li><a href="1/p37.html"><span class="num">칼럼</span><span class="title">너비의 합이 100%를 넘는 경우</span></a></li>
+<li><a href="1/p39-1.html"><span class="num">칼럼</span><span class="title">컬럼 탈락을 사용할 때의 주의 사항 - 100%</span></a></li>
+<li><a href="1/p39-2.html"><span class="num">칼럼</span><span class="title">컬럼 탈락을 사용할 때의 주의 사항 - clear</span></a></li>
+<li><a href="1/p40.html"><span class="num">칼럼</span><span class="title">한쪽 박스의 너비를 픽셀로 고정 - BOX2의 너비를 고정</span></a></li>
+<li><a href="1/p42.html"><span class="num">칼럼</span><span class="title">한쪽 박스의 너비를 픽셀로 고정 - BOX2의 너비를 고정</span></a></li>
+</ul></li><li><span class="num">1-5</span><span class="title">박스 정렬 순서 지정</span></li><li><ul>
+<li><a href="1/step1-5_1.html"><span>박스 정렬 순서 지정 - left</span></a></li>
+<li><a href="1/step1-5_2.html"><span>박스 정렬 순서 지정 - right</span></a></li>
+<li><a href="1/step1-5_3.html"><span>박스 정렬 순서 지정 - left/right</span></a></li>
+</ul></li><li><span class="num">1-6</span><span class="title">반응형 웹 디자인과 관련된 설정</span></li><li><ul>
+<li><a href="1/step1-6_p46.html"><span>반응형 웹 디자인의 기본</span></a></li>
+<li><a href="1/step1-6_p48.html"><span>반응형 웹 디자인 응용 - P.48</span></a></li>
+<li><a href="1/step1-6_p52.html"><span>반응형 웹 디자인 응용 - P.52</span></a></li>
+<li><a href="1/step1-6_p53-box2-box3.html"><span>중간 단계를 추가 - BOX2와 BOX3의 가로 정렬 해제</span></a></li>
+<li><a href="1/step1-6_p53-boxb-box4.html"><span>중간 단계를 추가 - BOXB와 BOX4의 가로 정렬 해제</span></a></li>
+<li><a href="1/step1-6_p56.html"><span class="num">칼럼</span><span class="title">반응형 웹 디자인에서 중복된 설정을 하나로 합치기</span></a></li>
+<li><a href="1/step1-6_p57.html"><span class="num">칼럼</span><span class="title">중간 단계를 컬럼 탈락으로 구현</span></a></li>
+<li><a href="1/p59.html"><span class="num">칼럼</span><span class="title">박스를 겹쳐 올리는 레이아웃</span></a></li>
+</ul>
+
+
+</ul>
+<h2><span>2장</span>웹 페이지 제작 준비</h2>
+<ul>
+
+<li><span class="num">2-1</span><span class="title">요소 준비</span></li><li><ul>
+<li><a href="2/2-1/parts-site.html"><span class="num">2-1-1 </span><span class="title">사이트 이름</span></a></li>
+<li><a href="2/2-1/parts-story.html"><span class="num">2-1-2 </span><span class="title">기사</span></a></li>
+<li><a href="2/2-1/parts-menuv.html"><span class="num">2-1-3 </span><span class="title">메뉴 (세로 정렬)</span></a></li>
+<li><a href="2/2-1/parts-menuh.html"><span class="num">2-1-4 </span><span class="title">메뉴 (가로 정렬)</span></a></li>
+<li><a href="2/2-1/parts-copyright.html"><span class="num">2-1-5 </span><span class="title">저작권</span></a></li>
+</ul></li><li><span class="num">2-2</span><span class="title">웹 페이지 준비</span></li><li><ul>
+<li><a href="2/2-2/sample.html"><span>sample.html</span></a></li>
+<li><a href="2/2-2/style.css"><span>style.css</span></a></li>
+</ul>
+
+
+</ul>
+<h2><span>3장</span>블로그/뉴스 스타일 사이트의 콘텐츠 페이지</h2>
+<ul>
+
+
+<li><a href="3/3-1/sample.html"><span class="num">3-1</span><span class="title">레이아웃 기본 구조 만들기</span></a></li><li><a href="3/3-2/sample.html"><span class="num">3-2</span><span class="title">박스 내부에 요소 추가</span></a></li><li><a href="3/3-3/sample.html"><span class="num">3-3</span><span class="title">레이아웃 조정</span></a></li><li><span class="num">3-4</span><span class="title">반응형 웹 디자인과 관련된 조정</span></li><li><ul>
+<li><a href="3/3-4-1/sample.html"><span class="num">3-4-1 </span><span class="title">조정에 필요한 @media 설정을 추가</span></a></li>
+<li><a href="3/3-4-2/sample.html"><span class="num">3-4-2 </span><span class="title">내비게이션 메뉴를 간소화</span></a></li>
+<li><a href="3/3-4-3/sample.html"><span class="num">3-4-3 </span><span class="title">사이트 이름과 기사 제목을 간소화</span></a></li>
+<li><a href="3/3-4-4/sample.html"><span class="num">3-4-4 </span><span class="title">서브 메뉴를 2단 구조로 변경</span></a></li>
+<li><a href="3/3-4-5/sample.html"><span class="num">3-4-5 </span><span class="title">레이아웃 전체의 너비를 고정</span></a></li>
+</ul></li><li><span class="num">3-5</span><span class="title">요소 추가와 수정</span></li><li><ul>
+<li><a href="3/3-5-1/sample.html"><span class="num">3-5-1 </span><span class="title">웹 폰트로 사이트 이름 출력</span></a></li>
+<li><a href="3/3-5-2/sample.html"><span class="num">3-5-2 </span><span class="title">기사의 작성일에 아이콘을 붙여 출력</span></a></li>
+<li><a href="3/3-5-3/sample.html"><span class="num">3-5-3 </span><span class="title">기사 분류를 라벨의 형태로 출력</span></a></li>
+<li><a href="3/3-5-4/sample.html"><span class="num">3-5-4 </span><span class="title">기사에 소제목을 추가</span></a></li>
+<li><a href="3/3-5-5/sample.html"><span class="num">3-5-5 </span><span class="title">메뉴에 리스트 마크 추가</span></a></li>
+<li><a href="3/3-5-6/sample.html"><span class="num">3-5-6 </span><span class="title">메뉴에 섬네일 그림 추가</span></a></li>
+<li><a href="3/3-5-7/sample.html"><span class="num">3-5-7 </span><span class="title">섬네일 그림에 글자가 겹쳐진 메뉴</span></a></li>
+<li><a href="3/3-5-8/sample.html"><span class="num">3-5-8 </span><span class="title">플랫 디자인의 SNS 공유 버튼 추가</span></a></li>
+<li><a href="3/3-5-8/sample-share.html"><span class="num">칼럼</span><span class="title">공유 버튼 설정</span></a></li>
+<li><a href="3/3-5-9/sample.html"><span class="num">3-5-9 </span><span class="title">관련 기사 메뉴 추가</span></a></li>
+</ul>
+</li>
+<li><a href="3/3-6/sample.html"><span class="num">3-6</span><span class="title">내비게이션 바와 푸터가 화면의 너비를 꽉 채우도록 디자인</span></a></li>
+
+
+</ul>
+<h2><span>4장</span>블로그/뉴스 스타일의 최상위 페이지</h2>
+<ul>
+
+<li><a href="4/4-1/top.html"><span class="num">4-1</span><span class="title">최상위 페이지 작성</span></a></li><li><span class="num">4-2</span><span class="title">요소를 추가하고 수정</span></li><li><ul>
+<li><a href="4/4-2-1/top.html"><span class="num">4-2-1 </span><span class="title">페이지네이션 추가</span></a></li>
+<li><a href="4/4-2-2/top.html"><span class="num">4-2-2 </span><span class="title">원형 배지 추가</span></a></li>
+<li><a href="4/p196/top.html"><span class="num">칼럼</span><span class="title">클래스 이름 변경과 마크업 조정</span></a></li>
+</ul>
+
+
+</ul>
+<h2><span>Chapter 5</span>비즈니스 스타일 사이트의 최상위 페이지</h2>
+<ul>
+
+
+<li><a href="5/5-1/sample.html"><span class="num">5-1</span><span class="title">레이아웃 기본 구조 생성</span></a></li><li><a href="5/5-2/sample.html"><span class="num">5-2</span><span class="title">박스 내부에 요소를 추가</span></a></li><li><a href="5/5-3/sample.html"><span class="num">5-3</span><span class="title">레이아웃 조정</span></a></li><li><ul>
+<li><a href="5/p219/sample.html"><span class="num">칼럼</span><span class="title"각 박스에 배경색을 넣어 디자인</span></a></li>
+</ul></li><li><span class="num">5-4</span><span class="title">반응형 웹 디자인과 관련된 조정</span></li><li><ul>
+<li><a href="5/5-4-1/sample.html"><span class="num">5-4-1 </span><span class="title">조정에 필요한 @media 설정을 추가</span></a></li>
+<li><a href="5/5-4-2/sample.html"><span class="num">5-4-2 </span><span class="title">내비게이션 메뉴를 간소화</span></a></li>
+<li><a href="5/5-4-3/sample.html"><span class="num">5-4-3 </span><span class="title">날짜 아래에 글자가 파고들지 않게 수정</span></a></li>
+<li><a href="5/5-4-4/sample.html"><span class="num">5-4-4 </span><span class="title">레이아웃 전체의 너비 고정</span></a></li>
+<li><a href="5/p231/sample.html"><span class="num">칼럼</span><span class="title">큰 화면에서도 헤더 그림을 너비를 꽉 채워 출력하는 경우</span></a></li>
+</ul></li><li><span class="num">5-5</span><span class="title">요소 추가와 수정</span></li><li><ul>
+<li><a href="5/5-5-1/sample.html"><span class="num">5-5-1 </span><span class="title">사이트 이름을 그림으로 출력</span></a></li>
+<li><a href="5/5-5-2/sample.html"><span class="num">5-5-2 </span><span class="title">사이트 이름을 나타내는 그림의 해상도를 높임</span></a></li>
+<li><a href="5/5-5-3/sample.html"><span class="num">5-5-3 </span><span class="title">요소를 테두리로 감싸 디자인</span></a></li>
+<li><a href="5/5-5-4/sample.html"><span class="num">5-5-4 </span><span class="title">SNS 메뉴 추가</span></a></li>
+<li><a href="5/5-5-5/sample.html"><span class="num">5-5-5 </span><span class="title">말풍선 형태로 추가 설명</span></a></li>
+<li><a href="5/5-5-6/sample.html"><span class="num">5-5-6 </span><span class="title">콘텐츠 개요 추가</span></a></li>
+<li><a href="5/p263/sample.html"><span class="num">칼럼</span><span class="title">padding 속성을 사용한 개요의 간격 조정</span></a></li>
+<li><a href="5/5-5-7/sample.html"><span class="num">5-5-7 </span><span class="title">헤더 그림에 캐치 카피 올리기</span></a></li>
+</ul></li><li><a href="5/5-6/sample.html"><span class="num">5-6</span><span class="title">내비게이션 메뉴를 토글 형태로 수정</span></a></li><li><ul>
+<li><a href="5/p282/sample.html"><span class="num">칼럼</span><span class="title">클래스 이름 변경 또는 마크업 조정</span></a></li>
+</ul>
+
+
+
+</ul>
+<h2><span>6장</span>비즈니스 사이트 스타일의 콘텐츠 페이지</h2>
+<ul>
+
+
+<li><a href="6/6-1/contents.html"><span class="num">6-1</span><span class="title">콘텐츠 페이지 작성</span></a></li><li><span class="num">6-2</span><span class="title">요소 추가와 수정</span></li><li><ul>
+<li><a href="6/6-2-1/contents.html"><span class="num">6-2-1 </span><span class="title">기사의 디자인을 조정</span></a></li>
+<li><a href="6/6-2-2/contents.html"><span class="num">6-2-2 </span><span class="title">빵 부스러기 리스트 추가</span></a></li>
+<li><a href="6/6-2-3/contents.html"><span class="num">6-2-3 </span><span class="title">메뉴를 테두리로 감싸서 디자인</span></a></li>
+<li><a href="6/p311/contents.html"><span class="num">칼럼</span><span class="title">멀티 컬럼 기능을 사용한 단락</span></a></li>
+</ul>
+
+
+
+</ul>
+<h2><span>부록</span>인터넷 익스플로러 8 지원</h2>
+<ul><li>
+<ul class="appendix">
+<li><a href="3/3-6/sample-ie8.html"><span>3장의 샘플</span></a></li>
+<li><a href="4/4-2-2/top-ie8.html"><span>4장의 샘플</span></a></li>
+<li><a href="5/5-6/sample-ie8.html"><span>5장의 샘플</span></a></li>
+<li><a href="6/6-2-3/contents-ie8.html"><span>6장의 샘플</span></a></li>
+</ul>
+</li></ul>
+
+
+<div class="copyright">
+<p>Copyright &copy; Ebisucom/위키북스</p>
+</div>
+
+</div>

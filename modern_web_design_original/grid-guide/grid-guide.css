@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+/* 그리드 가이드 */
+
+[class^="box"],
+div:not([class]) 
+	{
+	border: solid 8px #faa;
+	color: #faa;
+	background-color: #fee;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+	text-align: center;
+	line-height: 200px;
+	font-family: Verdata, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 40px;
+	}
+
+body > div:not([class]) {min-height: 200px}
+
+[class^="box"] > *:not([class^="box"]) {
+	min-height: 0;
+	line-height: 1.5;
+	color: #000000;
+	font-size: 14px;
+	font-family: '맑은 고딕', 'Apple SD Gothic Neo', sans-serif;
+	font-weight: normal;
+	text-align: left;
+	}
+
+
+[class^="box"] > [class^="box"],
+div:not([class]) > div:not([class]) 
+	{
+	border-color: #e0e03d;
+	color: #e0e03d;
+	background-color: #ffe;
+	}
+
+
+[class^="box"] > [class^="box"] > [class^="box"]	{
+	border-color: #aaf;
+	color: #aaf;
+	background-color: #eef;
+	}
+
+[class^="box"] > [class^="box"] > [class^="box"] > [class^="box"]	{
+	border-color: #afa;
+	color: #afa;
+	background-color: #efe;
+	}
+
+
+
+
+
+
+
+
