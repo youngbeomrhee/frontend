@@ -4,6 +4,12 @@
 
 // chapter01.js start ===============================================>
 
+// 공통으로 사용할 로그함수
+function log(title, result) {
+    console.log(title + JSON.stringify(result));
+}
+
+
 /**
  * 함수를 인자로 받아서 다른 함수를 리턴
  * @param fun
@@ -437,6 +443,16 @@ function plucker(FIELD) {
     };
 }
 
+/* Chapter 4 - 고차원 함수 p.103 */
+
+// console.log(`_.max([1, 2, 3, 4, 5]) = ${_.max([1, 2, 3, 4, 5])}`);
+// console.log(`_.max([1, 2, 3, 4.75, 4.5]) = ${_.max([1, 2, 3, 4.75, 4.5])}`);
+var people = [{name: 'Fred', age: 65}, {name: 'Lucy', age: 36}];
+
+// console.log(`_.max(people, function(p) { return p.age; }) = ${_.max(people, function(p) { return p.age; })}`);
+// log('_.max(people, function(p) { return p.age; }) = ', _.max(people, function(p) { return p.age; }));
+
+/* 두 개의 인자로 값을 받아 둘중 최적(best-fit)의 값을 반환한다. */
 function finder(valueFun, bestFun, coll) {
     return _.reduce(coll, function(best, current) {
         var bestValue = valueFun(best);
@@ -445,6 +461,14 @@ function finder(valueFun, bestFun, coll) {
         return (bestValue === bestFun(bestValue, currentValue)) ? best : current;
     });
 }
+
+/* finder 함수를 이용해서 언더스코어의 _.max와 같은 동작을 시뮬레이션 */
+// log('finder(_.identity, Math.max, [1, 2, 3, 4, 5]) = ', finder(_.identity, Math.max, [1, 2, 3, 4, 5]));
+
+// log('finder(plucker("age"), Math.max, people) = ', finder(plucker("age"), Math.max, people));
+
+log('finder(plucker("name"), function(x, y) { return (x.charAt(0) === "L") ? x : y }, people) = ', finder(plucker("name"), function(x, y) { return (x.charAt(0) === "L") ? x : y }, people));
+
 
 function best(fun, coll) {
     return _.reduce(coll, function(x, y) {
@@ -2220,10 +2244,21 @@ function stringifyArray(ary) {
     return ["[", _.map(ary, polyToString).join(","), "]"].join('');
 }
 
+function isNull(p) {
+    return p === null;
+}
+
+function isUndefined(p) {
+    return p === undefined;
+}
+
+
 var polyToString = dispatch(
     function(s) { return _.isString(s) ? s : undefined },
     function(s) { return _.isArray(s) ? stringifyArray(s) : undefined },
     function(s) { return _.isObject(s) ? JSON.stringify(s) : undefined },   // 추가된 부분
+    function(s) { return isNull(s) ? 'null' : undefined },
+    function(s) { return isUndefined(s) ? 'undefined' : undefined },
     function(s) { return s.toString() }
 );
 
