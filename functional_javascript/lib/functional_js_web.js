@@ -467,7 +467,7 @@ function finder(valueFun, bestFun, coll) {
 
 // log('finder(plucker("age"), Math.max, people) => ', finder(plucker("age"), Math.max, people));
 
-log('finder(plucker("name"), function(x, y) { return (x.charAt(0) === "L") ? x : y }, people) => ', finder(plucker("name"), function(x, y) { return (x.charAt(0) === "L") ? x : y }, people));
+// log('finder(plucker("name"), function(x, y) { return (x.charAt(0) === "L") ? x : y }, people) => ', finder(plucker("name"), function(x, y) { return (x.charAt(0) === "L") ? x : y }, people));
 
 
 function best(fun, coll) {
@@ -480,9 +480,18 @@ function repeat(times, VALUE) {
     return _.map(_.range(times), function() { return VALUE; });
 }
 
+// log("repeat(4, 'Major') => ", repeat(4, 'Major'));
+// log("repeat(3, {a:1}) => ", repeat(3, {a:1}));
+// log("repeat(5, [1,2,3]) => ", repeat(5, [1,2,3]));
+
+
 function repeatedly(times, fun) {
     return _.map(_.range(times), fun);
 }
+
+// log("repeatedly(7, function() { return Math.floor(Math.random()*10+1); }) => ", repeatedly(7, function() { return Math.floor(Math.random()*10+1); }));
+// log("repeatedly(5, function() { return 'Odeley'; }) => ", repeatedly(5, function() { return 'Odeley'; }));
+
 
 function iterateUntil(fun, check, init) {
     var ret = [];
@@ -496,17 +505,32 @@ function iterateUntil(fun, check, init) {
     return ret;
 }
 
+// log("iterateUntil(function(n) { return n+n; }, function(n) { return n <= 1024; }, 1) => ", iterateUntil(function(n) { return n+n; }, function(n) { return n <= 1024; }, 1));
+
+/* repeatedly로 위와 같은 작업을 수행하려면 올바른 배열을 생성할 수 있도록 함수를 호출하기 전에 몇 번 호출해야 하는지 알아야 한다. */
+// log("repeatedly(10, function(exp) { return Math.pow(2, exp+1); }) => ", repeatedly(10, function(exp) { return Math.pow(2, exp+1); }));
+
 function always(VALUE) {
     return function() {
         return VALUE;
     };
 }
 
+var f = always(function() {});
+
+// log("f() === f() => ", f() === f());
+
+var g = always(function () {});
+// log("f() === g() => ", f() === g());
+
+/* repeatedly에서 익명함수 대신에 always를 사용하면 코드가 더 명확해진다 */
+
+// log("repeatedly(3, always('Odelay')) => ", repeatedly(3, always('Odelay')));
+
 /**
- * 생성시에 넣어둔 메서드가 실행할때 넘어오는 target의 요소인 경우에만 실행되는 함수를 반환
- * @param NAME
- * @param METHOD
- * @returns {Function}
+ * 함수를 리턴하는 함수. 처음 실행시에 넘긴 인자를 다음번 실행시에 사용하도록 setting 한다.
+ * 처음 실행시에 넘긴 NAME(메서드이름)과 METHOD를 다음 번 실행시에 사용.
+ * 처음 invoker의 실행결과로 생성된 함수를 실행할때 넘기는 target의 메서드가 생성시에 넣어둔 이름에 해당하는 메서드인 경우에만 실행되는 함수를 반환
  */
 function invoker (NAME, METHOD) {
     return function(target /* args ... */) {
@@ -524,16 +548,23 @@ function invoker (NAME, METHOD) {
 
 var rev = invoker('reverse', Array.prototype.reverse);
 
-// console.log(`_.map([[1, 2, 3]], rev) : ${_.map([[1, 2, 3]], rev)}`);
+// log('_.map([[1, 2, 3]], rev) : ', _.map([[1, 2, 3]], rev));
 
+var add100 = makeAdder(100);
+
+// log("add100(38) => ", add100(38));
 
 function uniqueString(len) {
     return Math.random().toString(36).substr(2, len);
 }
 
+// log("uniqueString(10) => ", uniqueString(10));
+
 function uniqueStringPrefix(prefix) {
     return [prefix, new Date().getTime()].join('');
 }
+
+// log("uniqueStringPrefix('argento') => ", uniqueStringPrefix('argento'));
 
 function makeUniqueStringFunction(start) {
     var COUNTER = start;
@@ -543,6 +574,62 @@ function makeUniqueStringFunction(start) {
     }
 }
 
+var makeUniqueString = makeUniqueStringFunction(0);
+
+// log("makeUniqueString('ghosts') => ", makeUniqueString('ghosts'));
+// log("makeUniqueString('turkey') => ", makeUniqueString('turkey'));
+// log("makeUniqueString('dari') => ", makeUniqueString('dari'));
+// log("makeUniqueString('dari') => ", makeUniqueString('dari'));
+
+/* 유사하지만 안전하지 않은 방식 */
+var generator = {
+    count: 0,
+    uniqueString: function (prefix) {
+        return [prefix, this.count++].join('');
+    }
+}
+
+// log("generator.uniqueString('bohr') => ", generator.uniqueString('bohr'));
+// log("generator.uniqueString('bohr') => ", generator.uniqueString('bohr'));
+
+// 위의 코드는 함수형이 아니라는 점 외에도 안전하지 않다는 것이 단점
+// count를 재할당
+generator.count = 'gotcha';
+// log("generator.uniqueString('bohr') => ", generator.uniqueString('bohr'));
+
+// 동적으로 바인딩
+// log("generator.uniqueString.call({count: 1337}, 'bohr') => ", generator.uniqueString.call({count: 1337}, 'bohr'));
+
+/* 카운터를 숨기기 */
+var omgenerator = (function (init) {
+    var COUNTER = init;
+
+    return {
+        uniqueString: function (prefix) {
+            return [prefix, COUNTER++].join('');
+        }
+    };
+})(0);
+
+// log("omgenerator.uniqueString('lichking-') => ", omgenerator.uniqueString('lichking-'));
+// log("omgenerator.uniqueString('lichking-') => ", omgenerator.uniqueString('lichking-'));
+
+
+/* 연산에 null이나 undefined 등이 포함될 경우, 아래처럼 잘못된 연산결과가 나올 수 있다 */
+
+// var nums = [11, 12, 13, null, 15];
+var nums = [1, 2, 3, null, 5];
+// log("_.reduce(nums, function (total, n) { return total * n; }) => ", _.reduce(nums, function (total, n) { return total * n; }));
+
+/* 기본값을 설정하는 함수를 사용 */
+function defaults(d) {
+    return function(o, k) {
+        var val = fnull(_.identity, d[k]);
+        return o && val(o[k]);
+    };
+}
+
+/* 이 예제는 좋지 않은 예제 -> reduce 등의 함수가 사용되어 2개의 기본 값이 사용될 것이라는걸 전제하고 있다 */
 function fnull(fun /*, defaults */) {
     var defaults = _.rest(arguments);
 
@@ -553,20 +640,47 @@ function fnull(fun /*, defaults */) {
 
         return fun.apply(null, args);
     };
-};
+}
 
-function defaults(d) {
-    return function(o, k) {
-        var val = fnull(_.identity, d[k]);
-        return o && val(o[k]);
+var safeMulti = fnull(function (total, n) {
+    return total * n;
+}, 1, 1);
+
+// log("_.reduce(nums, safeMulti) => ", _.reduce(nums, safeMulti));
+
+
+
+/* 아래와 같이 개선하는게 좋지 않을까? */
+function fnullMine(fun, defaultVal) {
+    return function(/* args */) {
+        var args = _.map(arguments, function(e, i) {
+            return existy(e) ? e : defaultVal;
+        });
+
+        return fun.apply(null, args);
     };
 }
 
+var safeMultiMine = fnullMine(function (total, n) {
+    return total * n;
+}, 1);
+
+// log("_.reduce(nums, safeMultiMine) => ", _.reduce(nums, safeMultiMine));
+
+
+/* 설정 객체 문제를 간단히 해결할 수 있다 */
 function doSomething(config) {
     var lookup = defaults({critical: 108});
 
     return lookup(config, 'critical');
 }
+
+// log("doSomething({whoCares: 42, critical: null}) => ", doSomething({whoCares: 42, critical: null}));
+// log("doSomething({critical: 9}) => ", doSomething({critical: 9}));
+// log("doSomething({}) => ", doSomething({}));
+
+
+
 
 function checker(/* validators */) {
     // 처음 실행시에는 validation 할 함수리스트만 세팅
