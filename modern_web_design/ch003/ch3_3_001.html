@@ -2,13 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>박스를 </title>
+    <title>박스를 바 형태로 디자인</title>
     <style>
-        div {
-            box-sizing: border-box;
-        }
         /*
         .box-dev {
+            box-sizing: border-box;
             border: 1px solid black;
         }
         */
@@ -29,14 +27,14 @@
             padding: 0;
             list-style: none;
         }
-        .menu ul a {
+        .menu ul li a {
             display: block;
             padding: 15px;
             color: #000000;
             font-size: 14px;
             text-decoration: none;
         }
-        .menu li a:hover {
+        .menu ul li a:hover {
             background-color: #75dbe7;
         }
         .menu ul:after {
@@ -94,26 +92,15 @@
             max-width: 100%;
             height: auto;
         }
-        .box1 {
-            padding-top: 8px;
-            padding-bottom: 8px;
-        }
         /* Box2를 바 형태로 디자인 */
         .box2 {
             background-color: #7cbac1;
         }
         .box3 {
-            padding-top: 40px;
-            padding-bottom: 30px;
-        }
-        .box4 {
-            padding-top: 40px;
-            padding-bottom: 30px;
+            /*padding-right: 50px;*/
         }
         .box5 {
             border-top: solid 1px #dddddd;
-            padding-top: 15px;
-            padding-bottom: 15px;
         }
 
         @media(min-width: 768px) {
@@ -125,7 +112,6 @@
             .box3 {
                 width: 70%;
                 float: left;
-                padding-right: 50px;
             }
             .box4 {
                 width: 30%;
