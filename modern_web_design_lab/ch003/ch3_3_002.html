@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>요소의 간격을 조정(가로방향)</title>
+    <title>요소의 간격을 조정(세로방향)</title>
     <style>
         /*
         .box-dev {
@@ -102,6 +102,7 @@
         .box3 {
             padding-top: 40px;
             padding-bottom: 30px;
+            padding-right: 50px;
         }
         .box4 {
             padding-top: 40px;
@@ -114,7 +115,6 @@
         }
 
         @media(min-width: 768px) {
-            /* 중앙 레이아웃 --------------------------------------------- */
             .boxA:after { /* clearfix */
                 display: block;
                 clear: both;
@@ -127,11 +127,6 @@
             .box4 {
                 width: 30%;
                 float: left;
-            }
-            /* 기사 영역 내부조정 ------------------------------------------ */
-            .box3 {
-                padding-right: 50px; /* box-sizing이 border-box가 아닌 경우에는 width가 70%가 넘어가게 된다 */
-                box-sizing: border-box;
             }
         }
     </style>

@@ -114,7 +114,6 @@
         }
 
         @media(min-width: 768px) {
-            /* 중앙 레이아웃 --------------------------------------------- */
             .boxA:after { /* clearfix */
                 display: block;
                 clear: both;
@@ -123,15 +122,12 @@
             .box3 {
                 width: 70%;
                 float: left;
+                padding-right: 50px; /* box-sizing이 border-box가 아닌 경우에는 width가 70%가 넘어가게 된다 */
+                box-sizing: border-box;
             }
             .box4 {
                 width: 30%;
                 float: left;
-            }
-            /* 기사 영역 내부조정 ------------------------------------------ */
-            .box3 {
-                padding-right: 50px; /* box-sizing이 border-box가 아닌 경우에는 width가 70%가 넘어가게 된다 */
-                box-sizing: border-box;
             }
         }
     </style>
