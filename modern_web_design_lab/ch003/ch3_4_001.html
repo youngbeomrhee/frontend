@@ -2,8 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>요소의 간격을 조정(가로방향)</title>
+    <!-- Ch.3-4 반응형 웹 디자인과 관련된 조정 -->
+    <title>조정에 필요한 @media 설정을 추가</title>
     <style>
+        /* 기본 디자인 설정 */
+        body {
+            font-family: '맑은 고딕', 'Apple SD Gothic Neo', sans-serif;
+        }
         /*
         .box-dev {
             box-sizing: border-box;
@@ -113,8 +118,17 @@
             padding-bottom: 15px;
         }
 
+        /* ####### 599px 이하 ####### */
+        @media(min-width: 599px) {
+
+        }
+        /* ####### 600px 이상 ~ 767px 이하 ####### */
+        @media(min-width: 600px) and (max-width: 767px) {
+
+        }
+
+        /* ####### 768px 이상 ####### */
         @media(min-width: 768px) {
-            /* 중앙 레이아웃 --------------------------------------------- */
             .boxA:after { /* clearfix */
                 display: block;
                 clear: both;
@@ -123,17 +137,20 @@
             .box3 {
                 width: 70%;
                 float: left;
+                padding-right: 50px; /* box-sizing이 border-box가 아닌 경우에는 width가 70%가 넘어가게 된다 */
+                box-sizing: border-box;
             }
             .box4 {
                 width: 30%;
                 float: left;
             }
-            /* 기사 영역 내부조정 ------------------------------------------ */
-            .box3 {
-                padding-right: 50px; /* box-sizing이 border-box가 아닌 경우에는 width가 70%가 넘어가게 된다 */
-                box-sizing: border-box;
-            }
         }
+
+        /* ####### 1040px 이상 ####### */
+        @media(min-width: 1040px) {
+
+        }
+
     </style>
 </head>
 <body>

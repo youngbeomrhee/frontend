@@ -112,7 +112,20 @@
             padding-top: 15px;
             padding-bottom: 15px;
         }
+        /* 명백한 커뮤니케이션을 위한 버져닝 및 주석 */
+        /* 3-a 모바일용 1단 레이아웃에서 더 작은 화면 대응 -------------------------*/
+        @media(max-width: 599px) {
+            /* 3-a-1 네비게이션이 한 줄이 되도록 축소 -------------------------*/
 
+            /* 3-a-2 큰 글씨 작게 조정 -------------------------*/
+
+            /* 3-a-2-1 글씨 조정에 따른 크기 조정 -------------------------*/
+
+
+        }
+        @media(min-width: 600px) and (max-width: 767px) {
+
+        }
         @media(min-width: 768px) {
             /* 중앙 레이아웃 --------------------------------------------- */
             .boxA:after { /* clearfix */
@@ -133,6 +146,9 @@
                 padding-right: 50px; /* box-sizing이 border-box가 아닌 경우에는 width가 70%가 넘어가게 된다 */
                 box-sizing: border-box;
             }
+        }
+        @media(min-width: 1040px) {
+
         }
     </style>
 </head>

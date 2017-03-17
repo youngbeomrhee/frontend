@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1-6</title>
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .box {
+            border: 1px solid black;
+            line-height: 200px;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            .boxA:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+            .box2 {
+                float: left;
+                width: 70%;
+            }
+            .box3 {
+                float: left;
+                width: 30%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+1-6 반응형 웹 디자인과 관련된 설정 - 반응형 웹 디자인의 기본
+<div class="boxA">
+    <div class="box1 box">
+        BOX1
+    </div>
+    <div class="box2 box">
+        BOX2
+    </div>
+    <div class="box3 box">
+        BOX3
+    </div>
+    <div class="box4 box">
+        BOX4
+    </div>
+</div>
+</body>
+</html>

@@ -2,14 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>요소의 간격을 조정(가로방향)</title>
+    <title>저작권</title>
     <style>
-        /*
         .box-dev {
             box-sizing: border-box;
             border: 1px solid black;
         }
-        */
         .box-dev-name {
             line-height: 200px;
             text-align: center;
@@ -27,15 +25,15 @@
             padding: 0;
             list-style: none;
         }
-        .menu ul li a {
+        .menu ul a {
             display: block;
-            padding: 15px;
+            padding: 5px;
             color: #000000;
             font-size: 14px;
             text-decoration: none;
         }
-        .menu ul li a:hover {
-            background-color: #75dbe7;
+        .menu li a:hover {
+            background-color: #eeeeee;
         }
         .menu ul:after {
             content: "";
@@ -88,33 +86,10 @@
             color: #666666;
             font-size: 14px;
         }
-        .story p img {
-            max-width: 100%;
-            height: auto;
-        }
-        .box1 {
-            padding-top: 8px;
-            padding-bottom: 8px;
-        }
-        .box2 {
-            background-color: #7cbac1;
-        }
-        .box3 {
-            padding-top: 40px;
-            padding-bottom: 30px;
-        }
-        .box4 {
-            padding-top: 40px;
-            padding-bottom: 30px;
-        }
-        .box5 {
-            border-top: solid 1px #dddddd;
-            padding-top: 15px;
-            padding-bottom: 15px;
-        }
+
+
 
         @media(min-width: 768px) {
-            /* 중앙 레이아웃 --------------------------------------------- */
             .boxA:after { /* clearfix */
                 display: block;
                 clear: both;
@@ -127,11 +102,6 @@
             .box4 {
                 width: 30%;
                 float: left;
-            }
-            /* 기사 영역 내부조정 ------------------------------------------ */
-            .box3 {
-                padding-right: 50px; /* box-sizing이 border-box가 아닌 경우에는 width가 70%가 넘어가게 된다 */
-                box-sizing: border-box;
             }
         }
     </style>
@@ -161,8 +131,6 @@
             <article class="story">
 
                 <h1>토마토를 맛있게 먹는 방법</h1>
-
-                <p><img src="img/tomato.jpg" alt="토마토사진"/></p>
 
                 <p>수확한 토마토를 바로 먹고 싶어서 서울 외곽에 있는 토마토 농가에 직접 다녀왔습니다. 이번에 온 농가의 토마토는 신선하고 저렴하군요.</p>
 
