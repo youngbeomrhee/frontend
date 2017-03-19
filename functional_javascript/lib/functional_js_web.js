@@ -681,29 +681,39 @@ function doSomething(config) {
 
 
 
-
+// true나 false를 반환하는 찬반형 함수들을 인자로 받아 검증 함수를 반환하는 함수
 function checker(/* validators */) {
     // 처음 실행시에는 validation 할 함수리스트만 세팅
     var validators = _.toArray(arguments);
     return function(obj) {
         // 두 번째 실행시
-        // validation 루프
-        // reduce의 마지막 인자로 에러 정보를 담을 빈 배열 선언
+        // reduce의 마지막 인자로 빈배열을 선언하여 해당 함수가 처음 실행될때 errs로 사용
+        // 두 번째 순회부터는 실행결과가 errs로 사용됨
         return _.reduce(validators, function(errs, check) {
             if (check(obj)) {   // validation 통과시에는 현재 errs 넘김
                 return errs;
             } else {    // 조건을 만족하지 못할 경우에는
-                return _.chain(errs).push(check.message).value();
+                // return _.chain(errs).push(check.message).value();
+                errs.push(check.message);
+                return errs;
             }
         }, []);
     };
 }
+var alwaysPasses = checker(always(true), always(true));
+// log("alwaysPasses({}) => ", alwaysPasses({}));
+
+var fails = always(false);
+fails.message = 'a failure in life';
+var alwaysFails = checker(fails);
+
+// log("alwaysFails({}) => ", alwaysFails({}));
 
 // 검증을 통과하지 못했을때 보여줄 메시지와 검증찬반형 함수를 인자로 받아서
-// 실행준비된 검증찬반형함수에 실패했을 때의 메시지를 'message' 프로퍼티에 넣어서 리턴
+// 실행준비된 검증찬반형함수에 실패했을 때의 메시지를 'message' 프로퍼티에 담은 함수를 리턴하는 함수
 function validator(message, /* 찬반형 */fun) {
     // 함수를 실행한 결과를
-    var f = function(/* args */) {
+    var f = function(/* 인자 */) {
         return fun.apply(fun, arguments);
     };
 
@@ -711,9 +721,20 @@ function validator(message, /* 찬반형 */fun) {
     return f;
 }
 
+var gonnaFail = checker(validator('ZOMG!', always(false)));
+
+// log("gonnaFail(100) => ", gonnaFail(100));
+
 function aMap(obj) {
     return _.isObject(obj);
 }
+
+var checkCommand = checker(validator('must be a map', aMap));
+
+// log("checkCommand({}) => ", checkCommand({}));
+
+// log("checkCommand(42) => ", checkCommand(42));
+
 
 function hasKeys() {
     var KEYS = _.toArray(arguments);
@@ -727,6 +748,13 @@ function hasKeys() {
     fun.message = cat(["Must have values for keys:"], KEYS).join(" ");
     return fun;
 }
+
+var checkCommand = checker(validator('must be a map', aMap), hasKeys('msg', 'type'));
+
+log("checkCommand({msg: 'blah', type: 'display'}) => ", checkCommand({msg: 'blah', type: 'display'}));
+log("checkCommand(32) => ", checkCommand(32));
+log("checkCommand({}) => ", checkCommand({}));
+
 
 
 function dispatch(/* funs */) {
