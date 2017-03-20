@@ -476,6 +476,8 @@ function best(fun, coll) {
     });
 }
 
+// log("best(function(x, y) { return x > y; }, [1,2,3,4,5]) => ", best(function(x, y) { return x > y; }, [1,2,3,4,5]));
+
 function repeat(times, VALUE) {
     return _.map(_.range(times), function() { return VALUE; });
 }
@@ -483,7 +485,6 @@ function repeat(times, VALUE) {
 // log("repeat(4, 'Major') => ", repeat(4, 'Major'));
 // log("repeat(3, {a:1}) => ", repeat(3, {a:1}));
 // log("repeat(5, [1,2,3]) => ", repeat(5, [1,2,3]));
-
 
 function repeatedly(times, fun) {
     return _.map(_.range(times), fun);
@@ -509,6 +510,7 @@ function iterateUntil(fun, check, init) {
 
 /* repeatedly로 위와 같은 작업을 수행하려면 올바른 배열을 생성할 수 있도록 함수를 호출하기 전에 몇 번 호출해야 하는지 알아야 한다. */
 // log("repeatedly(10, function(exp) { return Math.pow(2, exp+1); }) => ", repeatedly(10, function(exp) { return Math.pow(2, exp+1); }));
+// log("repeatedly(3, function() { return 'Odelay'; }) => ", repeatedly(3, function() { return 'Odelay'; }));
 
 function always(VALUE) {
     return function() {
@@ -668,7 +670,7 @@ var safeMultiMine = fnullMine(function (total, n) {
 // log("_.reduce(nums, safeMultiMine) => ", _.reduce(nums, safeMultiMine));
 
 
-/* 설정 객체 문제를 간단히 해결할 수 있다 */
+/* fnull을 활용하면 설정 객체 문제를 간단히 해결할 수 있다 */
 function doSomething(config) {
     var lookup = defaults({critical: 108});
 
@@ -751,9 +753,9 @@ function hasKeys() {
 
 var checkCommand = checker(validator('must be a map', aMap), hasKeys('msg', 'type'));
 
-log("checkCommand({msg: 'blah', type: 'display'}) => ", checkCommand({msg: 'blah', type: 'display'}));
-log("checkCommand(32) => ", checkCommand(32));
-log("checkCommand({}) => ", checkCommand({}));
+// log("checkCommand({msg: 'blah', type: 'display'}) => ", checkCommand({msg: 'blah', type: 'display'}));
+// log("checkCommand(32) => ", checkCommand(32));
+// log("checkCommand({}) => ", checkCommand({}));
 
 
 
