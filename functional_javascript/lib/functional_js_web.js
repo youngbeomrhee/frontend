@@ -757,6 +757,88 @@ var checkCommand = checker(validator('must be a map', aMap), hasKeys('msg', 'typ
 // log("checkCommand(32) => ", checkCommand(32));
 // log("checkCommand({}) => ", checkCommand({}));
 
+/*
+sum(1, 2, 3, 4, 5);
+sum([1, 2, 3, 4, 5]);
+safeSum(1, null, 3, 4, 5);
+safeMultiply(1, null, 3, 4, 5);
+checkObj(객체형인지 확인, 특정프로퍼티가 있는지 확인, 특정 프로퍼티의 값이 숫자인지 확인);
+*/
+/*
+function sum() {
+    var args = arguments;
+    return Array.prototype.reduce.apply(args, function())
+}*/
+
+// log("checkCommand({msg: 'blah', type: 'display'}) => ", checkCommand({msg: 'blah', type: 'display'}));
+// log("checkCommand(32) => ", checkCommand(32));
+// log("checkCommand({}) => ", checkCommand({}));
+
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/* -------------------------------      Quiz    --------------------------------- */
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/*
+ 아래에 나오는 함수를 함수형으로 구현해 보는게 문제입니다 :)
+ 스텝바이 스텝으로 책에 나온 과정처럼 기본 기능 구현 -> 추상화 -> 함수의 조합으로 문제 해결 이렇게 해보시면 좋습니다
+
+ sum(1, 2, 3, 4, 5);
+ sumArr([1, 2, 3, 4, 5]);
+ safeSum(1, null, 3, 4, 5);
+ safeMultiply(1, null, 3, 4, 5);
+ checkObj(객체형인지 확인, 특정프로퍼티가 있는지 확인, 특정 프로퍼티의 값이 숫자인지 확인);
+*/
+
+/* 가장 초보적인 방법 */
+function sum() {
+    var args = arguments;
+    return Array.prototype.reduce.call(args, function(prev, next) {
+        return prev + next;
+    });
+}
+
+/* 함수형 프로그래밍으로 추상화 */
+function doSth(execFun, calcFun) {
+    return function() {
+        var args = arguments;
+        return execFun.call(args, calcFun);
+    };
+}
+
+/* sum 함수 구현 */
+var sum = doSth(Array.prototype.reduce, function(prev, next) { return prev + next; });
+log('sum(1,2,3,4,5) -> ', sum(1,2,3,4,5));
+
+/* 배열 형식을 풀어서 실행할 수 있는 함수 구현 */
+/* funcA([1,2,3,4,5]) -> funcB(1,2,3,4,5) */
+var runWithArr = function(fun) { return function(arr) { return fun.apply(null, arr); }; };
+var sumArr = runWithArr(sum);
+log('sumArr([1,2,3,4,5]) -> ', sumArr([1,2,3,4,5]));
+
+
+function defaults(fun, defVal) {
+    return function(/* args */) {
+        var args = Array.prototype.map.call(arguments, function(v) {
+            return v || defVal;
+        });
+
+        return fun(args);
+    };
+}
+
+
+var safeSum = defaults(sumArr, 0);
+
+log('safeSum(1,2,3,4,5) -> ', safeSum(1,2,3,4,5));
+
+
+/* ------------------------------------------------------------------------------ */
+/* ------------------------------------------------------------------------------ */
+/* -------------------------------    Quiz end  --------------------------------- */
+/* ----------------------------------------ㅁ-------------------------------------- */
+/* ------------------------------------------------------------------------------ */
 
 
 function dispatch(/* funs */) {
