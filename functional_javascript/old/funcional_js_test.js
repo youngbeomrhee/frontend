@@ -1,7 +1,7 @@
 /**
  * Created by YB on 2016-10-23.
  */
-var fjs = require('../lib/functional_js.js');
+var fjs = require('functional_js.js');
 var _ = require('underscore');
 
 console.log('\n### node 환경에서 Functional JS 전체소스를 라이브러리로 사용하기');
