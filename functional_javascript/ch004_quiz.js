@@ -17,6 +17,10 @@
  safeMultiply(1, null, 3, 4, 5);
  checkObj(객체형인지 확인, 특정프로퍼티가 있는지 확인, 특정 프로퍼티의 값이 숫자인지 확인);
 */
+
+// mode = 'running';   // 이하 코드에서는 log() 함수가 아무런 메시지도 표시 안함
+mode = 'debug';   // 이하 코드에서는 log() 함수가 메시지 표시
+
 // /* sum 함수를 구현하는 가장 초보적인 방법 */
 /*
 function sum() {
@@ -26,8 +30,6 @@ function sum() {
     });
 }
 */
-
-mode = 'debug';
 
 /* 함수형 프로그래밍으로 추상화 */
 function doFun(execFun, calcFun) {
@@ -43,7 +45,7 @@ log('sum(1,2,3,4,5) -> ', sum(1,2,3,4,5));
 
 /* 배열 형식을 풀어서 실행할 수 있는 함수 구현 */
 /* funcA([1,2,3,4,5]) -> funcB(1,2,3,4,5) */
-const runWithArr = function(fun) { return arr => fun.apply(null, arr); };
+const runWithArr = fun => arr => fun.apply(null, arr);
 const sumArr = runWithArr(sum);
 log('sumArr([1,2,3,4,5]) -> ', sumArr([1,2,3,4,5]));
 

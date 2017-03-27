@@ -3,6 +3,9 @@
  */
 let mode;
 
+mode = 'running';   // 이하 코드에서는 log() 함수가 아무런 메시지도 표시 안함
+// mode = 'debug';   // 이하 코드에서는 log() 함수가 메시지 표시
+
 // 공통으로 사용할 로그함수
 function log(title, result) {
     if(mode==='debug') {
