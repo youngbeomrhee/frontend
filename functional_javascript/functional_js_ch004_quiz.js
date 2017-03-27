@@ -27,6 +27,8 @@ function sum() {
 }
 */
 
+mode = 'debug';
+
 /* 함수형 프로그래밍으로 추상화 */
 function doFun(execFun, calcFun) {
     return function() {

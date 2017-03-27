@@ -1,10 +1,13 @@
 /**
  * Created by YB on 2016-10-23.
  */
+let mode;
 
 // 공통으로 사용할 로그함수
 function log(title, result) {
-    console.log(title + JSON.stringify(result));
+    if(mode==='debug') {
+        console.log(title + JSON.stringify(result));
+    }
 }
 
 
