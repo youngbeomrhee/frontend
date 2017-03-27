@@ -45,22 +45,25 @@ var sumArr = runWithArr(sum);
 
 
 /* 안전(safe)한 배열의 연산을 위해 기본값을 리턴하는 함수 생성 */
-function defaults(fun, defVal) {
+function defaults(fun, validator, defVal) {
     return function(/* args */) {
         var args = Array.prototype.map.call(arguments, function(v) {
-            return v || defVal;
+            return validator(v) ? v : defVal;
         });
 
         return fun(args);
     };
 }
 
+// 숫자형인지 검증
+var isNumber = setCheckType(Number.prototype.constructor);
+
 /* safeSum 구현 */
-var safeSum = defaults(sumArr, 0);
+var safeSum = defaults(sumArr, isNumber, 0);
 
 // log('safeSum(1,2,3,4,5) -> ', safeSum(1,2,3,4,5));
-
-
+// log('safeSum(1,2,3,4,5) -> ', safeSum(1,2,3,4,5));
+log('safeSum(1, "str", 3, null, undefined, {}, [], 5) -> ', safeSum(1, "str", 3, null, undefined, {}, [], 5));
 
 // checkObj(객체형인지 확인, 특정프로퍼티가 있는지 확인, 특정 프로퍼티의 값이 숫자인지 확인);
 // 타입을 확인할 수 있는 일반 함수 구현
@@ -86,9 +89,6 @@ var isObject = setCheckType(Object.prototype.constructor);
 // log("isObject({}) => ", isObject({}));
 // log("isObject({a:1}) => ", isObject({a:1}));
 
-// 숫자형인지 검증
-var isNumber = setCheckType(Number.prototype.constructor);
-
 /* 또 다른 validator 구현 */
 function checkPropertyType(key, fun, typeName) {
 
@@ -105,11 +105,11 @@ function checkPropertyType(key, fun, typeName) {
 // 모든 조건을 만족시킬 수 있는
 var hasProp1Numval = checker(validator('must be a Object', isObject), hasKeys('prop1'), checkPropertyType('prop1', isNumber, 'Number'));
 
-log("hasProp1Numval(1) => ", hasProp1Numval(1));
-log("hasProp1Numval([]) => ", hasProp1Numval([]));
-log("hasProp1Numval({}) => ", hasProp1Numval({}));
-log("hasProp1Numval({prop1: 'str'}) => ", hasProp1Numval({prop1: 'str'}));
-log("hasProp1Numval({prop1: 1}) => ", hasProp1Numval({prop1: 1}));
+// log("hasProp1Numval(1) => ", hasProp1Numval(1));
+// log("hasProp1Numval([]) => ", hasProp1Numval([]));
+// log("hasProp1Numval({}) => ", hasProp1Numval({}));
+// log("hasProp1Numval({prop1: 'str'}) => ", hasProp1Numval({prop1: 'str'}));
+// log("hasProp1Numval({prop1: 1}) => ", hasProp1Numval({prop1: 1}));
 
 
 /* ------------------------------------------------------------------------------ */
