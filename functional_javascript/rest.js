@@ -1652,6 +1652,13 @@ var polyToString = dispatch(
     function(s) { return s.toString() }
 );
 
+
+console.log(`polyToString(1) : ${polyToString(1)}`);
+console.log(`polyToString('a') : ${polyToString('a')}`);
+console.log(`polyToString(_.range(10)) : ${polyToString(_.range(10))}`);
+console.log(`polyToString({a:1, b:2, c:'str'}) : ${polyToString({a:1, b:2, c:'str'})}`);
+console.log(`polyToString(false) : ${polyToString(false)}`);
+
 // console.log(`polyToString([1, 2, {a: 42, b: [4, 5, 6]}, 77]) : ${polyToString([1, 2, {a: 42, b: [4, 5, 6]}, 77])}`);
 
 // 이런 방식은 Container 같은 생성자를 사용했을때 문제가 있다

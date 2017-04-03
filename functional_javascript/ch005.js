@@ -2,8 +2,8 @@
  * Created by YB on 2016-10-23.
  */
 
-// mode = 'running';   // 이하 코드에서는 log() 함수가 아무런 메시지도 표시 안함
-mode = 'debug';   // 이하 코드에서는 log() 함수가 메시지 표시
+mode = 'running';   // 이하 코드에서는 log() 함수가 아무런 메시지도 표시 안함
+// mode = 'debug';   // 이하 코드에서는 log() 함수가 메시지 표시
 
 
 // 여러 invoker를 조립할 수 있는 함수
@@ -42,11 +42,11 @@ Object.prototype.stringify = function() {
 
 
 var toStr = dispatch(
-    invoker('toString', Array.prototype.toString),
-    invoker('toString', String.prototype.toString),
-    invoker('stringify', Object.prototype.stringify),
+  invoker('stringify', Object.prototype.stringify),
     invoker('toString', Boolean.prototype.toString),
-    invoker('toString', Number.prototype.toString)
+    invoker('toString', Number.prototype.toString),
+    invoker('toString', Array.prototype.toString),
+    invoker('toString', String.prototype.toString)
 );
 
 log("toStr(1) -> ", toStr(1));
@@ -78,8 +78,8 @@ function stringReverse(s) {
     return s.split('').reverse().join("");
 }
 
-log("stringReverse('abc') -> ", stringReverse('abc'));
-log("stringReverse(1) -> ", stringReverse(1));
+// log("stringReverse('abc') -> ", stringReverse('abc'));
+// log("stringReverse(1) -> ", stringReverse(1));
 
 
 // stringReverse
