@@ -2,14 +2,11 @@
  * Created by YB on 2016-10-23.
  */
 
-mode = 'running';   // 이하 코드에서는 log() 함수가 아무런 메시지도 표시 안함
-// mode = 'debug';   // 이하 코드에서는 log() 함수가 메시지 표시
+// mode = 'running';   // 이하 코드에서는 log() 함수가 아무런 메시지도 표시 안함
+mode = 'debug';   // 이하 코드에서는 log() 함수가 메시지 표시
 
 
 // 여러 invoker를 조립할 수 있는 함수
-/*
-
-*/
 function dispatch(/* invokers */) {
     var funs = _.toArray(arguments);
     var size = funs.length;
@@ -42,11 +39,11 @@ Object.prototype.stringify = function() {
 
 
 var toStr = dispatch(
-  invoker('stringify', Object.prototype.stringify),
     invoker('toString', Boolean.prototype.toString),
     invoker('toString', Number.prototype.toString),
     invoker('toString', Array.prototype.toString),
-    invoker('toString', String.prototype.toString)
+    invoker('toString', String.prototype.toString),
+    invoker('stringify', Object.prototype.stringify)
 );
 
 log("toStr(1) -> ", toStr(1));
@@ -56,52 +53,33 @@ log("toStr({a:1, b:2, c:'str'}) -> ", toStr({a:1, b:2, c:'str'}));
 log("toStr(false) -> ", toStr(false));
 
 
-/* 뒤에 나옴
-var polyToString = dispatch(
-    function(s) { return _.isString(s) ? s : undefined },
-    function(s) { return _.isArray(s) ? stringifyArray(s) : undefined },
-    function(s) { return _.isObject(s) ? JSON.stringify(s) : undefined },
-    function(s) { return s.toString() }
-);
-*/
-
-
-// console.log(`polyToString(1) : ${polyToString(1)}`);
-// console.log(`polyToString('a') : ${polyToString('a')}`);
-// console.log(`polyToString(_.range(10)) : ${polyToString(_.range(10))}`);
-// console.log(`polyToString({a:1, b:2, c:'str'}) : ${polyToString({a:1, b:2, c:'str'})}`);
-// console.log(`polyToString(false) : ${polyToString(false)}`);
-
 // 아래 함수를 이용해서 dispatch의 규칙에 관여할 수 있다.
 function stringReverse(s) {
     if (!_.isString(s)) return undefined;
     return s.split('').reverse().join("");
 }
 
-// log("stringReverse('abc') -> ", stringReverse('abc'));
-// log("stringReverse(1) -> ", stringReverse(1));
+log("stringReverse('abc') -> ", stringReverse('abc'));
+log("stringReverse(1) -> ", stringReverse(1));
 
 
-// stringReverse
+// stringReverse에 Array#reverse 메서드를 이용해서 rev라는 새로운 다형적 함수를 만들 수 있다.
+var rev = dispatch(invoker('reverse', Array.prototype.reverse), stringReverse);
 
+log("rev([1, 2, 3]) -> ", rev([1, 2, 3]));
+log("rev('abc') -> ", rev('abc'));
 
 
 // dispatch로 만든 함수를 dispatch의 인자로 제공함으로써 유연성을 극대화할 수 있다
 var sillyReverse = dispatch(rev, always("Can't reverse"));
 
-// console.log(`sillyReverse([1,2,3]) : ${sillyReverse([1,2,3])}`);
-// console.log(`sillyReverse('asdfas') : ${sillyReverse('asdfas')}`);
-// console.log(`sillyReverse(234) : ${sillyReverse(234)}`);
+log("sillyReverse([1,2,3]) -> ", sillyReverse([1,2,3]));
+log("sillyReverse('asdfas') -> ", sillyReverse('asdfas'));
+log("sillyReverse(234) -> ", sillyReverse(234));
+
+
 
 // 수동적으로 명령을 분류하는 switch 문을 dispatch로 대체할 수 있다.
-function notify(msg) {
-    return '# notify : ' + msg;
-}
-
-function changeView(target) {
-    return target + ' has changed';
-}
-
 function performCommandHardcoded(command) {
     var result;
 
@@ -121,12 +99,20 @@ function performCommandHardcoded(command) {
     return result;
 }
 
-/*
-console.log(`performCommandHardcoded({type: 'notify', message: 'hi!'}) : ${performCommandHardcoded({type: 'notify', message: 'hi!'})}`);
-console.log(`performCommandHardcoded({type: 'join', target: 'waiting-room!'}) : ${performCommandHardcoded({type: 'join', target: 'waiting-room!'})}`);
-console.log(`performCommandHardcoded({type: 'wat'}) : ${performCommandHardcoded({type: 'wat'})}`);
-*/
+function notify(msg) {
+    return '# notify : ' + msg;
+}
 
+function changeView(target) {
+    return target + ' has changed';
+}
+
+log("performCommandHardcoded({type: 'notify', message: 'hi!'}) -> ", performCommandHardcoded({type: 'notify', message: 'hi!'}));
+log("performCommandHardcoded({type: 'join', target: 'waiting-room!'}) -> ", performCommandHardcoded({type: 'join', target: 'waiting-room!'}));
+log("performCommandHardcoded({type: 'wat'}) -> ", performCommandHardcoded({type: 'wat'}));
+
+
+/* 다음 예제처럼 dispatch를 이용해서 switch를 사용하던 기존의 패턴을 깔끔하게 제거할 수 있다. */
 function isa(type, action) {
     return function(obj) {
         if (type === obj.type)
@@ -141,22 +127,26 @@ var performCommand = dispatch(
 )
 
 
-/*
-console.log(`performCommand({type: 'notify', message: 'hi!'}) : ${performCommandHardcoded({type: 'notify', message: 'hi!'})}`);
-console.log(`performCommand({type: 'join', target: 'waiting-room!'}) : ${performCommandHardcoded({type: 'join', target: 'waiting-room!'})}`);
-console.log(`performCommand({type: 'wat'}) : ${performCommandHardcoded({type: 'wat'})}`);
-*/
+log("performCommand({type: 'notify', message: 'hi!'}) -> ", performCommand({type: 'notify', message: 'hi!'}));
+log("performCommand({type: 'join', target: 'waiting-room!'}) -> ", performCommand({type: 'join', target: 'waiting-room!'}));
+log("performCommand({type: 'wat'}) -> ", performCommand({type: 'wat'}));
+
 
 // performCommandHardcoded 함수의 기능을 확장하려면 switch 문 자체를 고쳐야 하지만 dispatch 함수를 쓰면 간단하게 새 기능을 추가할 수 있다.
 var performAdminCommand = dispatch(
-  isa('kill', /* function (obj) { return shutdown(obj.hostname) }} */ (obj)=>'shutdown '+obj.hostname),
+  isa('kill', obj => 'shutdown '+obj.hostname),
   performCommand
 );
 
+
+log("performAdminCommand({type: 'kill', hostname: 'localhost'}) -> ", performAdminCommand({type: 'kill', hostname: 'localhost'}));
+log("performAdminCommand({type: 'flail'}) -> ", performAdminCommand({type: 'flail'}));
+log("performAdminCommand({type: 'join', target: 'foo'}) -> ", performAdminCommand({type: 'join', target: 'foo'}));
+
 /*
 console.log(`performAdminCommand({type: 'kill', hostname: 'localhost'}) : ${performAdminCommand({type: 'kill', hostname: 'localhost'})}`);
-console.log(`performAdminCommand({type: 'flail'}) : ${performAdminCommand({type: 'flail'})}`);
-console.log(`performAdminCommand({type: 'join', target: 'foo'}) : ${performAdminCommand({type: 'join', target: 'foo'})}`);
+console.log(` : ${performAdminCommand({type: 'flail'})}`);
+console.log(` : ${performAdminCommand({type: 'join', target: 'foo'})}`);
 */
 
 // 두 개 이상의 dispatch가 연결된 dispatch 체인에서 특정 명령을 오버라이드해서 그 명령이 수행되지 않도록 할 수도 있다.
@@ -311,7 +301,7 @@ console.log(`div10By2By4By5000Partial() : ${div10By2By4By5000Partial()}`);
 
 // 반환된 에러 배열이 비었다는 것은 전혀 에러가 발생하지 않았음을 가리킨다.
 // validator는 함수 인자 수동 검증과 같은 다양한 용도로 활용할 수 있다.
-// console.log(`validator('arg must be a map', aMap)(42) : ${validator('arg must be a map', aMap)(42)}`);
+log("validator('arg must be a map', aMap)(42) -> ", validator('arg must be a map', aMap)(42));
 
 var zero = validator('cannot be zero', function (n) { return 0 === n });
 var number = validator('arg must be a number', _.isNumber);
@@ -329,6 +319,10 @@ console.log(`sqr(10) : ${sqr(10)}`);
 console.log(`sqr(0) : ${sqr(0)}`);
 console.log(`sqr('') : ${sqr('')}`);
 */
+
+log("sqr(10) -> ", sqr(10));
+// log("sqr(0) -> ", sqr(0));   // 오류발생
+// log("sqr('') -> ", sqr(''));   // 오류발생
 
 // 핵심적인 계산 로직과는 독립적으로 선행조건을 추가하도록 부분 적용을 이용할 수 있다.
 // 후행조건에도 사용될 수 있다
@@ -350,6 +344,71 @@ function condition1(/* validators */) {
         return fun(arg);
     };
 }
+
+var sqrPre = condition1(
+  validator('arg must not be zero', complement(zero)),
+  validator('arg must be a number', _.isNumber)
+);
+
+
+log("sqrPre(_.identity, 10) -> ", sqrPre(_.identity, 10));
+// log("sqrPre(_.identity, '') -> ", sqrPre(_.identity, ''));
+// log("sqrPre(_.identity, 0) -> ", sqrPre(_.identity, 0));
+log("sqrPre(_.identity, 0) -> ", sqrPre(sqr, 3));
+
+
+/* 불안정한 sqr 버젼 */
+function uncheckedSqr (n) { return n*n; }
+log("uncheckedSqr('') -> ", uncheckedSqr(''));
+
+/* 기존의 함수를 변경하지 않고 그대로 사용하면서 안전한 함수를 만들 수 있다. */
+var checkedSqr = partial1(sqrPre, uncheckedSqr);
+
+log("checkedSqr(10) -> ", checkedSqr(10));
+// log("checkedSqr('') -> ", checkedSqr(''));   // 오류
+// log("checkedSqr(0) -> ", checkedSqr(0));   // 오류
+
+/* 새로운 검증을 혼합할수도 있다. */
+/* 다른 함수를 조립하는 함수는 자기 자신도 조립에 사용될 수 있어야 한다. */
+var sillySquare = partial1(
+  condition1(validator('should be even', isEven)),
+  checkedSqr
+);
+
+log("sillySquare(10) -> ", sillySquare(10));
+// log("sillySquare(11) -> ", sillySquare(11));   // 오류
+// log("sillySquare('') -> ", sillySquare(''));   // 오류
+// log("sillySquare(0) -> ", sillySquare(0));   // 오류
+
+/* 4장에서 살펴본 커맨드 객체 생성 로직에 지금까지 확인한 검증 기능을 적용 */
+var validateCommand = condition1(
+  validator('arg must be a map', _.isObject),
+  validator('arg must have the correct keys', hasKeys('msg', 'type'))
+);
+
+var createCommand = partial(validateCommand, _.identity);
+var createCommand2 = partial(validateCommand, console.log);
+
+// log(createCommand({}));  // 오류
+// log("createCommand(21) -> ", createCommand(21));
+log("{msg: '', type: ''} -> ", {msg: '', type: ''});
+createCommand2({msg: '', type: ''});
+
+
+var createLaunchCommand = partial1(
+  condition1(
+    validator('arg must have the count down', hasKeys('countDown'))),
+    createCommand
+);
+
+// log("createLaunchCommand({msg: '', type: ''}) -> ", createLaunchCommand({msg: '', type: ''}));   // 오류
+log("createLaunchCommand({msg: '', type: '', countDown: 10}) -> ", createLaunchCommand({msg: '', type: '', countDown: 10}));
+
+/* quiz 필수키도 실행시에 받을 수 있게 바꿔보기 */
+
+
+
+
 
 function conditionAll(/* validators */) {
     // 검사에 사용될 validation 함수들을 추가
@@ -374,6 +433,9 @@ function conditionAll(/* validators */) {
         return fun.apply(args);
     };
 }
+
+
+/*  */
 
 
 function checkArgsLength(argsLen) {
