@@ -15,6 +15,7 @@ function dispatch(/* funs */) {
 
         for (var funIndex = 0; funIndex < size; funIndex++) {
             var fun = funs[funIndex];
+            // 핵심 API
             ret = fun.apply(fun, construct(target, args));
 
             if (existy(ret)) return ret;
@@ -117,7 +118,7 @@ function isa(type, action) {
     return function(obj) {
         if (type === obj.type)
             return action(obj);
-    }
+    };
 }
 
 var performCommand = dispatch(
@@ -139,17 +140,18 @@ var performAdminCommand = dispatch(
   performCommand
 );
 
-/*
-console.log(`performAdminCommand({type: 'kill', hostname: 'localhost'}) : ${performAdminCommand({type: 'kill', hostname: 'localhost'})}`);
-console.log(`performAdminCommand({type: 'flail'}) : ${performAdminCommand({type: 'flail'})}`);
-console.log(`performAdminCommand({type: 'join', target: 'foo'}) : ${performAdminCommand({type: 'join', target: 'foo'})}`);
-*/
+// log("performAdminCommand({type: 'kill', hostname: 'localhost'}) => ", performAdminCommand({type: 'kill', hostname: 'localhost'}));
+// log("performAdminCommand({type: 'flail'}) => ", performAdminCommand({type: 'flail'}));
+// log("performAdminCommand({type: 'join', target: 'foo'}) => ", performAdminCommand({type: 'join', target: 'foo'}));
 
 // 두 개 이상의 dispatch가 연결된 dispatch 체인에서 특정 명령을 오버라이드해서 그 명령이 수행되지 않도록 할 수도 있다.
 var performTrialUserCommand = dispatch(
   isa('join', function (obj) { console.log('Cannot join until approved'); }),
   performCommand
 );
+
+// log("performTrialUserCommand({type: 'join', target: 'foo'}) => ", performTrialUserCommand({type: 'join', target: 'foo'}));
+// log("performTrialUserCommand({type: 'notify', message: 'Hi new user'}) => ", performTrialUserCommand({type: 'notify', message: 'Hi new user'}));
 
 /*
 console.log(`performTrialUserCommand({type: 'join', target: 'foo'}) : ${performTrialUserCommand({type: 'join', target: 'foo'})}`);
