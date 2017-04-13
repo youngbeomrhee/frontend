@@ -51,34 +51,39 @@ log("_.first(cycle(20, [1, 2, 3]), 11) -> ", _.first(cycle(20, [1, 2, 3]), 11));
 
 /* _.zip 함수의 반대 동작을 수행하는 unzip 함수 만들기 */
 
-// var zipped1 = [['a', 1]];
+log("_.zip(['a', 'b', 'c'], [1, 2, 3]) -> ", _.zip(['a', 'b', 'c'], [1, 2, 3]));
+
+// 아래의 배열을 unzip 하려면
+var zipped1 = [['a', 1]];
 
 function constructPair(pair, rests) {
     return [construct(_.first(pair), _.first(rests)),
         construct(second(pair),  second(rests))];
 }
 
-// console.log(constructPair(['a', 1], [[], []]));
-// console.log(`_.zip(['a'], [1]) : ${_.zip(['a'], [1])}`);
-// console.log(`_.zip.apply(null, constructPair(['a', 1], [[], []])) : ${_.zip.apply(null, constructPair(['a', 1], [[], []]))}`);
+log("constructPair(['a', 1], [[], []]) -> ", constructPair(['a', 1], [[], []]));
+log("_.zip(['a'], [1]) -> ", _.zip(['a'], [1]));
+log("_.zip.apply(null, constructPair(['a', 1], [[], []])) -> ", _.zip.apply(null, constructPair(['a', 1], [[], []])));
 
-/*
-console.log(
-    constructPair(['a', 1],
-        constructPair(['b', 2],
-            constructPair(['c', 3], [[], []])))
-);
-*/
+log("constructPair(['a', 1], constructPair(['b', 2], constructPair(['c', 3], [[], []]))) -> ", constructPair(['a', 1], constructPair(['b', 2], constructPair(['c', 3], [[], []]))));
 
+// quiz : unzip 3단계 구현?
+// unzip(_.zip(['a', 'b', 'c'], [1, 2, 3], ['x', 'y', 'z']));   // [['a', 'b', 'c'], [1, 2, 3], ['x', 'y', 'z']]
+
+
+
+/* construct가 어떻게 작동하는지 이해했다면 이를 기반으로 unzip이라는 재귀 함수를 만들 수 있다 */
 function unzip(pairs) {
     if (_.isEmpty(pairs)) return [[],[]];
 
     return constructPair(_.first(pairs), unzip(_.rest(pairs)));
 }
 
+/* Quiz : 2단 unzip을 확장하여 단수에 상관없는 unzip 만들어보기 */
+
+
 
 /* 재귀를 이용한 그래프 탐색 */
-
 var influences = [
     ['Lisp', 'Smalltalk'],
     ['Lisp', 'Scheme'],
@@ -103,32 +108,35 @@ function nexts(graph, node) {
         return nexts(more, node);
 }
 
-// console.log(`nexts(influences, 'Lisp') : ${nexts(influences, 'Lisp')}`);
+log("nexts(influences, 'Lisp') -> ", nexts(influences, 'Lisp'));
 
-
+/* Quiz : 다중 노드를 탐색하도록 */
 
 /* 메모리에서 깊이 우선 재귀 탐색하기 */
-
+/*
+    graph : 검색대상 전체목록. 변화없음
+    nodes : 검색이 필요한 목록. 늘어나거나 감소됨. 언제 멈출지를 확인할때 사용
+    seen : 검색이 이미 끝난 목록. 점차 늘어남
+*/
 function depthSearch(graph, nodes, seen) {
     if (_.isEmpty(nodes)) return rev(seen);
 
-    var node = _.first(nodes);
-    var more = _.rest(nodes);
+    var node = _.first(nodes);  // 현재 검색에 사용할 대상
+    var more = _.rest(nodes);   // 다음에 검색할 대상
 
     if (_.contains(seen, node))
-        return depthSearch(graph, more, seen);
+        return depthSearch(graph, more, seen);  // 현재의 node가 이미 조회됐던 건이므로 나머지(more)만 검색대상으로 전달
     else
         return depthSearch(graph,
-            cat(nexts(graph, node), more),
-            construct(node, seen));
+            cat(nexts(graph, node), more),  // 검색해야 할 대상을 추가 후에 아직 검색하지 못한 나머지(more)도 검색대상으로 전달
+            construct(node, seen));     // 현재 node도 이미 검색에 사용되었으므로 seen에 추가
 }
 
+log("depthSearch(influences, ['Lisp'], []) -> ", depthSearch(influences, ['Lisp'], []));
+log("depthSearch(influences, ['Smalltalk', 'Self'], []) -> ", depthSearch(influences, ['Smalltalk', 'Self'], []));
+log("depthSearch(construct(['Lua', 'Io'], influences), ['Lisp'], []) -> ", depthSearch(construct(['Lua', 'Io'], influences), ['Lisp'], []));
 
-// console.log(`depthSearch(influences, ['Lisp'], []) : ${depthSearch(influences, ['Lisp'], [])}`);
-// console.log(`depthSearch(influences, ['Smalltalk', 'Self'], []) : ${depthSearch(influences, ['Smalltalk', 'Self'], [])}`);
-// console.log(`depthSearch(construct(['Lua', 'Io'], influences), ['Lisp'], []) : ${depthSearch(construct(['Lua', 'Io'], influences), ['Lisp'], [])}`);
-
-
+/* 꼬리재귀를 활용한 myLength */
 function tcLength(ary, n) {
     var l = n ? n : 0;
 
@@ -137,6 +145,12 @@ function tcLength(ary, n) {
     else
         return tcLength(_.rest(ary), l + 1);
 }
+
+log("tcLength(_.range(10)) -> ", tcLength(_.range(10)));
+log("tcLength([]) -> ", tcLength([]));
+log("tcLength(_.range(1000)) -> ", tcLength(_.range(1000)));
+
+
 
 function andify(/* preds */) {
     var preds = _.toArray(arguments);
@@ -156,6 +170,14 @@ function andify(/* preds */) {
     };
 }
 
+var evenNums = andify(_.isNumber, isEven);
+
+log("evenNums(1,2) -> ", evenNums(1,2));
+log("evenNums(2,4,6,8) -> ", evenNums(2,4,6,8));
+log("evenNums(2,4,6,8,9) -> ", evenNums(2,4,6,8,9));
+
+
+
 function orify(/* preds */) {
     var preds = _.toArray(arguments);
 
@@ -174,19 +196,34 @@ function orify(/* preds */) {
     };
 }
 
-function evenSteven(n) {
+var zeroOrOdd = orify(isOdd, zero);
+
+log("zeroOrOdd() -> ", zeroOrOdd());
+log("zeroOrOdd(0,2,4,5) -> ", zeroOrOdd(0,2,4,5));
+log("zeroOrOdd(2,4,6) -> ", zeroOrOdd(2,4,6));
+
+
+
+/* 상호재귀 */
+function isEvenRec(n) {
     if (n === 0)
         return true;
     else
-        return oddJohn(Math.abs(n) - 1);
+        return isOddRec(Math.abs(n) - 1);
 }
 
-function oddJohn(n) {
+function isOddRec(n) {
     if (n === 0)
         return false;
     else
-        return evenSteven(Math.abs(n) - 1);
+        return isEvenRec(Math.abs(n) - 1);
 }
+
+log("isEvenRec(4) -> ", isEvenRec(4));
+log("isEvenRec(5) -> ", isEvenRec(5));
+log("isOddRec(4) -> ", isOddRec(4));
+log("isOddRec(5) -> ", isOddRec(5));
+
 
 function flat(ary) {
     if (_.isArray(ary))
@@ -194,6 +231,11 @@ function flat(ary) {
     else
         return [ary];
 }
+
+
+log("flat([[1,2], [3,4]]) -> ", flat([[1,2], [3,4]]));
+log("flat([[1,2], [3,4, [5, 6, [[[7]]], 8]]]) -> ", flat([[1,2], [3,4, [5, 6, [[[7]]], 8]]]));
+
 
 function deepClone(obj) {
     if (!existy(obj) || !_.isObject(obj))
