@@ -277,6 +277,8 @@ function influencedWithStrategy(strategy, lang, graph) {
     return results;
 }
 
+log("influencedWithStrategy(postDepth, 'Lisp', influences) => ", influencedWithStrategy(postDepth, 'Lisp', influences));
+
 function evenOline(n) {
     if (n === 0)
         return true;
