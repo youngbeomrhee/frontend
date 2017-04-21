@@ -157,3 +157,25 @@ console.log('evalVal3 : ', evalVal3);
   var local = 1;
   Function('console.log(local);')();
 })();
+
+
+
+/* p.35. 명명규칙
+
+생성자는 대문자로 시작하는 카멜표기법, 변수는 소문자로 시작하는 카멜표기법 (예 : function Gen() {}, var gen = new Gen())
+상수와 전역변수는 모든 글자를 대문자로(예 : const PI = 3.14, MYAPP_MODULE = {})
+클래스명은 소문자와 _의 조합으로 (예 : my_class)
+아이디는 카멜표기법으로 (예 : myId)
+비공개 멤버는 _로 시작 (예 : { _privateMethod: function() {}})
+
+*/
+
+/* p.38. API문서 작성 */
+// 참고 : http://yui.github.io/yuidoc/
+// 예제 파일 : https://github.com/youngbeomrhee/jssample/blob/master/yuidoc_sample.js
+// TODO : 직접 node로 yuidoc 설치하고 예제파일로 API doc 만들어보기
+
+/* p.45. 출시 단계의 압축 */
+// 참고 : https://www.npmjs.com/package/node-minify
+// 예제 파일 : https://github.com/youngbeomrhee/jssample/blob/master/node_compress_sample.js
+// TODO : 직접 node로 node-minify 설치하고 압축해보기

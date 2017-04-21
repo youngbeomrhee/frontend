@@ -9,14 +9,14 @@
  * 나의 자바스크립트 애플리케이션
  * @module myapp
  */
-var MYAPP = {};
+var MYAPP2 = {};
 
 /**
  * 수학 계산 유틸리티
- * @namespace MYAPP
+ * @namespace MYAPP2
  * @class math_stuff
  */
-MYAPP.math_stuff = {
+MYAPP2.math_stuff = {
     /**
      * 두 숫자를 더한다.
      *
@@ -45,11 +45,11 @@ MYAPP.math_stuff = {
  * Person 객체를 생성한다.
  * @class Person
  * @constructor
- * @namespace MYAPP
+ * @namespace MYAPP2
  * @param {String} first 이름
  * @param {String} last 성
  */
-MYAPP.Person = function(first,last) {
+MYAPP2.Person = function(first, last) {
     /**
      * 사람의 이름
      * @property first_name
@@ -70,6 +70,6 @@ MYAPP.Person = function(first,last) {
  * @method getName
  * @return {String} 사람의 성명
  */
-MYAPP.Person.prototype.getName = function (){
+MYAPP2.Person.prototype.getName = function (){
     return this.first_name + '' + this.last_name;
 };

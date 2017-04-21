@@ -3,7 +3,7 @@
  * 범용 네임스페이스 함수
  */
 
-var MYAPP = MYAPP || {};
+var MYAPP = MYAPP2 || {};
 
 MYAPP.makeNS = function (ns_string) {
     var parts = ns_string.split('.'),
@@ -27,10 +27,10 @@ MYAPP.makeNS = function (ns_string) {
 };
 
 // 반환 값을 지역 변수에 할당한다.
-var module2 = MYAPP.makeNS('MYAPP.modules.module2');
+var module2 = MYAPP.makeNS('MYAPP2.modules.module2');
 console.log(module2 === MYAPP.modules.module2);
 
-// 첫부분의 'MYAPP'을 생략하고도 쓸 수 있다.
+// 첫부분의 'MYAPP2'을 생략하고도 쓸 수 있다.
 MYAPP.makeNS('modules.module51');
 
 // 아주 긴 네임스페이스를 만들어보자.

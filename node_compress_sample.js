@@ -13,24 +13,27 @@ new compressor.minify({
         //console.log(min);
     }
 });
+*/
 
-new compressor.minify({
-    type: 'uglifyjs',
-    fileIn: 'jquery-3.1.1.js',
-    fileOut: 'jquery-3.1.1.min.js',
+
+compressor.minify({
+    compressor: 'uglifyjs',
+    input: 'jquery-3.1.1.js',
+    output: './lib/jquery-3.1.1.min.js',
+    callback: function(err, min){
+        console.log(err);
+        //console.log(min);
+    }
+});
+
+/*
+compressor.minify({
+    compressor: 'uglifyjs',
+    input: 'lab/bookmarklet_modify_elements.js',
+    output: 'lab/bookmarklet_modify_elements.min.js',
     callback: function(err, min){
         console.log(err);
         //console.log(min);
     }
 });
 */
-
-new compressor.minify({
-    type: 'uglifyjs',
-    fileIn: 'lab/bookmarklet_modify_elements.js',
-    fileOut: 'lab/bookmarklet_modify_elements.min.js',
-    callback: function(err, min){
-        console.log(err);
-        //console.log(min);
-    }
-});

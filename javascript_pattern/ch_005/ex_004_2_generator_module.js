@@ -4,7 +4,7 @@
  */
 
 // 원래는 함수를 통해 네임스페이스 생성
-// MYAPP.namespace('MYAPP.utilities.Array');
+// MYAPP2.namespace('MYAPP2.utilities.Array');
 var MYAPP = {};
 MYAPP.utilities = {};
 

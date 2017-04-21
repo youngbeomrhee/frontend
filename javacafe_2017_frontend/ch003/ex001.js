@@ -2,7 +2,7 @@
  * Created by yblee on 2017-04-18.
  */
 /*
-Javascript patterns 2장
+Javascript patterns 2장 기초편
 */
 
 /* p.14. 안티패턴 : 암묵적 전역 */
