@@ -2,9 +2,8 @@
  * Created by yblee on 2017-04-18.
  */
 /*
-Javascript patterns 2장
+  Javascript patterns 2장
 */
-
 /* p.14. 안티패턴 : 암묵적 전역 */
 function sum(x, y) {
   // 안티패턴: 암묵적 전역
@@ -157,26 +156,4 @@ console.log('evalVal3 : ', evalVal3);
 (function () {
   var local = 1;
   Function('console.log(local);')();
-})();
-
-
-
-/* p.29. 코딩 규칙 */
-/*
-  1. 들여쓰기 규칙 지키기
-  2. 중괄호는 생략 가능해도 꼭 쓰기
-  3. 여는 중괄호는 같은 행에 붙여 쓰기
-*/
-
-(function () {
-  return {
-    a: 1
-  }
-})();
-
-(function () {
-  return
-  {
-    a: 1
-  }
 })();
