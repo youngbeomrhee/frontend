@@ -92,9 +92,21 @@ var Person = function () {
     // return this;
 }
 
-
 // TODO : say는 같은 일을 하는 메서드이므로 매번 인스턴스에 추가하는게 비효율적이다. 효율적으로 바꿔보자.
-// TODO : 위의 코드는 new와 함께 호출하지 않으면 생성자의 역할을 제대로 할 수 없다 new를 강제하는 패턴으로 바꿔보자.
+
+
+
+var Person = (function () {
+    var RealPerson = function (name) {
+        this.name = name;
+    };
+    RealPerson.prototype.say = function () {
+        return "I'm " + this.name
+    };
+    return function(initName) {
+        return new RealPerson(initName);
+    }
+})();
 
 // 위의 코드는 빈 객체를 생성하는 것처럼 보이지만 실제로는 Person의 프로토타입을 상속받는다.
 // 즉, 아래와 같다
@@ -125,8 +137,6 @@ console.log(o.name);    // And that's that 이 출력
 console.log(window.say());
 var alien = Person('alien');
 console.log(window.say());      // 생성자함수를 실행하자 의도치 않게 say라는 메서드가 전역에 생성됐다
-
-// TODO : window가 오염되지 않도록 코드 한 줄을 추가
 
 
 
@@ -160,7 +170,17 @@ console.log(waffle4 instanceof GoodWaffle);
 var whatthe = GoodWaffle.call(new GoodWaffle);
 console.log(whatthe instanceof GoodWaffle);
 
-// TODO : new를 강제하는 패턴으로 변경
+
+
+// TODO : 위의 Person은 new와 함께 호출하지 않으면 생성자의 역할을 제대로 할 수 없다 new를 강제하는 패턴으로 바꿔보자.
+// 만든 코드가 아래의 출력을 만족해야 통과
+// var man = Person('adam');
+// console.log(man.name);   // adam
+// console.log(man.say());     // I'm adam
+
+// var alien = Person.call(new Person);
+// console.log(man.name);   // adam
+// console.log(man.say());     // I'm adam
 
 
 
