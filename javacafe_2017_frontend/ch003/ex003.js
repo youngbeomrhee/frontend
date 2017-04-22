@@ -1,9 +1,13 @@
 /**
  * Created by whybe on 2017. 4. 21..
+ * 아래의 코드들은 안티패턴과 최적화 패턴을 다룹니다
+ * 'TODO : '로 표기된 부분들은 과제이니 직접 구현해 보시면 됩니다.
  */
 /* p.49. 객체리터럴 */
 
 // 리터럴 표기법으로 생성
+
+// 리터럴 표기법 예제
 
 // 빈객체 생성
 var dog = {};
@@ -38,7 +42,7 @@ var dog2 = {
 };
 
 
-/* p.52. 객체 생성자의 함정 */
+/* p.52. 객체 생성자의 함정 -> new Object로 선언했음에도 불구하고 Object가 아니라 다른 객체가 리턴될 수 있다 */
 
 // 빈 객체
 var o = new Object();
@@ -100,6 +104,7 @@ var Person = function () {
 /* p.54. 생성자의 반환값 */
 // 생성자 함수를 new와 함께 호출하게되면 return을 명시하지 않아도 항상 this로 참조되는 객체를 리턴하게 된다.
 // return을 명시할 경우 return 되는 객체를 바꿀 수 있다
+// new로 선언하지 않고, return도 명시하지 않는다면 아무 것도 리턴하지 않는다 (undefined)
 
 
 var Objectmaker = function () {
@@ -109,21 +114,23 @@ var Objectmaker = function () {
     // 새로운 객체를 생성하여 반환한다.
     var that = {};
     that.name = "And that's that";
-    return that;
+    return that;   // new로 선언했는지 여부와 상관없이 that이 리턴
 }
 
 // test
 var o = new Objectmaker();
-console.log(o.name);
+console.log(o.name);    // And that's that 이 출력
+
+// new를 빼먹었을 때 생기는 일
+console.log(window.say());
+var alien = Person('alien');
+console.log(window.say());      // 생성자함수를 실행하자 의도치 않게 say라는 메서드가 전역에 생성됐다
+
+// TODO : window가 오염되지 않도록 코드 한 줄을 추가
+
 
 
 /* new를 강제하는 패턴 */
-// new를 빼먹었을 때 생기는
-console.log(window.say());
-var alien = Person('alien');
-console.log(window.say());
-
-// TODO : window가 오염되지 않도록 코드 한 줄을 추가
 
 // 일반적인 생성자함수
 function Waffle() {
@@ -171,8 +178,10 @@ console.log(a);
 var a = new Array(3);
 console.log(a);
 
+// 요소가 하나이면서 숫자일 경우에는 아래처럼 리터럴 표기법만으로 생성 가능하다.
 var a = [3];
 console.log(a);
+
 
 // 배열인지 판단하는 메서드 생성
 if(typeof Array.isArray === 'undefined') {
@@ -180,8 +189,7 @@ if(typeof Array.isArray === 'undefined') {
         return Object.prototype.toString.call(arg) === '[object Array]'
     }
 }
-
-// TODO : 위의 코드의 문제점 두 가지 찾아보기
+// TODO : 위의 코드의 문제점 두 가지 찾아보고 개선해보기
 
 
 
@@ -205,7 +213,7 @@ console.log(JSON.stringify(data));
 
 /* p.62. 정규 표현식 */
 
-// 표현하는 두 가지 방법
+// 정규식을 표현하는 두 가지 방법
 // 정규식 리터럴
 var reg = /||/gm;
 
@@ -255,4 +263,6 @@ try {
 
 // TODO : Object, Function, Array, 정규식, 원시 래퍼 객체, Error 객체 중 꼭 new를 써야 되는 경우를 뽑아보기. 그 경우를 제외하면 나머지는 다 리터럴 방식이 더 낫다.
 
+// 정리 : 결국 대부분의 경우에 new를 사용한 생성방법보다는 리터럴 표기법이 권장된다.
+// 어쩔 수 없이 new로 사용되는 경우만 정리하면 나머지는 리터럴 표기법으로 사용하면 된다.
 

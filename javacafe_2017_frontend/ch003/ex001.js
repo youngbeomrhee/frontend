@@ -1,32 +1,38 @@
 /**
  * Created by yblee on 2017-04-18.
+ * 아래의 코드들은 안티패턴과 최적화 패턴을 다룹니다
+ * 'TODO : '로 표기된 부분들은 과제이니 직접 구현해 보시면 됩니다.
  */
 /*
 Javascript patterns 2장 기초편
 */
-
 /* p.14. 안티패턴 : 암묵적 전역 */
 function sum(x, y) {
-  // 안티패턴: 암묵적 전역
-  result = x + y;
-  return result;
+    // 안티패턴: 암묵적 전역
+    result = x + y;
+    return result;
 }
-
+// 의도치 않게 result라는 전역객체가 생김
 // TODO : 암묵적 전역을 막으려면?
 
 
 /* p.15. 안티패턴 연쇄적 할당 */
 function sum(x, y) {
-  var a = b  = 0;
-  // 아래 코드와 동일한 의미. 암묵적 전역 발생
-  // var a = (b = 0);
-  // b = 0; var a = b;
+    var a = b  = 0;
+    // 아래 코드와 동일한 의미. 암묵적 전역 발생
+    // var a = (b = 0);
+    // b = 0; var a = b;
 }
 
-var global_var = 1;
-global_novar = 2;
+
+
+// var로 선언하지 않은 암묵적 전역 변수는 엄밀히 말하면 변수가 아니라 전역 객체의 프로퍼티가 되게 된다
+// 프로퍼티는 delete 메서드로 삭제할 수 있지만 변수는 삭제가 되지 않는다.
+
+var global_var = 1;   // 전역변수
+global_novar = 2;   // 암묵적 전역변수
 (function () {
-    global_fromvar = 3;
+    global_fromvar = 3;   // 암묵적 전역변수
 })();
 
 delete global_var;
@@ -34,149 +40,51 @@ delete global_novar;
 delete global_fromvar;
 
 
+typeof global_var;    // number
+typeof global_novar;  // undefined -> 삭제 안됨
+typeof global_fromvar;  // undefined -> 삭제 안됨
+
+
+
+
 /* p.16. 범용 전역 객체 */
+// 일부 브라우져에서 전역 객체가 없는 경우에는 아래와 같이 할당할 수 있다
 var global = (function () { return this; })();
 
-// TODO : window 객체가 있으면 사용, 없으면 할당
+// window 객체가 있으면 사용, 없으면 할당
 var window = window || (function() { return this; })();
 
 
 /* p.17. 단일 var 패턴 */
+// var를 코드 제일 첫 줄에 모두 모아서 쓰는 편이 오류를 줄이고 가독성 높은 코드를 만들 수 있다
 function func() {
-  var a = 1,
-    b = 2,
-    sum = a + b,
-    myobject = {},
-    i,
-    j;
-  // 함수 본문...
+    var a = 1,
+        b = 2,
+        sum = a + b,
+        myobject = {},
+        i,
+        j;
+    // 함수 본문...
 }
 
 /* p.18. 호이스팅(hoisting) : 분산된 var 선언의 문제점 */
 // 안티패턴
+// var가 분산되어 (특히 코드 중간에) 선언된 경우 혼란을 초래할 수 있다
 myname = 'global';
 function func () {
-  console.log(myname);
-  var myname = 'local';
-  console.log(myname);
-}
-func();
-
-myname = 'global';
-function func () {
-  var myname;
-  console.log(myname);
-  myname = 'local';
-  console.log(myname);
+    console.log(myname);    // local -> global이 나올 것 같지만 undefined가 나온다
+    var myname = 'local';
+    console.log(myname);
 }
 func();
 
 
-/* p.19. for 루프 */
-// 최적화되지 않은 루프
-for (var i = 0; i < document.querySelectorAll('*').length; i++) {
-  console.log(document.querySelectorAll('*')[i]);
+// 위의 코드의 var 선언부를 제일 앞으로 가져오면 코드가 명확해진다.
+myname = 'global';
+function func () {
+    var myname;
+    console.log(myname);  // 선언만 하고 사용하지 않았으므로 undefined가 나오는게 명확하게 보인다.
+    myname = 'local';
+    console.log(myname);
 }
-
-// length를 캐쉬하여 최적화
-var eles = document.querySelectorAll('*'),
-  len = eles.length;
-for (var i = 0; i < len; i++) {
-  console.log(eles[i]);
-}
-
-// http://jindo.dev.naver.com/jsMatch/index.html?d=301
-
-/* 미세최적화는 내용 안맞음 */
-
-
-/* p.24. 내장 생성자 프로토타입 확장하기 / 확장하지 않기
-
-1. 해당 기능이 ECMAScript의 향후 버전이나 자바스크립트 구현에서 일관되게 내장 메서드로 구현될 예정이다. 예를 들어 ECMAScript 5에 기술되었으나 아직 브라우저에 내장되지 않은 메서드라면 추가할 수 있다. 이 경우에는 유용한 메서드를 미리 정의하는 것이라고 할 수 있다.
-2. 이 프로퍼티 또는 메서드가 이미 존재하는지, 즉 이미 코드 어딘가에 구현되어 있거나, 지원 브라우저 중 일부 자바스크립트 엔진에 내장되어 있는지 확인한다.
-3. 이 변경사항을 명확히 문서화하고 팀 내에서 공유한다.
-*/
-
-
-/* p.27. eval is evil */
-var obj = { name: 'whybe' },
-  property = 'name';
-
-// 안티패턴
-console.log(eval('obj.' + property));
-console.log(obj[property]);
-
-// http://jindo.dev.naver.com/jsMatch/index.html?d=303
-
-function myFunc() {
-  console.log(arguments);
-}
-
-// 안티패턴
-setTimeout('myFunc()', 1000);
-setTimeout('myFunc(1, 2, 3)', 1000);
-
-// 권장안
-setTimeout(myFunc, 1000);
-setTimeout(function () {
-    myFunc(1, 2, 3);
-}, 1000);
-
-
-// eval과 Function의 차이
-var evalVal1, evalVal2, evalVal3;
-
-console.log('evalVal1 : ', evalVal1);
-console.log('evalVal2 : ', evalVal2);
-console.log('evalVal3 : ', evalVal3);
-
-var jsstring = 'var evalVal1 = 1; console.log(evalVal1);';
-eval(jsstring);
-
-var jsstring = 'var evalVal2 = 2; console.log(evalVal2);';
-(function () {
-  eval(jsstring);
-})();
-
-var jsstring = 'var evalVal3 = 3; console.log(evalVal3);';
-new Function(jsstring)();
-
-console.log('evalVal1 : ', evalVal1);   // 전역변수 오염
-console.log('evalVal2 : ', evalVal2);
-console.log('evalVal3 : ', evalVal3);
-
-
-
-// eval을 사용할 경우와 Function을 사용할 경우의 scope 차이
-(function () {
-  var local = 1;
-  eval('console.log(local);');
-})();
-
-// Function은 새로운 function을 생성한다.
-(function () {
-  var local = 1;
-  Function('console.log(local);')();
-})();
-
-
-
-/* p.29. 코딩 규칙 */
-/*
-  1. 들여쓰기 규칙 지키기
-  2. 중괄호는 생략 가능해도 꼭 쓰기
-  3. 여는 중괄호는 같은 행에 붙여 쓰기
-*/
-
-(function () {
-  return {
-    a: 1
-  }
-})();
-
-(function () {
-  return
-  {
-    a: 1
-  }
-})();
+func();
