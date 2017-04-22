@@ -41,7 +41,7 @@ for (var i = 0; i < len; i++) {
  1. 해당 기능이 ECMAScript의 향후 버전이나 자바스크립트 구현에서 일관되게 내장 메서드로 구현될 예정이다.
     예를 들어 ECMAScript 5에 기술되었으나 아직 브라우저에 내장되지 않은 메서드라면 추가할 수 있다.
     이 경우에는 유용한 메서드를 미리 정의하는 것이라고 할 수 있다.
-    예 :
+    - 예 : https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object 에 실험단계로 나오는 많은 메서드들
  2. 이 프로퍼티 또는 메서드가 이미 존재하는지, 즉 이미 코드 어딘가에 구현되어 있거나, 지원 브라우저 중 일부 자바스크립트 엔진에 내장되어 있는지 확인한다.
  3. 이 변경사항을 명확히 문서화하고 팀 내에서 공유한다.
  */
@@ -114,7 +114,13 @@ console.log('evalVal3 : ', evalVal3);
     Function('console.log(local);')();    // Function은 어디서 실행시키든 상관없이 실행환경(Execution Context)이 전역 유효범위를 바라본다
 })();
 
-
+/*
+ 주의: Function 생성자로 만든 함수는 그들의 생성 문맥(context)에 클로저(closure)를 만들지 않습니다.
+ 따라서 함수는 항상 전역 범위(global scope)로 생성됩니다.
+ 그들을 실행할 때, 함수는 Function 생성자가 호출됐던 범위가 아니라 오직 자신의 지역 변수 및 전역 변수에만 액세스할 수 있습니다, .
+ 이는 function 식을 위한 코드로 eval을 사용하는 것과 다릅니다.
+ cf) https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function
+*/
 
 /* p.29. 코딩 규칙 */
 /*
