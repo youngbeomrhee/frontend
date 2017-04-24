@@ -92,7 +92,9 @@ var Person = function () {
     // return this;
 }
 
+
 // TODO : say는 같은 일을 하는 메서드이므로 매번 인스턴스에 추가하는게 비효율적이다. 효율적으로 바꿔보자.
+// -> Person.prototype.say = function () { return "I'm " + this.name };
 
 
 
@@ -171,7 +173,6 @@ var whatthe = GoodWaffle.call(new GoodWaffle);
 console.log(whatthe instanceof GoodWaffle);
 
 
-
 // TODO : 위의 Person은 new와 함께 호출하지 않으면 생성자의 역할을 제대로 할 수 없다 new를 강제하는 패턴으로 바꿔보자.
 // 만든 코드가 아래의 출력을 만족해야 통과
 // var man = Person('adam');
@@ -182,6 +183,26 @@ console.log(whatthe instanceof GoodWaffle);
 // console.log(man.name);   // adam
 // console.log(man.say());     // I'm adam
 
+// -> 정답
+var Person = (function () {
+    var RealPerson = function (name) {
+        this.name = name || 'adam';
+    };
+    RealPerson.prototype.say = function () {
+        return "I'm " + this.name
+    };
+    return function(initName) {
+        return new RealPerson(initName);
+    }
+})();
+
+var man = Person('adam');
+console.log(man.name);   // adam
+console.log(man.say());     // I'm adam
+
+var alien = Person.call(new Person);
+console.log(man.name);   // adam
+console.log(man.say());     // I'm adam
 
 
 
@@ -206,11 +227,15 @@ console.log(a);
 // 배열인지 판단하는 메서드 생성
 if(typeof Array.isArray === 'undefined') {
     Array.isArray = function (arg) {
-        return Object.prototype.toString.call(arg) === '[object Array]'
+        return Object.prototype.toString.call(arg) === '[object Array]';
     }
 }
 // TODO : 위의 코드의 문제점 두 가지 찾아보고 개선해보기
-
+if(!Array.isArray) {    // 이렇게 표현하는 것이 더 범용적
+    Array.isArray = function (arg) {
+        return arg.constructor === Array;
+    }
+}
 
 
 /* p.61. JSON 다루기 */

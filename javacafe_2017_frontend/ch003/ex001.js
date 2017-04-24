@@ -14,7 +14,7 @@ function sum(x, y) {
 }
 // 의도치 않게 result라는 전역객체가 생김
 // TODO : 암묵적 전역을 막으려면?
-
+// -> 코드의 시작에 'use strict'; 선언
 
 /* p.15. 안티패턴 연쇄적 할당 */
 function sum(x, y) {
