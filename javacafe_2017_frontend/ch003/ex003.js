@@ -183,26 +183,6 @@ console.log(whatthe instanceof GoodWaffle);
 // console.log(man.name);   // adam
 // console.log(man.say());     // I'm adam
 
-// -> 정답
-var Person = (function () {
-    var RealPerson = function (name) {
-        this.name = name || 'adam';
-    };
-    RealPerson.prototype.say = function () {
-        return "I'm " + this.name
-    };
-    return function(initName) {
-        return new RealPerson(initName);
-    }
-})();
-
-var man = Person('adam');
-console.log(man.name);   // adam
-console.log(man.say());     // I'm adam
-
-var alien = Person.call(new Person);
-console.log(man.name);   // adam
-console.log(man.say());     // I'm adam
 
 
 
