@@ -94,7 +94,6 @@ var Person = function () {
 
 
 // TODO : say는 같은 일을 하는 메서드이므로 매번 인스턴스에 추가하는게 비효율적이다. 효율적으로 바꿔보자.
-// -> Person.prototype.say = function () { return "I'm " + this.name };
 
 
 
