@@ -9,7 +9,11 @@ mode = 'running';   // 이하 코드에서는 log() 함수가 아무런 메시�
 // 공통으로 사용할 로그함수
 function log(title, result) {
     if(mode==='debug') {
-        console.log(title + JSON.stringify(result));
+        if(arguments.length<2) {
+            result = title;
+            title = '';
+        }
+        console.log((title || '') + (JSON.stringify(result) || ''));
     }
 }
 

@@ -146,7 +146,7 @@ log("performAdminCommand({type: 'join', target: 'foo'}) -> ", performAdminComman
 
 // 두 개 이상의 dispatch가 연결된 dispatch 체인에서 특정 명령을 오버라이드해서 그 명령이 수행되지 않도록 할 수도 있다.
 var performTrialUserCommand = dispatch(
-  isa('join', function (obj) { console.log('Cannot join until approved'); }),
+  isa('join', function (obj) { log('Cannot join until approved'); }),
   performCommand
 );
 

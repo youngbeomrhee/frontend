@@ -2,411 +2,10 @@
  * Created by YB on 2016-10-23.
  */
 
-mode = 'running';   // 이하 코드에서는 log() 함수가 아무런 메시지도 표시 안함
-// mode = 'debug';   // 이하 코드에서는 log() 함수가 메시지 표시
+// mode = 'running';   // 이하 코드에서는 log() 함수가 아무런 메시지도 표시 안함
+mode = 'debug';   // 이하 코드에서는 log() 함수가 메시지 표시
 
-
-// _.random 함수의 시작점을 1로 고정
-var rand = partial1(_.random, 1);
-
-// 1~10까지의 랜덤수 출력
-// console.log(`rand(10) : ${rand(10)}`);
-
-// partial1을 사용하여 나머지 파라미터도 10으로 고정한 함수를 10번 실행시키기
-// console.log(`repeatedly(10, partial1(rand, 10)) : ${repeatedly(10, partial1(rand, 10))}`);
-
-
-// 소문자 랜덤 아스키 코드 생성기
-function randString(len) {
-    var ascii = repeatedly(len,  partial1(rand, 26));
-
-    return _.map(ascii, function(n) {
-        return n.toString(36);
-    }).join('');
-}
-
-
-
-PI = 3.14;
-
-function areaOfACircle(radius) {
-    return PI * sqr(radius);
-}
-// console.log(`areaOfACircle(3) : ${areaOfACircle(3)}`);
-
-PI = 'Magnum';
-// console.log(`areaOfACircle(3) : ${areaOfACircle(3)}`);
-
-
-
-/* Separating the Pure from the Impure */
-// 두 개의 함수를 이용해서 randString을 순수한 부분과 비순수한 부분으로 나눌 수 있다.
-
-function generateRandomCharacter() {
-    return rand(26).toString(36);
-}
-
-function generateString(charGen, len) {
-    return repeatedly(len, charGen).join('');
-}
-
-// console.log(`generateString(generateRandomCharacter, 20) : ${generateString(generateRandomCharacter, 20)}`);
-
-// generateString이 더 고차원 함수이기 때문에 아래와 같이 partial 사용 가능
-var composedRandomString = partial1(generateString, generateRandomCharacter);
-
-log("composedRandomString(10) => ", composedRandomString(10));
-
-// 이제 캡슐화한 순수한 함수 부분만 독립적으로 테스트 가능
-/*
-describe('generateString', function () {
-    var result = generateString(always('a'), 10);
-
-    it('should return a string of a specific length', function () {
-        expect(result.constructor).toBe(String);
-        expect(result.length).toBe(10);
-    });
-
-    it('should return a string congruent with its char generator', function () {
-        expect(result).toEqual('aaaaaaaaaa');
-    });
-});
-*/
-
-
-/* 비순수한 함수의 프로퍼티 테스트 */
-describe('generateRandomCharacter', function () {
-    var result = repeatedly(10000, generateRandomCharacter);
-
-    it('should return only strings of length 1', function () {
-        expect(_.every(result, _.isString)).toBeTruthy();
-        expect(_.every(result, function (s) { return s.length === 1; })).toBeTruthy();
-    });
-
-    it('should return a string of only lowercase ASCII letters or digits', function () {
-        expect(_.every(result, function (s) {
-            return /[a-z0-9]/.test(s)
-        }));
-        expect(_.any(result, function (s) { return /[A-Z]/.test(s); })).toBeFalsy();
-    });
-});
-
-
-/* 순수성 */
-/* second 함수를 예로 들어보자
-function second(a) {
-    return nth(a, 1);
-}
-*/
-
-// nth 함수는 순수한 함수이므로 어떤 배열값과 인덱스값을 제공했을 때 항상 일정한 결과값을 반환
-nth(['a', 'b', 'c'], 1);
-nth(['a', 'b', 'c'], 1);
-
-// 사용된 배열의 인덱스나 값을 바꾸지도 않음
-var a = ['a', 'b', 'c'];
-
-// console.log(`nth(a, 1) : ${nth(a, 1)}`);
-
-// console.log(`a === a : ${a === a}`);
-
-nth(a, 1);
-
-// console.log(`_.isEqual(a, ['a', 'b', 'c']) : ${_.isEqual(a, ['a', 'b', 'c'])}`);
-
-
-// 불안요소 : nth 함수가 순수하지 않은 객체, 배열, 심지어 비순수한 함수를 반환할 수 있다는 사실
-// console.log(`nth([{a: 1}, {b: 2}], 0) : ${nth([{a: 1}, {b: 2}], 0)}`);
-// console.log(`nth([function () { console.log('blah'); }], 0) : ${nth([function () { console.log('blah'); }], 0)}`);
-
-// 외부 값에 의존하지 않도록 엄격하게 순수한 함수를 정의하고 사용함으로써 문제 해결
-function second (a) {
-    return a[1];
-}
-
-function second (a) {
-    return _.first(_.rest(a));
-}
-
-// 극단적인 대체
-/*
-function second () {
-    return 'b';
-}
-*/
-
-
-// console.log(`second(['a', 'b', 'c'], 1) : ${second(['a', 'b', 'c'], 1)}`);
-
-
-/* 순수성과 멱등의 관계 */
-// someFun(arg) = _.compose(someFun, someFun)(arg);
-// f(f(x)) = f(x);
-
-// second 함수는 멱등이 아니다.
-var a = [1, [10, 20, 30], 3];
-
-var secondTwice = _.compose(second, second);
-
-// console.log(`second(a) === secondTwice(a) : ${second(a) === secondTwice(a)}`);
-
-// _.identity는 대표적인 멱등함수
-var dissociativeIdentity = _.compose(_.identity, _.identity);
-
-// console.log(`_.identity(42) === dissociativeIdentity(42) : ${_.identity(42) === dissociativeIdentity(42)}`);
-
-// Math.abs도 멱등
-// console.log(`Math.abs(-42) === Math.abs(Math.abs(-42)) : ${Math.abs(-42) === Math.abs(Math.abs(-42))}`);
-
-
-/* 불변성 */
-
-
-/* 숲에서 나무가 쓰러질 때 소리가 나는가? */
-// 넘기는 배열이 변화되지 않고 원하는 결과만 나온다면 내부가 어떻게 구현되어 있는지는 상관없다
-function skipTake(n, coll) {
-    var ret = [];
-    var sz = _.size(coll);
-
-    for(var index = 0; index < sz; index += n) {
-        ret.push(coll[index]);
-    }
-
-    return ret;
-}
-
-// console.log(`skipTake(2, [1, 2, 3, 4]) : ${skipTake(2, [1, 2, 3, 4])}`);
-// console.log(`skipTake(3, _.range(20)) : ${skipTake(3, _.range(20))}`);
-
-/*
- 숲에서 나무가 쓰러질 때 소리가 나는가?
- 순수 함수는 변경할 수 없는 반환값을 만들기 위해 특정 지역 데이터를 변경해도 되는 걸까?
- - Rich Hickey
- */
-
-
-
-/* 불변성과 재귀의 관계 */
-
-// local variable의 변이를 이용한 summ 함수
-function summ(array) {
-    var result = 0;
-    var sz = array.length;
-
-    for (var i = 0; i < sz; i++)
-        result += array[i];
-
-    return result;
-}
-// i, result 두 개의 지역 변수를 변이시킨다는 것이 문제. 전통적인 함수형 언어의 지역 변수는 실제 변수가 아니라 변할 수 없는 값이다.
-// console.log(`summ(_.range(1, 11)) : ${summ(_.range(1, 11))}`);
-
-
-// 재귀 버젼으로 구현
-function summRec(array, seed) {
-    if (_.isEmpty(array))
-        return seed;
-    else
-        return summRec(_.rest(array), _.first(array) + seed);
-}
-
-// console.log(`summRec([], 0) : ${summRec([], 0)}`);
-// console.log(`summRec(_.range(1, 11), 0) : ${summRec(_.range(1, 11), 0)}`);
-
-
-/* 방어적인 얼리기와 복제 */
-
-function deepFreeze(obj) {
-    if (!Object.isFrozen(obj))
-        Object.freeze(obj);
-
-    for (var key in obj) {
-        if (!obj.hasOwnProperty(key) || !_.isObject(obj[key]))
-            continue;
-
-        deepFreeze(obj[key]);
-    }
-}
-
-
-/* 함수 수준에서 불변성 유지하기 */
-
-// 공통적인 패턴 : 함수가 어떤 컬렉션을 인자로 받아 다른 컬렉션을 만든다
-
-var freq = curry2(_.countBy)(_.identity);
-
-// _.countBy는 비파괴 동작 함수이므로 _.countBy와 _.identity를 연결한 결과도 순수한 함수
-var a = repeatedly(1000, partial1(rand, 2));
-var copy = _.clone(a);
-
-freq(a);
-// console.log(`_.isEqual(a, copy) : ${_.isEqual(a, copy)}`);
-
-// 순수한 함수로 만든 결과 역시 순수한 함수
-freq(skipTake(2, a));
-// console.log(`_.isEqual(a, copy) : ${_.isEqual(a, copy)}`);
-
-// 하지만 순수성을 꼭 유지할 필요는 없으며 오히려 객체의 내용을 바꿔야 할 때도 있다.
-// _.extend 함수는 여러 객체를 왼쪽에서 오른쪽으로 병합해서 한 개의 객체를 만든다.
-var person = {fname: 'Simon'};
-
-_.extend(person, {lname: "Petrikov"}, {age: 28}, {age: 100});
-
-// console.log(person);
-
-// _.extend의 문제는 인자목록의 첫 번째 객체를 변이시킨다는 점
-// _.extend는 순수함수가 아니지만 조금만 고쳐도 새로운 추상화를 만들 수 있다.
-
-// 객체를 확장(extend) 하기 보다는 병합(merge) 하기
-function merge(/*args*/) {
-    return _.extend.apply(null, construct({}, arguments));
-}
-
-var person = {fname: 'Simon'};
-
-var mergedPerson = merge(person, {lname: "Petrikov"}, {age: 28}, {age: 100});
-
-// console.log(mergedPerson);
-// console.log(person);
-
-
-
-/* 객체의 불변성 관찰 */
-
-function Point(x, y) {
-    this._x = x;
-    this._y = y;
-}
-
-// 두 개의 변경(change) 메서드 생성. 이 메서드들을 사용하여 불변성 정책을 유지할 수 있다.
-Point.prototype = {
-    withX: function(val) {
-        return new Point(val, this._y);
-    },
-    withY: function(val) {
-        return new Point(this._x, val);
-    }
-};
-
-var p = new Point(0, 1);
-
-// console.log(p.withX(1000));
-
-// _x 필드는 바뀌지 않는다.
-// console.log(p);
-
-// 불변성의 객체는 생성할때 값을 받으며 그 이후로는 값을 바꿀 수 없어야 한다.
-// 또한 불변성의 객체에 수행하는 모든 동작의 결과로 (기존의 인스턴스가 아닌) 새로운 인스턴스가 반환되어야 한다.
-// 이와 같은 규칙을 준수하면 변이 때문에 발생하는 문제를 최소화할 수 있으며 자연스럽게 다음과 같이 멋진 체이닝 API가 만들어질 것이다.
-// console.log((new Point(0, 1).withX(100).withY(-100)));
-// console.log(p);
-// 정리 : 불변성 객체는 생성시에 자신의 값을 채운 이후로는 절대 바뀌지 않는다.
-// 불변성 객체에 행하는 모든 동작의 결과로 새로운 객체가 반환된다.
-
-
-// 또 다른 문제
-
-function Queue(elems) {
-    this._q = elems;
-}
-
-Queue.prototype = {
-    enqueue: function(thing) {
-        return new Queue(cat(this._q, [thing]));
-    }
-};
-
-var seed = [1, 2, 3];
-
-var q = new Queue(seed);
-
-// console.log(q);
-
-// enqueue를 호출하면 새로운 인스턴스 반환
-var q2 = q.enqueue(108);
-
-// console.log(q);
-// console.log(q2);
-
-// 하지만 엉뚱한 곳에서 사건이 발생한다.
-seed.push(10000);
-
-// console.log(q);
-// console.log(q2);
-
-// 인스턴스를 생성할 때 방어적인 복제를 사용하지 않고 직접 값을 참조했기 때문에 발생하는 문제
-
-var SaferQueue = function(elems) {
-    this._q = _.clone(elems);
-}
-
-// 새로운 요소 집합 수준에서 불변성을 유지하는 것이 가장 바람직하다
-SaferQueue.prototype = {
-    enqueue: function(thing) {
-        return new SaferQueue(cat(this._q, [thing]));
-    }
-};
-
-// 불변성을 깨뜨리지 않는 함수인 cat을 이용하면 SaferQueue 인스턴스 간에 참조를 공유하는 문제를 제거할 수 있다.
-var seed = [1, 2, 3];
-var q = new SaferQueue(seed);
-
-var q2 = q.enqueue(36);
-seed.push(1000);
-
-// console.log('q : ', q);
-// console.log('q2 : ', q2);
-
-
-// new를 강제하는 패턴
-function queue() {
-    return new SaferQueue(_.toArray(arguments));
-}
-
-var q = queue(1, 2, 3);
-
-// 또한 invoker 함수를 이용해서 enqueue로 위임할 함수를 만들 수 있다.
-var enqueue = invoker('enqueue', SaferQueue.prototype.enqueue);
-
-var q2 = enqueue(q, 42);
-// console.log('q : ', q);
-// console.log('q2 : ', q2);
-
-
-/* 변화 제어 정책 */
-
-function Container(init) {
-    this._value = init;
-};
-
-var aNumber = new Container(42);
-
-// console.log('aNumber : ', aNumber);
-
-// update 메서드 추가
-Container.prototype = {
-    update: function(fun /*, args */) {
-        var args = _.rest(arguments);
-        var oldValue = this._value;
-
-        this._value = fun.apply(this, construct(oldValue, args));
-
-        return this._value;
-    }
-};
-
-var aNumber = new Container(15);
-// aNumber.update(function (n) { return n+1; });
-// console.log('aNumber : ', aNumber);
-
-// 여러 인자를 갖는 예제
-// aNumber.update(function (n, x, y, z) { return n/x/y/z; }, 2, 2, 2);
-// console.log('aNumber : ', aNumber);
-
-// 정상적이지 않은 상황
-// aNumber.update(_.compose(megaCheckedSqr, always(0)));
-
-
+/* 입력 인자에 따라 반환값을 예상할 수 있다면 여러 동작을 더 쉽게 조립할 수 있다. */
 function createPerson() {
     var firstName = "";
     var lastName = "";
@@ -431,74 +30,96 @@ function createPerson() {
     };
 }
 
-/*
-console.log(
+log(`createPerson()
+        .setFirstName('Mike')
+        .setLastName('Fogus')
+        .setAge(108)
+        .toString() -> `,
     createPerson()
         .setFirstName('Mike')
         .setLastName('Fogus')
         .setAge(108)
         .toString()
 );
-*/
-
 
 // _.chain : Returns a wrapped object.
 //  Calling methods on this object will continue to return wrapped objects until value is called.
 
-/*
-console.log(
+// 종단메서드(.value())를 만나기 전까지는 wrapper 객체만을 리턴한다
+log(`_.chain(library)
+  .pluck('title')
+  .sort() -> `,
     _.chain(library)
         .pluck('title')
         .sort()
 );
-*/
 
-/*
-console.log(
+log(`_.chain(library)
+        .pluck('title')
+        .sort()
+        .value() -> `,
     _.chain(library)
         .pluck('title')
         .sort()
         .value()
 );
-*/
 
 
+// 예상하지 못한 결과가 나올 때도 있다.
 var TITLE_KEY = 'titel';
 
 // ... 꽤 많은 코드
 
-/*
-console.log(
+log(`_.chain(library)
+        .pluck(TITLE_KEY)
+        .sort()
+        .value() -> `,
     _.chain(library)
         .pluck(TITLE_KEY)
         .sort()
         .value()
 );
-*/
 
 // Invokes interceptor with the object, and then returns object. The primary purpose of this method is to "tap into" a method chain, in order to perform operations on intermediate results within the chain.
 
-/*
-_.chain(library)
-    .tap(function (o) { console.log(o); })
-    .pluck(TITLE_KEY)
-    .sort()
-    .value();
-*/
+// 디버깅을 위해 함수를 호출하는 시점의 객체를 확인할 수 있는 tap이라는 메서드가 제공된다.
+// 아래 코드는 중간값을 검사했을 때 문제가 없어 보일 수 있다.
+log(`_.chain(library)
+  .tap(function (o) { log("o -> ", o); })
+  .pluck(TITLE_KEY)
+  .sort()
+  .value() -> `, _.chain(library)
+  .tap(function (o) { log("o -> ", o); })
+  .pluck(TITLE_KEY)
+  .sort()
+  .value()
+);
 
-/*
-_.chain(library)
-    .pluck(TITLE_KEY)
-    .tap(function (o) { console.log(o); })
-    .sort()
-    .value();
-*/
 
+// tap의 위치를 바꿔서 어느 로직에 문제가 있는지 확인해 볼 수 있다.
+// 해당 메서드를 통해 제어할 수 있는 코드 벙위에 문제가 있음이 밝혀졌다.
+log(`_.chain(library)
+    .pluck(TITLE_KEY)
+    .tap(function (o) { log("o -> ", o); })
+    .sort()
+    .value() -> `, _.chain(library)
+  .pluck(TITLE_KEY)
+  .tap(function (o) { log("o -> ", o); })
+  .sort()
+  .value()
+);
+// _.tap() 메서드는 특정 대상에 행하는 동작을 유연하게 묘사하고자 할 때 특히, _.chain을 유용하게 사용할 수 있다.
+// 하지만 _.chain은 게으리지 않다는 한계가 있다.
+// .value() 함수를 이용해서 명시적으로 감싼 값을 요청하지 않았음에도 (이전의) 체인의 모든 호출이 실행됐다.
+
+
+// 6장에서 구현한 trampoline 기법을 이용해서 _.value를 호출할 때까지 대상 메서드를 호출하지 않는 게으른 _.chain을 구현할 수 있다.
 function LazyChain(obj) {
     this._calls  = [];
     this._target = obj;
 }
 
+// 6장의 trampoline은 묵시적인 호출 체인으로 동작했지만 LazyChain은 명시적인 배열로 동작한다.
 LazyChain.prototype.invoke = function(methodName /*, args */) {
     var args = _.rest(arguments);
 
@@ -511,12 +132,45 @@ LazyChain.prototype.invoke = function(methodName /*, args */) {
     return this;
 };
 
+// 메서드 구조 확인
+log("new LazyChain([2, 1, 3]).invoke('sort')._calls -> ", new LazyChain([2, 1, 3]).invoke('sort')._calls);
+
+// 나중에 실행할 수 있도록 어떤 동작을 감싸는 함수를 성크(thunk)라고 부른다. _calls에 저장된 성크는 이후로 발생할 메서드 호출을 수신할 객체 역할을 하는 중간 대상을 필요로 한다.
+
+// 직접 실행해보기
+// log("new LazyChain([2, 1, 3]).invoke('sort')._calls[0]() -> ", new LazyChain([2, 1, 3]).invoke('sort')._calls[0]());
+// ERROR : Uncaught TypeError: Cannot read property 'sort' of undefined
+
+// 제대로 동작하도록 하기 위해서는 원래 배열을 인자로 전달할 필요가 있다
+log("new LazyChain([2, 1, 3]).invoke('sort')._calls[0]() -> ", new LazyChain([2, 1, 3]).invoke('sort')._calls[0]([2, 1, 3]));
+
+// 초기 성크뿐만 아니라 _calls 배열의 모든 중간 호출에 루프백 인자를 제공하는 함수 생성
+// (보통 계속 실행 가능한 상태로 wrapping 된) this._target을 thunk로 실행한 객체를 계속 리턴 받는 형식
 LazyChain.prototype.force = function() {
     return _.reduce(this._calls, function(target, thunk) {
         return thunk(target);
     }, this._target);
 };
 
+// 실행
+log("new LazyChain([2,1,3]).invoke('sort').force() -> ", new LazyChain([2,1,3]).invoke('sort').force());
+
+
+// 메서드 체인에 링크 추가
+// 호출이 일어날 때마다 형식이 바뀔 수 있다는 사실만 주의한다면 원하는 수만큼 체인을 연결할 수 있다.
+log(`new LazyChain([2, 1, 3])
+  .invoke('concat', [8, 5, 7, 6])
+  .invoke('sort')
+  .invoke('join', ' ')
+  .force() -> `, new LazyChain([2, 1, 3])
+  .invoke('concat', [8, 5, 7, 6])
+  .invoke('sort')
+  .invoke('join', ' ')
+  .force());
+
+
+// 게으른 버젼의 tap 메서드
+// 미리 function을 세팅해두고 실행시점(force 실행)에 받아온 target을 실행만 하고 다시 target을 리턴
 LazyChain.prototype.tap = function(fun) {
     this._calls.push(function(target) {
         fun(target);
@@ -526,6 +180,26 @@ LazyChain.prototype.tap = function(fun) {
     return this;
 }
 
+log(`new LazyChain([2, 1, 3])
+  .invoke('sort')
+  .tap(log)
+  .invoke('join', ' ')
+  .force() -> `, new LazyChain([2, 1, 3])
+  .invoke('sort')
+  .tap(log)
+  .force());
+
+
+// force를 호출하지 않으면 처리가 지연된다
+var deferredSort = new LazyChain([2, 1, 3])
+  .invoke('sort')
+  .tap(log);
+log('... 약간의 시간이 흐른 후');
+
+log("deferredSort.force() -> ", deferredSort.force());
+
+
+// LazyChain을 다른 LazyChain과 연결해서 간단히 연장하는 방법
 function LazyChainChainChain(obj) {
     var isLC = (obj instanceof LazyChain);
 
@@ -534,14 +208,33 @@ function LazyChainChainChain(obj) {
 }
 
 LazyChainChainChain.prototype = LazyChain.prototype;
-/*
 
+
+// jQuery에서 제공하는 promise는 LazyChain, LazyChainChainChain과 비슷하게 동작하지만 조금 다른 점도 있다
+
+// deferred 객체를 받아오는 방법
 var longing = $.Deferred();
 
+// promise를 끄집어낼 수 있다.
+var promise = longing.promise();
+
+// state 메서드로 현재의 동작 상태를 확인할 수 있다.
+log("promise.state() -> ", promise.state());
+
+// 간단히 멈춤 상태를 해결할 수 있다.
+longing.resolve('<3');
+
+log("promise.state() -> ", promise.state());
+
+// 이제 프로미스가 실행되었으므로 값에 접근할 수 있다.
+promise.done(log);
+
+
+// 프로미스 체인 예제
 function go() {
     var d = $.Deferred();
 
-    $.when("")
+    $.when('')
         .then(function() {
             setTimeout(function() {
                 console.log("sub-task 1");
@@ -550,17 +243,43 @@ function go() {
         .then(function() {
             setTimeout(function() {
                 console.log("sub-task 2");
-            }, 10000)
+            }, 3000)
         })
         .then(function() {
             setTimeout(function() {
                 d.resolve("done done done done");
-            }, 15000)
+            }, 1000)
         })
 
     return d.promise();
 }
-*/
+
+// 실행
+var yearning = go().done(console.log);
+log("yearning.state() -> ", yearning.state());
+
+
+// 메서드 체이닝의 여러 가지 문제 중 가장 큰 문제는 체인 호출이 일어나면서 어떤 공통 레퍼런스를 변이시킬 수 있다는 점
+// 이와 달리 함수형 API는 레퍼런스가 아닌 값으로 작동하므로 데이터를 섬세하게(때로는 섬세하지 않게) 변경하면서 새로운 결과를 반환한다.
+// 원래 데이터는 함수를 수행한 다음에도 그대로 남아 있는 것이 가장 이상적
+// 함수형에서는 데이터값을 입력받아서 비파괴적으로 변형한 다음에 새로운 데이터를 반환하는 식으로 호출 체인이 일어난다.
+
+// 파이프라인 API 예
+log(`pipeline([2, 3, null, 1, 42, false],
+_.compact,
+  _.initial,
+  _.rest,
+  rev
+) -> `, pipeline([2, 3, null, 1, 42, false],
+_.compact,
+  _.initial,
+  _.rest,
+  rev
+));
+
+// 위의 파이프라인을 다음처럼 중첩 호출로 표현할 수 있다.
+log("rev(_.rest(_.initial(_.compact([2, 3, null, 1, 42, false])))) -> ", rev(_.rest(_.initial(_.compact([2, 3, null, 1, 42, false])))));
+// -> LazyChain#force와 상당히 비슷한 구조
 
 function pipeline(seed /*, args */) {
     return _.reduce(_.rest(arguments),
@@ -568,6 +287,14 @@ function pipeline(seed /*, args */) {
         seed);
 };
 
+
+// pipeline 작동원리
+log("pipeline() -> ", pipeline());
+log("pipeline(42) -> ", pipeline(42));
+log("pipeline(42, function (n) { return -n; }) -> ", pipeline(42, function (n) { return -n; }));
+
+
+// 파이프라인을 함수(또는 성크) 내부로 캡슐화해서 파이프라인을 게으르게 만들 수 있다.
 function fifth(a) {
     return pipeline(a
         , _.rest
@@ -577,6 +304,11 @@ function fifth(a) {
         , _.first);
 }
 
+// 데이터를 제공해서 파이프라인을 실행할 수 있다.
+log("fifth([1, 2, 3, 4, 5]) -> ", fifth([1, 2, 3, 4, 5]));
+
+
+// 파이프라인을 추상화한 다음에 다른 파이프라인에 추가할 수 있다는 점은 파이프라인의 매우 강력한 기능이다.
 function negativeFifth(a) {
     return pipeline(a
         , fifth
@@ -980,10 +712,10 @@ var ContainerClass = Class.extend({
 // var c = new ContainerClass(42);
 
 // console.log('c : ', c);
-//=> {_value: 42 ...}
+//-> {_value: 42 ...}
 
 // console.log(`c instanceof Class : ${c instanceof Class}`);
-//=> true
+//-> true
 
 
 // ContainerClass는 단순히 값을 유지하는 반면 ObservedContainerClass는 추가적인 기능을 제공
