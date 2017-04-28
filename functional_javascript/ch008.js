@@ -2,8 +2,8 @@
  * Created by YB on 2016-10-23.
  */
 
-// mode = 'running';   // 이하 코드에서는 log() 함수가 아무런 메시지도 표시 안함
-mode = 'debug';   // 이하 코드에서는 log() 함수가 메시지 표시
+mode = 'running';   // 이하 코드에서는 log() 함수가 아무런 메시지도 표시 안함
+// mode = 'debug';   // 이하 코드에서는 log() 함수가 메시지 표시
 
 /* 입력 인자에 따라 반환값을 예상할 수 있다면 여러 동작을 더 쉽게 조립할 수 있다. */
 function createPerson() {
@@ -237,12 +237,12 @@ function go() {
     $.when('')
         .then(function() {
             setTimeout(function() {
-                console.log("sub-task 1");
+                log("sub-task 1");
             }, 5000)
         })
         .then(function() {
             setTimeout(function() {
-                console.log("sub-task 2");
+                log("sub-task 2");
             }, 3000)
         })
         .then(function() {
@@ -255,7 +255,7 @@ function go() {
 }
 
 // 실행
-var yearning = go().done(console.log);
+var yearning = go().done(log);
 log("yearning.state() -> ", yearning.state());
 
 

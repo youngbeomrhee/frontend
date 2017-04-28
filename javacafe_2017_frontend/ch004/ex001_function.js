@@ -140,7 +140,7 @@ var myFunc = function (param) {
 myFunc.cache = {};
 
 // TODO : 일반적으로 cache를 외부로 노출시키는건 좋은 패턴이 아니다. 외부에서 접근할 수 없는 형식으로 바꿔보자
-
+// -> 정답
 var myFunc = (function () {
     var cache = {};
     return function(param) {
@@ -157,3 +157,6 @@ var myFunc = (function () {
     }
 })();
 
+
+/* p.94. 4.9 설정 객체 패턴 */
+// addPerson() 함수를 TDD 스타일로 만들어보기
