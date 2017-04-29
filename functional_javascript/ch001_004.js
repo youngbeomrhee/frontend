@@ -453,12 +453,12 @@ function plucker(FIELD) {
 
 /* Chapter 4 - 고차원 함수 p.103 */
 
-// console.log(`_.max([1, 2, 3, 4, 5]) => ${_.max([1, 2, 3, 4, 5])}`);
-// console.log(`_.max([1, 2, 3, 4.75, 4.5]) => ${_.max([1, 2, 3, 4.75, 4.5])}`);
+log('_.max([1, 2, 3, 4, 5]) ->', _.max([1, 2, 3, 4, 5]));
+log('_.max([1, 2, 3, 4.75, 4.5]) ->' _.max([1, 2, 3, 4.75, 4.5]));
 var people = [{name: 'Fred', age: 65}, {name: 'Lucy', age: 36}];
 
 // console.log(`_.max(people, function(p) { return p.age; }) => ${_.max(people, function(p) { return p.age; })}`);
-// log('_.max(people, function(p) { return p.age; }) => ', _.max(people, function(p) { return p.age; }));
+log('_.max(people, function(p) { return p.age; }) => ', _.max(people, function(p) { return p.age; }));
 
 /* 두 개의 인자로 값을 받아 둘중 최적(best-fit)의 값을 반환한다. */
 function finder(valueFun, bestFun, coll) {
@@ -471,11 +471,11 @@ function finder(valueFun, bestFun, coll) {
 }
 
 /* finder 함수를 이용해서 언더스코어의 _.max와 같은 동작을 시뮬레이션 */
-// log('finder(_.identity, Math.max, [1, 2, 3, 4, 5]) => ', finder(_.identity, Math.max, [1, 2, 3, 4, 5]));
+log('finder(_.identity, Math.max, [1, 2, 3, 4, 5]) => ', finder(_.identity, Math.max, [1, 2, 3, 4, 5]));
 
-// log('finder(plucker("age"), Math.max, people) => ', finder(plucker("age"), Math.max, people));
+log('finder(plucker("age"), Math.max, people) => ', finder(plucker("age"), Math.max, people));
 
-// log('finder(plucker("name"), function(x, y) { return (x.charAt(0) === "L") ? x : y }, people) => ', finder(plucker("name"), function(x, y) { return (x.charAt(0) === "L") ? x : y }, people));
+log('finder(plucker("name"), function(x, y) { return (x.charAt(0) === "L") ? x : y }, people) => ', finder(plucker("name"), function(x, y) { return (x.charAt(0) === "L") ? x : y }, people));
 
 
 function best(fun, coll) {

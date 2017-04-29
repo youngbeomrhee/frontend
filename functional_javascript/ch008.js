@@ -325,6 +325,8 @@ function firstEditions(table) {
     });
 }
 
+log("firstEditions(library) => ", firstEditions(library));
+
 var RQL = {
     select: curry2(project),
     as: curry2(as),

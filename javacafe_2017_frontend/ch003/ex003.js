@@ -70,7 +70,7 @@ console.log(o.constructor === Boolean);
 var Person = function (name) {
     this.name = name;
     this.say = function () {
-        return "I'm " + this.name
+        return "I'm " + this.name;
     };
 }
 
@@ -96,18 +96,6 @@ var Person = function () {
 // TODO : say는 같은 일을 하는 메서드이므로 매번 인스턴스에 추가하는게 비효율적이다. 효율적으로 바꿔보자.
 
 
-
-var Person = (function () {
-    var RealPerson = function (name) {
-        this.name = name;
-    };
-    RealPerson.prototype.say = function () {
-        return "I'm " + this.name
-    };
-    return function(initName) {
-        return new RealPerson(initName);
-    }
-})();
 
 // 위의 코드는 빈 객체를 생성하는 것처럼 보이지만 실제로는 Person의 프로토타입을 상속받는다.
 // 즉, 아래와 같다
@@ -182,6 +170,18 @@ console.log(whatthe instanceof GoodWaffle);
 // console.log(man.name);   // adam
 // console.log(man.say());     // I'm adam
 
+
+var Person = (function () {
+    var RealPerson = function (name) {
+        this.name = name;
+    };
+    RealPerson.prototype.say = function () {
+        return "I'm " + this.name
+    };
+    return function(initName) {
+        return new RealPerson(initName);
+    }
+})();
 
 
 

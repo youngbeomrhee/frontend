@@ -97,18 +97,20 @@ getJasmineRequireObj().requireMatchers = function(jRequire, j$) {
       'toBeFalsy',
       'toBeGreaterThan',
       'toBeGreaterThanOrEqual',
-      'toBeLessThanOrEqual',
       'toBeLessThan',
+      'toBeLessThanOrEqual',
       'toBeNaN',
+      'toBeNegativeInfinity',
       'toBeNull',
+      'toBePositiveInfinity',
       'toBeTruthy',
       'toBeUndefined',
       'toContain',
       'toEqual',
       'toHaveBeenCalled',
       'toHaveBeenCalledBefore',
-      'toHaveBeenCalledWith',
       'toHaveBeenCalledTimes',
+      'toHaveBeenCalledWith',
       'toMatch',
       'toThrow',
       'toThrowError'
@@ -1066,7 +1068,7 @@ getJasmineRequireObj().Env = function(j$) {
     this.it = function(description, fn, timeout) {
       // it() sometimes doesn't have a fn argument, so only check the type if
       // it's given.
-      if (arguments.length > 1) {
+      if (arguments.length > 1 && typeof fn !== 'undefined') {
         ensureIsFunction(fn, 'it');
       }
       var spec = specFactory(description, fn, currentDeclarationSuite, timeout);
@@ -1080,7 +1082,7 @@ getJasmineRequireObj().Env = function(j$) {
     this.xit = function(description, fn, timeout) {
       // xit(), like it(), doesn't always have a fn argument, so only check the
       // type when needed.
-      if (arguments.length > 1) {
+      if (arguments.length > 1 && typeof fn !== 'undefined') {
         ensureIsFunction(fn, 'xit');
       }
       var spec = this.it.apply(this, arguments);
@@ -1146,6 +1148,10 @@ getJasmineRequireObj().Env = function(j$) {
     };
 
     this.fail = function(error) {
+      if (!currentRunnable()) {
+        throw new Error('\'fail\' was used when there was no current spec, this could be because an asynchronous test timed out');
+      }
+
       var message = 'Failed';
       if (error) {
         message += ': ';
@@ -1609,9 +1615,7 @@ getJasmineRequireObj().clearStack = function(j$) {
   }
 
   function getClearStack(global) {
-    if (global && global.process && j$.isFunction_(global.process.nextTick)) {
-      return global.process.nextTick;
-    } else if (j$.isFunction_(global.setImmediate)) {
+    if (j$.isFunction_(global.setImmediate)) {
       var realSetImmediate = global.setImmediate;
       return function(fn) {
         realSetImmediate(fn);
@@ -2062,6 +2066,7 @@ getJasmineRequireObj().Expectation = function() {
           matcherName: name,
           passed: result.pass,
           message: message,
+          error: result.error,
           actual: this.actual,
           expected: expected // TODO: this may need to be arrayified/sliced
         }
@@ -2169,7 +2174,7 @@ getJasmineRequireObj().GlobalErrors = function(j$) {
     this.uninstall = function noop() {};
 
     this.install = function install() {
-      if (global.process && j$.isFunction_(global.process.on)) {
+      if (global.process && global.process.listeners && j$.isFunction_(global.process.on)) {
         var originalHandlers = global.process.listeners('uncaughtException');
         global.process.removeAllListeners('uncaughtException');
         global.process.on('uncaughtException', onerror);
@@ -2565,8 +2570,8 @@ getJasmineRequireObj().matchersUtil = function(j$) {
     }
 
     var extraKeys = [];
-    for (var i in allKeys) {
-      if (!allKeys[i].match(/^[0-9]+$/)) {
+    for (var i = 0; i < allKeys.length; i++) {
+      if (!/^[0-9]+$/.test(allKeys[i])) {
         extraKeys.push(allKeys[i]);
       }
     }
@@ -2894,6 +2899,35 @@ getJasmineRequireObj().toBeNaN = function(j$) {
   return toBeNaN;
 };
 
+getJasmineRequireObj().toBeNegativeInfinity = function(j$) {
+  /**
+   * {@link expect} the actual value to be `-Infinity` (-infinity).
+   * @function
+   * @name matchers#toBeNegativeInfinity
+   * @example
+   * expect(thing).toBeNegativeInfinity();
+   */
+  function toBeNegativeInfinity() {
+    return {
+      compare: function(actual) {
+        var result = {
+          pass: (actual === Number.NEGATIVE_INFINITY)
+        };
+
+        if (result.pass) {
+          result.message = 'Expected actual to be -Infinity.';
+        } else {
+          result.message = function() { return 'Expected ' + j$.pp(actual) + ' not to be -Infinity.'; };
+        }
+
+        return result;
+      }
+    };
+  }
+
+  return toBeNegativeInfinity;
+};
+
 getJasmineRequireObj().toBeNull = function() {
   /**
    * {@link expect} the actual value to be `null`.
@@ -2913,6 +2947,35 @@ getJasmineRequireObj().toBeNull = function() {
   }
 
   return toBeNull;
+};
+
+getJasmineRequireObj().toBePositiveInfinity = function(j$) {
+  /**
+   * {@link expect} the actual value to be `Infinity` (infinity).
+   * @function
+   * @name matchers#toBePositiveInfinity
+   * @example
+   * expect(thing).toBePositiveInfinity();
+   */
+  function toBePositiveInfinity() {
+    return {
+      compare: function(actual) {
+        var result = {
+          pass: (actual === Number.POSITIVE_INFINITY)
+        };
+
+        if (result.pass) {
+          result.message = 'Expected actual to be Infinity.';
+        } else {
+          result.message = function() { return 'Expected ' + j$.pp(actual) + ' not to be Infinity.'; };
+        }
+
+        return result;
+      }
+    };
+  }
+
+  return toBePositiveInfinity;
 };
 
 getJasmineRequireObj().toBeTruthy = function() {
@@ -4159,15 +4222,10 @@ getJasmineRequireObj().Spy = function (j$) {
    * @name Spy
    */
   function Spy(name, originalFn) {
-    var args = buildArgs(),
-      /*`eval` is the only option to preserve both this and context:
-        - former is needed to work as expected with methods,
-        - latter is needed to access real spy function and allows to reduce eval'ed code to absolute minimum
-        More explanation here (look at comments): http://www.bennadel.com/blog/1909-javascript-function-constructor-does-not-create-a-closure.htm
-       */
-      /* jshint evil: true */
-      wrapper = eval('(0, function (' + args + ') { return spy.apply(this, Array.prototype.slice.call(arguments)); })'),
-      /* jshint evil: false */
+    var numArgs = (typeof originalFn === 'function' ? originalFn.length : 0),
+      wrapper = makeFunc(numArgs, function () {
+        return spy.apply(this, Array.prototype.slice.call(arguments));
+      }),
       spyStrategy = new j$.SpyStrategy({
         name: name,
         fn: originalFn,
@@ -4196,14 +4254,19 @@ getJasmineRequireObj().Spy = function (j$) {
         return returnValue;
       };
 
-    function buildArgs() {
-      var args = [];
-
-      while (originalFn instanceof Function && args.length < originalFn.length) {
-        args.push('arg' + args.length);
+    function makeFunc(length, fn) {
+      switch (length) {
+        case 1 : return function (a) { return fn.apply(this, arguments); };
+        case 2 : return function (a,b) { return fn.apply(this, arguments); };
+        case 3 : return function (a,b,c) { return fn.apply(this, arguments); };
+        case 4 : return function (a,b,c,d) { return fn.apply(this, arguments); };
+        case 5 : return function (a,b,c,d,e) { return fn.apply(this, arguments); };
+        case 6 : return function (a,b,c,d,e,f) { return fn.apply(this, arguments); };
+        case 7 : return function (a,b,c,d,e,f,g) { return fn.apply(this, arguments); };
+        case 8 : return function (a,b,c,d,e,f,g,h) { return fn.apply(this, arguments); };
+        case 9 : return function (a,b,c,d,e,f,g,h,i) { return fn.apply(this, arguments); };
+        default : return function () { return fn.apply(this, arguments); };
       }
-
-      return args.join(', ');
     }
 
     for (var prop in originalFn) {
@@ -4532,7 +4595,7 @@ getJasmineRequireObj().Suite = function(j$) {
   };
 
   Suite.prototype.afterAll = function(fn) {
-    this.afterAllFns.push(fn);
+    this.afterAllFns.unshift(fn);
   };
 
   Suite.prototype.addChild = function(child) {
@@ -4874,5 +4937,5 @@ getJasmineRequireObj().TreeProcessor = function() {
 };
 
 getJasmineRequireObj().version = function() {
-  return '2.5.2';
+  return '2.6.1';
 };
