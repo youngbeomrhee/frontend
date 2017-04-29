@@ -2,22 +2,22 @@
  * Created by YB on 2016-10-23.
  */
 
-mode = 'running';   // 이하 코드에서는 log() 함수가 아무런 메시지도 표시 안함
-// mode = 'debug';   // 이하 코드에서는 log() 함수가 메시지 표시
+// mode = 'running';   // 이하 코드에서는 log() 함수가 아무런 메시지도 표시 안함
+mode = 'debug';   // 이하 코드에서는 log() 함수가 메시지 표시
 
 /* 재귀 */
 function myLength(ary) {
     if (_.isEmpty(ary))
         return 0;
     else
-        return 1 + myLength(_.rest(ary));
+        return 1 + myLength(_.rest(ary));   // 꼬리재귀 최적화가 되지 않은 코드
 }
 
 function myLength2(ary) {
     if (ary.length < 1) {
         return 0;
     } else {
-        return 1 + myLength(ary.slice(1));
+        return 1 + myLength(ary.slice(1));  // 꼬리재귀 최적화가 되지 않은 코
     }
 }
 
@@ -93,19 +93,21 @@ var influences = [
     ['Self', 'Lua'],
     ['Self', 'JavaScript']];
 
-
+// 전체 그래프 탐색
 function nexts(graph, node) {
     if (_.isEmpty(graph)) return [];
 
-    var pair = _.first(graph);
-    var from = _.first(pair);
-    var to   = second(pair);
-    var more = _.rest(graph);
+    var pair = _.first(graph);      // graph의 첫 번째 인자(배열) 추출
+    var from = _.first(pair);       // pair의 첫 번째 인자 추출(head)
+    var to   = second(pair);        // pair의 두 번째 인자 추출(tail)
+    var more = _.rest(graph);       // graph의 나머지 인자 추출
 
-    if (_.isEqual(node, from))
-        return construct(to, nexts(more, node));
-    else
-        return nexts(more, node);
+    if (_.isEqual(node, from)) {        // 탐색하려는 node가 head와 같으면
+        return construct(to, nexts(more, node));    // 시작점을 배열에 담고 나머지 남은 인자들을 nexts로 넘겨서 다시 탐색
+        // 최종적으로는 construct('a', construct('b', construct('c', construct('d', 'e')))); 와 같은 형태의 구조가 생성됨
+    } else {        // 탐색하려는 node가 head가 아니면 새로운 탐색
+        return nexts(more, node);   // 나머지 요소를 새로운 탐색대상으로 넘김
+    }
 }
 
 log("nexts(influences, 'Lisp') -> ", nexts(influences, 'Lisp'));
@@ -118,18 +120,22 @@ log("nexts(influences, 'Lisp') -> ", nexts(influences, 'Lisp'));
     nodes : 검색이 필요한 목록. 늘어나거나 감소됨. 언제 멈출지를 확인할때 사용
     seen : 검색이 이미 끝난 목록. 점차 늘어남
 */
+// TODO : 호출되고의 흐름을 인자 하나 하나 머리로 정리
 function depthSearch(graph, nodes, seen) {
-    if (_.isEmpty(nodes)) return rev(seen);
+    if (_.isEmpty(nodes)) {
+        return rev(seen);       // 더이상 탐색할 nodes가 없으면 그간 쌓인 seen stack을 rev를 통해 queue 형식으로 변경하고 종료
+    }
 
     var node = _.first(nodes);  // 현재 검색에 사용할 대상
-    var more = _.rest(nodes);   // 다음에 검색할 대상
+    var more = _.rest(nodes);   // 다음에 검색할 나머지 대상
 
-    if (_.contains(seen, node))
+    if (_.contains(seen, node)) {       // cache된 seen에 있는지 여부를 확인해서 있으면
         return depthSearch(graph, more, seen);  // 현재의 node가 이미 조회됐던 건이므로 나머지(more)만 검색대상으로 전달
-    else
+    } else {        // cache된 seen에 없으면
         return depthSearch(graph,
             cat(nexts(graph, node), more),  // 검색해야 할 대상을 추가 후에 아직 검색하지 못한 나머지(more)도 검색대상으로 전달
             construct(node, seen));     // 현재 node도 이미 검색에 사용되었으므로 seen에 추가
+    }
 }
 
 log("depthSearch(influences, ['Lisp'], []) -> ", depthSearch(influences, ['Lisp'], []));
@@ -143,7 +149,7 @@ function tcLength(ary, n) {
     if (_.isEmpty(ary))
         return l;
     else
-        return tcLength(_.rest(ary), l + 1);
+        return tcLength(_.rest(ary), l + 1);    // 꼬리재귀최적화가 이뤄진 코드
 }
 
 log("tcLength(_.range(10)) -> ", tcLength(_.range(10)));
@@ -159,11 +165,11 @@ function andify(/* preds */) {
         var args = _.toArray(arguments);
 
         var everything = function(ps, truth) {
-            if (_.isEmpty(ps))
+            if (_.isEmpty(ps)) {
                 return truth;
-            else
-                return _.every(args, _.first(ps))
-                    && everything(_.rest(ps), truth);
+            } else {
+                return _.every(args, _.first(ps)) && everything(_.rest(ps), truth);
+            }
         };
 
         return everything(preds, true);
@@ -204,7 +210,7 @@ log("zeroOrOdd(2,4,6) -> ", zeroOrOdd(2,4,6));
 
 
 
-/* 상호재귀 */
+/* p.163. 상호재귀 */
 function isEvenRec(n) {
     if (n === 0)
         return true;
@@ -226,10 +232,11 @@ log("isOddRec(5) -> ", isOddRec(5));
 
 
 function flat(ary) {
-    if (_.isArray(ary))
-        return cat.apply(cat, _.map(ary, flat));
-    else
+    if (_.isArray(ary)) {
+        return cat.apply(null, _.map(ary, flat));
+    } else {
         return [ary];
+    }
 }
 
 

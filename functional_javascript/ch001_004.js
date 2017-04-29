@@ -425,7 +425,7 @@ function makeAdder(CAPTURED) {
 function averageDamp(FUN) {
     return function(n) {
         return average([n, FUN(n)]);
-    }
+    };
 }
 
 // predicate(찬반형함수)를 받아서 실행 가능한 상태로 스텐바이
@@ -436,7 +436,7 @@ function complement(PRED) {
     };
 }
 
-function isEven(n) { return (n%2) === 0 }
+function isEven(n) { return (n%2) === 0; }
 
 var isOdd = complement(isEven);
 
@@ -454,7 +454,7 @@ function plucker(FIELD) {
 /* Chapter 4 - 고차원 함수 p.103 */
 
 log('_.max([1, 2, 3, 4, 5]) ->', _.max([1, 2, 3, 4, 5]));
-log('_.max([1, 2, 3, 4.75, 4.5]) ->' _.max([1, 2, 3, 4.75, 4.5]));
+log('_.max([1, 2, 3, 4.75, 4.5]) ->', _.max([1, 2, 3, 4.75, 4.5]));
 var people = [{name: 'Fred', age: 65}, {name: 'Lucy', age: 36}];
 
 // console.log(`_.max(people, function(p) { return p.age; }) => ${_.max(people, function(p) { return p.age; })}`);
