@@ -27,6 +27,17 @@ console.dir(Array);
 // 실행예. repeatA(3) -> 'aaa'
 // 1. bind를 사용해서 만들어 보자
 // 2. curry1이라는 함수를 사용해서 만들어 보자
+
+
+/* right curry */
+function rightCurry(func, param2) {
+    return function(param1) {
+        return func(param1, param2);
+    }
+}
+
+var repeat100 = rightCurry(repeatStr, 100);
+
 // TODO : 받아오는 파라미터의 갯수에 상관없는 curry 함수 만들기
 
 
