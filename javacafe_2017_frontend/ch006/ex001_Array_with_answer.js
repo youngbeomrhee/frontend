@@ -7,12 +7,12 @@
 /* Array Object의 구조 보기 */
 console.dir(Array);
 
-// Q. Array.of(), Array.slice()는 가능할까? 가능하다면 왜? 불가능하다면 왜? 일까?
+// Q. Array.of(), Array.slice()는 가능할까? 가능하다면 왜? 불가능하다면 왜일까?
 
 // A. Array.of()는 가능, Array.slice()는 불가능
 // Array.of는 내부 메서드, Array.slice는 내부메서드가 아니므로 해당 객체의 프로토타입을 검사하여 존재여부를 확인.
-// Array.__proto__ === Function.prototype // Function에 없음
-// Array.__proto__.__proto__ === Object.prototype
+Array.__proto__ === Function.prototype // Function에 없음
+Array.__proto__.__proto__ === Object.prototype
 
 
 // Q. [].slice()는 가능할까? 가능하다면 왜? 불가능하다면 왜? 일까?
@@ -27,8 +27,10 @@ console.dir(Array);
 
 
 // Q. 인자가 100개인 배열 만들기
-// A. var arr = []; arr.length = 100;
-// A2. var arr = new Array(100);
+// A.
+var arr = []; arr.length = 100;
+// A2.
+var arr = new Array(100);
 
 
 // Q. 반복문을 쓰지 않고 반복횟수를 받아서 그만큼 문자를 반복하는 함수 만들기
@@ -42,8 +44,12 @@ function repeatStr(str, cnt) {
 
 // Q.문자를 고정시킨채 숫자만 받을 수 있는 래핑함수 만들기
 // 실행예. repeatA(3) -> 'aaa'
+
+// 1. bind를 사용해서 만들어 보자
 // A.
 var repeatA = repeatStr.bind(null, 'a');
+
+// 2. curry1이라는 함수를 사용해서 만들어 보자
 // A2.
 function curry1(fun, fix1) {
   return function(arg) {
@@ -54,7 +60,16 @@ var repeatA = curry1(repeatStr, 'a');
 // TODO : 받아오는 파라미터의 갯수에 상관없는 curry 함수 만들기
 
 
-/* every */
+/* right curry */
+function rightCurry(func, param2) {
+    return function(param1) {
+        return func(param1, param2);
+    }
+}
+
+var repeat100 = rightCurry(repeatStr, 100);
+
+/*-------------------------------------------------------------- every */
 // 모든 요소가 해당 조건을 만족하는지 검사. 모두 만족해야 true, 하나라도 만족하지 않으면 false, &&(and) 연산자와 같다
 [1, 2, 3, 4, 5].every(function (ele) {
   return ele > 0;
@@ -89,11 +104,40 @@ function isAllValidSet(isValid) {
   };
 }
 
-var isInteger = isAllValidSet(function (ele) { return Number.isInteger(ele); });
+// TODO : every 로직도 추상화 시켜보자
 
-isInteger([1,2,3,4,5]);
-isInteger([1,2,3,4,5,'']);
+var isAllInteger = isAllValidSet(Number.isInteger);
 
-// ES6 방식으로 바꿔보기
+isAllInteger([1,2,3,4,5]);
+isAllInteger([1,2,3,4,5,'']);
+
+
+var isAllArray = isAllValidSet(Array.isArray);
+
+
+
+
+// ES6의 arrow function 형식으로 바꿔보기
+[1, 2, 3, 4, 5].every(function (ele) { return ele > 0; });
+
+[1,2,3,4,5].every(ele=>ele>0);
+
+
+// arrow function 초간단 정리
+// 익명함수를 간략하게 표현하게 해주는 표현
+// 식과 문 모두 표현 가능
+var plus = x=>x+1;  // 식
+var plus = (x)=>{ return x+1; };  // 문
+
+// 식으로 사용할 경우에는 return 삭제 가능
+// 문으로 사용할 경우에는 꼭 return 표기
+
+// 파라미터가 하나인 경우에는 괄호() 생략 가능 ex) a=>a+1
+// 파라미터가 없거나 2개 이상인 경우에는 괄호() 생략 불가 ex) (a,b)=>a+b, ()=>1
+
+// Q. [1,2,3,4,5].every(function (ele) { return ele > 0}); 를 arrow function으로 바꿔보자
+// A.
+[1,2,3,4,5].every(ele => ele > 0);
+
 
 
