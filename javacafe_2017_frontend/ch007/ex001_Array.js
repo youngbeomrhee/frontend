@@ -75,7 +75,7 @@ range(10, 1).map(ele => ele * ele);
 
 // Q. applicants 중에서 25세가 넘는 사람들에게는 step1:'pass'라는 키/벨류 추가하기
 
-
+// Q. applicants 중에서 이름만 추출
 
 /*-------------------------------------------------------------- reduce */
 // 인자를 줄여가며 하나의 값으로 수렴
@@ -123,6 +123,7 @@ range(10).some(ele=>ele>9);
 [12,23,5,2,6,3,4,2].sort();
 
 // comparator는 기본적으로 아래의 로직을 따른다
+/*
 function compare(a, b) {
     if (a is less than b by some ordering criterion) {
         return -1;
@@ -133,6 +134,7 @@ function compare(a, b) {
     // a must be equal to b
     return 0;
 }
+*/
 
 
 // [12,23,5,2,,6,3,4,2]을 숫자의 대소비교로 정렬
@@ -177,4 +179,9 @@ var data = range(100, 1);
 // Q. 해당 데이터의 모든 값을 더하기
 
 // Q. 첫 번째 요소 newData에서 받아오고 원본은 지우기
+
+
+
+
+
 
