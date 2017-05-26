@@ -11,6 +11,7 @@
  */
 var MYAPP = {};
 
+
 /**
  * 수학 계산 유틸리티
  * @namespace MYAPP
