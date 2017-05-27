@@ -193,6 +193,128 @@ var data = range(100, 1);
 // 예 : [ {0: 100}, {1: 50}, ...]
 
 
+// 위와 같은 흐름을 제어하기
+function createPerson() {
+    var firstName = "";
+    var lastName = "";
+    var age = 0;
+
+    return {
+        setFirstName: function(fn) {
+            firstName = fn;
+            return this;
+        },
+        setLastName: function(ln) {
+            lastName = ln;
+            return this;
+        },
+        setAge: function(a) {
+            age = a;
+            return this;
+        },
+        toString: function() {
+            return [firstName, lastName, age].join(' ');
+        }
+    };
+}
+
+/*
+ console.log(
+ createPerson()
+ .setFirstName('Mike')
+ .setLastName('Fogus')
+ .setAge(108)
+ .toString()
+ );
+ */
+
+
+// _.chain : Returns a wrapped object.
+//  Calling methods on this object will continue to return wrapped objects until value is called.
+
+/*
+ console.log(
+ _.chain(library)
+ .pluck('title')
+ .sort()
+ );
+ */
+
+/*
+ console.log(
+ _.chain(library)
+ .pluck('title')
+ .sort()
+ .value()
+ );
+ */
+
+
+var TITLE_KEY = 'titel';
+
+// ... 꽤 많은 코드
+
+/*
+ console.log(
+ _.chain(library)
+ .pluck(TITLE_KEY)
+ .sort()
+ .value()
+ );
+ */
+
+// Invokes interceptor with the object, and then returns object. The primary purpose of this method is to "tap into" a method chain, in order to perform operations on intermediate results within the chain.
+
+/*
+ _.chain(library)
+ .tap(function (o) { console.log(o); })
+ .pluck(TITLE_KEY)
+ .sort()
+ .value();
+ */
+
+/*
+ _.chain(library)
+ .pluck(TITLE_KEY)
+ .tap(function (o) { console.log(o); })
+ .sort()
+ .value();
+ */
+
+function LazyChain(obj) {
+    this._calls  = [];
+    this._target = obj;
+}
+
+LazyChain.prototype.invoke = function(methodName /*, args */) {
+    var args = _.rest(arguments);
+
+    this._calls.push(function(target) {
+        var meth = target[methodName];
+
+        return meth.apply(target, args);
+    });
+
+    return this;
+};
+
+LazyChain.prototype.force = function() {
+    return _.reduce(this._calls, function(target, thunk) {
+        return thunk(target);
+    }, this._target);
+};
+
+LazyChain.prototype.tap = function(fun) {
+    this._calls.push(function(target) {
+        fun(target);
+        return target;
+    });
+
+    return this;
+}
+
+
+
 
 
 
