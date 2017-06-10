@@ -6,7 +6,7 @@ var _ = require('underscore');
 
 console.log('\n### 함수 조립의 핵심');
 
-describe('functional javascript ch005', function () {
+describe('functional javascript ch005_TODO', function () {
   it('dispatch 함수는 ')
 });
 

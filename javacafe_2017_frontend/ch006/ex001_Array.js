@@ -4,6 +4,8 @@
  *
  */
 
+/* Array Object의 구조 보기 */
+console.dir(Array);
 
 /* 테스트를 위한 데이터 생성 함수를 만들고 시작하자 */
 function range(size, start) {
@@ -37,6 +39,30 @@ var applicants = [
     },
     {
         name: 'b',
+        age: 27,
+        step1: 'pass'
+    },
+    {
+        name: 'c',
+        age: 22
+    },
+    {
+        name: 'd',
+        age: 25
+    },
+    {
+        name: 'e',
+        age: 29
+    }
+];
+// Q. 아래의 지원자 중 25세 이상만 추출
+var applicants = [
+    {
+        name: 'a',
+        age: 23
+    },
+    {
+        name: 'b',
         age: 27
     },
     {
@@ -54,6 +80,10 @@ var applicants = [
 ];
 
 
+// Q.문자를 고정시킨채 숫자만 받을 수 있는 래핑함수 만들기
+// 실행예. repeatA(3) -> 'aaa'
+// 1. bind를 사용해서 만들어 보자
+// 2. curry1이라는 함수를 사용해서 만들어 보자
 
 /*-------------------------------------------------------------- find */
 // 기본
@@ -91,6 +121,7 @@ range(10).reduce((accumulator, currentValue, index, arr) => { accumulator.push(a
 // range(10, 1).reduce( ... );
 
 // Q. [1,2,3,4,5] 배열을 인덱스를 키로 갖고 현재 값의 제곱을 값으로 갖는 배열로 변형
+// [{0:1}, {1:4}, {2:9}...]
 
 // Q. 추상화하여 로직을 주입하는 방식으로 바꾸기
 // function reduceFunc(arr, func) { ... }
@@ -139,6 +170,7 @@ function compare(a, b) {
 }
 */
 
+var repeat100 = rightCurry(repeatStr, 100);
 
 // [12,23,5,2,,6,3,4,2]을 숫자의 대소비교로 정렬
 [12,23,5,2,6,3,4,2].sort((a, b) => a-b);
@@ -152,6 +184,11 @@ var newArr = arr.slice(1, 3);
 console.log(newArr);
 console.log(arr);
 
+/*-------------------------------------------------------------- every */
+// 모든 요소가 해당 조건을 만족하는지 검사. 모두 만족해야 true, 하나라도 만족하지 않으면 false, &&(and) 연산자와 같다
+[1, 2, 3, 4, 5].every(function (ele) {
+    return ele > 0;
+});
 
 /*-------------------------------------------------------------- splice */
 // 배열을 시작인덱스부터 갯수만큼 삭제(삭제된 값 리턴)
@@ -166,13 +203,13 @@ newArr = arr.splice(1, 3, 7, 8);
 console.log(newArr);
 console.log(arr);
 
+// Q. 위의 함수를 추상화해서 로직을 주입하는 방식으로 바꿔보자
+// function isAllValid(arr, isValid) { ... } 구현
 
-/* 종합문제 */
-var data = range(100, 1);
 
 // Q. data를 앞에서부터 50개의 요소 newData에 복사
 
-// Q. 복사한 데이터 중 뒤의 20개는 삭제하고 삭제한 곳에 99, 100을 넣기
+// Q. 복사한 데이터 중 앞의 20개는 삭제하고 삭제한 곳에 99, 100을 넣기
 
 // Q. 역순으로 정렬
 
@@ -193,7 +230,7 @@ var data = range(100, 1);
 // 예 : [ {0: 100}, {1: 50}, ...]
 
 
-// 위와 같은 흐름을 제어하기
+// 메서드 체인 - 위와 같은 흐름을 제어하기 위한 기본구조
 function createPerson() {
     var firstName = "";
     var lastName = "";

@@ -7,6 +7,7 @@
 
   this.attendeeId = attendeeId;
 
+  // TODO : 외부에 의존하는 코드들
   this.service = new ConferenceWebSvc();
   this.messenger = new Messenger();
 };

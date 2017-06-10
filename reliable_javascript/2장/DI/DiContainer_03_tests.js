@@ -34,6 +34,7 @@
         expect(container.get('notDefined')).toBeUndefined();
       });
 
+      // DiContainer.get의 포지티브 테스트(positive test)
       it('등록된 함수를 실행한 결과를 반환한다', function() {
         var name = 'MyName',
             returnFromRegisteredFunction = "something";
