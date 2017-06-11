@@ -31,7 +31,8 @@ describe('DiContainer', function() {
       badArgs.forEach(function(args) {
         expect(function() {
           container.register.apply(container,args);
-        }).toThrow();
+        // }).toThrow();
+        }).toThrowError(container.messages.registerRequiresArgs);
         // 보다 정확하고 명확한 테스트를 위해 .toThrowError(container.messages.registerReqeuiresArgs); 와 같이 테스트 할수도 있다.
       });
     });

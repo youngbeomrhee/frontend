@@ -38,6 +38,7 @@
       it('등록된 함수를 실행한 결과를 반환한다', function() {
         var name = 'MyName',
             returnFromRegisteredFunction = "something";
+
         container.register(name, [], function() {
           return returnFromRegisteredFunction;
         });

@@ -31,4 +31,5 @@ describe('createReservation(passenger, flight)', function() {
     var reservation = createReservation(testPassenger, testFlight);
     expect(reservation.flightInfo).toBe(testFlight);
   });
+
 });
