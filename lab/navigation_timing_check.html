@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>네비게이션 타이밍을 이용한 페이지 로딩 속도 측정하기</title>
+    <script>
+        window.onload = function() {
+            setTimeout(function() {
+                var t = performance.timing;
+                console.log('네트워크 지연시간: ' + (t.responseEnd-t.fetchStart));
+                console.log('서버에서 페이지를 받고 페이지를 로드하는데 걸린 시간: ' + (t.loadEventEnd-t.responseEnd));
+                console.log('탐색과 페이지 로드의 전체 과정: ' + (t.loadEventEnd-t.navigationStart));
+            }, 0);
+        }
+    </script>
+</head>
+<body>
+<h1><a href="https://www.html5rocks.com/ko/tutorials/webperformance/basics/">네비게이션 타이밍을 이용한 페이지 로딩 속도 측정하기</a></h1>
+</body>
+</html>
