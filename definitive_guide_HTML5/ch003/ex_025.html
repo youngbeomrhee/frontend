@@ -8,14 +8,15 @@
     tabindex : tab키를 눌렀을때 포커스를 이동시킬 순서를 지정
     <hr/>
     <form>
-        <label>Name: <input type="text" name="name" tabindex="1"/></label>
+        <label>Name: <input type="text" name="name" tabindex="1"/></label> (tabindex=1)
         <p/>
-        <label>Name: <input type="text" name="name" tabindex="1"/></label>
+        <label>City: <input type="text" name="city" tabindex="-1"/></label> (tabindex=-1)
         <p/>
-        <label>Name: <input type="text" name="name" tabindex="1"/></label>
-        Password: <input type="password" name="password" accesskey="p"/>
+        <label>Country: <input type="text" name="country" tabindex="3"/></label> (tabindex=3)
         <p/>
-        <input type="submit" value="Log in" accesskey="s"/>
+        <label>Age: <input type="text" name="age" tabindex="3"/></label> (tabindex=3)
+        <p/>
+        <input type="submit" value="Log in" tabindex="2"/> (tabindex=2)
     </form>
 </body>
 </html>
