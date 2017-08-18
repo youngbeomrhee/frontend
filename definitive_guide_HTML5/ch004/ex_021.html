@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>다른 상대단위로부터 도출된 단위 사용하기</title>
+    <style>
+        html {
+            font-size: 2cm
+        }
+        div, p {
+            border: 1px solid black;
+            padding: 3px;
+        }
+    </style>
+</head>
+<body>
+    기준길이 : html { font-size: 2cm}
+    <div style="font-size:0.5rem">
+        0.5rem -> root의 0.5 (자식 element의 새로운 기준점으로 작동)
+        <p style="font-size:0.5em">
+            0.5em -> 부모의 0.5
+        </p>
+        <p style="font-size:0.5ex">
+            0.5ex -> 대략 부모의 0.25
+        </p>
+    </div>
+</body>
+</html>
