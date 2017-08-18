@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>style element를 구체적으로 구현하</title>
+    <style media="screen AND (min-width:1200px)">
+        .card {
+            outline: 1px solid black;
+            width: 300px;
+            height: 400px;
+            float: left;
+        }
+    </style>
+    <style media="screen AND (max-width:1199px) AND (min-width:900px)">
+        .card {
+            outline: 1px solid black;
+            width: 200px;
+            height: 300px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        card
+    </div>
+    <div class="card">
+        card
+    </div>
+    <div class="card">
+        card
+    </div>
+    <div class="card">
+        card
+    </div>
+</body>
+</html>
