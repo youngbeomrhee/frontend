@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>defer 속성과 함께 script 엘리먼트 사용하기</title>
+    <script src="ex_023.js"></script>
+    <script async src="ex_024_async.js"></script>
+</head>
+<body>
+    <h1>화면에 표시</h1>
+    <script>
+        alert('inline script has been loaded');
+        alert(document.querySelector('h1').innerHTML);
+    </script>
+    <script src="ex_023_2.js"></script>
+</body>
+</html>

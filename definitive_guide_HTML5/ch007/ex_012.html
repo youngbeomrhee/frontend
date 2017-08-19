@@ -3,35 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <title>style element를 구체적으로 구현하</title>
-    <style media="screen AND (min-width:1200px)">
+    <style>
+        body {
+            margin: 0px
+        }
+        .container {
+            margin: 0 auto;
+        }
+    </style>
+    <style media="screen AND (min-width:1500px)">
+        .card {
+            outline: 1px solid black;
+            width: 375px;
+            height: 400px;
+            float: left;
+        }
+        .container {
+            width: 1500px
+        }
+    </style>
+    <style media="screen AND (max-width:1499px) AND (min-width:1200px)">
         .card {
             outline: 1px solid black;
             width: 300px;
             height: 400px;
             float: left;
         }
+        .container {
+            width: 1200px
+        }
     </style>
-    <style media="screen AND (max-width:1199px) AND (min-width:900px)">
+    <style media="screen AND (max-width:1199px) AND (min-width:1000px)">
         .card {
             outline: 1px solid black;
-            width: 200px;
+            width: 250px;
+            height: 500px;
+            float: left;
+        }
+        .container {
+            width: 1000px
+        }
+    </style>
+    <style media="screen AND (max-width:999px) AND (min-width:800px)">
+        .card {
+            outline: 1px solid black;
+            width: 400px;
+            height: 300px;
+            float: left;
+        }
+        .container {
+            width: 800px
+        }
+    </style>
+    <style media="screen AND (max-width:799px)">
+        .card {
+            outline: 1px solid black;
+            width: 100%;
             height: 300px;
             float: left;
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        card
-    </div>
-    <div class="card">
-        card
-    </div>
-    <div class="card">
-        card
-    </div>
-    <div class="card">
-        card
+    <div class="container">
+        <div class="card">
+            card
+        </div>
+        <div class="card">
+            card
+        </div>
+        <div class="card">
+            card
+        </div>
+        <div class="card">
+            card
+        </div>
+        <div class="card">
+            card
+        </div>
+        <div class="card">
+            card
+        </div>
+        <div class="card">
+            card
+        </div>
+        <div class="card">
+            card
+        </div>
+        <div class="card">
+            card
+        </div>
+        <div class="card">
+            card
+        </div>
+        <div class="card">
+            card
+        </div>
+        <div class="card">
+            card
+        </div>
     </div>
 </body>
 </html>
