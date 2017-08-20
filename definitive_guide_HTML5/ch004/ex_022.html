@@ -4,22 +4,20 @@
     <meta charset="UTF-8">
     <title>스타일에서 픽셀단위 사용하기</title>
     <style>
-        div, span {
-            float: left
-        }
-        div {
+        .bar {
             outline: 1px solid blue;
             height: 20px;
+            margin-bottom: 3px
         }
         span {
-            margin-left: 3px
+            margin-left: 3px;
         }
     </style>
 </head>
 <body>
     <h1>pixel</h1>
     <hr/>
-    <div style="width:1in"></div><span>1 inch(in) = 2.54 centimeters</span><br/>
-    <div style="width:96px"></div><span>96 pixels(px) = 1 inch (96dpi = 1/96 inches)</span>
+    <p><div class='bar' style="width:1in"></div><span>1 inch(in) = 2.54 centimeters</span></p>
+    <p><div class='bar' style="width:96px"></div><span>96 pixels(px) = 1 inch (96dpi = 1/96 inches)</span></p>
 </body>
 </html>
