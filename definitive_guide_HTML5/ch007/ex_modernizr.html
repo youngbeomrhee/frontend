@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Modernizr 예제</h1>
+<script src="../lib/modernizr-custom.js"></script>
+<script>
+    Modernizr.userableFeats = [];
+    Modernizr.unuserableFeats = [];
+    for(prop in Modernizr) {
+        if(Modernizr.hasOwnProperty(prop)) {
+            Modernizr[prop]?Modernizr.userableFeats.push(prop):Modernizr.unuserableFeats.push(prop);
+        }
+    }
+    console.log('# 해당 device에서 사용가능한 feature : ');
+    console.dir(Modernizr.userableFeats);
+    console.log('# 해당 device에서 사용불가능한 feature : ');
+    console.dir(Modernizr.unuserableFeats);
+
+    const willBeUsed = ['inputformmethod', 'cssexunit', 'flash'];
+
+    function isAllUseable(feats) {
+        return Modernizr.unuserableFeats.reduce((accum, curr)=>{
+            if(willBeUsed.indexOf(curr)>-1) { accum.push(curr);};
+            return accum;
+        }, []);
+    }
+
+    console.log('# 사용 예정 feature : ', willBeUsed.join(','));
+    console.log('# 사용 불가능한 feature : ', isAllUseable(willBeUsed).join(','));
+</script>
+</body>
+</html>
