@@ -6,7 +6,12 @@
 </head>
 <body>
 <h1>Modernizr 예제</h1>
+<p>
+    <h3>사전작업</h3>
+    <a href="https://modernizr.com/download?adownload-ambientlight-animation-apng-appearance-applicationcache-arrow-atobbtoa-audio-audioloop-audiopreload-backdropfilter-backgroundblendmode-backgroundcliptext-backgroundsize-batteryapi-bdi-beacon-bgpositionshorthand-bgpositionxy-bgrepeatspace_bgrepeatround-bgsizecover-blobconstructor-bloburls-blobworkers-borderimage-borderradius-boxshadow-boxsizing-canvas-canvasblending-canvastext-canvaswinding-capture-checked-classlist-contains-contenteditable-contextmenu-cookies-cors-cryptography-cssall-cssanimations-csscalc-csschunit-csscolumns-cssescape-cssexunit-cssfilters-cssgradients-cssgrid_cssgridlegacy-csshyphens_softhyphens_softhyphensfind-cssinvalid-cssmask-csspointerevents-csspositionsticky-csspseudoanimations-csspseudotransitions-cssreflections-cssremunit-cssresize-cssscrollbar-csstransforms-csstransforms3d-csstransformslevel2-csstransitions-cssvalid-cssvhunit-cssvmaxunit-cssvminunit-cssvwunit-cubicbezierrange-customelements-customevent-customprotocolhandler-dart-datachannel-datalistelem-dataset-datauri-dataview-dataworkers-details-devicemotion_deviceorientation-directory-displaytable-documentfragment-ellipsis-emoji-es5-es5array-es5date-es5function-es5object-es5string-es5syntax-es5undefined-es6array-es6collections-es6math-es6number-es6object-es6string-eventlistener-eventsource-exiforientation-fetch-fileinput-filereader-filesystem-flash-flexbox-flexboxlegacy-flexboxtweener-flexwrap-fontface-forcetouch-formattribute-formvalidation-framed-fullscreen-gamepads-generatedcontent-generators-geolocation-getrandomvalues-getusermedia-hairline-hashchange-hidden-hiddenscroll-history-hovermq-hsla-htmlimports-ie8compat-imgcrossorigin-indexeddb-indexeddbblob-inlinesvg-input-inputformaction-inputformenctype-inputformmethod-inputformtarget-inputtypes-intl-jpeg2000-jpegxr-json-lastchild-ligatures-localizednumber-localstorage-lowbandwidth-lowbattery-matchmedia-mathml-mediaqueries-microdata-multiplebgs-mutationobserver-notification-nthchild-objectfit-olreversed-oninput-opacity-outputelem-overflowscrolling-pagevisibility-passiveeventlisteners-peerconnection-performance-picture-placeholder-pointerevents-pointerlock-pointermq-postmessage-preserve3d-progressbar_meter-promises-proximity-queryselector-quotamanagement-regions-requestanimationframe-requestautocomplete-rgba-ruby-sandbox-scriptasync-scriptdefer-scrollsnappoints-seamless-search-serviceworker-sessionstorage-shapes-sharedworkers-siblinggeneral-sizes-smil-speechrecognition-speechsynthesis-srcdoc-srcset-strictmode-stylescoped-subpixelfont-supports-svg-svgasimg-svgclippaths-svgfilters-svgforeignobject-target-template-templatestrings-textalignlast-textareamaxlength-textshadow-texttrackapi_track-time-todataurljpeg_todataurlpng_todataurlwebp-touchevents-transferables-typedarrays-unicode-unicoderange-unknownelements-urlparser-urlsearchparams-userdata-userselect-vibrate-video-videoautoplay-videocrossorigin-videoloop-videopreload-vml-webaudio-webgl-webglextensions-webintents-webp-webpalpha-webpanimation-websockets-websocketsbinary-websqldatabase-webworkers-willchange-wrapflow-xdomainrequest-xhr2-xhrresponsetype-xhrresponsetypearraybuffer-xhrresponsetypeblob-xhrresponsetypedocument-xhrresponsetypejson-xhrresponsetypetext-dontmin-setclasses-testallprops">Modernizr 전체 feature 다운로드</a>
+</p>
 <script src="../lib/modernizr-custom.js"></script>
+<script src="../lib/polyfill.js"></script>
 <script>
     Modernizr.userableFeats = [];
     Modernizr.unuserableFeats = [];
@@ -20,10 +25,11 @@
     console.log('# 해당 device에서 사용불가능한 feature : ');
     console.dir(Modernizr.unuserableFeats);
 
-    const willBeUsed = ['inputformmethod', 'cssexunit', 'flash'];
+    var willBeUsed = ['inputformmethod', 'cssexunit', 'flash'];
 
     function isAllUseable(feats) {
-        return Modernizr.unuserableFeats.reduce((accum, curr)=>{
+//        return Modernizr.unuserableFeats.reduce((accum, curr)=>{
+        return Modernizr.unuserableFeats.reduce(function(accum, curr) {
             if(willBeUsed.indexOf(curr)>-1) { accum.push(curr);};
             return accum;
         }, []);
@@ -31,6 +37,10 @@
 
     console.log('# 사용 예정 feature : ', willBeUsed.join(','));
     console.log('# 사용 불가능한 feature : ', isAllUseable(willBeUsed).join(','));
+
+    // 단순히 모든 feature가 사용가능한지 여부는 아래와 같이 기본으로 제공하는 메서드를 통해서도 확인 가능하다
+//    console.log('# 모든 feature 사용가능여부 : ', Modernizr.testAllProps(...willBeUsed));
+    console.log('# 모든 feature 사용가능여부 : ', Modernizr.testAllProps.apply(null, willBeUsed));
 </script>
 </body>
 </html>
