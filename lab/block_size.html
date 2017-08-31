@@ -1,0 +1,70 @@
+<!--
+<div style="width:100px">
+    <span>
+      aaaaaa
+      <div>bbb</div>
+    </span>
+</div>
+block은 부모중 block이나 inline-block을 만날때까지 거슬러 올라가 그 엘리먼트의 크기를 상속받는다
+
+
+<div>
+    <div>aaaa</div>
+    <div>bbbbbbbbb</div>
+</div>
+일때 부모 div의 크기는 더 긴 b쪽의  div크기가 되겠죠?
+그럼 a쪽 div의 크기도 그것에 맞춰질겁니다
+overflow:auto가 기본값인데
+만약 자식이 하나도 없을때는 가정해보죠
+그럼 부모는 width:0입니다
+
+이제 그 상태에서 자식들을 돌면서 부모도 크기가 자식중 최대값으로 결정되는 로직을 쓸텐데요..
+그쵸? 마법은 없으니까
+첫번째 a자식이 오면 0보다 크니까 부모의 width도 a자식의 width가 되고 동시에 a자식의 width도 a자식 본인의 width가 될겁니다
+그쵸?
+
+그럼 이제 루프 두번째인데
+b자식이 오면 a자식의 길이보다 더 길어졌으니
+본인도 b의 가로가 되고 b도 b의 가로가 되죠
+이건 좋은데
+a는 이 로직에 따르면 갱신될 찬스가 없으니까
+여전히 아까 a의 길이 그대로 있어야합니다
+하지만 실제로는 같이 늘어나죠
+
+즉 알고리즘으로는 두가지 방법이 있는데
+부모의 width가 변경되는 순간 무조건 루프를  처음부터 다시 도다
+아니면 루프를 일단 다돌고 최대 width를 계산한뒤 다시 루프를 다 돌아서 width값이 안변하는지를 체크하고 안변할때까지 계속 돈다
+라는 방식이 있습니다.
+당연히 후자가 더 효율적입니다.
+
+이게 바로 자식은 부모의 크기에 의존하는 block과
+자식의 크기에 부모가 의존하는 overflow:auto가 만났을때 일어나는 일이죠
+새삼..block과 inline이 이렇게 대단한 ^^
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            outline: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<!--
+
+<div style="width:100px">
+    <span>
+      aaaaaa
+      <div>bbb</div>
+    </span>
+</div>
+-->
+<div>
+    <div>aaaa</div>
+    <div>bbbbbbbbb</div>
+</div>
+</body>
+</html>
