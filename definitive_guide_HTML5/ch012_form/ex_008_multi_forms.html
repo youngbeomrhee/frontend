@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>form이 여러 개 사용된 경우</title>
+</head>
+<body>
+    <form id="f_id_001" name="f_name_001">
+        <input type="text"/>
+    </form>
+    <form id="f_id_002" name="f_name_002">
+        <input type="text"/>
+    </form>
+    <form id="f_id_003" name="f_name_003">
+        <input type="text"/>
+    </form>
+<script>
+    console.log(document.length);
+    console.dir(document.forms);
+    console.log(document.forms.f_id_001 === document.forms[0]);
+</script>
+</body>
+</html>
