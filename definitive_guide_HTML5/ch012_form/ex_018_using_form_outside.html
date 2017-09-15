@@ -2,12 +2,19 @@
 <html>
     <head>
         <title>Form 바깥에서 엘리먼트들을 사용하기</title>
+        <meta charset="UTF-8">
         <meta name="author" content="Adam Freeman"/>
         <meta name="description" content="A simple example"/>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <style>
+            form {
+                border: 1px solid black;
+            }
+        </style>
     </head>
     <body>
         <form id="voteform" method="post" action="http://titan:8080/form">
+            <h3>form 영역</h3>
             <p>
                 <label for="fave">Fruit: <input autofocus id="fave" name="fave"/></label>
             </p>
