@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>가상선택자사용</title>
+    <style>
+        div {
+            border: 1px solid black;
+            width: 100px;
+            height: 100px
+        }
+        div:hover {
+            width: 130px;
+            height: 130px
+        }
+        :active {
+            background-color: #e6e6ff
+        }
+        div:active {
+            width: 150px;
+            height: 150px;
+            background-color: deepskyblue;
+        }
+        :focus {
+            outline: #ff1c24 3px dotted;
+        }
+    </style>
+</head>
+<body>
+    <h2>hover, activate(click) and focus!</h2>
+    <input type="text" placeholder="click & focus"/>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>

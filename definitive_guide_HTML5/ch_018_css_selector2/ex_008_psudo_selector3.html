@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>가상선택자사용</title>
+    <style>
+        input {
+            margin: 3px;
+        }
+        :enabled {
+            outline: green 3px solid;
+        }
+        :disabled {
+            outline: silver 3px solid;
+        }
+        .valid-invalid :valid {
+            outline: green 3px solid;
+        }
+        .valid-invalid :invalid {
+            outline: red 3px solid;
+        }
+        .req-opt :optional {
+            outline: green 3px solid;
+        }
+        .req-opt :required {
+            outline: red 3px solid;
+        }
+
+    </style>
+</head>
+<body>
+    <h2>활성화(:enabled)/비활성화(:disabled) 엘리먼트의 선택</h2>
+    <input type="text" placeholder="enabled(default)"/><br>
+    <input type="text" placeholder="disabled" disabled/>
+    <article class="valid-invalid">
+        <h2>유효한(:valid)/유효하지 않은(:invalid) 엘리먼트의 선택</h2>
+        <input type="text" placeholder="default"/><br>
+        <input type="text" placeholder="required" required/> 값을 없을 경우 invalid, 값이 입력되면 valid
+    </article>
+    <article class="req-opt">
+        <h2>필수(:required)/선택적(:optional) 엘리먼트의 선택</h2>
+        <input type="text" placeholder="default"/><br>
+        <input type="text" placeholder="required" required/>
+    </article>
+</body>
+</html>
