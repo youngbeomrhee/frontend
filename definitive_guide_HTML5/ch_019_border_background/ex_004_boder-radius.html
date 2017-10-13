@@ -4,20 +4,87 @@
     <meta charset="UTF-8">
     <title>곡선으로 된 모서리 생성하기</title>
     <style>
-        div {
+        .card {
+            width: 130px;
+            height: 140px;
+            float: left;
+        }
+        .shape {
             border: 1px solid black;
             width: 100px;
             height: 100px;
-            margin: 5px;
-            text-align: center;
-            /*vertical-align: middle;*/
+            margin: 5px 0;
+            outline: 1px solid silver;
         }
-        div:nth-child(1) {
-            border-radius: 10px;
+        [data-s1] {
+            border-radius: 20px;
+        }
+        [data-s2] {
+            border-radius: 50%;
+        }
+        [data-s3] {
+            border-radius: 30px 10px;
+        }
+        [data-s4] {
+            border-radius: 20px 0 0 0;
+        }
+        [data-s5] {
+            border-radius: 0 20px 0 0;
+        }
+        [data-s6] {
+            border-radius: 0 0 20px 0;
+        }
+        [data-s7] {
+            border-radius: 0 0 0 20px;
+        }
+        [data-s8] {
+            border-radius: 20px / 10px;
+        }
+        [data-s9] {
+            border-radius: 10px 20px 30px 40px / 10px 20px 30px 40px;
+        }
+        [data-s10] {
+            border-radius: 10px 20px 40px 80px / 20px;
+        }
+        [data-s11] {
+            border-radius: 50% 10% / 50% 10%;
         }
     </style>
 </head>
 <body>
-    <div>border-radius: 3px;</div>
+    <div class="card">
+        <div class="shape" data-s1></div>20px;
+    </div>
+    <div class="card">
+        <div class="shape" data-s2></div>50%;
+    </div>
+    <div class="card">
+        <div class="shape" data-s3></div>30px 10px;
+    </div>
+    <div class="card">
+        <div class="shape" data-s4></div>20px 0 0 0;
+    </div>
+    <div class="card">
+        <div class="shape" data-s5></div>0 20px 0 0;
+    </div>
+    <div class="card">
+        <div class="shape" data-s6></div>0 0 20px 0;
+    </div>
+    <div class="card">
+        <div class="shape" data-s7></div>0 0 0 20px;
+    </div>
+    <div class="card">
+        <div class="shape" data-s8></div>20px / 10px;
+    </div>
+    <div class="card">
+        <div class="shape" data-s9></div>10px 20px 30px 40px / 10px 20px 30px 40px;
+    </div>
+    <div class="card">
+        <div class="shape" data-s10></div>10px 20px 30px 40px / 10px
+    </div>
+    <div class="card">
+        <div class="shape" data-s11></div>10px 20px 30px 40px / 10px
+    </div>
+
 </body>
 </html>
