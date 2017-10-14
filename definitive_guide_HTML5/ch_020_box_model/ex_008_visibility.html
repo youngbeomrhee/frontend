@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>visibility</title>
+    <style>
+        div {
+            outline: 1px solid black;
+            width: 100px;
+            height: 100px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="collapse">display will be none</div>
+    <div id="hidden">will be "hidden"</div>
+    <div>visible</div>
+    <script>
+        setTimeout(()=>{ document.getElementById('collapse').style.display = 'none'; }, 2000)
+        setTimeout(()=>{ document.getElementById('hidden').style.visibility = 'hidden'; }, 4000)
+    </script>
+</body>
+</html>

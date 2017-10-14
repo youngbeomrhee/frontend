@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>엘리먼트의 크기 설정</title>
+    <style>
+        .outline {
+            outline: 1px solid black;
+            width: 75%;
+            height: 100px;
+        }
+        .box {
+            /*margin: 2px;*/
+            border: 10px dashed black;
+            height: 50%;
+            float: left;
+            padding: 10px;
+        }
+        .outline :nth-child(1) {
+            box-sizing: border-box;
+            width: 80%;
+        }
+        .outline :nth-child(2) {
+            box-sizing: content-box;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="outline">
+        <div class="box">box-sizing: border-box; width: 80%;</div>
+        <div class="box">box-sizing: content-box; width: 100px;</div>
+    </div>
+</body>
+</html>
