@@ -8,17 +8,17 @@
             border: 1px solid black;
             margin: 10px
         }
-        ::first-line {
+        #box ::first-line {
             background-color: #D2E0E6;
         }
-        ::first-letter {
+        div::first-letter {
             background-color: #3b5998;
         }
         div:before {
             content: "/div 앞에 추가/ ";
         }
         body *:after {
-            content: " /*뒤에 추가/";
+            content: " /뒤에 추가/";
         }
     </style>
 </head>
@@ -27,7 +27,7 @@
     <div class="a" data-x="pre1-x-1suf" id="id1">class="a" data-x="pre1-x-1suf" id="id1"</div>
     <div class="a b" data-x="pre2-x-2suf">class="a b" data-x="pre2-x-2suf"</div>
     <div class="a b c" data-x="pre3-x-3suf" id="id2">class="a b c" data-x="pre3-x-3suf" id="id2"</div>
-    <div>
+    <div id="box">
         <div class="b" data-x="x-suf">class="b" data-x="x-suf"</div>
         <div class="b c" data-x="pre-x">class="b c" data-x="pre-x"</div>
     </div>
