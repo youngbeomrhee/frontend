@@ -27,141 +27,188 @@
 <h1>8 <a name="box-model">Box model</a></h1>
 <div class="subtoc">
 <p><strong>Contents</strong>
-  </p><ul class="toc">
-    <li class="tocline2"><a href="#box-dimensions" class="tocxref">8.1 Box dimensions</a>
-    </li><li class="tocline2"><a href="#mpb-examples" class="tocxref">8.2 Example of margins, padding, and borders</a>
-    </li><li class="tocline2"><a href="#margin-properties" class="tocxref">8.3 Margin properties: <span class="propinst-margin-top">'margin-top'</span>,  <span class="propinst-margin-right">'margin-right'</span>,  <span class="propinst-margin-bottom">'margin-bottom'</span>, <span class="propinst-margin-left">'margin-left'</span>, and <span class="propinst-margin">'margin'</span></a>
-    <ul class="toc">
-      <li class="tocline3"><a href="#collapsing-margins" class="tocxref">8.3.1 Collapsing margins</a>
-    </li></ul>
-    </li><li class="tocline2"><a href="#padding-properties" class="tocxref">8.4 Padding properties: <span class="propinst-padding-top">'padding-top'</span>, <span class="propinst-padding-right">'padding-right'</span>, <span class="propinst-padding-bottom">'padding-bottom'</span>, <span class="propinst-padding-left">'padding-left'</span>, and <span class="propinst-padding">'padding'</span></a>
-    </li><li class="tocline2"><a href="#border-properties" class="tocxref">8.5 Border properties</a>
-    <ul class="toc">
-      <li class="tocline3"><a href="#border-width-properties" class="tocxref">8.5.1 Border width: <span class="propinst-border-top-width">'border-top-width'</span>, <span class="propinst-border-right-width">'border-right-width'</span>, <span class="propinst-border-bottom-width">'border-bottom-width'</span>, <span class="propinst-border-left-width">'border-left-width'</span>, and <span class="propinst-border-width">'border-width'</span></a>
-      </li><li class="tocline3"><a href="#border-color-properties" class="tocxref">8.5.2 Border color: <span class="propinst-border-top-color">'border-top-color'</span>, <span class="propinst-border-right-color">'border-right-color'</span>, <span class="propinst-border-bottom-color">'border-bottom-color'</span>, <span class="propinst-border-left-color">'border-left-color'</span>, and <span class="propinst-border-color">'border-color'</span></a>
-      </li><li class="tocline3"><a href="#border-style-properties" class="tocxref">8.5.3 Border style: <span class="propinst-border-top-style">'border-top-style'</span>, <span class="propinst-border-right-style">'border-right-style'</span>, <span class="propinst-border-bottom-style">'border-bottom-style'</span>, <span class="propinst-border-left-style">'border-left-style'</span>, and <span class="propinst-border-style">'border-style'</span></a>
-      </li><li class="tocline3"><a href="#border-shorthand-properties" class="tocxref">8.5.4 Border shorthand properties: <span class="propinst-border-top">'border-top'</span>, <span class="propinst-border-right">'border-right'</span>, <span class="propinst-border-bottom">'border-bottom'</span>, <span class="propinst-border-left">'border-left'</span>, and <span class="propinst-border">'border'</span></a>
-    </li></ul>
-    </li><li class="tocline2"><a href="#bidi-box-model" class="tocxref">8.6 The box model for inline elements in bidirectional context</a>
-  </li></ul>
+	</p><ul class="toc">
+		<li class="tocline2"><a href="#box-dimensions" class="tocxref">8.1 Box dimensions</a>
+		</li><li class="tocline2"><a href="#mpb-examples" class="tocxref">8.2 Example of margins, padding, and borders</a>
+		</li><li class="tocline2"><a href="#margin-properties" class="tocxref">8.3 Margin properties: <span class="propinst-margin-top">'margin-top'</span>, <span class="propinst-margin-right">'margin-right'</span>,	<span class="propinst-margin-bottom">'margin-bottom'</span>, <span class="propinst-margin-left">'margin-left'</span>, and <span class="propinst-margin">'margin'</span></a>
+		<ul class="toc">
+			<li class="tocline3"><a href="#collapsing-margins" class="tocxref">8.3.1 Collapsing margins</a>
+		</li></ul>
+		</li><li class="tocline2"><a href="#padding-properties" class="tocxref">8.4 Padding properties: <span class="propinst-padding-top">'padding-top'</span>, <span class="propinst-padding-right">'padding-right'</span>, <span class="propinst-padding-bottom">'padding-bottom'</span>, <span class="propinst-padding-left">'padding-left'</span>, and <span class="propinst-padding">'padding'</span></a>
+		</li><li class="tocline2"><a href="#border-properties" class="tocxref">8.5 Border properties</a>
+		<ul class="toc">
+			<li class="tocline3"><a href="#border-width-properties" class="tocxref">8.5.1 Border width: <span class="propinst-border-top-width">'border-top-width'</span>, <span class="propinst-border-right-width">'border-right-width'</span>, <span class="propinst-border-bottom-width">'border-bottom-width'</span>, <span class="propinst-border-left-width">'border-left-width'</span>, and <span class="propinst-border-width">'border-width'</span></a>
+			</li><li class="tocline3"><a href="#border-color-properties" class="tocxref">8.5.2 Border color: <span class="propinst-border-top-color">'border-top-color'</span>, <span class="propinst-border-right-color">'border-right-color'</span>, <span class="propinst-border-bottom-color">'border-bottom-color'</span>, <span class="propinst-border-left-color">'border-left-color'</span>, and <span class="propinst-border-color">'border-color'</span></a>
+			</li><li class="tocline3"><a href="#border-style-properties" class="tocxref">8.5.3 Border style: <span class="propinst-border-top-style">'border-top-style'</span>, <span class="propinst-border-right-style">'border-right-style'</span>, <span class="propinst-border-bottom-style">'border-bottom-style'</span>, <span class="propinst-border-left-style">'border-left-style'</span>, and <span class="propinst-border-style">'border-style'</span></a>
+			</li><li class="tocline3"><a href="#border-shorthand-properties" class="tocxref">8.5.4 Border shorthand properties: <span class="propinst-border-top">'border-top'</span>, <span class="propinst-border-right">'border-right'</span>, <span class="propinst-border-bottom">'border-bottom'</span>, <span class="propinst-border-left">'border-left'</span>, and <span class="propinst-border">'border'</span></a>
+		</li></ul>
+		</li><li class="tocline2"><a href="#bidi-box-model" class="tocxref">8.6 The box model for inline elements in bidirectional context</a>
+	</li></ul>
 </div>
 <!-- warning -->
 <div> <input id="annoying-warning" type="checkbox" title="hide note"> <label for="annoying-warning">(hide)</label> <div class="annoying-warning"> <p><strong>Note:</strong> Several sections of this specification have been updated by other specifications. Please, see <a href="https://www.w3.org/TR/CSS/#css">"Cascading Style Sheets (CSS) ? The Official Definition"</a> in the latest <cite>CSS Snapshot</cite> for a list of specifications and the sections they replace. </p><p>The CSS Working Group is also developing <a href="http://www.w3.org/TR/CSS22/">CSS level&nbsp;2 revision&nbsp;2 (CSS&nbsp;2.2).</a> </p></div> </div>
 <!-- /warning -->
 
-<p>The CSS box model describes the rectangular boxes that are
-generated for elements in the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#doctree">document
-tree</a> and laid out according to the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html">visual formatting
-model</a>.
-
+<p>
+	The CSS box model describes the rectangular boxes that are generated for elements in the
+	<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#doctree">document tree</a>
+	and laid out according to the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html">visual formatting model</a>.
 </p>
 <h2>8.1 <a name="box-dimensions">Box dimensions - 상자크기</a></h2>
 
-<p>Each box has a
-<span class="index-def" title="box::content|content::of a box">
-<a name="box-content-area"><dfn>content area</dfn></a></span> (e.g.,
-text, an image, etc.) and optional surrounding 
-<span class="index-def" title="box::padding|padding::of a box">
-<a name="box-padding-area"><dfn>padding</dfn></a></span>,
-<span class="index-def" title="box::border|border::of a box">
-<a name="box-border-area"><dfn>border</dfn></a></span>, and 
-<span class="index-def" title="box::margin|margin::of a box">
-<a name="box-margin-area"><dfn>margin</dfn></a></span> areas; the size
-of each area is specified by properties defined below.  The following diagram shows how these areas relate and the terminology used to refer to pieces of margin, border, and padding:</p>
-<p>각 상자에는 content area (예 : 텍스트, 이미지 등) 및 선택적 주변 padding, border 및 margin 영역이 있습니다. 각 영역의 크기는 아래에 정의 된 속성에 의해 지정됩니다. 다음 diagramd은 영역이 어떻게 관련되어 있으며 margin, border 및 padding 조각을 나타내는 데 사용되는 용어를 보여줍니다.</p>
-
-<div class="figure">
-<p><img src="https://www.w3.org/TR/2011/REC-CSS2-20110607/images/boxdim.png" alt="Image illustrating the relationship between content, padding, borders, and margins."><span class="dlink">&nbsp;&nbsp;&nbsp;<a name="img-boxdim" href="https://www.w3.org/TR/2011/REC-CSS2-20110607/images/longdesc/boxdim-desc.html" title="Long description of illustration of box areas">[D]</a></span></p>
-</div>
-
-<p>The margin, border, and padding can be broken down into top, right,
-bottom, and left segments (e.g., in the diagram, "LM" for left margin,
-"RP" for right padding, "TB" for top border, etc.).
+<p>
+	Each box has a
+	<span class="index-def" title="box::content|content::of a box"><a name="box-content-area"><dfn>content area</dfn></a></span> (e.g., text, an image, etc.) and optional surrounding
+	<span class="index-def" title="box::padding|padding::of a box"><a name="box-padding-area"><dfn>padding</dfn></a></span>,
+	<span class="index-def" title="box::border|border::of a box"><a name="box-border-area"><dfn>border</dfn></a></span>, and
+	<span class="index-def" title="box::margin|margin::of a box"><a name="box-margin-area"><dfn>margin</dfn></a></span> areas;
+	the size of each area is specified by properties defined below. The following diagram shows how these areas relate and the terminology used to refer to pieces of margin, border, and padding:
 </p>
 <p>
-  margin, border 및 padding은 top, right, bottom 및 left 세그먼트로 나눌 수 있습니다 (예 : 다이어그램에서 왼쪽 여백은 "LM", 오른쪽 테두리는 "RP", 위쪽 테두리는 "TB"등).
+	각 상자에는
+	<span class="index-def" title="box::content|content::of a box"><a name="box-content-area"><dfn>content area</dfn></a></span> (예 : text, image 등) 및 선택적 주변
+	<span class="index-def" title="box::padding|padding::of a box"><a name="box-padding-area"><dfn>padding</dfn></a></span>,
+	<span class="index-def" title="box::border|border::of a box"><a name="box-border-area"><dfn>border</dfn></a></span>, 및
+	<span class="index-def" title="box::margin|margin::of a box"><a name="box-margin-area"><dfn>margin</dfn></a></span> 영역이 있습니다.
+	각 영역의 크기는 아래에 정의 된 속성에 의해 지정됩니다. 다음 diagram은 이러한 영역이 어떻게 관련되어 있으며, margin, border 및 padding 조각을 나타내는 데 사용되는 용어를 보여줍니다.
+</p>
+
+<div class="figure">
+<p>
+	<img src="https://www.w3.org/TR/2011/REC-CSS2-20110607/images/boxdim.png" alt="Image illustrating the relationship between content, padding, borders, and margins.">
+	<span class="dlink">&nbsp;&nbsp;&nbsp;<a name="img-boxdim" href="https://www.w3.org/TR/2011/REC-CSS2-20110607/images/longdesc/boxdim-desc.html" title="Long description of illustration of box areas">[D]</a></span>
+</p>
+</div>
+
+<p>
+	The margin, border, and padding can be broken down into top, right,
+	bottom, and left segments (e.g., in the diagram, "LM" for left margin,
+	"RP" for right padding, "TB" for top border, etc.).
+</p>
+<p>
+	margin, border 및 padding은 top, right, bottom 및 left 부분으로 나눌 수 있습니다 (예 : 다이어그램에서 왼쪽 여백은 "LM", 오른쪽 테두리는 "RP", 위쪽 테두리는 "TB"등).
 </p>
 <br>
 
-<p>The perimeter of each of the four areas (content, padding, border,
-and margin) is called an "edge", so each box has four edges:</p>
 <p>
-  네 개의 영역 (content, padding, border 및 margin)의 경계를 "edge"라고하며 각 상자의 edge는 4 개입니다.
+	The perimeter of each of the four areas (content, padding, border,
+	and margin) is called an "edge", so each box has four edges:
+</p>
+<p>
+	네 개의 영역(content, padding, border 및 margin)의 경계를 "edge"라고 하며 각 상자의 edge는 4개입니다.
 </p>
 <dl>
-<dt>
-  <span class="index-def" title="content edge"><a name="content-edge"><strong>content edge</strong></a></span> or <span class="index-def" title="inner edge"><a name="inner-edge"><strong>inner edge</strong></a></span>
-</dt>
-<dd>The content edge surrounds the rectangle given by the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#Computing_widths_and_margins">width</a> and <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#Computing_heights_and_margins">height</a>
-of the box, which often depend on the element's <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#rendered-content">rendered content</a>.
-The four content edges define the
-box's
-    <dfn><a name="x10"><span class="index-def">content box</span></a></dfn>.
-</dd>
-<dd>
-content edge는 박스의 width와 height로 주어진 직사각형을 둘러쌉니다.
-</dd>
-<dd>
-내용 모서리 는 상자 의 폭 과 높이 로 지정된 사각형을 둘러싸고 있으며 , 종종 요소의 렌더링 된 내용 에 따라 달라집니다 . 네 개의 내용 가장자리는 상자의 내용 상자를 정의합니다 .
-</dd>
-<dt><span class="index-def" title="padding edge"><a name="padding-edge"><strong>padding edge</strong></a></span>
-</dt>
-<dd>The padding edge surrounds the box padding. If the padding
-has 0 width, the padding edge is the same as the content edge.
-The four padding edges define the
-box's <dfn><a name="x12"><span class="index-def">padding box</span></a></dfn>.
-</dd>
-<dd>
-  padding edge가 box padding을 둘러 쌉니다. padding의 너비가 0 인 경우, padding edge가 content edge와 같습니다. 네 개의 padding edge는 box의 <dfn><a name="x12"><span class="index-def">padding box</span></a></dfn>를 정의합니다 .
-</dd>
-<dt><span class="index-def" title="border edge"><a name="border-edge"><strong>border edge</strong></a></span>
-</dt><dd>The border edge surrounds the box's border. If the border
-has 0 width, the border edge is the same as the padding edge.
-The four border edges define the box's <dfn><a name="x14"><span class="index-def">border
-box</span></a></dfn>.
-</dd><dt><span class="index-def" title="margin edge"><a name="margin-edge"><strong>margin edge</strong></a></span>
-or <span class="index-def" title="outer edge"><a name="outer-edge"><strong>outer
-edge</strong></a></span>
-</dt><dd>The margin edge surrounds the box margin. If the margin
-has 0 width, the margin edge is the same as the border edge.
-The four margin edges define the box's <dfn><a name="x17"><span class="index-def">margin
-box</span></a></dfn>.
-</dd></dl>
+	<dt>
+		<span class="index-def" title="content edge"><a name="content-edge"><strong>content edge</strong></a></span> or <span class="index-def" title="inner edge"><a name="inner-edge"><strong>inner edge</strong></a></span>
+	</dt>
+	<dd>
+		The content edge surrounds the rectangle given by the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#Computing_widths_and_margins">width</a> and <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#Computing_heights_and_margins">height</a>
+		of the box, which often depend on the element's <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#rendered-content">rendered content</a>.
+		The four content edges define the
+		box's <dfn><a name="x10"><span class="index-def">content box</span></a></dfn>.
+	</dd>
+	<dd>
+		content edge는 box의 width와 height로 지정된 사각형을 둘러싸고 있으며, 이것은 종종 요소의 렌더링 된 내용에 따라 달라집니다. 네 개의 content edge는 box의 <dfn><a name="x10"><span class="index-def">content box</span></a></dfn>를 정의합니다 .
+	</dd>
 
-<p>Each edge may be broken down into a top, right, bottom, and left
-edge.
+	<dt>
+		<span class="index-def" title="padding edge"><a name="padding-edge"><strong>padding edge</strong></a></span>
+	</dt>
+	<dd>
+		The padding edge surrounds the box padding. If the padding
+		has 0 width, the padding edge is the same as the content edge.
+		The four padding edges define the
+		box's <dfn><a name="x12"><span class="index-def">padding box</span></a></dfn>.
+	</dd>
+	<dd>
+		padding edge가 box padding을 둘러 쌉니다. padding의 width가 0인 경우, padding edge는 content edge와 같습니다. 네 개의 padding edge는 box의 <dfn><a name="x12"><span class="index-def">padding box</span></a></dfn>를 정의합니다 .
+	</dd>
 
-</p><p>The dimensions of the content area of a box ? the <span class="index-def" title="box::content width"><a name="content-width"><dfn>content width</dfn></a></span> and <span class="index-def" title="box::content height"><a name="content-height"><dfn>content height</dfn></a></span> ? 
-depend on several factors: whether the element generating
-the box has the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>
-or <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a> property
-set, whether the box contains text or other boxes, whether the
-box is a table, etc. Box widths and heights are discussed
-in the chapter on <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html">visual formatting
-model details</a>.
+	<dt>
+		<span class="index-def" title="border edge"><a name="border-edge"><strong>border edge</strong></a></span>
+	</dt>
+	<dd>
+		The border edge surrounds the box's border. If the border has 0 width, the border edge is the same as the padding edge.
+		The four border edges define the box's <dfn><a name="x14"><span class="index-def">border box</span></a></dfn>.
+	</dd>
+	<dd>
+		border edge가 box border를 둘러 쌉니다. border의 width가 0인 경우, border edge는 padding edge와 동일합니다. 네 개의 border edge는 box의 <dfn><a name="x14"><span class="index-def">border box</span></a></dfn>를 정의합니다 .
+	</dd>
 
-</p><p>The background style of the content, padding, and border areas of a
-box is specified by the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/colors.html#propdef-background" class="noxref"><span class="propinst-background">'background'</span></a> property of the
-generating element. Margin backgrounds are always transparent.
+	<dt>
+		<span class="index-def" title="margin edge"><a name="margin-edge"><strong>margin edge</strong></a></span>
+		or <span class="index-def" title="outer edge"><a name="outer-edge"><strong>outer edge</strong></a></span>
+	</dt>
+	<dd>
+		The margin edge surrounds the box margin. If the margin has 0 width, the margin edge is the same as the border edge. The four margin edges define the box's <dfn><a name="x17"><span class="index-def">margin box</span></a></dfn>.
+	</dd>
+	<dd>
+		margin edge가 box margin을 둘러 쌉니다. 여백의 width가 0인 경우 margin edge는 border edge와 같습니다. 네 개의 margin edge는 box의 <dfn><a name="x17"><span class="index-def">margin box</span></a></dfn>를 정의합니다 .
+	</dd>
+</dl>
 
-</p><h2>8.2 <a name="mpb-examples">Example of margins, padding, and borders</a></h2> 
+<p>
+	Each edge may be broken down into a top, right, bottom, and left edge.
+</p>
+<p>
+	각각의 edge는 top, right, bottom 및 left edge로 나눌 수 있습니다.
+</p>
+<br>
 
-<p>This example illustrates how margins, padding, and borders
-interact. The example HTML document:
+<p>
+	The dimensions of the content area of a box
+	- the <span class="index-def" title="box::content width"><a name="content-width"><dfn>content width</dfn></a></span>
+	and <span class="index-def" title="box::content height"><a name="content-height"><dfn>content height</dfn></a></span> -
+	depend on several factors: whether the element generating the box has the
+	<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>
+	or <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>
+	property set, whether the box contains text or other boxes, whether the box is a table, etc.
+	Box widths and heights are discussed in the chapter on <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html">visual formatting model details</a>.
+</p>
+<p>
+	box의 content area의 크기 - <span class="index-def" title="box::content width"><a name="content-width"><dfn>content width</dfn></a></span>
+	와 <span class="index-def" title="box::content height"><a name="content-height"><dfn>content height</dfn></a></span> -
+	는 다음 몇 가지 요소에 따라 달라집니다 :
+	box를 생성하는 element가
+	<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>
+	또는 <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>
+	속성집합을 가지고 있는지 여부, 상자에 text 또는 다른 box를 포함하는지 여부, box가 table인지 여부, 등등.
+	box의 width와 height는 <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html">visual formatting model details</a> 장에서 다루어 집니다.
+</p>
+<br>
 
-</p><pre class="html-example">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"&gt;
+<p>
+	The background style of the content, padding, and border areas of a box is specified by the
+	<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/colors.html#propdef-background" class="noxref"><span class="propinst-background">'background'</span></a>
+	property of the generating element. Margin backgrounds are always transparent.
+</p>
+<p>
+	box의 content, padding 및 border 영역의 background style은 생성되는 element의
+	<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/colors.html#propdef-background" class="noxref"><span class="propinst-background">'background'</span></a>
+	property에 의해 지정됩니다 . margin의 background은 항상 투명합니다.
+</p>
+
+
+<h2>8.2 <a name="mpb-examples">Example of margins, padding, and borders</a> - <a name="mpb-examples">margins, padding, 및 borders</a> 예제</h2>
+
+<p>
+	This example illustrates how margins, padding, and borders interact. The example HTML document:
+</p>
+
+<pre class="html-example">
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"&gt;
 &lt;HTML&gt;
   &lt;HEAD&gt;
     &lt;TITLE&gt;Examples of margins, padding, and borders&lt;/TITLE&gt;
     &lt;STYLE type="text/css"&gt;
-      UL { 
-        background: yellow; 
+      UL {
+        background: yellow;
         margin: 12px 12px 12px 12px;
         padding: 3px 3px 3px 3px;
                                      /* No borders set */
       }
-      LI { 
-        color: white;                /* text color is white */ 
+      LI {
+        color: white;                /* text color is white */
         background: blue;            /* Content, padding will be blue */
         margin: 12px 12px 12px 12px;
         padding: 12px 0px 12px 12px; /* Note 0px padding right */
@@ -185,19 +232,31 @@ interact. The example HTML document:
 &lt;/HTML&gt;
 </pre>
 
-<p>results in a <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#doctree">document tree</a> with
-(among other relationships) a UL element that has two LI
-children. 
+<p>
+	results in a <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#doctree">document tree</a> with (among other relationships) a UL element that has two LI children.
+</p>
+<p>
+	(다른 관계들 사이에서) 두 개의 LI 자손을 가지고 있는 UL element의 <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#doctree">document tree</a> 결과 .
+</p>
+<br>
 
-</p><p>The first of the following diagrams illustrates what this example
-would produce. The second illustrates the relationship between the
-margins, padding, and borders of the UL elements and those of its
-children LI elements. (Image is not to scale.)</p>
+<p>
+	The first of the following diagrams illustrates what this example would produce.
+	The second illustrates the relationship between the margins, padding, and borders of the UL elements and those of its children LI elements. (Image is not to scale.)
+</p>
+<p>
+	다음 diagram 중 첫 번째는 이 예제가 어떤 것을 생성하는지 보여줍니다.
+	두 번째는 UL element의 margins, padding 및 border와 그것들의 하위 자손요소인 LI elements 사이의 관계를 보여줍니다. (이미지 크기는 측정하지 않습니다.)
+</p>
+<br>
 
 <div class="figure">
-<p><img src="https://www.w3.org/TR/2011/REC-CSS2-20110607/images/boxdimeg.png" alt="Image illustrating how parent and child margins, borders,
-and padding relate."><span class="dlink">&nbsp;&nbsp;&nbsp;<a name="img-boxdimeg" href="https://www.w3.org/TR/2011/REC-CSS2-20110607/images/longdesc/boxdimeg-desc.html" title="Long description of list box example showing margins,
-padding, and borders">[D]</a></span></p>
+	<p>
+		<img src="https://www.w3.org/TR/2011/REC-CSS2-20110607/images/boxdimeg.png" alt="Image illustrating how parent and child margins, borders, and padding relate.">
+		<span class="dlink">
+			<a name="img-boxdimeg" href="https://www.w3.org/TR/2011/REC-CSS2-20110607/images/longdesc/boxdimeg-desc.html" title="Long description of list box example showing margins, padding, and borders">[D]</a>
+		</span>
+	</p>
 </div>
 
 <p>Note that:</p>
