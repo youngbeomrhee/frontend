@@ -262,26 +262,37 @@
 <p>Note that:</p>
 
 <ul>
-
-<li>The <a href="#content-width">content width</a> for each LI box is
-calculated top-down; the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#containing-block">containing
-block</a> for each LI box is established by the UL element.
-
-</li><li>The margin box height of each LI box depends on its <a href="#content-height">content height</a>, plus top and bottom
-padding, borders, and margins. Note that vertical margins between the
-LI boxes <a href="#collapsing-margins">collapse.</a>
-
-</li><li>The right padding of the LI boxes has been set to zero width
-(the <a href="#propdef-padding" class="noxref"><span class="propinst-padding">'padding'</span></a> property). The
-effect is apparent in the second illustration.
-
-</li><li>The margins of the LI boxes are transparent ? margins are always
-transparent ? so the background color (yellow) of the UL padding and
-content areas shines through them. 
-
-</li><li>The second LI element specifies a dashed border (the
-<a href="#propdef-border-style" class="noxref"><span class="propinst-border-style">'border-style'</span></a> property).
-</li></ul>
+	<li>
+		The <a href="#content-width">content width</a> for each LI box is calculated top-down;
+		the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#containing-block">containing block</a> for each LI box is established by the UL element.
+		<br>
+		각각의 LI box를 위한 <a href="#content-width">content width</a>는 하향식으로 계산됩니다;
+		각각의 LI box를 위한 <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#containing-block">containing block</a>은 UL element에 의해서 설정됩니다.
+	</li>
+	<li>
+		The margin box height of each LI box depends on its <a href="#content-height">content height</a>,
+		plus top and bottom padding, borders, and margins. Note that vertical margins between the LI boxes <a href="#collapsing-margins">collapse.</a>
+		<br>
+		각각의 LI box의 margin box height는 그것의 <a href="#content-height">content height</a>와 추가적으로 top과 bottom의 padding, borders, 및 margins에 따라 달라집니다.
+		LI box들 사이의 수직 margins은 <a href="#collapsing-margins">collapse.(붕괴)</a>되는걸 주의하세요.
+	</li>
+	<li>
+		The right padding of the LI boxes has been set to zero width (the <a href="#propdef-padding" class="noxref"><span class="propinst-padding">'padding'</span></a> property).
+		The effect is apparent in the second illustration.
+		<br>
+		LI box들의 우측 padding은 0 width(the <a href="#propdef-padding" class="noxref"><span class="propinst-padding">'padding'</span></a> property)으로 설정되었습니다.
+		그 효과는 두 번째 그림에서 분명히 보입니다.
+	</li>
+	<li>
+		The margins of the LI boxes are transparent - margins are always transparent - so the background color (yellow) of the UL padding and content areas shines through them.
+		<br>
+		LI box들의 margins 투명하므로 - marin은 언제나 투명합니다 - UL padding과 content areas의 background color (노란색)는 그것들을 통과해서 보이게 됩니다.
+	</li>
+	<li>
+		The second LI element specifies a dashed border (the <a href="#propdef-border-style" class="noxref"><span class="propinst-border-style">'border-style'</span></a> property).
+		<br>
+	</li>
+</ul>
 
 <h2>8.3 <a name="margin-properties">Margin properties</a>:
 <a href="#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a>, 
