@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>visibility</title>
     <style>
-        div {
+        .box {
             outline: 1px solid black;
             width: 100px;
             height: 100px;
@@ -12,13 +12,24 @@
         }
     </style>
 </head>
-<body>
-    <div id="collapse">display will be none</div>
-    <div id="hidden">will be "hidden"</div>
-    <div>visible</div>
+    <div class="box" id="change">Will be changed</div>
+    <div class="box">default</div>
+    <div style="clear:both;padding: 10px;">
+        visibility : <span id="visInfo">visible</span>
+        <br>
+        <input type="button" id="visHidden" data-vis="hidden" value="visibility: hidden"/>
+        <input type="button" id="visCollapse" data-vis="collapse" value="visibility: collapse"/>
+        <input type="button" id="visVisible" data-vis="visible" value="visibility: visible"/>
+    </div>
     <script>
-        setTimeout(()=>{ document.getElementById('collapse').style.display = 'none'; }, 2000)
-        setTimeout(()=>{ document.getElementById('hidden').style.visibility = 'hidden'; }, 4000)
+        const div = document.querySelector('#change'),
+            visInfo = document.querySelector('#visInfo');
+        [].forEach.call(document.querySelectorAll('[type=button]'), (ele)=>{
+            ele.onclick = (e)=>{
+                div.style.visibility = e.target.dataset.vis;
+                visInfo.innerHTML = e.target.dataset.vis;
+            };
+        });
     </script>
 </body>
 </html>

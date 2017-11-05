@@ -10,26 +10,24 @@
             height: 100px;
         }
         .box {
-            /*margin: 2px;*/
             border: 10px dashed black;
             height: 50%;
             float: left;
-            padding: 10px;
         }
         .outline :nth-child(1) {
-            box-sizing: border-box;
             width: 80%;
         }
         .outline :nth-child(2) {
-            box-sizing: content-box;
             width: 100px;
         }
     </style>
 </head>
 <body>
+    <h1>element의 크기</h1><h2>%(동적) vs. px(고정)</h2>
+    윈도우 크기를 늘리거나 줄여보면 확인 가능
     <div class="outline">
-        <div class="box">box-sizing: border-box; width: 80%;</div>
-        <div class="box">box-sizing: content-box; width: 100px;</div>
+        <div class="box">width: 80%;</div>
+        <div class="box">width: 100px;</div>
     </div>
 </body>
 </html>
