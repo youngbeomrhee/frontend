@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>반응형 웹 디자인과 관련된 설정</title>
+	<style>
+		/*>>>>>>>>>>>>>>>>>>>>>>>>>*/
+		/* 박스의 색과 높이*/
+		/*>>>>>>>>>>>>>>>>>>>>>>>>>*/
+		.box {
+			text-align: center;
+		}
+		.boxA {
+			outline: dotted 6px red;
+		}
+		.box1 {
+			line-height: 200px;
+			height: 200px;
+			outline: dashed 4px green;
+		}
+		.box2 {
+			line-height: 100px;
+			height: 100px;
+			outline: dotted 2px blue;
+		}
+		/*<<<<<<<<<<<<<<<<<<<<<<<<<*/
+		/* 박스의 색과 높이*/
+		/*<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+		/*>>>>>>>>>>>>>>>>>>>*/
+		/* 박스를 중첩하는 설정 */
+		/*>>>>>>>>>>>>>>>>>>>*/
+		.boxA {
+			position: relative;
+		}
+		.box2 {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		/*<<<<<<<<<<<<<<<<<<<*/
+		/* 박스를 중첩하는 설정 */
+		/*<<<<<<<<<<<<<<<<<<<*/
+	</style>
+</head>
+<body>
+	<h3>p.58 박스를 겹쳐 올리는 레이아웃</h3>
+	<div class="boxA">
+		<div class="box1 box">
+			BOX1
+		</div>
+		<div class="box2 box">
+			BOX2
+		</div>
+	</div>
+</body>
+</html>
