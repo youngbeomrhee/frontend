@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>박스의 너비를 지정</title>
+	<style>
+		.box {
+			outline: 1px solid black;
+			height: 200px;
+			text-align: center;
+			line-height: 200px;
+		}
+		.boxA:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.box2, .box3 {
+			float: left;
+		}
+		.box2 {
+			width: 75%;
+		}
+		.box3 {
+			width: 25%;
+		}
+	</style>
+</head>
+<body>
+	<h3>p.34~35 박스의 너비를 지정 : 합이 100%가 된다면 어떻게 지정해도 상관없다.</h3>
+		<div class="box1 box">
+			BOX1
+		</div>
+		<div class="boxA">
+			<div class="box2 box">
+				BOX2
+			</div>
+			<div class="box3 box">
+				BOX3
+			</div>
+		</div>
+		<div class="box4 box">
+			BOX4
+		</div>
+</body>
+</html>
