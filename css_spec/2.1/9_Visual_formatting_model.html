@@ -100,23 +100,47 @@
 
 <h2>9.1 <a name="visual-model-intro">Introduction to the visual formatting model</a></h2>
 
-<p>This chapter and the next describe the <a name="x0"><span class="index-def" title="visual formatting model">visual formatting model</span></a>: how user
-agents process the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#doctree">document tree</a>
-for visual <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html">media</a>.
+<p>
+  This chapter and the next describe the <a name="x0"><span class="index-def" title="visual formatting model">visual formatting model</span></a>: how user
+  agents process the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#doctree">document tree</a>
+  for visual <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html">media</a>.
 </p>
+<p>
+  이번 장과 다음 장은 <a name="x0"><span class="index-def" title="visual formatting model">visual formatting model</span></a>
+  , 즉 user agent의 <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#doctree">document tree</a>를
+  시각적인 <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html">media</a>를 위해 처리하는 방식을 설명합니다
+</p>
+<br>
 
-<p>In the visual formatting model, each element in the document tree
-generates zero or more boxes according to the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/box.html">box
-model</a>. The layout of these boxes is governed by:</p>
+<p>
+  In the visual formatting model, each element in the document tree
+  generates zero or more boxes according to the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/box.html">box
+  model</a>. The layout of these boxes is governed by:
+</p>
+<p>
+  visual formatting model에서 document tree의 각각의 element는 0개 또는 그 이상의 box를 <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/box.html">box
+  model</a>에 따라서 생성합니다. 그러한 box들의 layout은 다음 사항들에 의해서 관리됩니다
+</p>
+<br>
 
 <ul>
-<li><a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/box.html#box-dimensions">box dimensions</a> and <a href="#box-gen">type</a>.
-</li><li><a href="#positioning-scheme">positioning scheme</a>
-(normal flow, float, and absolute positioning).
-</li><li>relationships between elements
-in the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#doctree">document tree.</a>
-</li><li>external information (e.g., viewport size, <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#intrinsic">intrinsic</a> dimensions of images, etc.).
-</li></ul>
+  <li>
+    <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/box.html#box-dimensions">box dimensions</a> and <a href="#box-gen">type</a>.<br>
+    <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/box.html#box-dimensions">box 치수</a>와 <a href="#box-gen">type</a>.
+  </li>
+  <li>
+    <a href="#positioning-scheme">positioning scheme</a>(normal flow, float, and absolute positioning).<br>
+    <a href="#positioning-scheme">positioning 체계</a>(normal flow, float, and absolute positioning).
+  </li>
+  <li>
+    relationships between elements in the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#doctree">document tree.</a><br>
+    <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#doctree">document tree.</a>에서의 element들 간의 관계
+  </li>
+  <li>
+    external information (e.g., viewport size, <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#intrinsic">intrinsic dimensions</a> of images, etc.).<br>
+    외부의 정보 (예: viewport size, <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#intrinsic">intrinsic dimensions</a> of images, etc.).
+  </li>
+</ul>
 
 <p>The properties defined in this chapter and the next apply to both
 <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#continuous-media-group">continuous media</a> and
