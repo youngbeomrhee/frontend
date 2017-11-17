@@ -9,9 +9,15 @@
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet">
 	<style>
         /*>>>>>>>>>>>>>>>>>>>>>>> 공통 >>>>>>>>>>>>>>>>>>>>>>>*/
+        body {
+            margin: 0
+        }
 		.box {
 /*			outline: 1px solid black*/
 		}
+        .box1, .boxA, .box-inner {
+            padding: 0 10px
+        }
 		.site h1 a {
 			color: #000000;
 			text-decoration: none;
@@ -223,13 +229,14 @@
         }
         .share li a {
             display: block;
-            padding: 5px;
+            padding: 10px 5px;
             color: #000000;
             font-size: 14px;
-            text-decoration: none
+            text-decoration: none;
+            text-align: center
         }
         .share li a:hover {
-            background-color: #eeeeee
+            opacity: 0.7
         }
         .share ul:after {
             content: "";
@@ -240,13 +247,73 @@
             float: left;
             width: 33.3333%
         }
-
-
-
-
-
-
-
+        .share-tw {
+            background-color: #1DA1F2;
+        }
+        .share-fb {
+            background-color: #4267B2;
+        }
+        .share-gp {
+            background-color: #DD4E42;
+        }
+        .logo {
+            font-size: 18px
+        }
+        .share {
+            margin-top: 40px
+        }
+        .relation ul {
+            margin: 0;
+            padding: 0;
+            list-style: none
+        }
+        .relation li a {
+            display: block;
+            padding: 5px;
+            color: #000000;
+            font-size: 14px;
+            text-decoration: none
+        }
+        .relation li a:hover {
+            text-decoration: underline
+        }
+        .relation ul:after {
+            content: "";
+            display: block;
+            clear: both
+        }
+        .relation li {
+            float: left;
+            width: 25%
+        }
+        .relation img {
+            max-width: 100%;
+            height: auto;
+            border: none
+        }
+        .relation {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f0f0d4
+        }
+        .relation h1 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            color: #727224;
+            font-size: 20px;
+            font-weight: normal
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /*<<<<<<<<<<<<<<<<<<<<<<< 공통 <<<<<<<<<<<<<<<<<<<<<<<*/
 
 
@@ -269,8 +336,19 @@
             .box3 {
                 padding-top: 25px
             }
+            .share span {
+                display: none
+            }
+            .relation {
+                padding: 10px
+            }
+            .relation li {
+                width: 50%
+            }
+            .relation li:nth-child(3) {
+                clear: both
+            }
         }
-        
         /*<<<<<<<<<<<<<<<<<<<<<<< 599px 이하 <<<<<<<<<<<<<<<<<<<<<<<*/
         
         /*>>>>>>>>>>>>>>>>>>>>>>> 600px 이상 ~ 767px 이하 >>>>>>>>>>>>>>>>>>>>>>>*/
@@ -318,7 +396,7 @@
         
         /*>>>>>>>>>>>>>>>>>>>>>>> 1040px 이상 >>>>>>>>>>>>>>>>>>>>>>>*/
         @media (min-width: 1040px) {
-            .box1, .box2, .boxA, .box5 {
+            .box1, .boxA, .box-inner {
                 width: 1000px;
                 margin: 0 auto
             }
@@ -334,16 +412,18 @@
 		</header>
 	</div>
 	<div class="box box2">
-		<nav class="menu">
-			<ul>
-				<li><a href="#">메인</a></li>
-				<li><a href="#">잡화</a></li>
-				<li><a href="#">도구</a></li>
-				<li><a href="#">외출</a></li>
-				<li><a href="#">음식</a></li>
-				<li><a href="#">문의</a></li>
-			</ul>
-		</nav>
+        <div class="box-inner">
+            <nav class="menu">
+                <ul>
+                    <li><a href="#">메인</a></li>
+                    <li><a href="#">잡화</a></li>
+                    <li><a href="#">도구</a></li>
+                    <li><a href="#">외출</a></li>
+                    <li><a href="#">음식</a></li>
+                    <li><a href="#">문의</a></li>
+                </ul>
+            </nav>
+        </div>
 	</div>
 	<div class="boxA">
 		<div class="box box3">
@@ -374,22 +454,63 @@
                 <div class="share">
                     <ul>
                         <li>
-                            <a href="#" class="share-tw">
-                                Twitter로 공유
+                            <a href="https://twitter.com/intent/tweet?text=[글자]&amp;url=[URL]&amp;via=[계정]" onclick="window.open(this.href, 'SNS', 'width=500, height=300, menubar=no, toolbar=no, scrollbars=yes'); return false;" class="share-tw">
+                                <i class="fa fa-twitter logo"></i>
+                                <span>Twitter로 공유</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="share-fb">
-                                Facebook으로 공유
+                            <a href="http://www.facebook.com/share.php?u=[URL]" onclick="window.open(this.href, 'SNS', 'width=500, height=500, menubar=no, toolbar=no, scrollbars=yes'); return false;" class="share-fb">
+                                <i class="fa fa-facebook logo"></i>
+                                <span>Facebook으로 공유</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="share-gp">
-                                Google+로 공유
+                            <a href="https://plus.google.com/share?url=[URL]" onclick="window.open(this.href, 'SNS', 'width=500, height=500, menubar=no, toolbar=no, scrollbars=yes'); return false;" class="share-gp">
+                                <i class="fa fa-google-plus logo"></i>
+                                <span>Google+로 공유</span>
                             </a>
                         </li>
                     </ul>
                 </div>
+                
+                <aside class="relation">
+                    <h1>관련 기사</h1>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <img src="img/red-150x150.jpg" alt="">
+                                <div class="text">
+                                    토마토 재배 8화 - 토마토들이 붉은색으로 물들기 시작합니다
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="img/potato-150x150.jpg" alt="">
+                                <div class="text">
+                                    맛있는 감자 요리
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="img/eggplant-150x150.jpg" alt="">
+                                <div class="text">
+                                    가지를 수확했습니다
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="img/can-150x150.jpg" alt="">
+                                <div class="text">
+                                    통조림을 활용한 절약과 효율화
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </aside>
             </article>
 		</div>
 		<div class="box box4">
@@ -489,10 +610,12 @@
 		</div>
 	</div>
 	<div class="box box5">
-		<footer class="copyright">
-            <!--<p>TimeSwitch는 매일 생활과 관련된 것을 올리는 블로그입니다.</p>-->
-            <p>Copyright &copy; TimeSwitch</p>
-        </footer>
+        <div class="box-inner">
+            <footer class="copyright">
+                <!--<p>TimeSwitch는 매일 생활과 관련된 것을 올리는 블로그입니다.</p>-->
+                <p>Copyright &copy; TimeSwitch</p>
+            </footer>
+        </div>
 	</div>
 </body>
 </html>
