@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>박스 준비</title>
+    <link rel="stylesheet" href="grid-guide.css">
+    <style>
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 공통 >>>>>>>>>>>>>>>>>>>>>>>*/
+        body {
+            margin: 0;
+            font-family: '맑은 고딕', 'Apple SD Gothic Neo', sans-serif
+        }
+        
+        .site h1 {
+            margin: 0;
+            font-size: 30px
+        }
+        .site h1 a {
+            color: #000000;
+            text-decoration: none
+        }
+        
+        .menu ul {
+            margin: 0;
+            padding: 0;
+            list-style: none
+        }
+        .menu li {
+            float: left;
+            width: auto
+        }
+        .menu li a {
+            display: block;
+            padding: 5px;
+            color: #000000;
+            font-size: 14px;
+            text-decoration: none
+        }
+        .menu li a:hover {
+            background-color: #eeeeee
+        }
+        .menu ul:after {
+            content: "";
+            display: block;
+            clear: both
+        }
+        
+        .topimg {
+            max-width: 100%;
+            height: auto;
+            vertical-align: bottom
+        }
+        
+        .news h1 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 18px;
+            color: #666666
+        }
+        .news ul {
+            margin: 0;
+            padding: 0;
+            list-style: none
+        }
+        .news li a {
+            display: block;
+            padding: 5px;
+            color: #000000;
+            font-size: 14px;
+            text-decoration: none;
+            border-bottom: dotted 2px #dddddd
+        }
+        .news li a:hover {
+            background-color: #eeeeee
+        }
+        .news time {
+            margin-right: 10px;
+            color: #888888;
+            font-weight: bold
+        }
+        
+        .copyright p {
+            margin: 0;
+            color: #666666;
+            font-size: 14px
+        }
+        
+        
+        /*<<<<<<<<<<<<<<<<<<<<<<< 공통 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 768px 이상 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        @media (min-width: 768px) {
+            .boxA:after {
+                content: "";
+                display: block;
+                clear: both
+            }
+            .boxA > .box {
+                float: left;
+                width: 50%
+            }
+        }
+        /*<<<<<<<<<<<<<<<<<<<<<<< 768px 이상 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        /*<<<<<<<<<<<<<<<<<<<<<<< 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        /*<<<<<<<<<<<<<<<<<<<<<<< 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        /*<<<<<<<<<<<<<<<<<<<<<<< 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        /*<<<<<<<<<<<<<<<<<<<<<<< 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        /*<<<<<<<<<<<<<<<<<<<<<<< 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        /*<<<<<<<<<<<<<<<<<<<<<<< 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        /*<<<<<<<<<<<<<<<<<<<<<<< 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        /*<<<<<<<<<<<<<<<<<<<<<<< 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+    </style>
+</head>
+<body>
+    <div class="boxA">
+        <div class="box box1">
+            <div class="site">
+                <h1><a href="#">TimeSwitch</a></h1>
+            </div>
+        </div>
+        <div class="box box2">
+            <nav class="menu">
+                <ul>
+                    <li><a href="#">메인</a></li>
+                    <li><a href="#">연혁</a></li>
+                    <li><a href="#">사업 소개</a></li>
+                    <li><a href="#">채용 정보</a></li>
+                    <li><a href="#">문의</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+	<div class="box3">
+		<img src="img/header.jpg" alt="회사이미지" class="topimg">
+	</div>
+	<div class="box4">
+		<div class="news">
+            <h1>공지사항</h1>
+            <ul>
+            <li>
+                <a href="#">
+                    <time datetime="2014-10-15">10/15</time>
+                    데이터센터 유지 보수를 수행합니다.
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <time datetime="2014-10-05">10/05</time>
+                    안드로이드 애플리케이션 버전 1.2를 출시했습니다.
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <time datetime="2014-09-22">09/22</time>
+                    세미나/캠페인과 관련된 공지사항
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <time datetime="2014-09-15">09/15</time>
+                    그래프 표시의 변경 방식을 쉽게 바꿨습니다.
+                </a>
+            </li>
+            </ul>
+        </div>
+	</div>
+	<div class="box5">
+        <div class="copyright">
+		  <p>Copyright &copy; TimeSwitch</p>
+        </div>
+	</div>
+</body>
+</html>
