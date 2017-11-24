@@ -397,18 +397,20 @@
         /*<<<<<<<<<<<<<<<<<<<<<<< 1040px 이상 <<<<<<<<<<<<<<<<<<<<<<<*/
         
         .summary h1 {
-            margin-top: 0;
-            margin-bottom: 20px;
-            font-size: 36px
+            margin: 0 15px 20px;
+            font-size: 36px;
+            font-size: 22px
         }
         .summary p {
-            margin-top: 0;
-            margin-bottom: 20px
+            margin: 0 15px 15px 15px;
+            font-size: 14px
         }
         .summary img {
             max-width: 100%;
             height: auto;
-            border: none
+            border: none;
+            margin-bottom: 15px;
+            vertical-align: bottom
         }
         .top, .boxA {
             padding-top: 20px;
@@ -422,6 +424,15 @@
         }
         .summary a:hover {
             box-shadow: 0 0 10px #dddddd
+        }
+        .more {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: #3077be;
+            color: #ffffff
+        }
+        .more i {
+            margin-left: 10px
         }
 	</style>
 </head>
@@ -450,9 +461,52 @@
             <a href="#">
                 <img src="img/tomato-top.jpg" alt="">
                 <h1>토마토를 맛있게 먹는 방법</h1>
-                <p data-lang="kr">수확한 토마토를 바로 먹고 싶어서 서울 외곽에 있는 토마토 농가에 직접 다녀왔습니다. 이번에 온 농가의 토마토는 신선하고 저렴하군요.</p>
+                <p data-lang="kr">수확한 토마토를 바로 먹고 싶어서 서울 외곽에 있는 토마토 농가에 직접 다녀왔...</p>
+                <p class="more">
+                    계속 읽기
+                    <i class="fa fa-chevron-right"></i>
+                </p>
             </a>
         </article>
+        
+        <div class="boxA-1">
+            <article class="summary">
+                <a href="#">
+                    <img src="img/color-top.jpg" alt=""/>
+                    <h1>방의 가구를 꾸미는 방법</h1>
+                    <p>방을 밝은 분위기로 연출하고 싶다면 화려한 가구를 추천합니다. 크고 화려한 가구를 배치할 때는 방 전체의...</p>
+                    <p class="more">계속 읽기<i class="fa fa-chevron-right"></i></p>
+                </a>
+            </article>
+
+            <article class="summary">
+                <a href="#">
+                    <img src="img/potato-top.jpg" alt=""/>
+                    <h1>맛있는 감자 요리</h1>
+                    <p>감자가 맛있는 제철에 감자를 대량 구매하면 좋지만, 쌓아둔 감자를 요리할 때 한 가지 패턴이 반복되는....</p>
+                    <p class="more">계속 읽기<i class="fa fa-chevron-right"></i></p>
+                </a>
+            </article>
+
+            <article class="summary">
+                <a href="#">
+                    <img src="img/can-top.jpg" alt="">
+                    <h1>통조림을 활용한 절약과 효율화</h1>
+                    <p>통조림은 장기간 보관할 수 있으며, 가격 대비 효율도 괜찮습니다. 그리고 어려울 때 간단하게...</p>
+                    <p class="more">계속 읽기<i class="fa fa-chevron-right"></i></p>
+                </a>
+            </article>
+
+            <article class="summary">
+                <a href="#">
+                    <img src="img/flower-top.jpg" alt="">
+                    <h1>꽃을 좋아하는 사람들을 위한 포인트</h1>
+                    <p>활짝 핀 꽃들에 둘러싸이고 싶을 때의 포인트를 소개합니다. 계절마다 다양한 색상의...</p>
+                    <p class="more">계속 읽기<i class="fa fa-chevron-right"></i></p>
+                </a>
+            </article>
+        </div>
+        
 	</div>
 	<div class="box box5">
         <div class="box-inner">
