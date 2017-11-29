@@ -118,8 +118,7 @@
   model</a>. The layout of these boxes is governed by:
 </p>
 <p>
-  visual formatting model에서 document tree의 각각의 element는 0개 또는 그 이상의 box를 <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/box.html">box
-  model</a>에 따라서 생성합니다. 그러한 box들의 layout은 다음 사항들에 의해서 관리됩니다
+  visual formatting model에서 document tree의 각각의 element는 0개 또는 그 이상의 box를 <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/box.html">box model</a>에 따라서 생성합니다. 그러한 box들의 layout은 다음 사항들에 의해서 관리됩니다
 </p>
 <br>
 
@@ -141,111 +140,144 @@
     외부의 정보 (예: viewport size, <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#intrinsic">intrinsic dimensions</a> of images, etc.).
   </li>
 </ul>
-
+<br>
+    
 <p>
     The properties defined in this chapter and the next apply to both <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#continuous-media-group">continuous media</a> and <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#paged-media-group">paged media</a>.
     <span class="paged">However, the meanings of the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/box.html#margin-properties">margin properties</a> vary when applied to paged media (see the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/page.html#page-margins">page model</a> for details).</span>
 </p>    
 <p>
-    이번과 다음 chapter에서 정의되는 propertiess는 apply to both <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#continuous-media-group">continuous media</a> and <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#paged-media-group">paged media</a>.
-    <span class="paged">However, the meanings of the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/box.html#margin-properties">margin properties</a> vary when applied to paged media (see the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/page.html#page-margins">page model</a> for details).</span>
+    이 장과 다음 장에 정의되는 properties는 <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#continuous-media-group">continuous media</a>와 <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#paged-media-group">paged media</a>에 둘 다 적용됩니다.
+    <span class="paged">그렇지만 <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/box.html#margin-properties">margin properties</a>의 의미는 paged media (자세한 내용은 <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/page.html#page-margins">page model</a>을 참고하세요)에 적용되면 달라집니다</span>
 </p>
+<br>
     
-
-<p>The visual formatting model does not specify all aspects of
-formatting (e.g., it does not specify a letter-spacing algorithm). <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#conformance">Conforming user agents</a> may behave
-differently for those formatting issues not covered by this
-specification.
-</p>
-
-<h3>9.1.1 <a name="viewport">The viewport</a></h3>
-
-<p>User agents for <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#continuous-media-group">continuous media</a>
-generally offer users a <a name="x1"><span class="index-def" title="viewport">
-<dfn>viewport</dfn></span></a> (a window or other
-viewing area on the screen) through which users consult a
-document. User agents may change the document's layout when the
-viewport is resized (see the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#containing-block-details">initial containing block</a>).
+<p>
+    The visual formatting model does not specify all aspects of formatting (e.g., it does not specify a letter-spacing algorithm). 
+    <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#conformance">Conforming user agents</a> may behave differently for those formatting issues not covered by this specification.
 </p>
 <p>
-When the viewport is smaller than the area of the canvas on which
-the document is rendered, the user agent should offer a scrolling
-mechanism.
-
-There is at most
-one viewport per <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/intro.html#canvas">canvas</a>, but user
-agents may render to more than one canvas (i.e., provide different
-views of the same document).
+    visual formatting model은 모든 formatting의 모든 측면을 지정하지는 않습니다(예: letter-spacing algorithm을 지정하지 않음). 
+    <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#conformance">Conforming user agents</a>는 이 사양에서 다루지 않는 이러한 formatting issues에 다르게 동작할 것입니다.
 </p>
+<br>
+    
+<h3>9.1.1 <a name="viewport">The viewport</a></h3>
 
+<p>
+    User agents for <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#continuous-media-group">continuous media</a>
+    generally offer users a <a name="x1"><span class="index-def" title="viewport"> <dfn>viewport</dfn></span></a> (a window or otherviewing area on the screen) 
+    through which users consult a document. User agents may change the document's layout when the viewport is resized (see the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#containing-block-details">initial containing block</a>).
+</p>
+<p>
+    <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#continuous-media-group">continuous media</a>를 위한 User agents는 
+    일반적으로 사용자에게 각각의 user가 document를 참조할 수 있게 하는 <a name="x1"><span class="index-def" title="viewport"> <dfn>viewport</dfn></span></a> (screen의 window 또는 다른 보기 영역)를 제공합니다.  
+    User agents는 viewport가 resized 될때 document의 layout을 바꾸게 됩니다. (<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#containing-block-details">initial containing block</a> 참고).
+</p>
+<br>
+    
+<p>
+When the viewport is smaller than the area of the canvas on which the document is rendered, the user agent should offer a scrolling mechanism.
+There is at most one viewport per <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/intro.html#canvas">canvas</a>, but user agents may render to more than one canvas (i.e., provide different views of the same document).
+</p>
+<p>
+viewport가 document가 rendering 되는 canvas 영역보다 작을 때, user agent는 scrolling mechanism을 제공하는 편이 좋습니다.
+<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/intro.html#canvas">canvas</a>당 최대 하나의 viewport가 있지만, user agent는 하나 이상의 canvas를 렌더링 할 수 있습니다 (예: 동일한 document에서 다른 views를 제공할 수 있음).
+</p>
+<br>
+    
 <h3>9.1.2 <span class="index-def" title="containing block">
 <a name="containing-block">Containing blocks</a></span>
 </h3>
 
-<p>In CSS&nbsp;2.1, many box positions and sizes are calculated with respect
-to the edges
-of a rectangular box called a <a name="x3"><span class="index-def" title="containing block"><dfn>containing block</dfn></span></a>.  In
-general, generated boxes act as containing blocks for descendant
-boxes; we say that a box "establishes" the containing block for its
-descendants. The phrase "a box's containing block" means "the
-containing block in which the box lives," not the one it generates.
+<p>
+    In CSS&nbsp;2.1, many box positions and sizes are calculated with respect to the edges of a rectangular box called a <a name="x3"><span class="index-def" title="containing block"><dfn>containing block</dfn></span></a>.  
+    In general, generated boxes act as containing blocks for descendant boxes; we say that a box "establishes" the containing block for its descendants. 
+    The phrase "a box's containing block" means "the containing block in which the box lives," not the one it generates.
 </p>
-<p>Each box is given a position with respect to its containing block,
-but it is not confined by this containing block; it may <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visufx.html#overflow">overflow</a>.
+<p>
+    CSS&nbsp;2.1에서, 많은 box의 위치와 크기가 <a name="x3"><span class="index-def" title="containing block"><dfn>containing block</dfn></span></a>라고 불리는 직사각형의 가장자리를 기준으로 계산됩니다.
+    일반적으로, 생성된 boxes는 상속되는 boxes의 containing blocks의 역할을 합니다; 이것을우리는 box가 그 자손들을 위한 containing block을 "establishes(설정한다고)" 말합니다. 
+    "box의 containing block"이라는 문구는 "각각의 box에 존재하는 containing block"이라는 의미이지, 이것이 생성한다는 의미는 아닙니다.
 </p>
+<br>
+    
+<p>
+    Each box is given a position with respect to its containing block, but it is not confined by this containing block; it may <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visufx.html#overflow">overflow</a>.
+</p>
+<p>
+    각각의 box는 자신의 containing block의 가장자리로 position이 주어지지만, 그 containing block으로 사방이 막히지는 않습니다; 그것은 <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visufx.html#overflow">overflow</a> 할 수 있습니다.
+</p>
+<br>
 
-<p>The <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#containing-block-details">details</a> of
-how a containing block's dimensions are calculated are described in
-the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html">next chapter</a>.
+<p>
+    The <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#containing-block-details">details</a> of how a containing block's dimensions are calculated are described in the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html">next chapter</a>.
 </p>
-<h2>9.2 <a name="box-gen">Controlling box generation</a></h2>
+<p>
+    어떻게 containing block의 영역이 계산되는지에 대한 <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#containing-block-details">세부사항</a>은 <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html">다음 장</a>에서 설명합니다.
+</p>
+<br>
+    
+<h2>9.2 <a name="box-gen">Controlling box generation</a> - 박스 생성 제어</h2>
 
-<p>The following sections describe the types of boxes that may be
-generated in CSS&nbsp;2.1. A box's type affects, in part, its behavior in the
-visual formatting model. The <a href="#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a> property, described below,
-specifies a box's type.
+<p>
+    The following sections describe the types of boxes that may be generated in CSS&nbsp;2.1. A box's type affects, in part, its behavior in the visual formatting model.
+    The <a href="#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a> property, described below, specifies a box's type.
 </p>
+<p>
+    이어지는 section들에서는 CSS&nbsp;2.1에서 생성될 수 있는 boxes의 types를 설명합니다. box의 type은 부분적으로 visual formatting model에서 각각의 행동에 영향을 끼칩니다.
+    아래에서 설명된 <a href="#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a> property는 box의 type을 지정합니다.
+</p>
+<br>
 
 <h3>9.2.1 <a name="block-boxes">Block-level elements and block boxes</a></h3>
 
-<p><span class="index-def" title="block-level
-element"><a name="block-level"><dfn>Block-level elements</dfn></a></span> are those elements of the source document that are formatted visually as
-blocks (e.g., paragraphs). The following values of the <a href="#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a> property make an element
-block-level: 'block', 'list-item', and 'table'.
+<p>
+    <span class="index-def" title="block-level element"><a name="block-level"><dfn>Block-level elements</dfn></a></span> are those elements of the source document that are formatted visually as blocks (e.g., paragraphs). The following values of the <a href="#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a> property make an element block-level: 'block', 'list-item', and 'table'.
 </p>
-
-<p><a name="x5"><span class="index-def" title="block-level box"><dfn>Block-level
-boxes</dfn></span></a> are boxes that participate in
-a <a href="#block-formatting">block formatting context.</a> Each
-block-level element generates a <span class="index-def" title="principal block-level
-box"><a name="principal-box"><dfn>principal block-level
-box</dfn></a></span> that contains descendant boxes and generated
-content and is also the box involved in any positioning scheme.
-
-Some block-level elements may generate additional boxes in addition
-to the
-principal box: 'list-item' elements. These additional boxes are
-placed with respect to the principal box.
-
-</p><p>Except for table boxes, which are described in a later chapter, and
-replaced elements, a block-level box is also a block container box.
-A <span class="index-def" title="block container box"><a name="block-container-box"><dfn>block
-container box</dfn></a></span> either
-contains only block-level boxes or establishes an inline formatting
-context and thus contains only inline-level boxes. Not all block
-container boxes are block-level boxes: non-replaced inline blocks
-and non-replaced table cells are block containers but not block-level
-boxes. Block-level boxes that are also block containers are
-called <a name="x8"><span class="index-def" title="block box"><dfn>block
-boxes</dfn></span></a>.
-
-</p><p>The three terms "block-level box," "block container box," and
-"block box" are sometimes abbreviated as "block" where unambiguous.
-
-</p><h4>9.2.1.1 <a name="anonymous-block-level">Anonymous block boxes</a></h4>
-
-<p>In a document like this:
+<p>
+    <span class="index-def" title="block-level element"><a name="block-level"><dfn>Block-level elements</dfn></a></span>는 source document의 요소로서 비쥬얼적으로 blocks(예: paragraphs)으로서 생성됩니다. 뒤에 나오는 <a href="#propdef-display" class="noxref"><span class="propinst-display">'display'</span></a>의 property valuses는 element를 block-level로 만듭니다: 'block', 'list-item', and 'table'.
 </p>
+<br>
+
+<p>
+    <a name="x5"><span class="index-def" title="block-level box"><dfn>Block-level boxes</dfn></span></a> are boxes that participate in a <a href="#block-formatting">block formatting context.</a> 
+    Each block-level element generates a <span class="index-def" title="principal block-level box"><a name="principal-box"><dfn>principal block-level box</dfn></a></span> that contains descendant boxes and generated content and is also the box involved in any positioning scheme.
+    Some block-level elements may generate additional boxes in addition to the principal box: 'list-item' elements. These additional boxes are placed with respect to the principal box.
+</p>
+<p>
+    <a name="x5"><span class="index-def" title="block-level box"><dfn>Block-level boxes</dfn></span></a>는 <a href="#block-formatting">block formatting context.</a>에 참여하는 boxes입니다.  
+    각각의 block-level element는 자손 boxes와 생성된 content를 포함하는 <span class="index-def" title="principal block-level box"><a name="principal-box"><dfn>principal block-level box</dfn></a></span>를 생성하고, 또한 모든 positioning scheme(위치 지정 체계)와 연관된 box이기도 합니다.
+    일부 block-level elements는 principal box외에 'list-item' elements에 추가적인 boxes를 생성하기도 합니다. 이러한 추가적인 박스들은 principal box와 연관되어 배치됩니다.
+</p>
+<br>
+    
+<p>
+    Except for table boxes, which are described in a later chapter, and replaced elements, a block-level box is also a block container box.
+    A <span class="index-def" title="block container box"><a name="block-container-box"><dfn>block container box</dfn></a></span> either contains only block-level boxes or establishes an inline formatting context and thus contains only inline-level boxes. 
+    Not all block container boxes are block-level boxes: non-replaced inline blocks and non-replaced table cells are block containers but not block-level boxes. 
+    Block-level boxes that are also block containers are called <a name="x8"><span class="index-def" title="block box"><dfn>block boxes</dfn></span></a>.
+</p>       
+<p>
+    나중에 다뤄질 table boxes와 대체된 elements를 제외하고, block-level box는 또한 block container box이기도 합니다.
+    <span class="index-def" title="block container box"><a name="block-container-box"><dfn>block container box</dfn></a></span>는 오직 block-level boxes를 포함하거나 inline formatting context를 설정해서 오직 inline-level boxes만 포함하게 됩니다. 
+    모든 block container boxes가 block-level boxes는 아닙니다 : 대체되지 않는 inline blocks와 대체되지 않는 table cells는 block containers이고 block-level boxes가 아닙니다. 
+    Block containers 이기도 한 Block-level boxes를 <a name="x8"><span class="index-def" title="block box"><dfn>block boxes</dfn></span></a>라고 합니다.
+</p>
+<br>    
+    
+<p>
+    The three terms "block-level box," "block container box," and "block box" are sometimes abbreviated as "block" where unambiguous.
+</p>
+<p>
+    세 가지 용어 "block-level box," "block container box," and "block box"는, 모호하지 않은 경우, 종종 "block"으로 축약합니다.
+</p>
+<br>    
+    
+<h4>9.2.1.1 <a name="anonymous-block-level">Anonymous block boxes</a></h4>
+
+<p>In a document like this:</p>
+<p>다음과 같은 document에서:</p>
 <pre><code class="html">
 &lt;DIV&gt;
   Some text
@@ -253,11 +285,15 @@ boxes</dfn></span></a>.
 &lt;/DIV&gt;
 </code></pre>
 <p>
-(and assuming the DIV and the P both have 'display: block'), the
-DIV appears to have both inline content and block content. To make it
-easier to define the formatting, we assume that there is an <em><a name="x9"><span class="index-def" title="anonymous">anonymous block box</span></a></em>
-around "Some text".
+    (and assuming the DIV and the P both have 'display: block'), the DIV appears to have both inline content and block content. 
+    To make it easier to define the formatting, we assume that there is an <em><a name="x9"><span class="index-def" title="anonymous">anonymous block box</span></a></em> around "Some text".
 </p>
+<p>
+    (그리고 DIV와 P가 둘 다 'display: block'을 갖는다고 가정할때), DIV는 inline content와 block content를 둘 다 가진다고 보입니다. 
+    To make it easier to define the formatting, we assume that there is an <em><a name="x9"><span class="index-def" title="anonymous">anonymous block box</span></a></em> around "Some text".
+</p>
+<br>
+    
 <div class="figure">
 <p><img src="https://www.w3.org/TR/2011/REC-CSS2-20110607/images/anon-block.png" alt="diagram showing the three
 boxes for the example above"><span class="dlink">&nbsp;&nbsp;&nbsp;<a name="img-anon-block" href="https://www.w3.org/TR/2011/REC-CSS2-20110607/images/longdesc/anon-block-desc.html" title="Long description for anonymous block box">[D]</a></span>
