@@ -246,7 +246,7 @@ viewport가 document가 rendering 되는 canvas 영역보다 작을 때, user agent는 scrol
     Some block-level elements may generate additional boxes in addition to the principal box: 'list-item' elements. These additional boxes are placed with respect to the principal box.
 </p>
 <p>
-    <a name="x5"><span class="index-def" title="block-level box"><dfn>Block-level boxes</dfn></span></a>는 <a href="#block-formatting">block formatting context.</a>에 참여하는 boxes입니다.  
+    <a name="x5"><span class="index-def" title="block-level box"><dfn>Block-level boxes</dfn></span></a>는 <a href="#block-formatting">block formatting context</a>에 참여하는 boxes입니다.  
     각각의 block-level element는 자손 boxes와 생성된 content를 포함하는 <span class="index-def" title="principal block-level box"><a name="principal-box"><dfn>principal block-level box</dfn></a></span>를 생성하고, 또한 모든 positioning scheme(위치 지정 체계)와 연관된 box이기도 합니다.
     일부 block-level elements는 principal box외에 'list-item' elements에 추가적인 boxes를 생성하기도 합니다. 이러한 추가적인 박스들은 principal box와 연관되어 배치됩니다.
 </p>
@@ -259,9 +259,9 @@ viewport가 document가 rendering 되는 canvas 영역보다 작을 때, user agent는 scrol
     Block-level boxes that are also block containers are called <a name="x8"><span class="index-def" title="block box"><dfn>block boxes</dfn></span></a>.
 </p>       
 <p>
-    나중에 다뤄질 table boxes와 대체된 elements를 제외하고, block-level box는 또한 block container box이기도 합니다.
+    나중에 다뤄지는 대체된 elements인 table boxes를 제외하고, block-level box는 또한 block container box이기도 합니다.
     <span class="index-def" title="block container box"><a name="block-container-box"><dfn>block container box</dfn></a></span>는 오직 block-level boxes를 포함하거나 inline formatting context를 설정해서 오직 inline-level boxes만 포함하게 됩니다. 
-    모든 block container boxes가 block-level boxes는 아닙니다 : 대체되지 않는 inline blocks와 대체되지 않는 table cells는 block containers이고 block-level boxes가 아닙니다. 
+    모든 block container boxes가 block-level boxes인건 아닙니다 : 대체되지 않는 inline blocks와 대체되지 않는 table cells는 block containers이고 block-level boxes가 아닙니다. 
     Block containers 이기도 한 Block-level boxes를 <a name="x8"><span class="index-def" title="block box"><dfn>block boxes</dfn></span></a>라고 합니다.
 </p>
 <br>    
@@ -290,97 +290,135 @@ viewport가 document가 rendering 되는 canvas 영역보다 작을 때, user agent는 scrol
 </p>
 <p>
     (그리고 DIV와 P가 둘 다 'display: block'을 갖는다고 가정할때), DIV는 inline content와 block content를 둘 다 가진다고 보입니다. 
-    To make it easier to define the formatting, we assume that there is an <em><a name="x9"><span class="index-def" title="anonymous">anonymous block box</span></a></em> around "Some text".
+    formatting을 보다 쉽게 정의하기 위해, "Some text" 주위에 <em><a name="x9"><span class="index-def" title="anonymous">anonymous block box</span></a></em>가 있다고 가정합니다.
 </p>
 <br>
     
 <div class="figure">
-<p><img src="https://www.w3.org/TR/2011/REC-CSS2-20110607/images/anon-block.png" alt="diagram showing the three
-boxes for the example above"><span class="dlink">&nbsp;&nbsp;&nbsp;<a name="img-anon-block" href="https://www.w3.org/TR/2011/REC-CSS2-20110607/images/longdesc/anon-block-desc.html" title="Long description for anonymous block box">[D]</a></span>
-</p><p class="caption">Diagram showing the
-three boxes, of which one is anonymous, for the example above.
-</p></div>
+<p>
+    <img src="https://www.w3.org/TR/2011/REC-CSS2-20110607/images/anon-block.png" alt="diagram showing the three
+boxes for the example above">
+    <span class="dlink">&nbsp;&nbsp;&nbsp;<a name="img-anon-block" href="https://www.w3.org/TR/2011/REC-CSS2-20110607/images/longdesc/anon-block-desc.html" title="Long description for anonymous block box">[D]</a></span>
+</p>
 
-<p>In other words: if a block container box (such as that generated
-for the DIV above) has a block-level box inside it (such as the P
-above), then we force it to have <em>only</em> block-level boxes
-inside it.
+<p class="caption">
+    Diagram showing the three boxes, of which one is anonymous, for the example above.
+</p>
+<p class="caption">
+    위의 예를 보여주는 세 개의 boxes를 보여주는 Diagram, 각각은 anonymous.
+</p>
+</div>
 
-</p><p>When an inline box contains an in-flow block-level box, the inline box
-(and its inline ancestors within the same line box) are broken around
-the block-level box (and any block-level siblings that are consecutive
-or separated only by collapsible whitespace and/or out-of-flow
-elements), splitting the inline box into two boxes (even if either
-side is empty), one on each side of the block-level box(es). The line
-boxes before the break and after the
-break are enclosed in anonymous block boxes, and the block-level box
-becomes a sibling of those anonymous boxes. When such an inline box is
-affected by relative positioning, any resulting translation also
-affects the block-level box contained in the inline box.
-
-</p><div class="example"><p style="display:none">Example(s):</p>
-<p>This model would apply in the following example if the following
-rules:</p>
-
-<pre><code class="css">
-p    { display: inline }
-span { display: block }
-</code></pre>
-
-<p>were used with this HTML document:</p>
-
-<pre class="html-example"><code class="html">
-&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"&gt;
-&lt;HEAD&gt;
-&lt;TITLE&gt;Anonymous text interrupted by a block&lt;/TITLE&gt;
-&lt;/HEAD&gt;
-&lt;BODY&gt;
-&lt;P&gt;
-<em>This is anonymous text before the SPAN.</em>
-&lt;SPAN&gt;This is the content of SPAN.&lt;/SPAN&gt;
-<em>This is anonymous text after the SPAN.</em>
-&lt;/P&gt;
-&lt;/BODY&gt;
-</code></pre>
-
-<p>The P element contains a chunk (C1) of anonymous text followed
-by a block-level element followed by another chunk (C2) of anonymous
-text. The resulting boxes would be a block box representing the BODY,
-containing an anonymous block box around C1, the SPAN block box, and
-another anonymous block box around C2.
-</p></div>
-
-<p>The properties of anonymous boxes are inherited from the
-enclosing non-anonymous box (e.g., in the example just below the subsection heading "Anonymous block boxes", the one for DIV).
-Non-inherited properties have their initial value. For example,
-the font of the anonymous box is inherited from the DIV, but the
-margins will be 0.
+<p>
+    In other words: if a block container box (such as that generated for the DIV above) has a block-level box inside it (such as the P above), then we force it to have <em>only</em> block-level boxes inside it.
 </p>
 <p>
-Properties set on elements that cause anonymous block boxes to be
-generated still apply to the boxes and content of that element. For
-example, if a border had been set on the P element in the above
-example, the border would be drawn around C1 (open at the end of the
-line) and C2 (open at the start of the line).
+    바꿔 말하면, 만약에 (위의 DIV를 위해 생성된 것과 같은) block container box가 (위의 P와 같은) block-level box를 내부에 가지고 있다면, 우리는 <em>오직</em> block-level boxes만 그 안에 가지게 하게 됩니다.
+</p>
+<br>
+    
+<p>
+    When an inline box contains an in-flow block-level box, the inline box (and its inline ancestors within the same line box) are broken around the block-level box (and any block-level siblings that are consecutive or separated only by collapsible whitespace and/or out-of-flow elements), splitting the inline box into two boxes (even if either side is empty), one on each side of the block-level box(es).
 </p>
 <p>
-Some user agents have implemented borders on inlines containing
-blocks in other ways, e.g., by wrapping such nested blocks inside
-"anonymous line boxes" and thus drawing inline borders around such
-boxes. As CSS1 and CSS2 did not define this behavior, CSS1-only and
-CSS2-only user agents may implement this alternative model and still
-claim conformance to this part of CSS&nbsp;2.1. This does not apply to UAs
-developed after this specification was released.
+    inline box가 in-flow block-level box를 포함할때, inline box(와 그것의 같은 line box 안의 inline 조상들)는 block-level box(와 어떠한 연이은 혹은 오직 공간을 축소할 수 있는 whitespace 및 / 또는 out-of-flow elements) 주변에서 끊어지면서, inline box를 block-level box(es)에 하나씩 (심지어 한 쪽 side가 비어있어도) 두 개의 boxes로 나눕니다<br> 
 </p>
+<br>
 
-<p>Anonymous block boxes are ignored when resolving percentage values
-that would refer to it: the closest non-anonymous ancestor box is used
-instead. For example, if the child of the anonymous block box inside
-the DIV above needs to know the height of its containing block to
-resolve a percentage height, then it will use the height of the
-containing block formed by the DIV, not of the anonymous block box.
+<p>
+    The line boxes before the break and after the break are enclosed in anonymous block boxes, and the block-level box becomes a sibling of those anonymous boxes.
+</p>
+<p>
+    줄내림 전과 후의 line boxes는 anonymous block boxes에 둘려쌓이게 되고, block-level box는 그러한 anonymous boxes의 형제가 됩니다.
+</p>    
+<br>
 
-</p><h3>9.2.2 <a name="inline-boxes">Inline-level elements and inline boxes</a></h3>
+<p>
+    When such an inline box is affected by relative positioning, any resulting translation also affects the block-level box contained in the inline box.
+</p>    
+<p>
+    그러한 inline box가 relative positioning에 의해 영향을 받을때, 그 결과의 해석은 또한 inline box 내부에 포함된 block-level box에 영향을 끼칩니다.
+</p>    
+<br>
+    
+<div class="example">
+    <p style="display:none">Example(s):</p>
+    <p>This model would apply in the following example if the following rules:</p>
+    <p>이 model은 다음의 예제에서 규칙을 지키는지 적용해볼 수 있습니다:</p>
+
+    <pre><code class="css">
+    p    { display: inline }
+    span { display: block }
+    </code></pre>
+
+    <p>were used with this HTML document:</p>
+    <p>이 HTML document에 쓰입니다:</p>
+
+    <pre class="html-example"><code class="html">
+    &lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"&gt;
+    &lt;HEAD&gt;
+    &lt;TITLE&gt;Anonymous text interrupted by a block&lt;/TITLE&gt;
+    &lt;/HEAD&gt;
+    &lt;BODY&gt;
+    &lt;P&gt;
+    <em>This is anonymous text before the SPAN.</em>
+    &lt;SPAN&gt;This is the content of SPAN.&lt;/SPAN&gt;
+    <em>This is anonymous text after the SPAN.</em>
+    &lt;/P&gt;
+    &lt;/BODY&gt;
+    </code></pre>
+
+    <p>
+        The P element contains a chunk (C1) of anonymous text followed by a block-level element followed by another chunk (C2) of anonymous text.<br>
+        The resulting boxes would be a block box representing the BODY, containing an anonymous block box around C1, the SPAN block box, and another anonymous block box around C2.
+    </p>
+    <p>
+        P element는 anonymous text another chunk (C2)를 따라오는 anonymous text의 block-level element를 따라오는 chunk (C1)를 포함합니다.<br>
+        결과 boxes는 BODY를 나타내고, C1 주위의 anonymous block box와 SPAN block box와 C2 주위에 anonymous block box를 포함하는 block box가 될 수 있습니다.
+    </p>
+</div>
+
+<p>
+    The properties of anonymous boxes are inherited from the enclosing non-anonymous box (e.g., in the example just below the subsection heading "Anonymous block boxes", the one for DIV).
+    Non-inherited properties have their initial value. For example, the font of the anonymous box is inherited from the DIV, but the margins will be 0.
+</p>
+<p>
+    anonymous boxes의 properties는 둘러싸고 있는 non-anonymous box(예를 들어, subsection heading "Anonymous block boxes" 바로 아래의 예제에 있는 DIV)에서 상속됩니다.
+    상속되지 않는 properties는 그들의 초기 value를 가지고 있습니다. 예를 들어, anonymous box의 font는 DIV에서 상속되지만, margins는 0이 됩니다.
+</p>
+<br>
+    
+<p>
+    Properties set on elements that cause anonymous block boxes to be generated still apply to the boxes and content of that element. 
+    For example, if a border had been set on the P element in the above example, the border would be drawn around C1 (open at the end of the line) and C2 (open at the start of the line).
+</p>
+<p>
+    Anonymous block boxes가 생성되는 elements의 Properties set은 boxes와 그 해당 요소의 content에도 적용됩니다.
+    예를 들어, border가 위 예제의 P element에 적용되어 있다면, border는 C1 (line 끝에서 열림)과 C2 (line 앞에서 열림) 주위에 그려질 것입니다.  
+</p>
+<br>
+    
+<p>
+    Some user agents have implemented borders on inlines containing blocks in other ways, e.g., by wrapping such nested blocks inside "anonymous line boxes" and thus drawing inline borders around such boxes. 
+    As CSS1 and CSS2 did not define this behavior, CSS1-only and CSS2-only user agents may implement this alternative model and still claim conformance to this part of CSS&nbsp;2.1. 
+    This does not apply to UAs developed after this specification was released.
+</p>
+<p>
+    몇 몇 user agents have implemented borders on inlines containing blocks in other ways, e.g., by wrapping such nested blocks inside "anonymous line boxes" and thus drawing inline borders around such boxes. 
+    As CSS1 and CSS2 did not define this behavior, CSS1-only and CSS2-only user agents may implement this alternative model and still claim conformance to this part of CSS&nbsp;2.1. 
+    This does not apply to UAs developed after this specification was released.
+</p>
+<br>
+
+<p>
+    Anonymous block boxes are ignored when resolving percentage values that would refer to it: the closest non-anonymous ancestor box is used instead. For example, if the child of the anonymous block box inside the DIV above needs to know the height of its containing block to resolve a percentage height, then it will use the height of the containing block formed by the DIV, not of the anonymous block box.
+</p>
+<p>
+    Anonymous block boxes are ignored when resolving percentage values that would refer to it: the closest non-anonymous ancestor box is used instead. For example, if the child of the anonymous block box inside the DIV above needs to know the height of its containing block to resolve a percentage height, then it will use the height of the containing block formed by the DIV, not of the anonymous block box.
+</p>
+<br>    
+    
+<h3>9.2.2 <a name="inline-boxes">Inline-level elements and inline boxes</a></h3>
 
 <p><span class="index-def" title="inline-level element">
 <a name="inline-level"><dfn>Inline-level
