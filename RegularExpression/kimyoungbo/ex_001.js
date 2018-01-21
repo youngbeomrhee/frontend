@@ -3,6 +3,26 @@
  */
 // 참고 : https://www.ecma-international.org/ecma-262/8.0/index.html#sec-regexp-regular-expression-objects
 // https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/%EC%A0%95%EA%B7%9C%EC%8B%9D
+// https://regexr.com/
+
+// and, or, not
+
+// 정규식표현 내에서 and
+
+'abc'.match(/abc/);	// ["abc", index: 0, input: "abc"] a가 있으면서 b가 있으면서 c가 있는 값을 리턴
+'xxxxxxxxxxabcxxxxxxxxxx'.match(/abc/);	// ["abc", index: 10, input: "xxxxxxxxxxabcxxxxxxxxxx"]
+'abc'.match(/abdc/); // null -> a가 있으면서 b가 있으면서 d가 있으면서 c가 있는 값은 없음(null)
+
+// 정규식표현 내에서 or
+'abc'.match(/a|b|c/)	// ["a", index: 0, input: "abc"]
+'abdc'.match(/a|b|c/)	// ["a", index: 0, input: "abdc"]
+
+// 문자클래스 [] 내에서 or
+'abdc'.match(/[abc]/);	// ["a", index: 0, input: "abdc"]
+
+// 문자클래스 [] 내에서 부정
+'abdc'.match(/[^abc]/);	// ["d", index: 2, input: "abdc"]
+
 
 
 "안녕하세요".match(/안녕/);    // 안녕이라는 문자가 있는지 확
