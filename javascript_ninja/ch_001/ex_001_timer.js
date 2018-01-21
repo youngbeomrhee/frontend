@@ -45,10 +45,9 @@ var loopTestTime = getLoopTestTime(setTestFunc, loopLoopCount);
 console.log('덧셈함수를 ' + loopCount + '번 실행을 ' + loopLoopCount + '번 수행한 시간 : ' + loopTestTime);
 
 function getLoopLoopTestTime(func, params, loopCount, loopCountAll) {
-    return loopTest(setTimerFunc(func, params, loopCount), loopCountAll);
+    return getLoopTestTime(setTimerFunc(func, params, loopCount), loopCountAll);
 }
 
-loopLoopCount = 100;
 var loopLoopTestTime = getLoopLoopTestTime((a,b)=>a+b, [1,2], loopCount, loopLoopCount);
 console.log('덧셈함수를 ' + loopCount + '번 실행을 ' + loopLoopCount + '번 수행한 시간 : ' + loopLoopTestTime);
 
