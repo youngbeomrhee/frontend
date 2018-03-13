@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CodeSpitz75-1</title>
+	<style>
+		table {
+			border-collapse: collapse;
+		}
+		th, td {
+			border: 1px solid #d4d4d4;
+			padding: 10px;
+		}
+		th {
+			background-color: #5a83bc;
+		}
+	</style>
+</head>
+<body>
+<section id="data"></section>
+<script>
+    const Table = (_=>{
+        const Private = Symbol();
+        return class{
+            constructor(parent){
+                if(typeof parent != 'string' || !parent) throw "invalid param";
+                this[Private] = {parent, title:null, header:null, items:null};
+            }
+            async load(url){
+                const response = await fetch(url);
+                if(!response.ok) throw "invaild response";
+                const json = await response.json();
+                const {title, header, items} = json;
+                if(!items.length) throw "no items";
+                Object.assign(this[Private], {title, header, items});
+                this._render();
+            }
+            _render(){
+                const fields = this[Private];
+                const parent = document.querySelector(fields.parent);
+                if(!parent) throw "invaild parent";
+                if(!fields.items || !fields.items.length){
+                    parent.innerHTML = "no data";
+                    return;
+                }else parent.innerHTML = "";
+                const table = document.createElement("table");
+                const caption = document.createElement("caption");
+                caption.innerHTML = fields.title;
+                table.appendChild(caption);
+                table.appendChild(
+                    fields.header.reduce((thead, data)=>{
+                        const th = document.createElement("th");
+                        th.innerHTML = data;
+                        thead.appendChild(th);
+                        return thead;
+                    }, document.createElement("thead"))
+                );
+                parent.appendChild(
+                    fields.items.reduce((table, row)=>{
+                        table.appendChild(
+                            row.reduce((tr, data)=>{
+                                const td = document.createElement("td");
+                                td.innerHTML = data;
+                                tr.appendChild(td);
+                                return tr;
+                            }, document.createElement("tr"))
+                        );
+                        return table;
+                    }, table)
+                );
+            }
+        };
+    })();
+
+    const Info = class {
+        constructor(json) {
+            const {title, header, items} = json;
+            if(!title || typeof title !== 'string') throw "invalid title";
+            if(!Array.isArray(header) || !header.length) throw "invalid header";
+            if(!Array.isArray(items) || !items.length) throw "invalid items";
+
+            this._private = {title, header, items};
+        }
+        get title() { return this._private.title; }
+        get header() { return this._private.header; }
+        get items() { return this._private.items; }
+    }
+
+    const Data = class {
+        async getData() {
+            const json = await this._getData();
+            return new Info(json);
+        }
+        async _getData() {
+            throw "getData must override";
+        }
+    };
+
+    const JsonData = class extends Data {
+        constructor(data) {
+            super();
+            this._data = data;
+        }
+        async _getData() {
+            let json;
+            if(typeof this._data === 'string') {
+                const response = await fetch(this._data);
+                return await response.json();
+            } else {
+                return this._data;
+            }
+        }
+    }
+
+    const Renderer = class {
+        constructor() {}
+        async render(data) {
+            if(!(data instanceof Data)) throw "invalid data type";
+            this._info = await data.getData();
+            this._render();
+        }
+        _render() {
+            throw "_render must overrided";
+		}
+    }
+
+    const TiobeIndexTableRenderer = class extends Renderer {
+		constructor(parent, validator) {
+            if(!parent || typeof parent !== 'string') throw "invalid param";
+            super();
+            this._parent = parent;
+            this._validator = validator;
+		}
+		_render() {
+		    // 데이터 검증 추가
+            if(this._validator) this._validator(this._info);
+            const parent = document.querySelector(this._parent);
+            if(!parent) throw "invalid parent";
+            parent.innerHTML = "";
+            const [table, caption] = "table,caption".split(',').map(v=>document.createElement(v));
+            caption.innerHTML = this._info.title;
+            table.appendChild(caption);
+            table.appendChild(
+                this._info.header.reduce(
+					(thead, data)=>(thead.appendChild(document.createElement("th")).innerHTML = data, thead), document.createElement("thead")
+				)
+			);
+            parent.appendChild(
+                this._info.items.reduce(
+					(table, row)=>(table.appendChild(
+					    row.reduce(
+							(tr, data)=>(tr.appendChild(document.createElement("td")).innerHTML = data, tr), document.createElement("tr")
+						)
+					), table)
+            	, table)
+			);
+		}
+	}
+
+    const data = new JsonData("75_1.json");
+    const renderer = new TiobeIndexTableRenderer('#data', validator);
+    renderer.render(data);
+
+</script>
+</body>
+</html>
