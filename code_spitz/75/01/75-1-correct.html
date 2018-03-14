@@ -19,6 +19,7 @@
 <body>
 <section id="data"></section>
 <script>
+
     const Table = (_=>{
         const Private = Symbol();
         return class{
@@ -72,34 +73,48 @@
         };
     })();
 
+
     const Info = class {
         constructor(json) {
             const {title, header, items} = json;
             if(!title || typeof title !== 'string') throw "invalid title";
             if(!Array.isArray(header) || !header.length) throw "invalid header";
-            if(!Array.isArray(items) || !items.length) throw "invalid items";
-
-            let validator = [
-                col1 =>	[[!col1, '필수값이 누락되었습니다.'], [Number.isInteger(col1), '숫자만 가능합니다.']],
-                co2 =>	[[!col2, '필수값이 누락되었습니다.'], [Number.isInteger(col2), '숫자만 가능합니다.']],
-                co3 =>	[[col3 === 'change' || !col3, '잘못된 값이 들어왔습니다.']],
-				col4 => [[col4]],
-				col5 => [[]],
-				col6 => [[]],
-				col7 => [[]],
-				col => [[]],
-			]
-            let validated = [];
-            items.reduce((row, i)=> {
-                row.reduce((item, j)=> {
-
-				}, validated);
-			}, validated);
+//            if(!Array.isArray(items) || !items.length) throw "invalid items";
             this._private = {title, header, items};
+        } itemValidator(items) {
+            function _validator(func, param, errMsg) {
+				return _=>func.call(null, param) ? null : errMsg;
+			}
+			function _checker(validators) {
+                return validators.reduce((errs, validator) => {
+                    let err = validator();
+                    if(err) errs.push(err);
+                    return errs;
+				}, []);
+			}
+
+            if(!Array.isArray(items) || !items.length) throw "invalid items"; if (items.length>0) {
+                let errors = items.reduce((errs, item, i) => {
+                    let err = _checker([
+                        _validator(ele=> ele.length===6, item, 'items['+i+'] : 총 6개의 데이터가 필요합니다.'),
+                        _validator(ele=> Number.isInteger(Number.parseInt(ele)), item[0], 'items['+i+']['+0+'] : 숫자만 가능합니다'),
+                        _validator(ele=> Number.isInteger(Number.parseInt(ele)), item[1], 'items['+i+']['+1+'] : 숫자만 가능합니다'),
+                        _validator(ele=> !ele || ele==='change', item[2], 'items['+i+']['+2+'] :  빈 값 또는 "change"만 가능합니다.'),
+                        _validator(ele=> ele && /^-?\d+.?\d{2}?%/.test(ele), item[4], 'items['+i+']['+4+'] :  해당 값은 2.25%, -0.24%와 같은 형식만 가능합니다.'),
+                        _validator(ele=> ele && /^-?\d+.?\d{2}?%/.test(ele), item[5], 'items['+i+']['+5+'] :  해당 값은 2.25%, -0.24%와 같은 형식만 가능합니다.')
+                    ]);
+                    if(err && err.length>0) errs.push(err);
+                    return errs;
+				}, []);
+				if(errors && errors.length>0) console.error(errors);
+			}
         }
         get title() { return this._private.title; }
         get header() { return this._private.header; }
-        get items() { return this._private.items; }
+        get items() {
+            this.itemValidator(this._private.items);
+            return this._private.items;
+        }
     }
 
     const Data = class {
@@ -170,9 +185,7 @@
 		}
 	}
 
-	debugger;
-
-    const data = new JsonData("75_1.json");
+    const data = new JsonData("75_1_correct.json");
     const renderer = new TableRenderer('#data');
     renderer.render(data);
 
