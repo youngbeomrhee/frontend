@@ -10,6 +10,17 @@
 // 현재 예제에서는 가능한 모든 순열을 뽑는다
 let endCallCount=0, iterCount=0, callHistory={};
 
+class CallObj {
+    constructor(name, params) {
+        this.이름 = name;
+        this.인자 = [...params];
+        this.호출 = [];
+    }
+    addChild(callObj) {
+        this.호출.push(callObj);
+    }
+}
+
 function permutation(prefix, str, callRoot) {
 
     if(str.length == 0) {	// 모든 문자가 빠짐없이 뽑혀서 더이상 뽑을 문자가 없으면 해당 쓰레드(재귀호출) 종료
@@ -30,15 +41,18 @@ function permutation(prefix, str, callRoot) {
             const picked = str[i];	// 순차적으로(i) 문자 하나씩 뽑는다
             const rest = str.substr(0, i) + str.substr(i + 1);	// str에서 뽑고 난 나머지
             const addedPrefix = prefix + picked;	// 기존의 prefix에 새로 뽑은 문자를 추가
-            debugger;
+
             // callRoot.callee = {
             //     params: [prefix, str],
             // }
-            callRoot._params = [prefix, str];
-            let callObj = {
-                params: [addedPrefix, rest]
+            let
+            let tempObj = {
+                인자: [prefix, str],
+                호출: {
+                    인자: [addedPrefix, rest]
+                }
             }
-            callRoot.call = callObj;
+            callRoot.호출.push(tempObj);
 
             console.log(`permutation(prefix=${prefix}, str=${str}) 호출 => 기존 prefix(${prefix})와 뽑은 문자 하나(${picked})를 합쳐서 새로운 prefix(${prefix+picked})로 만들고 나머지문자(${rest})와 함께 재귀호출`);
             // console.trace();
