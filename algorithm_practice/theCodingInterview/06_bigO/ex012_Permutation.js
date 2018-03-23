@@ -11,24 +11,24 @@
 let endCallCount=0, iterCount=0;
 
 class CallObj {
-    constructor(name, params) {
-        this.이름 = name;
-        this.인자 = [...params];
-        this.호출 = [];
-        this.is종료 = false;
+    constructor(name) {
+        this.name = name;
+        // this.인자 = [...params];
+        this.children = [];
+        this.isEnd = false;
     }
     addChild(callObj) {
-        this.호출.push(callObj);
+        this.children.push(callObj);
     }
     end() {
-        this.is종료 = true;
+        this.isEnd = true;
     }
 }
 
 function permutation(prefix, str, callObj) {
 
-    if(!(callRoot instanceof CallObj)) throw '잘못된 객체가 넘어왔습니다.';
-    let childObj = new CallObj(arguments.callee.name, [prefix, str]);
+    if(!(callObj instanceof CallObj)) throw '잘못된 객체가 넘어왔습니다.';
+    let childObj = new CallObj(`${arguments.callee.name}(${prefix}, ${str})`);
     callObj.addChild(childObj);
 
     if(str.length == 0) {	// 모든 문자가 빠짐없이 뽑혀서 더이상 뽑을 문자가 없으면 해당 쓰레드(재귀호출) 종료
@@ -49,9 +49,14 @@ function permutation(prefix, str, callObj) {
     }
 }
 
-let callRoot = new CallObj('root', []);
-permutation('', 'abc', callRoot);
+let callTree = new CallObj('root');
+permutation('', 'abc', callTree);
+
 console.log(`## 순열이 완성되는 시점에 permutation 함수가 몇 번이나 호출되는가? => ${endCallCount}
 ## 순열 생성이 완성되기 전에 permutation 함수는 몇 번이나 호출되는가? => ${iterCount}`);
-console.log('## callRoot : ');
-console.dir(callRoot);
+
+console.log('## 호출트리 : ');
+console.dir(callTree);
+
+
+

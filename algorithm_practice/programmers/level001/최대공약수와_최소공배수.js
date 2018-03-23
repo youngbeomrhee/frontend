@@ -21,7 +21,8 @@ function gcdlcm(a, b) {
 
     // 방법 2 - 유클리드 호제법
     function gcd(x, y) { return y ? gcd(y, x%y) : x; }
-    return [gcd(a,b), a*b/gcd(a,b)];
+    let gcdNum = gcd(a, b);
+    return [gcdNum, a*b/gcdNum];
 }
 
 // 아래는 테스트로 출력해 보기 위한 코드입니다.

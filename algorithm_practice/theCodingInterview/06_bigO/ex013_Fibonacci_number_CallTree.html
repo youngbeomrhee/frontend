@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Fibonacci number call stack tree</title>
+    <link rel="stylesheet" href="ex000_callTree.css">
+</head>
+
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="ex000_tree.js"></script>
+<script src="ex000_callTree.js"></script>
+<script>
+
+    let callTree = new CallTree('root');
+
+    function fibo(n, callObj) {
+        let childObj = addCallObj(callObj, arguments);
+
+        if(n<=0) return 0;
+        if(n===1 || n===2) return 1;
+        return fibo(n-1, childObj) + fibo(n-2, childObj);
+    }
+    fibo(10, callTree);
+
+    let root = callTree;
+    update(root, 3000, 1000);
+
+</script>
+
+</body>
+</html>
