@@ -7,8 +7,8 @@ paper.setup(document.getElementById('mainCanvas'));
 
 // TODO
 var c;
-for (var x = 25; x < 400; x+=50) {
-    for (var y = 25; y < 400; y+=50) {
+for (var x = 25; x < 2000; x+=50) {
+    for (var y = 25; y < 2000; y+=50) {
         c = Shape.Circle(x, y, 20);
         c.fillColor = 'green';
     }

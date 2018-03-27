@@ -4,11 +4,10 @@
 
 var ybUtil = (function(){
 
-    function timer(func, maxCount) {
-        var start = new Date().getTime();
-        maxCount = maxCount? maxCount: 1;
-        for (var n = 0; n < maxCount; n++) {
-            func();
+    function timer(func, params, maxCount) {
+        let start = new Date().getTime(), n=0;
+        for (; n < maxCount; n++) {
+            func.apply(null, params);
         }
         var elapsed = new Date().getTime() - start;
         return elapsed;

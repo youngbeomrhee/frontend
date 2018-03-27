@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>TODO sub item</title>
+</head>
+<body>
+<h1>TODO sub item</h1>
+<div>check console</div>
+<script src="ex_002_todoSubItem.js"></script>
+<script>
+    const list1 = new TaskList('비사이드');
+    list1.add('지라설치');
+    list1.add('지라클라우드접속');
+
+    const list2 = new TaskList('s75');
+    list2.add('2강 답안 작성');
+    list2.add('3강 교안 작성');
+
+    const list = list2.byDate();
+    list[1].task.add('코드정리');
+    list[1].task.add('다이어그램정리');
+
+    console.log(list1.byTitle());
+    console.log(list2.byDate());
+    console.log(list2.byDate()[1].sub);
+</script>
+</body>
+</html>
