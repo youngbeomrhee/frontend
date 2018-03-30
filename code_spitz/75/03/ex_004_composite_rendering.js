@@ -60,10 +60,13 @@ const TaskList = class extends Task {
 }
 
 const DomRenderer = class {
+    static title(a, b) { return a.sortTitle(b); }
+    static date(a, b) { return a.sortDate(b); }
+
     constructor(list, parent) {
         this._parent = parent;
         this._list = list;
-        this._sort = 'title';
+        this._sort = this.title;
     }
     add(parent, title, date) {
         parent.add(new TaskItem(title, date));
@@ -95,7 +98,7 @@ const DomRenderer = class {
         const temp = [];
         base.style.paddingLeft = depth * 10 + 'px';
         if(item instanceof TaskList) {
-            temp.push(el('h2', 'innerHTML', item_title));
+            temp.push(el('h2', 'innerHTML', item._title));
         } else {
             temp.push(
                 el('h3', 'innerHTML', item._title,
@@ -119,6 +122,7 @@ const DomRenderer = class {
         temp.push(sub);
         temp.forEach(v => base.appendChild(v));
     }
+    sortTitle(task) { return this._title > task._title; }
 }
 
 const sel = document.querySelector.bind(document);
