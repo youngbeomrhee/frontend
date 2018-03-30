@@ -73,13 +73,28 @@ var ybUtil = (function(){
         return Math.random()>0.5 ? 1 : -1;
     }
 
+    function getCharSet(str) {
+        if(typeof str !== 'string') throw '문자열만 입력 가능합니다';
+        const charSet = {};
+        for (let i = 0; i < str.length; i++) {
+            let char = str[i], charCode = char.charCodeAt();
+
+            if(charSet[charCode]) {
+                charSet[charCode].push(char);
+            } else {
+                charSet[charCode] = [char];
+            }
+        }
+        return charSet;
+    }
     return {
         'timer': timer,
         'lazyExec': lazyExec,
         'getLoopLoopTestTime': getLoopLoopTestTime,
         'testTimeReport': testTimeReport,
         'getRandomNum': getRandomNum,
-        'getSign': getSign
+        'getSign': getSign,
+        'getCharSet': getCharSet
     };
 })();
 
