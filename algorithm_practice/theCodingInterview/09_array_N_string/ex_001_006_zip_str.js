@@ -8,11 +8,10 @@ function zipStr(str) {
         if(strArr[i] === strArr[i+1]) {
             sameCnt++;
         } else {
-            debugger;
-            zippedStr += (sameCnt > 1 ? sameCnt : '') + (strArr[i+1] ? strArr[i+1] : '');
+            zippedStr += sameCnt + (strArr[i+1] ? strArr[i+1] : '');
             sameCnt = 1;
         }
     }
     return zippedStr.length > str ? str : zippedStr;
 }
-zipStr('aabccccaaa');
+zipStr('aabcccccaaa');
