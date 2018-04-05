@@ -101,7 +101,7 @@ let matrix2 = [
     ['1,0', '1,1']
 ];
 rotate(matrix2);
-console.log('### 이동완료');
+console.log('### 2x2 행렬 이동완료');
 showMatrix(matrix2);
 console.log('\n');
 
@@ -113,7 +113,7 @@ let matrix3 = [
     ['2,0', '2,1', '2,2']
 ];
 rotate(matrix3);
-console.log('### 이동완료');
+console.log('### 3x3 행렬 이동완료');
 showMatrix(matrix3);
 console.log('\n');
 
@@ -126,5 +126,5 @@ let matrix4 = [
     ['3,0', '3,1', '3,2', '3,3']
 ];
 rotate(matrix4);
-console.log('### 이동완료');
+console.log('### 4x4 행렬 이동완료');
 showMatrix(matrix4);
