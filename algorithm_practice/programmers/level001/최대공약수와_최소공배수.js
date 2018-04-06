@@ -8,7 +8,7 @@
     예를 들어 gcdlcm(3,12) 가 입력되면, [3, 12]를 반환해주면 됩니다.
 */
 
-function gcdlcm(a, b) {
+function gcdlcm(a, b) { 
     // 방법 1 - a, b의 모든 약수를 구해서 계산
     /*
      function getEles(num) { const eles = []; for(var i=1;i<=num;i++) { Number.isInteger(num/i) && eles.push(i) }; return eles}
