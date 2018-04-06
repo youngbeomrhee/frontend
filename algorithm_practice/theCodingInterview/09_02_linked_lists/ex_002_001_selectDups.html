@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>중복 없애기</title>
+</head>
+<body>
+
+<script src="ex_002_0_doubly_linked_lists.js"></script>
+<script>
+    function deleteDups(linkedList) {
+        let set = new Set(),
+			current = linkedList.find('head');
+
+		while(current.next) {
+		    let ele = current.next.element;
+		    if(set.has(ele)) {
+                linkedList.remove(ele);
+			} else {
+                set.add(ele);
+			}
+            current = current.next;
+		}
+		return linkedList
+    }
+
+    let cities = new LinkedList();
+    cities.insert('Conway', 'head');
+    cities.insert('Russelville', 'Conway');
+    cities.insert('Carlisle', 'Russelville');
+    cities.insert('Alma', 'Carlisle');
+    cities.insert('Alma', 'Alma');
+    cities.display();
+    console.log('# 중복제거');
+    deleteDups(cities);
+    cities.display();
+</script>
+</body>
+</html>
