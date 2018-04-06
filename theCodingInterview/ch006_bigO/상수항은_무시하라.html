@@ -8,28 +8,29 @@
 <script src="../../util/ybUtil.js"></script>
 <script>
     var testArr = [];
-    for (var i = 0; i < 1000000; i++) {
+    for (var i = 0; i < 10000000; i++) {
         testArr.push(ybUtil.getSign()*ybUtil.getRandomNum(100000));
     }
     console.log(testArr);
-    // O(N) 실행시간
-    console.log(ybUtil.timer(()=>{
+
+    // O(2N) 실행시간
+    console.log('O(2N) 실행시간 : ' + ybUtil.timer(()=>{
         var min = Number.MIN_VALUE;
         var max = Number.MAX_VALUE;
         for (var x of testArr) {
             if (x < min) min = x;
+        }
+        for (var x of testArr) {
             if (x > max) max = x;
         }
     }));
 
-    // O(2N) 실행시간
-    console.log(ybUtil.timer(()=>{
+    // O(N) 실행시간
+    console.log('O(N) 실행시간 : ' + ybUtil.timer(()=>{
         var min = Number.MIN_VALUE;
         var max = Number.MAX_VALUE;
         for (var x of testArr) {
             if (x < min) min = x;
-        }
-        for (var x of testArr) {
             if (x > max) max = x;
         }
     }));

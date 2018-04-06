@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>뒤에서 k번째 원소 구하기</title>
+</head>
+<body>
+
+<script src="ex_002_0_linked_lists.js"></script>
+<script>
+	function nthToLast(node, idx) {
+	    if(node.next) {
+            return nthToLast(node.next, idx) + 1;
+		} else {
+	        return 1;
+		}
+	}
+
+    let ll = new LinkedList();
+    ll.push('test0');
+    ll.push('test1');
+    ll.push('test2');
+    ll.push('test3');
+    ll.push('test4');
+    ll.push('test5');
+    ll.push('test6');
+    ll.push('test7');
+    ll.push('test8');
+    ll.push('test9');
+    ll.display();
+    console.log('# ');
+
+    let seq = 3, fromLastIndex = nthToLast(ll.head, 0) - seq;
+
+    console.log(ll.getValue(fromLastIndex));
+</script>
+</body>
+</html>
