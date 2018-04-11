@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Linked List Test</title>
+    <!-- 재스민 라이브러리 파일 -->
+    <link data-require="jasmine@*" data-semver="2.0.0" rel="stylesheet" href="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine.css" />
+    <script data-require="jasmine@*" data-semver="2.0.0" src="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine.js"></script>
+    <script data-require="jasmine@*" data-semver="2.0.0" src="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine-html.js"></script>
+    <script data-require="jasmine@*" data-semver="2.0.0" src="http://cdn.jsdelivr.net/jasmine/2.0.0/boot.js"></script>
+</head>
+<body>
+<h2>LinkedList test cases</h2>
+<script src="LinkedList.js"></script>
+<script>
+
+    describe('LinkedList link 테스트', function() {
+        let ll;
+
+        beforeEach(function() { // 각각의 테스트 전에 실행할 로직을 입력
+            ll = new LinkedList();
+        });
+
+        describe('LinkedList 객체생성 테스트', function() {
+            it('LinkedList 객체는 head:null, tail:null, length:0 을 element로 가지고 있어야 한다.', function() {
+                expect(ll).toEqual(jasmine.objectContaining({
+                    head: null,
+                    tail: null,
+                    length: 0
+                }));
+            });
+        });
+
+
+        // linkFirst, linkLast, linkBefore, unlinkFirst, unlinkLast, unlink
+        // get, getFirst, getLast, indexOf, lastIndexOf
+
+        describe('원소 입력테스트', function() {
+            it('4개의 element를 입력했을때 길이는 4가 되어야 한다.', function() {
+                ll.linkFirst('test1');
+                ll.linkFirst('test2');
+                ll.linkFirst('test3');
+                ll.linkFirst('test4');
+                expect(ll.length).toBe(4);
+            });
+            it('2개의 element를 더 입력했을때 길이는 6이 되어야 한다.', function() {
+                ll.linkLast('test5');
+                ll.linkLast('test6');
+                expect(ll.length).toBe(2);
+            });
+        });
+
+        describe('제대로 입력됐는지 getFirst()를 통해 확인', function() {
+            it('요소가 없는 경우 호출시에 에러', function() {
+                expect(ll.getFirst()).toThrow();
+            });
+            beforeEach(function() {
+                ll.linkFirst('test1');
+            });
+            it('요소가 있는 경우 호출시에 에러발생 안함', function() {
+                expect(ll.getFirst).not.toThrow();
+            });
+
+            /*
+            it('ll.getFirst() === ll.head', function() {
+                expect(ll.getFirst()).toEqual(ll.head);
+            });
+            it('ll.getFirst().ele === test1', function() {
+                expect(ll.getFirst().ele).toEqual('test1');
+            });
+            */
+        });
+
+        describe('제대로 입력됐는지 getLast()를 통해 확인', function() {
+            /*
+            it('요소가 없는 경우 호출시에 에러', function() {
+                expect(ll.getLast).toThrow();
+            });
+            beforeEach(function() {
+                ll.linkFirst('test1');
+            });
+            it('요소가 있는 경우 호출시에 에러발생 안함', function() {
+                expect(ll.getFirst).not.toThrow();
+            });
+            it('ll.getFirst() === ll.head', function() {
+                expect(ll.getFirst()).toEqual(ll.head);
+            });
+            it('ll.getFirst().ele === test1', function() {
+                expect(ll.getFirst().ele).toEqual('test1');
+            });
+            expect(ll.getLast()).toEqual(ll.tail);
+            expect(ll.getLast()).not.toBeUndefined();
+            expect(ll.getLast()).not.toBeNull();*/
+//            expect(ll.getFirst().ele).not.toBeUndefined();
+//            expect(ll.getFirst().ele).toEqual('test4');
+        });
+/*
+
+        it('입력된 순서가 맞는지 테스트', function() {
+            ll.linkFirst('test1');
+            ll.linkFirst('test2');
+            ll.linkFirst('test3');
+            ll.linkFirst('test4');
+            expect(ll.length).toBe(4);
+
+            ll.linkLast('test5');
+            ll.linkLast('test6');
+            expect(ll.length).toBe(6);
+        });
+*/
+
+
+    });
+
+</script>
+</body>
+</html>
