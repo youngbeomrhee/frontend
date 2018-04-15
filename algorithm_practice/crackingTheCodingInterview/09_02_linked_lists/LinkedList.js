@@ -25,13 +25,11 @@ class LinkedList {
         const f = this.head;
         const newNode = new Node(e, null, f);
         this.head = newNode;
-        /*
         if(!f) {
             this.tail = newNode;
         } else {
             f.prev = newNode;
         }
-        */
         this.length++;
     }
 
@@ -39,24 +37,21 @@ class LinkedList {
         const l = this.tail;
         const newNode = new Node(e, l, null);
         this.tail = newNode;
-        /*
         if(!l) {
             this.head = newNode;
         } else {
             l.next = newNode;
         }
-        */
         this.length++;
     }
 
     getFirst() {
-        debugger;
         if(!this.head) throw '첫 번째 요소가 없습니다.';
         return this.head;
     }
 
     getLast() {
-        // if(!this.tail) throw '마지막 요소가 없습니다.';
+        if(!this.tail) throw '마지막 요소가 없습니다.';
         return this.tail;
     }
 

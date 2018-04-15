@@ -14,7 +14,7 @@
 <script src="LinkedList.js"></script>
 <script>
 
-    describe('LinkedList link 테스트', function() {
+    describe('LinkedList 테스트', function() {
         let ll;
 
         beforeEach(function() { // 각각의 테스트 전에 실행할 로직을 입력
@@ -35,67 +35,83 @@
         // linkFirst, linkLast, linkBefore, unlinkFirst, unlinkLast, unlink
         // get, getFirst, getLast, indexOf, lastIndexOf
 
-        describe('원소 입력테스트', function() {
-            it('4개의 element를 입력했을때 길이는 4가 되어야 한다.', function() {
+        describe('linkFirst()', function() {
+            it('linkFirst()로 4개의 element를 입력했을때 길이는 4가 되어야 한다.', function() {
                 ll.linkFirst('test1');
                 ll.linkFirst('test2');
                 ll.linkFirst('test3');
                 ll.linkFirst('test4');
                 expect(ll.length).toBe(4);
             });
-            it('2개의 element를 더 입력했을때 길이는 6이 되어야 한다.', function() {
-                ll.linkLast('test5');
-                ll.linkLast('test6');
-                expect(ll.length).toBe(2);
+        });
+
+        describe('linkLast()', function() {
+            it('linkLast()로 4개의 element를 입력했을때 길이는 4가 되어야 한다.', function() {
+                ll.linkLast('test1');
+                ll.linkLast('test2');
+                ll.linkLast('test3');
+                ll.linkLast('test4');
+                expect(ll.length).toBe(4);
             });
         });
 
-        describe('제대로 입력됐는지 getFirst()를 통해 확인', function() {
-            it('요소가 없는 경우 호출시에 에러', function() {
-                expect(ll.getFirst()).toThrow();
+        describe('getFirst()', function() {
+            describe('에러처리 확인', function() {
+                it('요소가 없는 경우 getFirst() 호출시에 에러', function() {
+                    console.dir(ll);
+                    expect(ll.getFirst.bind(ll)).toThrow();
+                });
+                it('요소가 있는 경우 getFirst() 호출시에 에러발생 안함', function() {
+                    ll.linkFirst('test1');
+                    expect(ll.getFirst.bind(ll)).not.toThrow();
+                });
             });
-            beforeEach(function() {
-                ll.linkFirst('test1');
+            describe('입력된 값의 적합성 확인', function() {
+                beforeEach(function() { // 각각의 테스트 전에 실행할 로직을 입력
+                    ll.linkFirst('test1');
+                    ll.linkFirst('test2');
+                });
+                it('ll.getFirst() === ll.head', function() {
+                    expect(ll.getFirst()).toEqual(ll.head);
+                });
+                it('ll.getFirst().ele === test2', function() {
+                    expect(ll.getFirst().ele).toEqual('test2');
+                });
             });
-            it('요소가 있는 경우 호출시에 에러발생 안함', function() {
-                expect(ll.getFirst).not.toThrow();
-            });
-
-            /*
-            it('ll.getFirst() === ll.head', function() {
-                expect(ll.getFirst()).toEqual(ll.head);
-            });
-            it('ll.getFirst().ele === test1', function() {
-                expect(ll.getFirst().ele).toEqual('test1');
-            });
-            */
         });
 
-        describe('제대로 입력됐는지 getLast()를 통해 확인', function() {
-            /*
-            it('요소가 없는 경우 호출시에 에러', function() {
-                expect(ll.getLast).toThrow();
+        describe('getLast()', function() {
+
+            describe('에러처리 확인', function() {
+                it('요소가 없는 경우 getLast() 호출시에 에러', function() {
+                    expect(ll.getLast.bind(ll)).toThrow();
+                });
+                it('요소가 있는 경우 getLast() 호출시에 에러발생 안함', function() {
+                    ll.linkFirst('test1');
+                    expect(ll.getLast.bind(ll)).not.toThrow();
+                });
             });
-            beforeEach(function() {
-                ll.linkFirst('test1');
+
+            describe('입력된 값의 적합성 확인', function() {
+                beforeEach(function() {
+                    ll.linkLast('test1');
+                    ll.linkLast('test2');
+                });
+                it('ll.getLast() === ll.tail', function() {
+                    expect(ll.getLast()).toEqual(ll.tail);
+                });
+                it('ll.getLast().ele === test2', function() {
+                    expect(ll.getLast().ele).toEqual('test2');
+                });
             });
-            it('요소가 있는 경우 호출시에 에러발생 안함', function() {
-                expect(ll.getFirst).not.toThrow();
-            });
-            it('ll.getFirst() === ll.head', function() {
-                expect(ll.getFirst()).toEqual(ll.head);
-            });
-            it('ll.getFirst().ele === test1', function() {
-                expect(ll.getFirst().ele).toEqual('test1');
-            });
-            expect(ll.getLast()).toEqual(ll.tail);
-            expect(ll.getLast()).not.toBeUndefined();
-            expect(ll.getLast()).not.toBeNull();*/
+//            expect(ll.getLast()).toEqual(ll.tail);
+//            expect(ll.getLast()).not.toBeUndefined();
+//            expect(ll.getLast()).not.toBeNull();
 //            expect(ll.getFirst().ele).not.toBeUndefined();
 //            expect(ll.getFirst().ele).toEqual('test4');
         });
-/*
 
+/*
         it('입력된 순서가 맞는지 테스트', function() {
             ll.linkFirst('test1');
             ll.linkFirst('test2');
