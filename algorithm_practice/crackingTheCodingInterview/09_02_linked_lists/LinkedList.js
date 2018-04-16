@@ -22,8 +22,10 @@ class LinkedList {
     }
 
     linkFirst(e) {
-        const f = this.head;
-        const newNode = new Node(e, null, f);
+        const f = this.head,
+            prev=null,
+            next=f;
+        const newNode = new Node(e, prev, next);
         this.head = newNode;
         if(!f) {
             this.tail = newNode;
@@ -34,8 +36,10 @@ class LinkedList {
     }
 
     linkLast(e) {
-        const l = this.tail;
-        const newNode = new Node(e, l, null);
+        const l = this.tail,
+            prev=l,
+            next=null;
+        const newNode = new Node(e, prev, next);
         this.tail = newNode;
         if(!l) {
             this.head = newNode;
