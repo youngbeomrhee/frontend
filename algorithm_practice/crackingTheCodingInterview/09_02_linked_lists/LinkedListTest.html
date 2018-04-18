@@ -104,13 +104,92 @@
                     expect(ll.getLast().ele).toEqual('test2');
                 });
             });
-//            expect(ll.getLast()).toEqual(ll.tail);
-//            expect(ll.getLast()).not.toBeUndefined();
-//            expect(ll.getLast()).not.toBeNull();
-//            expect(ll.getFirst().ele).not.toBeUndefined();
-//            expect(ll.getFirst().ele).toEqual('test4');
         });
 
+        describe('indexOf()', function() {
+            it('에러처리 확인 - 인자가 안들어오거나 잘못된 타입이 들어오는 경우 에러발생', function() {
+                expect(ll.indexOf.bind(ll)).toThrow('잘못된 타입이 들어왔습니다.');
+            });
+
+            it('에러처리 확인 - 인자가 들어오고 제대로 된 타입이 들어오는 경우 에러발생 안함', function() {
+
+            });
+        });
+/*
+        describe('contains() 테스트', function() {
+            it('에러처리 확인 - 인자가 안들어오거나 잘못된 타입이 들어오는 경우 에러발생', function() {
+                expect(ll.contains.bind(ll)).toThrow();
+                expect(ll.contains.bind(ll, 1)).toThrow();
+            });
+            it('에러처리 확인 - 인자가 들어오고 제대로 된 타입이 들어오는 경우 에러발생 안함', function() {
+                expect(ll.contains.bind(ll, new Node(null, new Node(null, null, null)))).not.toThrow();
+            });
+            /!*
+             beforeEach(function () {
+             ll.linkFirst('test1');
+             ll.linkBefore('test2', ll.getFirst())
+             });*!/
+
+        });
+        */
+        describe('linkBefore()', function() {
+            describe('에러처리 확인', function() {
+                it('인자 2개를 넘기지 않고 호출시에 에러', function () {
+                    expect(ll.linkBefore.bind(ll)).toThrow();
+                    expect(ll.linkBefore.bind(ll, 'test1')).toThrow();
+                });
+                it('두 번째 인자가 잘못된 타입이라면 오류', function () {
+                    expect(ll.linkBefore.bind(ll, 'test1', 'test2')).toThrow();
+                });
+                it('두 번째 인자가 제대로 된 타입이라도 원본 리스트의 요소가 아니면 오류', function () {
+                    expect(ll.linkBefore.bind(ll, 'test1', new Node(null, 'test1', null))).toThrow();
+                });
+                it('두 번째 인자가 제대로 된 타입이고, 원본 리스트의 요소면 통과', function () {
+                    ll.linkFirst('test1');
+                    expect(ll.linkBefore.bind(ll, 'test2', ll.getFirst())).not.toThrow();
+                });
+            });
+/*
+
+            describe('값이 제대로 들어갔는지 확인', function() {
+                beforeEach(function () {
+                    ll.linkFirst('test1');
+                    ll.linkBefore('test2', ll.getFirst())
+                });
+                it('head 확인', function () {
+                    expect(ll.linkBefore.bind(ll)).toThrow();
+                    expect(ll.linkBefore.bind(ll, 'test1')).toThrow();
+                });
+                it('두 번째 인자가 잘못된 타입이라면 오류', function () {
+                    expect(ll.linkBefore.bind(ll, 'test1', 'test2')).toThrow();
+                });
+                it('두 번째 인자가 제대로 된 타입이라도 원본 리스트의 요소가 아니면 오류', function () {
+                    expect(ll.linkBefore.bind(ll, 'test1', new Node(null, 'test1', null))).toThrow();
+                });
+                it('두 번째 인자가 제대로 된 타입이고, 원본 리스트의 요소면 통과', function () {
+                    ll.linkFirst('test1');
+                    expect(ll.linkBefore.bind(ll, 'test2', ll.getFirst())).not.toThrow();
+                });
+            });
+*/
+
+
+            /*
+            describe('입력된 값의 적합성 확인', function() {
+                it('입력된 인자의 갯수 확인', function() {
+                    ll.linkBefore('test1');
+                    ll.linkBefore('test2');
+                    ll.linkBefore('test3');
+                    expect(ll.length).toEqual(3);
+                });
+            });
+            */
+        });
+
+
+        describe('linkAfter()', function() {
+
+        });
 /*
         it('입력된 순서가 맞는지 테스트', function() {
             ll.linkFirst('test1');
