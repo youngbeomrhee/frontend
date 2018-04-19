@@ -36,32 +36,48 @@
         // get, getFirst, getLast, indexOf, lastIndexOf
 
         describe('linkFirst()', function() {
-            it('linkFirst()로 4개의 element를 입력했을때 길이는 4가 되어야 한다.', function() {
-                ll.linkFirst('test1');
-                ll.linkFirst('test2');
-                ll.linkFirst('test3');
-                ll.linkFirst('test4');
-                expect(ll.length).toBe(4);
+            describe('에러처리', function() {
+                it('linkFirst() 실행시에 파라미터를 넘기지 않으면 에러.', function() {
+                    expect(ll.linkFirst.bind(ll)).toThrow('필수인자가 누락되었습니다.');
+                });
+            });
+            describe('입력시 인자 갯수 체크', function() {
+                it('linkFirst()로 4개의 element를 입력했을때 길이는 4가 되어야 한다.', function() {
+                    ll.linkFirst('test1');
+                    ll.linkFirst('test2');
+                    ll.linkFirst('test3');
+                    ll.linkFirst('test4');
+                    expect(ll.length).toBe(4);
+                });
             });
         });
+
 
         describe('linkLast()', function() {
-            it('linkLast()로 4개의 element를 입력했을때 길이는 4가 되어야 한다.', function() {
-                ll.linkLast('test1');
-                ll.linkLast('test2');
-                ll.linkLast('test3');
-                ll.linkLast('test4');
-                expect(ll.length).toBe(4);
+            describe('에러처리', function() {
+                it('linkLast() 실행시에 파라미터를 넘기지 않으면 에러.', function() {
+                    expect(ll.linkLast.bind(ll)).toThrow();
+                });
+            });
+            describe('입력시 인자 갯수 체크', function() {
+                it('linkLast()로 4개의 element를 입력했을때 길이는 4가 되어야 한다.', function() {
+                    ll.linkLast('test1');
+                    ll.linkLast('test2');
+                    ll.linkLast('test3');
+                    ll.linkLast('test4');
+                    expect(ll.length).toBe(4);
+                });
             });
         });
 
+
         describe('getFirst()', function() {
-            describe('에러처리 확인', function() {
-                it('요소가 없는 경우 getFirst() 호출시에 에러', function() {
+            describe('에러처리', function() {
+                it('요소가 없을 때 getFirst() 호출시에 에러', function() {
                     console.dir(ll);
-                    expect(ll.getFirst.bind(ll)).toThrow();
+                    expect(ll.getFirst.bind(ll)).toThrow('첫 번째 요소가 없습니다.');
                 });
-                it('요소가 있는 경우 getFirst() 호출시에 에러발생 안함', function() {
+                it('요소가 있을 때 getFirst() 호출시에 에러발생 안함', function() {
                     ll.linkFirst('test1');
                     expect(ll.getFirst.bind(ll)).not.toThrow();
                 });
@@ -82,11 +98,11 @@
 
         describe('getLast()', function() {
 
-            describe('에러처리 확인', function() {
-                it('요소가 없는 경우 getLast() 호출시에 에러', function() {
-                    expect(ll.getLast.bind(ll)).toThrow();
+            describe('에러처리', function() {
+                it('요소가 없을 때 getLast() 호출시에 에러', function() {
+                    expect(ll.getLast.bind(ll)).toThrow('마지막 요소가 없습니다.');
                 });
-                it('요소가 있는 경우 getLast() 호출시에 에러발생 안함', function() {
+                it('요소가 있을 때 getLast() 호출시에 에러발생 안함', function() {
                     ll.linkFirst('test1');
                     expect(ll.getLast.bind(ll)).not.toThrow();
                 });
@@ -107,12 +123,18 @@
         });
 
         describe('indexOf()', function() {
-            it('에러처리 확인 - 인자가 안들어오거나 잘못된 타입이 들어오는 경우 에러발생', function() {
-                expect(ll.indexOf.bind(ll)).toThrow('잘못된 타입이 들어왔습니다.');
-            });
+            describe('에러처리', function() {
+                it('인자가 안들어오는 경우', function() {
+                    expect(ll.indexOf.bind(ll)).toThrow('필수인자가 누락되었습니다.');
+                });
 
-            it('에러처리 확인 - 인자가 들어오고 제대로 된 타입이 들어오는 경우 에러발생 안함', function() {
+                it('잘못된 타입이 들어오는 경우', function() {
+                    expect(ll.indexOf.bind(ll, '잘못된타입')).toThrowError(TypeError);
+                });
 
+                it('에러처리 확인 - 인자가 들어오고 제대로 된 타입이 들어오는 경우 에러발생 안함', function() {
+
+                });
             });
         });
 /*
@@ -133,6 +155,7 @@
         });
         */
         describe('linkBefore()', function() {
+            /*
             describe('에러처리 확인', function() {
                 it('인자 2개를 넘기지 않고 호출시에 에러', function () {
                     expect(ll.linkBefore.bind(ll)).toThrow();
@@ -149,6 +172,7 @@
                     expect(ll.linkBefore.bind(ll, 'test2', ll.getFirst())).not.toThrow();
                 });
             });
+            */
 /*
 
             describe('값이 제대로 들어갔는지 확인', function() {

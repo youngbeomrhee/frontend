@@ -1,10 +1,21 @@
 /**
  * Created by yblee on 2018-04-10.
  */
-
-
+function errParam(msg) {
+    if(msg) throw msg;
+    throw '필수인자가 누락되었습니다.';
+}
+function typeCheck(instance, type) {
+    if(!(instance instanceof type)) throw new TypeError(type);
+}
+function require(...args) {
+    let nullEles = args.reduce((accum, curr)=>{
+        if(!curr) accum.push(curr);
+    }, []);
+    if(nullEles.length > 0) throw '필수값이 누락되었습니다 : ' + nullEles;
+}
 class Node {
-    constructor(prev, ele, next) {
+    constructor(prev, ele=errParam(), next) {
         this.prev = prev ? prev : null;
         this.next = next ? next : null;
         this.ele = ele ? ele : null;
@@ -21,7 +32,7 @@ class LinkedList {
         }
     }
 
-    linkFirst(ele) {
+    linkFirst(ele=errParam()) {
         const first = this.head,
             prev=null,
             next=first,
@@ -35,7 +46,7 @@ class LinkedList {
         this.length++;
     }
 
-    linkLast(ele) {
+    linkLast(ele=errParam()) {
         const last = this.tail,
             prev=last,
             next=null,
@@ -58,8 +69,8 @@ class LinkedList {
         if(!this.tail) throw '마지막 요소가 없습니다.';
         return this.tail;
     }
-    indexOf(node) {
-        if(!(node instanceof Node)) throw '잘못된 타입이 들어왔습니다.';
+    indexOf(node=errParam()) {
+        typeCheck(node, Node);
 
         let curr = this.head,
             i=0,
@@ -77,12 +88,12 @@ class LinkedList {
         return matchIdx;
     }
     contains(node) {
-        if(!(node instanceof Node)) throw '잘못된 타입이 들어왔습니다.';
+        typeCheck(node, Node);
         return this.indexOf(node)<=-1;
     }
-    linkBefore(ele, succ) {
-        if(!ele || !succ) throw '인자 2개는 필수입니다.';
-        if(!(succ instanceof Node)) throw '잘못된 타입입니다.';
+
+    linkBefore(ele=errParam(), succ=errParam()) {
+        typeCheck(succ, Node);
         if(!this.contains(succ)) throw 'List에 해당 값이 없습니다.';
 
         const pred = succ.prev,
