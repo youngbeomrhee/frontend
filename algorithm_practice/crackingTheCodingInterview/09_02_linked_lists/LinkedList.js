@@ -31,7 +31,6 @@ class LinkedList {
             this.addAll(arr);
         }
     }
-
     linkFirst(ele=errParam()) {
         const first = this.head,
             prev=null,
@@ -45,7 +44,6 @@ class LinkedList {
         }
         this.length++;
     }
-
     linkLast(ele=errParam()) {
         const last = this.tail,
             prev=last,
@@ -59,39 +57,38 @@ class LinkedList {
         }
         this.length++;
     }
-
     getFirst() {
         if(!this.head) throw '첫 번째 요소가 없습니다.';
         return this.head;
     }
-
     getLast() {
         if(!this.tail) throw '마지막 요소가 없습니다.';
         return this.tail;
     }
-    indexOf(node=errParam()) {
-        typeCheck(node, Node);
+    indexOf(ele=errParam()) {
+        let index = 0,
+            x = this.head;
 
-        let curr = this.head,
-            i=0,
-            matchIdx=-1;
-
-        if(!curr) return -1;
-        while(curr.next) {
-            if(curr === node) {
-                matchIdx = i;
-                break;
+        if (ele === null) {
+            for (; x !== null; x = x.next) {
+                if (x.ele == null)
+                    return index;
+                index++;
             }
-            curr = curr.next;
-            i++;
+        } else {
+            for (; x != null; x = x.next) {
+                if (ele === x.ele)
+                    return index;
+                index++;
+            }
         }
-        return matchIdx;
+        return -1;
     }
-    contains(node) {
-        typeCheck(node, Node);
-        return this.indexOf(node)<=-1;
+    contains(ele=errParam()) {
+        return this.indexOf(ele) >= 0;
     }
 
+/*
     linkBefore(ele=errParam(), succ=errParam()) {
         typeCheck(succ, Node);
         if(!this.contains(succ)) throw 'List에 해당 값이 없습니다.';
@@ -106,8 +103,8 @@ class LinkedList {
         }
         this.length++;
     }
+    */
 /*
-
     linkAfter(ele, pred) {
         if(!ele || !pred) throw '인자 2개는 필수입니다.';
         if(!(pred instanceof Node)) throw '잘못된 타입입니다.';
