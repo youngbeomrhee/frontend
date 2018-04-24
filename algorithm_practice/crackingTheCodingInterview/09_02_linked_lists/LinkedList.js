@@ -56,6 +56,12 @@ class LinkedList {
             last.next = newNode;
         }
         this.length++;
+    } 
+    isElementIndex(index) {     // index가 제대로 된 범위 안에 들어오는지 확인
+        return index >= 0 && index < this.length;
+    }
+    checkElementIndex(index) {
+        if (!this.isElementIndex(index)) throw RangeError(index);
     }
     getFirst() {
         if(!this.head) throw '첫 번째 요소가 없습니다.';
@@ -76,10 +82,29 @@ class LinkedList {
                 index++;
             }
         } else {
-            for (; x != null; x = x.next) {
+            for (; x !== null; x = x.next) {
                 if (ele === x.ele)
                     return index;
                 index++;
+            }
+        }
+        return -1;
+    }
+    lastIndexOf(ele=errParam()) {
+        let index = this.length,
+            x = this.tail;
+
+        if (ele === null) {
+            for (; x !== null; x = x.prev) {
+                index--;
+                if (x.ele == null)
+                    return index;
+            }
+        } else {
+            for (; x !== null; x = x.prev) {
+                index--;
+                if (ele === x.ele)
+                    return index;
             }
         }
         return -1;
@@ -88,10 +113,9 @@ class LinkedList {
         return this.indexOf(ele) >= 0;
     }
 
-/*
     linkBefore(ele=errParam(), succ=errParam()) {
         typeCheck(succ, Node);
-        if(!this.contains(succ)) throw 'List에 해당 값이 없습니다.';
+        if(!this.contains(succ.ele)) throw 'List에 해당 값이 없습니다.';
 
         const pred = succ.prev,
             newNode = new Node(pred, ele, succ);
@@ -103,13 +127,10 @@ class LinkedList {
         }
         this.length++;
     }
-    */
-/*
-    linkAfter(ele, pred) {
-        if(!ele || !pred) throw '인자 2개는 필수입니다.';
-        if(!(pred instanceof Node)) throw '잘못된 타입입니다.';
-        if(!this.contains(pred)) throw 'List에 해당 값이 없습니다.';
 
+    linkAfter(ele=errParam(), pred=errParam()) {
+        typeCheck(pred, Node);
+        if(!this.contains(pred.ele)) throw 'List에 해당 값이 없습니다.';
         const succ = pred.next,
             newNode = new Node(pred, ele, succ);
         pred.next = newNode;
@@ -120,7 +141,6 @@ class LinkedList {
         }
         this.length++;
     }
-*/
 
 
 /*

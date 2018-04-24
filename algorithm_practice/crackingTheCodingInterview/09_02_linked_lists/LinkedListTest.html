@@ -32,7 +32,7 @@
         });
 
 
-        // linkFirst, linkLast, linkBefore, unlinkFirst, unlinkLast, unlink
+        // linkFirst, linkLast, linkBefore, linkLast, unlinkFirst, unlinkLast, unlink
         // get, getFirst, getLast, indexOf, lastIndexOf
 
         describe('linkFirst()', function() {
@@ -68,7 +68,12 @@
                 });
             });
         });
+        describe('isElementIndex()', function() {
 
+        });
+        describe('checkElementIndex()', function() {
+
+        });
         describe('getFirst()', function() {
             describe('에러처리', function() {
                 it('요소가 없을 때 getFirst() 호출시에 에러', function() {
@@ -132,14 +137,41 @@
                     ll.linkFirst('test1');
                     ll.linkLast('test2');
                 });
+                it('해당되는 값이 없으면 -1', function() {
+                    expect(ll.indexOf('xxxxxx')).toEqual(-1);
+                });
                 it('ll.indexOf("test1") === 0', function() {
                     expect(ll.indexOf('test1')).toEqual(0);
                 });
                 it('ll.indexOf("test2") === 1', function() {
                     expect(ll.indexOf('test2')).toEqual(1);
                 });
-                it('ll.indexOf(new Node(null, "없는 값")) === ll.length-1', function() {
-                    expect(ll.indexOf('없는 값')).toEqual(-1);
+            });
+        });
+
+        describe('lastIndexOf()', function() {
+            describe('에러처리 확인', function() {
+                it('인자가 안들어오는 경우', function() {
+                    expect(ll.lastIndexOf.bind(ll)).toThrow('필수인자가 누락되었습니다.');
+                });
+                it('인자가 들어오고 제대로 된 값이 들어오는 경우 에러발생 안함', function() {
+                    expect(ll.lastIndexOf.bind(ll, 'test1')).not.toThrow();
+                });
+            });
+            describe('입력된 값의 적합성 확인', function() {
+                beforeEach(function() {
+                    ll.linkFirst('test1');
+                    ll.linkLast('test1');
+                });
+                it('해당되는 값이 없으면 -1', function() {
+                    expect(ll.lastIndexOf('xxxxxx')).toEqual(-1);
+                });
+                it('ll.lastIndexOf("test1") === 1', function() {
+                    expect(ll.lastIndexOf('test1')).toEqual(1);
+                });
+                it('요소를 마지막에 추가 후에도 ll.lastIndexOf("test1") === 1', function() {
+                    ll.linkLast('test2');
+                    expect(ll.lastIndexOf('test1')).toEqual(1);
                 });
             });
         });
@@ -169,94 +201,83 @@
 
         describe('linkBefore()', function() {
             describe('에러처리 확인', function() {
-//                it('인자 2개를 넘기지 않고 호출시에 에러', function () {
-//                    expect(ll.linkBefore.bind(ll)).not.toThrow('필수인자가 누락되었습니다.');
-//                    expect(ll.linkBefore.bind(ll, 'test1')).toThrow('필수인자가 누락되었습니다.');
-//                });
-                /*
-                it('두 번째 인자가 잘못된 타입이라면 오류', function () {
-                    expect(ll.linkBefore.bind(ll, 'test1', 'test2')).toThrow();
-                });
-                it('두 번째 인자가 제대로 된 타입이라도 원본 리스트의 요소가 아니면 오류', function () {
-                    expect(ll.linkBefore.bind(ll, 'test1', new Node(null, 'test1', null))).toThrow();
-                });
-                it('두 번째 인자가 제대로 된 타입이고, 원본 리스트의 요소면 통과', function () {
-                    ll.linkFirst('test1');
-                    expect(ll.linkBefore.bind(ll, 'test2', ll.getFirst())).not.toThrow();
-                });
-                */
-            });
-            /*
-            describe('에러처리 확인', function() {
                 it('인자 2개를 넘기지 않고 호출시에 에러', function () {
-                    expect(ll.linkBefore.bind(ll)).toThrow();
-                    expect(ll.linkBefore.bind(ll, 'test1')).toThrow();
+                    expect(ll.linkBefore.bind(ll)).toThrow('필수인자가 누락되었습니다.');
+                    expect(ll.linkBefore.bind(ll, undefined)).toThrow('필수인자가 누락되었습니다.');
+                    expect(ll.linkBefore.bind(ll, 'test1')).toThrow('필수인자가 누락되었습니다.');
+                    expect(ll.linkBefore.bind(ll, 'test1', undefined)).toThrow('필수인자가 누락되었습니다.');
                 });
                 it('두 번째 인자가 잘못된 타입이라면 오류', function () {
-                    expect(ll.linkBefore.bind(ll, 'test1', 'test2')).toThrow();
+                    expect(ll.linkBefore.bind(ll, 'test1', true)).toThrowError(TypeError);
+                    expect(ll.linkBefore.bind(ll, 'test1', 1)).toThrowError(TypeError);
+                    expect(ll.linkBefore.bind(ll, 'test1', null)).toThrowError(TypeError);
                 });
                 it('두 번째 인자가 제대로 된 타입이라도 원본 리스트의 요소가 아니면 오류', function () {
                     expect(ll.linkBefore.bind(ll, 'test1', new Node(null, 'test1', null))).toThrow();
                 });
-                it('두 번째 인자가 제대로 된 타입이고, 원본 리스트의 요소면 통과', function () {
+                it('두 번째 인자가 제대로 된 타입이고, 원본 리스트의 요소면 오류발생 안함', function () {
                     ll.linkFirst('test1');
                     expect(ll.linkBefore.bind(ll, 'test2', ll.getFirst())).not.toThrow();
+                    expect(ll.linkBefore.bind(ll, 'test2', ll.getLast())).not.toThrow();
                 });
             });
-            */
-
-            /*
             describe('값이 제대로 들어갔는지 확인', function() {
                 beforeEach(function () {
                     ll.linkFirst('test1');
-                    ll.linkBefore('test2', ll.getFirst())
+                    ll.linkBefore('test0', ll.getFirst());
+                });
+                it('제대로 된 위치에 들어갔는지 확인', function () {
+                    expect(ll.getFirst().ele).toEqual('test0');
+                });
+                it('인자의 개수 확인', function () {
+                    expect(ll.length).toEqual(2);
                 });
                 it('head 확인', function () {
-                    expect(ll.linkBefore.bind(ll)).toThrow();
-                    expect(ll.linkBefore.bind(ll, 'test1')).toThrow();
-                });
-                it('두 번째 인자가 잘못된 타입이라면 오류', function () {
-                    expect(ll.linkBefore.bind(ll, 'test1', 'test2')).toThrow();
-                });
-                it('두 번째 인자가 제대로 된 타입이라도 원본 리스트의 요소가 아니면 오류', function () {
-                    expect(ll.linkBefore.bind(ll, 'test1', new Node(null, 'test1', null))).toThrow();
-                });
-                it('두 번째 인자가 제대로 된 타입이고, 원본 리스트의 요소면 통과', function () {
-                    ll.linkFirst('test1');
-                    expect(ll.linkBefore.bind(ll, 'test2', ll.getFirst())).not.toThrow();
+                    expect(ll.getFirst().ele).toEqual(ll.head.ele);
                 });
             });
-            */
-
-            /*
-            describe('입력된 값의 적합성 확인', function() {
-                it('입력된 인자의 갯수 확인', function() {
-                    ll.linkBefore('test1');
-                    ll.linkBefore('test2');
-                    ll.linkBefore('test3');
-                    expect(ll.length).toEqual(3);
-                });
-            });
-            */
         });
 
 
         describe('linkAfter()', function() {
-
+            describe('에러처리 확인', function() {
+                it('인자 2개를 넘기지 않고 호출시에 에러', function () {
+                    expect(ll.linkAfter.bind(ll)).toThrow('필수인자가 누락되었습니다.');
+                    expect(ll.linkAfter.bind(ll, undefined)).toThrow('필수인자가 누락되었습니다.');
+                    expect(ll.linkAfter.bind(ll, 'test1')).toThrow('필수인자가 누락되었습니다.');
+                    expect(ll.linkAfter.bind(ll, 'test1', undefined)).toThrow('필수인자가 누락되었습니다.');
+                });
+                it('두 번째 인자가 잘못된 타입이라면 오류', function () {
+                    expect(ll.linkAfter.bind(ll, 'test1', true)).toThrowError(TypeError);
+                    expect(ll.linkAfter.bind(ll, 'test1', 1)).toThrowError(TypeError);
+                    expect(ll.linkAfter.bind(ll, 'test1', null)).toThrowError(TypeError);
+                });
+                it('두 번째 인자가 제대로 된 타입이라도 원본 리스트의 요소가 아니면 오류', function () {
+                    expect(ll.linkAfter.bind(ll, 'test1', new Node(null, 'test1', null))).toThrow();
+                });
+                it('두 번째 인자가 제대로 된 타입이고, 원본 리스트의 요소면 오류발생 안함', function () {
+                    ll.linkFirst('test1');
+                    expect(ll.linkAfter.bind(ll, 'test2', ll.getFirst())).not.toThrow();
+                    expect(ll.linkAfter.bind(ll, 'test2', ll.getLast())).not.toThrow();
+                });
+            });
+            describe('값이 제대로 들어갔는지 확인', function() {
+                beforeEach(function () {
+                    ll.linkFirst('test1');
+                    ll.linkAfter('test2', ll.getFirst());
+                });
+                it('제대로 된 위치에 들어갔는지 확인', function () {
+                    expect(ll.getLast().ele).toEqual('test2');
+                });
+                it('인자의 개수 확인', function () {
+                    expect(ll.length).toEqual(2);
+                });
+                it('tail 확인', function () {
+                    expect(ll.getLast().ele).toEqual(ll.tail.ele);
+                });
+            });
         });
-/*
-        it('입력된 순서가 맞는지 테스트', function() {
-            ll.linkFirst('test1');
-            ll.linkFirst('test2');
-            ll.linkFirst('test3');
-            ll.linkFirst('test4');
-            expect(ll.length).toBe(4);
 
-            ll.linkLast('test5');
-            ll.linkLast('test6');
-            expect(ll.length).toBe(6);
-        });
-*/
 
 
     });
