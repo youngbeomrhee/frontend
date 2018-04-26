@@ -3,17 +3,33 @@
 <head>
 	<meta charset="UTF-8">
 	<title>뒤에서 k번째 원소 구하기</title>
+	<!-- 재스민 라이브러리 파일 -->
+	<link data-require="jasmine@*" data-semver="2.0.0" rel="stylesheet" href="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine.css" />
+	<script data-require="jasmine@*" data-semver="2.0.0" src="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine.js"></script>
+	<script data-require="jasmine@*" data-semver="2.0.0" src="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine-html.js"></script>
+	<script data-require="jasmine@*" data-semver="2.0.0" src="http://cdn.jsdelivr.net/jasmine/2.0.0/boot.js"></script>
 </head>
 <body>
 
-<script src="ex_002_0_linked_lists.js"></script>
+<script src="LinkedList.js"></script>
 <script>
+	/*
+		1.1 단방향 연결리스트인 경우
+			3.1 전체 길이를 아는 경우 : "전체길이 - k" 번째 요소
+			3.2 전체 길이를 모르는 경우 : 전체길이를 먼저 구하고 "전체길이 - k" 번째 요소
+		1.2 양방향 연결리스트인 경우
+	 		2.1 마지막 인자를 아는 경우 : 마지막 인자에서
+		2.1 마지막 인자를 아는 경우
+		2.2 마지막 인자를 모르는 경우
+		3.1 전체 길이를 아는 경우
+		3.2 전체 길이를 모르는 경우
+	*/
 	function nthToLast(node, idx) {
-	    if(node.next) {
-            return nthToLast(node.next, idx) + 1;
-		} else {
-	        return 1;
-		}
+//	    if(node.next) {
+//            return nthToLast(node.next, idx) + 1;
+//		} else {
+//	        return 1;
+//		}
 	}
 
     let ll = new LinkedList();
