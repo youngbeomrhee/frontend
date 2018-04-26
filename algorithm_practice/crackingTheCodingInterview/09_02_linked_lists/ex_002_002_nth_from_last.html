@@ -14,17 +14,20 @@
 <script src="LinkedList.js"></script>
 <script>
 	/*
+
+
 		1.1 단방향 연결리스트인 경우
 			3.1 전체 길이를 아는 경우 : "전체길이 - k" 번째 요소
 			3.2 전체 길이를 모르는 경우 : 전체길이를 먼저 구하고 "전체길이 - k" 번째 요소
 		1.2 양방향 연결리스트인 경우
-	 		2.1 마지막 인자를 아는 경우 : 마지막 인자에서
+	 		2.1 마지막 인자를 아는 경우 : 마지막 인자에서 k만큼 prev를 호출
+	 		2.2 마지막 인자를 모르는 경우 : 처음부터 끝까지 탐색해서 마지막 인자를 찾고 거기에서 k만큼 prev를 호출
 		2.1 마지막 인자를 아는 경우
 		2.2 마지막 인자를 모르는 경우
 		3.1 전체 길이를 아는 경우
 		3.2 전체 길이를 모르는 경우
 	*/
-	function nthToLast(node, idx) {
+	function nthFromLast(node, idx) {
 //	    if(node.next) {
 //            return nthToLast(node.next, idx) + 1;
 //		} else {
