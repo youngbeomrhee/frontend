@@ -5,149 +5,187 @@ function errParam(msg) {
     if(msg) throw msg;
     throw '필수인자가 누락되었습니다.';
 }
+
 function typeCheck(instance, type) {
     if(!(instance instanceof type)) throw new TypeError(type);
 }
+
 function require(...args) {
     let nullEles = args.reduce((accum, curr)=>{
         if(!curr) accum.push(curr);
     }, []);
-    if(nullEles.length > 0) throw '필수값이 누락되었습니다 : ' + nullEles;
+    if(nullEles.size > 0) throw '필수값이 누락되었습니다 : ' + nullEles;
 }
+
 class Node {
-    constructor(prev, ele=errParam(), next) {
+    constructor(prev, item=errParam(), next) {
         this.prev = prev ? prev : null;
         this.next = next ? next : null;
-        this.ele = ele ? ele : null;
+        this.item = item ? item : null;
     }
 }
 
 class LinkedList {
     constructor(arr) {
-        this.head = null;
-        this.tail = null;
-        this.length = 0;
+        this.first = null;
+        this.last = null;
+        this.size = 0;
         if(arr) {
             this.addAll(arr);
         }
     }
-    linkFirst(ele=errParam()) {
-        const first = this.head,
+
+    linkFirst(item=errParam()) {
+        const first = this.first,
             prev=null,
             next=first,
-            newNode = new Node(prev, ele, next);
-        this.head = newNode;
+            newNode = new Node(prev, item, next);
+        this.first = newNode;
         if(!first) {
-            this.tail = newNode;
+            this.last = newNode;
         } else {
             first.prev = newNode;
         }
-        this.length++;
+        this.size++;
     }
-    linkLast(ele=errParam()) {
-        const last = this.tail,
+
+    linkLast(item=errParam()) {
+        const last = this.last,
             prev=last,
             next=null,
-            newNode = new Node(prev, ele, next);
-        this.tail = newNode;
+            newNode = new Node(prev, item, next);
+        this.last = newNode;
         if(!last) {
-            this.head = newNode;
+            this.first = newNode;
         } else {
             last.next = newNode;
         }
-        this.length++;
-    } 
+        this.size++;
+    }
+
+    /**
+     * Constructs an IndexOutOfBoundsException detail message.
+     * Of the many possible refactorings of the error handling code,
+     * this "outlining" performs best with both server and client VMs.
+     */
+    outOfBoundsMsg(index) {
+        return "Index: "+index+", Size: "+this.size;
+    }
+
     isElementIndex(index) {     // index가 제대로 된 범위 안에 들어오는지 확인
-        return index >= 0 && index < this.length;
+        return index >= 0 && index < this.size;
     }
+
     checkElementIndex(index) {
-        if (!this.isElementIndex(index)) throw RangeError(index);
+        if (!this.isElementIndex(index)) throw new RangeError(this.outOfBoundsMsg(index));
     }
+
+    /**
+     * Returns the (non-null) Node at the specified element index.
+     */
+    node(index) {
+        // this.checkElementIndex(index);
+        if (index < (this.size >> 1)) {
+            let x = this.first;
+            for (let i = 0; i < index; i++) {
+                x = x.next;
+            }
+            return x;
+        } else {
+            let x = this.last;
+            for (let i = this.size - 1; i > index; i--)
+            x = x.prev;
+            return x;
+        }
+    }
+
+    get(index) {
+        this.checkElementIndex(index);
+        return this.node(index).item;
+    }
+
     getFirst() {
-        if(!this.head) throw '첫 번째 요소가 없습니다.';
-        return this.head;
+        if(!this.first) throw '첫 번째 요소가 없습니다.';
+        return this.first;
     }
+
     getLast() {
-        if(!this.tail) throw '마지막 요소가 없습니다.';
-        return this.tail;
+        if(!this.last) throw '마지막 요소가 없습니다.';
+        return this.last;
     }
-    indexOf(ele=errParam()) {
+
+    indexOf(item=errParam()) {
         let index = 0,
-            x = this.head;
+            x = this.first;
 
-        if (ele === null) {
+        if (item === null) {
             for (; x !== null; x = x.next) {
-                if (x.ele == null)
+                if (x.item == null)
                     return index;
                 index++;
             }
         } else {
             for (; x !== null; x = x.next) {
-                if (ele === x.ele)
+                if (item === x.item)
                     return index;
                 index++;
             }
         }
         return -1;
     }
-    lastIndexOf(ele=errParam()) {
-        let index = this.length,
-            x = this.tail;
 
-        if (ele === null) {
+    lastIndexOf(item=errParam()) {
+        let index = this.size,
+            x = this.last;
+
+        if (item === null) {
             for (; x !== null; x = x.prev) {
                 index--;
-                if (x.ele == null)
+                if (x.item == null)
                     return index;
             }
         } else {
             for (; x !== null; x = x.prev) {
                 index--;
-                if (ele === x.ele)
+                if (item === x.item)
                     return index;
             }
         }
         return -1;
     }
-    contains(ele=errParam()) {
-        return this.indexOf(ele) >= 0;
+
+    contains(item=errParam()) {
+        return this.indexOf(item) >= 0;
     }
 
-    linkBefore(ele=errParam(), succ=errParam()) {
+    linkBefore(item=errParam(), succ=errParam()) {
         typeCheck(succ, Node);
-        if(!this.contains(succ.ele)) throw 'List에 해당 값이 없습니다.';
+        if(!this.contains(succ.item)) throw 'List에 해당 값이 없습니다.';
 
         const pred = succ.prev,
-            newNode = new Node(pred, ele, succ);
+            newNode = new Node(pred, item, succ);
         succ.prev = newNode;
         if(!pred) {
-            this.head = newNode;
+            this.first = newNode;
         } else {
             pred.next = newNode;
         }
-        this.length++;
+        this.size++;
     }
 
-    linkAfter(ele=errParam(), pred=errParam()) {
+    linkAfter(item=errParam(), pred=errParam()) {
         typeCheck(pred, Node);
-        if(!this.contains(pred.ele)) throw 'List에 해당 값이 없습니다.';
+        if(!this.contains(pred.item)) throw 'List에 해당 값이 없습니다.';
         const succ = pred.next,
-            newNode = new Node(pred, ele, succ);
+            newNode = new Node(pred, item, succ);
         pred.next = newNode;
         if(!succ) {
-            this.tail = newNode;
+            this.last = newNode;
         } else {
             succ.prev = newNode;
         }
-        this.length++;
+        this.size++;
     }
 
-
-/*
-    linkBefore(ele, succ) {
-        const newNode = new Node(ele);
-        succ.prev = newNode;
-        if(succ)
-    }*/
 }
 

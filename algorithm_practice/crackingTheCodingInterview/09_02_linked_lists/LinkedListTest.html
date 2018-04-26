@@ -22,15 +22,14 @@
         });
 
         describe('LinkedList 객체생성 테스트', function() {
-            it('LinkedList 객체는 head:null, tail:null, length:0 을 element로 가지고 있어야 한다.', function() {
+            it('LinkedList 객체는 first:null, last:null, size:0 을 element로 가지고 있어야 한다.', function() {
                 expect(ll).toEqual(jasmine.objectContaining({
-                    head: null,
-                    tail: null,
-                    length: 0
+                    first: null,
+                    last: null,
+                    size: 0
                 }));
             });
         });
-
 
         // linkFirst, linkLast, linkBefore, linkLast, unlinkFirst, unlinkLast, unlink
         // get, getFirst, getLast, indexOf, lastIndexOf
@@ -47,7 +46,17 @@
                     ll.linkFirst('test2');
                     ll.linkFirst('test3');
                     ll.linkFirst('test4');
-                    expect(ll.length).toBe(4);
+                    expect(ll.size).toBe(4);
+                });
+            });
+            describe('입력값의 정합성 확인', function() {
+                it('linkFirst()', function() {
+                    ll.linkFirst('test1');
+                    expect(ll.first.item).toBe('test1');
+                    ll.linkFirst('test2');
+                    expect(ll.first.item).toBe('test2');
+                    ll.linkFirst('test3');
+                    expect(ll.first.item).toBe('test3');
                 });
             });
         });
@@ -64,16 +73,88 @@
                     ll.linkLast('test2');
                     ll.linkLast('test3');
                     ll.linkLast('test4');
-                    expect(ll.length).toBe(4);
+                    expect(ll.size).toBe(4);
+                });
+            });
+            describe('입력값의 정합성 확인', function() {
+                it('linkFirst()', function() {
+                    ll.linkLast('test1');
+                    expect(ll.last.item).toBe('test1');
+                    ll.linkLast('test2');
+                    expect(ll.last.item).toBe('test2');
+                    ll.linkLast('test3');
+                    expect(ll.last.item).toBe('test3');
                 });
             });
         });
+
         describe('isElementIndex()', function() {
-
+            it('에러체크', function() {
+                expect(ll.isElementIndex('string')).toBeFalsy();
+                expect(ll.isElementIndex({})).toBeFalsy();
+                expect(ll.isElementIndex([])).toBeFalsy();
+                expect(ll.isElementIndex(true)).toBeFalsy();
+                expect(ll.isElementIndex(false)).toBeFalsy();
+                expect(ll.isElementIndex(NaN)).toBeFalsy();
+                expect(ll.isElementIndex(null)).toBeFalsy();
+                expect(ll.isElementIndex(undefined)).toBeFalsy();
+            });
+            it('입력값에 따른 유효성 검증', function() {
+                ll.linkFirst('test1');
+                ll.linkFirst('test2');
+                expect(ll.isElementIndex(0)).toBeTruthy();
+                expect(ll.isElementIndex(1)).toBeTruthy();
+                expect(ll.isElementIndex(2)).toBeFalsy();
+            });
         });
+
         describe('checkElementIndex()', function() {
-
+            it('에러체크', function() {
+                expect(ll.checkElementIndex.bind(ll)).toThrowError(RangeError);
+                expect(ll.checkElementIndex.bind(ll, 'string')).toThrowError(RangeError);
+                expect(ll.checkElementIndex.bind(ll, {})).toThrowError(RangeError);
+                expect(ll.checkElementIndex.bind(ll, [])).toThrowError(RangeError);
+                expect(ll.checkElementIndex.bind(ll, true)).toThrowError(RangeError);
+                expect(ll.checkElementIndex.bind(ll, false)).toThrowError(RangeError);
+                expect(ll.checkElementIndex.bind(ll, NaN)).toThrowError(RangeError);
+                expect(ll.checkElementIndex.bind(ll, null)).toThrowError(RangeError);
+                expect(ll.checkElementIndex.bind(ll, undefined)).toThrowError(RangeError);
+            });
+            it('입력값에 따른 유효성 검증', function() {
+                ll.linkFirst('test1');
+                ll.linkFirst('test2');
+                expect(ll.checkElementIndex.bind(ll, 0)).not.toThrow();
+                expect(ll.checkElementIndex.bind(ll, 1)).not.toThrow();
+                expect(ll.checkElementIndex.bind(ll, 2)).toThrowError(RangeError);
+            });
         });
+
+        describe('get()', function() {
+            describe('에러처리', function() {
+                it('get(index)의 index가 범위를 넘어갈때 에러', function() {
+                    expect(ll.get.bind(ll)).toThrowError(RangeError);
+                    expect(ll.get.bind(ll, 0)).toThrowError(RangeError);
+                });
+                it('get(index)의 index가 범위 안에 있을때 에러발생 안함', function() {
+                    ll.linkFirst('test1');
+                    expect(ll.get.bind(ll, 0)).not.toThrow();
+                });
+            });
+            describe('조회되는 값의 적합성 확인', function() {
+                beforeEach(function() { // 각각의 테스트 전에 실행할 로직을 입력
+                    ll.linkFirst('test1');
+                    ll.linkLast('test2');
+                });
+                it('ll.get(0).item === "test1"', function() {
+                    expect(ll.get(0)).toEqual('test1');
+                });
+                it('ll.get(1).item === "test2"', function() {
+                    expect(ll.get(1)).toEqual('test2');
+                });
+            });
+        });
+
+
         describe('getFirst()', function() {
             describe('에러처리', function() {
                 it('요소가 없을 때 getFirst() 호출시에 에러', function() {
@@ -90,11 +171,11 @@
                     ll.linkFirst('test1');
                     ll.linkFirst('test2');
                 });
-                it('ll.getFirst() === ll.head', function() {
-                    expect(ll.getFirst()).toEqual(ll.head);
+                it('ll.getFirst() === ll.first', function() {
+                    expect(ll.getFirst()).toEqual(ll.first);
                 });
-                it('ll.getFirst().ele === test2', function() {
-                    expect(ll.getFirst().ele).toEqual('test2');
+                it('ll.getFirst().item === test2', function() {
+                    expect(ll.getFirst().item).toEqual('test2');
                 });
             });
         });
@@ -114,11 +195,11 @@
                     ll.linkLast('test1');
                     ll.linkLast('test2');
                 });
-                it('ll.getLast() === ll.tail', function() {
-                    expect(ll.getLast()).toEqual(ll.tail);
+                it('ll.getLast() === ll.last', function() {
+                    expect(ll.getLast()).toEqual(ll.last);
                 });
-                it('ll.getLast().ele === test2', function() {
-                    expect(ll.getLast().ele).toEqual('test2');
+                it('ll.getLast().item === test2', function() {
+                    expect(ll.getLast().item).toEqual('test2');
                 });
             });
         });
@@ -227,17 +308,16 @@
                     ll.linkBefore('test0', ll.getFirst());
                 });
                 it('제대로 된 위치에 들어갔는지 확인', function () {
-                    expect(ll.getFirst().ele).toEqual('test0');
+                    expect(ll.getFirst().item).toEqual('test0');
                 });
                 it('인자의 개수 확인', function () {
-                    expect(ll.length).toEqual(2);
+                    expect(ll.size).toEqual(2);
                 });
-                it('head 확인', function () {
-                    expect(ll.getFirst().ele).toEqual(ll.head.ele);
+                it('first 확인', function () {
+                    expect(ll.getFirst().item).toEqual(ll.first.item);
                 });
             });
         });
-
 
         describe('linkAfter()', function() {
             describe('에러처리 확인', function() {
@@ -267,19 +347,16 @@
                     ll.linkAfter('test2', ll.getFirst());
                 });
                 it('제대로 된 위치에 들어갔는지 확인', function () {
-                    expect(ll.getLast().ele).toEqual('test2');
+                    expect(ll.getLast().item).toEqual('test2');
                 });
                 it('인자의 개수 확인', function () {
-                    expect(ll.length).toEqual(2);
+                    expect(ll.size).toEqual(2);
                 });
-                it('tail 확인', function () {
-                    expect(ll.getLast().ele).toEqual(ll.tail.ele);
+                it('last 확인', function () {
+                    expect(ll.getLast().item).toEqual(ll.last.item);
                 });
             });
         });
-
-
-
     });
 
 </script>
