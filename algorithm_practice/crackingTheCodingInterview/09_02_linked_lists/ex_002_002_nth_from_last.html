@@ -92,14 +92,15 @@
         if(n<1) return undefined;
 
 		let nNextRunner = nextNode(node, n-1),
-			i=1;
+			i=0;
+		if(!nNextRunner) return undefined;
 
-		while(nNextRunner.next && i<n) {
+		while(nNextRunner.next) {
             nNextRunner = nNextRunner.next;
             node = node.next;
             i++;
 		}
-        if(n>i) return undefined;
+        if(n>i && i!==0) return undefined;
 		return node.item;
 	}
 
@@ -121,12 +122,6 @@
 
 	describe('nthFromLast() : 단방향 연결리스트에서 뒤에서 k번째 원소 구하기', function() {
 		let ll = new LinkedList();
-
-		describe('예외처리', function() {
-			it('파라미터를 넘기지 않으면 throw', function() {
-				expect(nthFromLast.bind(null)).toThrow(MSG.errParam);
-			});
-		});
 		describe('예외처리', function() {
 			it('파라미터를 넘기지 않으면 throw', function() {
 				expect(nthFromLast.bind(null)).toThrow(MSG.errParam);
@@ -412,7 +407,6 @@
 				expect(nthFromLastWithRunner(ll.first, 0)).toBeUndefined();
 			});
 			it('nthFromLastWithRunner(ll.first, 1) === "test9"', function() {
-			    debugger;
 				expect(nthFromLastWithRunner(ll.first, 1)).toEqual('test9');
 			});
 			it('nthFromLastWithRunner(ll.first, 2) === "test8"', function() {
@@ -425,6 +419,7 @@
 				expect(nthFromLastWithRunner(ll.first, 10)).toEqual('test0');
 			});
 			it('nthFromLastWithRunner(ll.first, 11).toBeUndefined()', function() {
+                debugger;
 				expect(nthFromLastWithRunner(ll.first, 11)).toBeUndefined();
 			});
 //			it('nthFromLastWithRunner(ll.first, 100).toBeUndefined()', function() {
