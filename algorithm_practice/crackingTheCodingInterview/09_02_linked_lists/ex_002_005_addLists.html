@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>리스트의 합</title>
+	<!-- 재스민 라이브러리 파일 -->
+	<link data-require="jasmine@*" data-semver="2.0.0" rel="stylesheet" href="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine.css" />
+	<script data-require="jasmine@*" data-semver="2.0.0" src="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine.js"></script>
+	<script data-require="jasmine@*" data-semver="2.0.0" src="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine-html.js"></script>
+	<script data-require="jasmine@*" data-semver="2.0.0" src="http://cdn.jsdelivr.net/jasmine/2.0.0/boot.js"></script>
+</head>
+<body>
+
+<script src="../util.js"></script>
+<script src="LinkedList.js"></script>
+<script>
+	function addLists(l1=errParam(), l2=errParam()) {
+		typeCheck(l1, LinkedList);
+		typeCheck(l2, LinkedList);
+
+		let resultLL = new LinkedList(),
+			node1 = l1.first,
+			node2 = l2.first,
+            addResult = node1.item + node2.item,
+            addEle = addResult >= 10 ? addResult - 10 : addResult,
+			added = addResult >= 10 ? 1 : 0;
+
+		resultLL.linkLast(addEle);
+
+		while(node1.next || node2.next) {
+		    node1 = node1.next;
+		    node2 = node2.next;
+
+            addResult = node1.item + node2.item;
+			addEle = (addResult >= 10 ? addResult - 10 : addResult) + added;
+			added = addResult >= 10 ? 1 : 0
+
+            resultLL.linkLast(addEle);
+		}
+		if(added>0) resultLL.linkLast(added);
+
+		return resultLL;
+	}
+	describe('addLists(l1, l2) : 리스트의 각 자리수의 합', function() {
+		let llist1 = new LinkedList();
+        llist1.linkLast(7);
+        llist1.linkLast(1);
+        llist1.linkLast(6);
+
+        let llist2 = new LinkedList();
+        llist2.linkLast(5);
+        llist2.linkLast(9);
+        llist2.linkLast(2);
+
+		describe('예외처리', function() {
+			it('파라미터를 두 개 다 넘기지 않으면 throw', function() {
+				expect(addLists.bind(null)).toThrow(MSG.errParam);
+				expect(addLists.bind(null), llist1).toThrow(MSG.errParam);
+			});
+            it('첫 번째 인자와 두 번째 인자가 LinkedList이 타입이 아니면 throw', function() {
+                expect(addLists.bind(null, 1, 1)).toThrowError(TypeError);
+                expect(addLists.bind(null, false, 1)).toThrowError(TypeError);
+                expect(addLists.bind(null, 'str', 1)).toThrowError(TypeError);
+                expect(addLists.bind(null, {}, 1)).toThrowError(TypeError);
+                expect(addLists.bind(null, [], 1)).toThrowError(TypeError);
+                expect(addLists.bind(null, 1, false)).toThrowError(TypeError);
+                expect(addLists.bind(null, 1, 'str')).toThrowError(TypeError);
+                expect(addLists.bind(null, 1, {})).toThrowError(TypeError);
+                expect(addLists.bind(null, 1, [])).toThrowError(TypeError);
+                expect(addLists.bind(null, llist1, llist2)).not.toThrowError(TypeError);
+			});
+		});
+
+        describe('정합성 확인', function() {
+            debugger;
+            let resultLL = addLists(llist1, llist2);
+
+            it('resultLL.get(0) === 2', function() {
+                expect(resultLL.get(0)).toEqual(2);
+            });
+		});
+	});
+
+
+</script>
+</body>
+</html>
