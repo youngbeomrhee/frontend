@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>뒤에서 k번째 원소 구하기</title>
+	<title>단방향 연결리스트에서 뒤에서 k번째 원소 구하기</title>
 	<!-- 재스민 라이브러리 파일 -->
 	<link data-require="jasmine@*" data-semver="2.0.0" rel="stylesheet" href="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine.css" />
 	<script data-require="jasmine@*" data-semver="2.0.0" src="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine.js"></script>
@@ -13,45 +13,268 @@
 
 <script src="LinkedList.js"></script>
 <script>
-	/*
+/*
+
+1 전체 길이(size)를 아는 경우 : "size - k" 번째 요소를 앞에서부터 찾는다
+2 전체 길이(size)를 모르는 경우 : size를 먼저 구하고 "size - k" 번째 요소
 
 
-		1.1 단방향 연결리스트인 경우
-			3.1 전체 길이를 아는 경우 : "전체길이 - k" 번째 요소
-			3.2 전체 길이를 모르는 경우 : 전체길이를 먼저 구하고 "전체길이 - k" 번째 요소
-		1.2 양방향 연결리스트인 경우
-	 		2.1 마지막 인자를 아는 경우 : 마지막 인자에서 k만큼 prev를 호출
-	 		2.2 마지막 인자를 모르는 경우 : 처음부터 끝까지 탐색해서 마지막 인자를 찾고 거기에서 k만큼 prev를 호출
-		2.1 마지막 인자를 아는 경우
-		2.2 마지막 인자를 모르는 경우
-		3.1 전체 길이를 아는 경우
-		3.2 전체 길이를 모르는 경우
-	*/
-	function nthFromLast(node, idx) {
+
+//1.1.2 양방향 연결리스트인 경우
+//1.1.2.1 마지막 인자(last)를 아는 경우
+//1.1.2.1.1 전체 길이(size)를 아는 경우 : size/2 > k 면 last에서 k만큼 prev를 호출
+//1.1.2.2 마지막 인자를 모르는 경우 : 처음부터 끝까지 탐색해서 마지막 인자(last)를 찾고 전체 길이(size)를 구한다
+//1.1.2.2.1 size/2 > k인 경우 : 거기에서 k만큼 prev를 호출
+
+1.2.1
+1.1 단방향 연결리스트인 경우
+
+1.2 양방향 연결리스트인 경우
+3.1 전체 길이를 아는 경우
+3.2 전체 길이를 모르는 경우
+*/
+	function nth(ll=errParam(), n=errParam()) {
+        typeCheck(ll, LinkedList);
+        if(!Number.isInteger(n)) throw new TypeError(n);
+        let node = ll.first,
+			i = 0;
+		while(i<n && node.next) {
+			node = node.next;
+			i++;
+		}
+		if(!node || node.next === null) return undefined;
+        return node ? node.item : node;
+	}
+
+	function nthFromLast(ll=errParam(), n=errParam()) {
+        typeCheck(ll, LinkedList);
+        if(!Number.isInteger(n)) throw new TypeError(n);
+        const size = getLinkedListSize(ll),
+			idx = size-n;
+        if(idx<0) return undefined;
+        return nth(ll, idx-1);
+	}
+
+	function nthFromLastRecv(node=errParam(), n=errParam()) {
+        typeCheck(node, Node);
+        if(!Number.isInteger(n)) throw new TypeError(n);
+        if(!node) return 0;	// 종단점
+
+		let matchingIndex = nthFromLastRecv(node.next, n) + 1;
+        if(matchingIndex === n) {
+			console.log(node.item);
+		}
+		return matchingIndex;
+//        let node = ll.first,
+//			index = nthFromLastRecv(node.)
 //	    if(node.next) {
 //            return nthToLast(node.next, idx) + 1;
 //		} else {
 //	        return 1;
 //		}
+
 	}
 
-    let ll = new LinkedList();
-    ll.push('test0');
-    ll.push('test1');
-    ll.push('test2');
-    ll.push('test3');
-    ll.push('test4');
-    ll.push('test5');
-    ll.push('test6');
-    ll.push('test7');
-    ll.push('test8');
-    ll.push('test9');
-    ll.display();
-    console.log('# ');
+	function getLinkedListSize(ll=errParam()) {
+		typeCheck(ll, LinkedList);
+		let node = ll.first,
+            length = node ? 1 : 0;
+		while(node && node.next) {
+		    node = node.next;
+            length++;
+		}
+		return length;
+	}
 
-    let seq = 3, fromLastIndex = nthToLast(ll.head, 0) - seq;
+//    let seq = 3, fromLastIndex = nthToLast(ll.head, 0) - seq;
 
-    console.log(ll.getValue(fromLastIndex));
+//    console.log(ll.getValue(fromLastIndex));
+
+	describe('nthFromLast() : 단방향 연결리스트에서 뒤에서 k번째 원소 구하기', function() {
+		let ll = new LinkedList();
+
+		describe('예외처리', function() {
+			it('파라미터를 넘기지 않으면 throw', function() {
+				expect(nthFromLast.bind(null)).toThrow(MSG.errParam);
+			});
+		});
+		describe('예외처리', function() {
+			it('파라미터를 넘기지 않으면 throw', function() {
+				expect(nthFromLast.bind(null)).toThrow(MSG.errParam);
+				expect(nthFromLast.bind(null, 1)).toThrow(MSG.errParam);
+			});
+            it('첫 번째 인자가 LinkedList가 아니면 throw', function() {
+                expect(nthFromLast.bind(null, 1, 0)).toThrowError(TypeError);
+                expect(nthFromLast.bind(null, false, 0)).toThrowError(TypeError);
+                expect(nthFromLast.bind(null, 'str', 0)).toThrowError(TypeError);
+                expect(nthFromLast.bind(null, {}, 0)).toThrowError(TypeError);
+                expect(nthFromLast.bind(null, [], 0)).toThrowError(TypeError);
+                expect(nthFromLast.bind(null, ll, 0)).not.toThrowError(TypeError);
+			});
+            it('두 번째 인자가 Integer가 아니면 throw', function() {
+                expect(nthFromLast.bind(null, ll, false)).toThrowError(TypeError);
+                expect(nthFromLast.bind(null, ll, 'str')).toThrowError(TypeError);
+                expect(nthFromLast.bind(null, ll, {})).toThrowError(TypeError);
+                expect(nthFromLast.bind(null, ll, [])).toThrowError(TypeError);
+                expect(nthFromLast.bind(null, ll, 0)).not.toThrowError(TypeError);
+			});
+		});
+        describe('정합성 확인', function() {
+            ll.linkLast('test0');
+            ll.linkLast('test1');
+            ll.linkLast('test2');
+            ll.linkLast('test3');
+            ll.linkLast('test4');
+            ll.linkLast('test5');
+            ll.linkLast('test6');
+            ll.linkLast('test7');
+            ll.linkLast('test8');
+            ll.linkLast('test9');
+
+            it('nthFromLast(ll, 0) === "test9"', function() {
+                expect(nthFromLast(ll, 0)).toEqual(undefined);
+            });
+            it('nthFromLast(ll, 1) !== "test8"', function() {
+                expect(nthFromLast(ll, 1)).not.toEqual('test0');
+            });
+            it('nthFromLast(ll, 11) === undefined', function() {
+                expect(nthFromLast(ll, 11)).toEqual(undefined);
+            });
+		});
+	});
+
+	describe('nth() : 단방향 연결리스트에서 앞에서 k번째 원소 구하기', function() {
+		let ll = new LinkedList();
+
+		describe('예외처리', function() {
+			it('파라미터를 넘기지 않으면 throw', function() {
+				expect(nth.bind(null)).toThrow(MSG.errParam);
+				expect(nth.bind(null, 1)).toThrow(MSG.errParam);
+			});
+            it('첫 번째 인자가 LinkedList가 아니면 throw', function() {
+                expect(nth.bind(null, 1, 0)).toThrowError(TypeError);
+                expect(nth.bind(null, false, 0)).toThrowError(TypeError);
+                expect(nth.bind(null, 'str', 0)).toThrowError(TypeError);
+                expect(nth.bind(null, {}, 0)).toThrowError(TypeError);
+                expect(nth.bind(null, [], 0)).toThrowError(TypeError);
+                expect(nth.bind(null, ll, 0)).not.toThrowError(TypeError);
+			});
+            it('두 번째 인자가 Integer가 아니면 throw', function() {
+                expect(nth.bind(null, ll, false)).toThrowError(TypeError);
+                expect(nth.bind(null, ll, 'str')).toThrowError(TypeError);
+                expect(nth.bind(null, ll, {})).toThrowError(TypeError);
+                expect(nth.bind(null, ll, [])).toThrowError(TypeError);
+                expect(nth.bind(null, ll, 0)).not.toThrowError(TypeError);
+			});
+		});
+        describe('정합성 확인', function() {
+            ll.linkLast('test0');
+            ll.linkLast('test1');
+            ll.linkLast('test2');
+            ll.linkLast('test3');
+            ll.linkLast('test4');
+            ll.linkLast('test5');
+            ll.linkLast('test6');
+            ll.linkLast('test7');
+            ll.linkLast('test8');
+            ll.linkLast('test9');
+
+            it('nth(ll, 0) === "test0"', function() {
+                expect(nth(ll, 0)).toEqual('test0');
+            });
+            it('nth(ll, 1) !== "test0"', function() {
+                expect(nth(ll, 1)).not.toEqual('test0');
+            });
+            it('nth(ll, 11) === undefined', function() {
+                expect(nth(ll, 11)).toEqual(undefined);
+            });
+		});
+	});
+
+	describe('nthFromLastRecv() : 단방향 연결리스트에서 재귀적으로 뒤에서 k번째 원소 구하기', function() {
+		let ll = new LinkedList();
+
+		describe('예외처리', function() {
+			it('파라미터를 넘기지 않으면 throw', function() {
+				expect(nthFromLastRecv.bind(null)).toThrow(MSG.errParam);
+				expect(nthFromLastRecv.bind(null, new Node(null, 'test'))).toThrow(MSG.errParam);
+			});
+            it('첫 번째 인자가 Node가 아니면 throw', function() {
+                expect(nthFromLastRecv.bind(null, 1, 0)).toThrowError(TypeError);
+                expect(nthFromLastRecv.bind(null, false, 0)).toThrowError(TypeError);
+                expect(nthFromLastRecv.bind(null, 'str', 0)).toThrowError(TypeError);
+                expect(nthFromLastRecv.bind(null, {}, 0)).toThrowError(TypeError);
+                expect(nthFromLastRecv.bind(null, [], 0)).toThrowError(TypeError);
+                expect(nthFromLastRecv.bind(null, new Node(null, 'test'), 0)).not.toThrowError(TypeError);
+			});
+            it('두 번째 인자가 Integer가 아니면 throw', function() {
+                const node = new Node(null, 'test');
+                expect(nthFromLastRecv.bind(null, node, false)).toThrowError(TypeError);
+                expect(nthFromLastRecv.bind(null, node, 'str')).toThrowError(TypeError);
+                expect(nthFromLastRecv.bind(null, node, {})).toThrowError(TypeError);
+                expect(nthFromLastRecv.bind(null, node, [])).toThrowError(TypeError);
+                expect(nthFromLastRecv.bind(null, node, 0)).not.toThrowError(TypeError);
+			});
+		});
+        describe('정합성 확인', function() {
+            ll.linkLast('test0');
+            ll.linkLast('test1');
+            ll.linkLast('test2');
+            ll.linkLast('test3');
+            ll.linkLast('test4');
+            ll.linkLast('test5');
+            ll.linkLast('test6');
+            ll.linkLast('test7');
+            ll.linkLast('test8');
+            ll.linkLast('test9');
+
+            it('nthFromLastRecv(ll.first, 0) === "test0"', function() {
+                expect(nthFromLastRecv(ll.first, 0)).toEqual('test9');
+            });
+//            it('nth(ll, 1) !== "test0"', function() {
+//                expect(nth(ll, 1)).not.toEqual('test0');
+//            });
+//            it('nth(ll, 11) === undefined', function() {
+//                expect(nth(ll, 11)).toEqual(undefined);
+//            });
+		});
+	});
+
+	describe('getLinkedListSize() : 전체길이를 모르는 경우에 사용 ', function() {
+		let ll = new LinkedList();
+
+        describe('예외처리', function() {
+			it('파라미터를 넘기지 않으면 throw', function() {
+				expect(getLinkedListSize.bind(null)).toThrow(MSG.errParam);
+			});
+			it('첫 번째 인자가 LinkedList가 아니면 throw', function() {
+                expect(getLinkedListSize.bind(null, 1)).toThrowError(TypeError);
+                expect(getLinkedListSize.bind(null, false)).toThrowError(TypeError);
+                expect(getLinkedListSize.bind(null, 'str')).toThrowError(TypeError);
+                expect(getLinkedListSize.bind(null, {})).toThrowError(TypeError);
+                expect(getLinkedListSize.bind(null, [])).toThrowError(TypeError);
+			});
+        });
+        describe('정합성 확인', function() {
+            it('인자가 없으면 0 리턴', function() {
+				expect(getLinkedListSize(ll)).toEqual(0);
+            });
+            it('인자가 있으면 인자의 갯수 리턴', function() {
+                ll.linkLast('test0');
+                ll.linkLast('test1');
+                ll.linkLast('test2');
+                ll.linkLast('test3');
+                ll.linkLast('test4');
+                ll.linkLast('test5');
+                ll.linkLast('test6');
+                ll.linkLast('test7');
+                ll.linkLast('test8');
+                ll.linkLast('test9');
+				expect(getLinkedListSize(ll)).toEqual(10);
+            });
+		});
+	});
+
 </script>
 </body>
 </html>

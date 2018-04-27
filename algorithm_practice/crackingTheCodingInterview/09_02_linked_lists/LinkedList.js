@@ -1,9 +1,11 @@
 /**
  * Created by yblee on 2018-04-10.
  */
-function errParam(msg) {
-    if(msg) throw msg;
-    throw '필수인자가 누락되었습니다.';
+const MSG = {};
+MSG.errParam = '필수인자가 누락되었습니다.';
+
+function errParam() {
+    throw MSG.errParam;
 }
 
 function typeCheck(instance, type) {

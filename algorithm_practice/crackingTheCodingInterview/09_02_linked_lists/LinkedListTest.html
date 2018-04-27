@@ -37,7 +37,7 @@
         describe('linkFirst()', function() {
             describe('에러처리', function() {
                 it('linkFirst() 실행시에 파라미터를 넘기지 않으면 에러.', function() {
-                    expect(ll.linkFirst.bind(ll)).toThrow('필수인자가 누락되었습니다.');
+                    expect(ll.linkFirst.bind(ll)).toThrow(MSG.errParam);
                 });
             });
             describe('입력시 인자 갯수 체크', function() {
@@ -207,7 +207,7 @@
         describe('indexOf()', function() {
             describe('에러처리', function() {
                 it('인자가 안들어오는 경우', function() {
-                    expect(ll.indexOf.bind(ll)).toThrow('필수인자가 누락되었습니다.');
+                    expect(ll.indexOf.bind(ll)).toThrow(MSG.errParam);
                 });
                 it('인자가 들어오고 제대로 된 값이 들어오는 경우 에러발생 안함', function() {
                     expect(ll.indexOf.bind(ll, 'test1')).not.toThrow();
@@ -233,7 +233,7 @@
         describe('lastIndexOf()', function() {
             describe('에러처리 확인', function() {
                 it('인자가 안들어오는 경우', function() {
-                    expect(ll.lastIndexOf.bind(ll)).toThrow('필수인자가 누락되었습니다.');
+                    expect(ll.lastIndexOf.bind(ll)).toThrow(MSG.errParam);
                 });
                 it('인자가 들어오고 제대로 된 값이 들어오는 경우 에러발생 안함', function() {
                     expect(ll.lastIndexOf.bind(ll, 'test1')).not.toThrow();
@@ -260,7 +260,7 @@
         describe('contains() 테스트', function() {
             describe('에러처리', function() {
                 it('인자가 안들어오는 경우', function() {
-                    expect(ll.contains.bind(ll)).toThrow('필수인자가 누락되었습니다.');
+                    expect(ll.contains.bind(ll)).toThrow(MSG.errParam);
                 });
                 it('인자가 들어오고 제대로 된 값이 들어오는 경우 에러발생 안함', function() {
                     expect(ll.contains.bind(ll, 'test1')).not.toThrow();
@@ -283,10 +283,10 @@
         describe('linkBefore()', function() {
             describe('에러처리 확인', function() {
                 it('인자 2개를 넘기지 않고 호출시에 에러', function () {
-                    expect(ll.linkBefore.bind(ll)).toThrow('필수인자가 누락되었습니다.');
-                    expect(ll.linkBefore.bind(ll, undefined)).toThrow('필수인자가 누락되었습니다.');
-                    expect(ll.linkBefore.bind(ll, 'test1')).toThrow('필수인자가 누락되었습니다.');
-                    expect(ll.linkBefore.bind(ll, 'test1', undefined)).toThrow('필수인자가 누락되었습니다.');
+                    expect(ll.linkBefore.bind(ll)).toThrow(MSG.errParam);
+                    expect(ll.linkBefore.bind(ll, undefined)).toThrow(MSG.errParam);
+                    expect(ll.linkBefore.bind(ll, 'test1')).toThrow(MSG.errParam);
+                    expect(ll.linkBefore.bind(ll, 'test1', undefined)).toThrow(MSG.errParam);
                 });
                 it('두 번째 인자가 잘못된 타입이라면 오류', function () {
                     expect(ll.linkBefore.bind(ll, 'test1', true)).toThrowError(TypeError);
@@ -322,10 +322,10 @@
         describe('linkAfter()', function() {
             describe('에러처리 확인', function() {
                 it('인자 2개를 넘기지 않고 호출시에 에러', function () {
-                    expect(ll.linkAfter.bind(ll)).toThrow('필수인자가 누락되었습니다.');
-                    expect(ll.linkAfter.bind(ll, undefined)).toThrow('필수인자가 누락되었습니다.');
-                    expect(ll.linkAfter.bind(ll, 'test1')).toThrow('필수인자가 누락되었습니다.');
-                    expect(ll.linkAfter.bind(ll, 'test1', undefined)).toThrow('필수인자가 누락되었습니다.');
+                    expect(ll.linkAfter.bind(ll)).toThrow(MSG.errParam);
+                    expect(ll.linkAfter.bind(ll, undefined)).toThrow(MSG.errParam);
+                    expect(ll.linkAfter.bind(ll, 'test1')).toThrow(MSG.errParam);
+                    expect(ll.linkAfter.bind(ll, 'test1', undefined)).toThrow(MSG.errParam);
                 });
                 it('두 번째 인자가 잘못된 타입이라면 오류', function () {
                     expect(ll.linkAfter.bind(ll, 'test1', true)).toThrowError(TypeError);
