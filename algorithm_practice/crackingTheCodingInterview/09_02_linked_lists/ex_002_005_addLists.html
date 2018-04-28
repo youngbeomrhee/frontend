@@ -21,13 +21,13 @@
 		let resultLL = new LinkedList(),
 			node1 = l1.first,
 			node2 = l2.first,
-            addResult = node1.item + node2.item,
+            addResult = (node1 ? node1.item : 0) + (node2 ? node2.item : 0),
             addEle = addResult >= 10 ? addResult - 10 : addResult,
 			added = addResult >= 10 ? 1 : 0;
 
 		resultLL.linkLast(addEle);
 
-		while(node1.next || node2.next) {
+		while((node1 && node2) && (node1.next || node2.next)) {
 		    node1 = node1.next;
 		    node2 = node2.next;
 
@@ -41,23 +41,39 @@
 
 		return resultLL;
 	}
-	describe('addLists(l1, l2) : 리스트의 각 자리수의 합', function() {
-		let llist1 = new LinkedList();
-        llist1.linkLast(7);
-        llist1.linkLast(1);
-        llist1.linkLast(6);
 
-        let llist2 = new LinkedList();
-        llist2.linkLast(5);
-        llist2.linkLast(9);
-        llist2.linkLast(2);
+    function addListsRecv(node1=errParam(), node2=errParam(), added=0, resultLL=errParam()) {
+        if(node1) typeCheck(node1, Node);
+        if(node2) typeCheck(node2, Node);
+        if(added !== 0 && added !== 1) throw '자리올림수는 0 또는 1만 올 수 있습니다.';
+        typeCheck(resultLL, LinkedList);
+
+        // node의 갯수가 다를 경우에 임시값 부여
+		if(!node1) node1 = new Node(null, 0, null);
+		if(!node2) node2 = new Node(null, 0, null);
+
+        let addResult = node1.item + node2.item + added,
+            addEle = addResult % 10;
+
+        // 계산한 자리수가 2자리 이상일 경우에 해당 변수에 저장하여 재귀호출시 연산에 사용
+        added = addResult >= 10 ? 1 : 0;
+        resultLL.linkLast(addEle);
+
+        if(node1.next || node2.next || added) {
+            return addListsRecv(node1.next, node2.next, added, resultLL);
+		} else {
+            return resultLL;
+		}
+    }
+
+	describe('addLists(ll1, ll2) : 리스트의 각 자리수의 합', function() {
 
 		describe('예외처리', function() {
 			it('파라미터를 두 개 다 넘기지 않으면 throw', function() {
 				expect(addLists.bind(null)).toThrow(MSG.errParam);
-				expect(addLists.bind(null), llist1).toThrow(MSG.errParam);
+				expect(addLists.bind(null), new LinkedList()).toThrow(MSG.errParam);
 			});
-            it('첫 번째 인자와 두 번째 인자가 LinkedList이 타입이 아니면 throw', function() {
+            it('첫 번째 인자와 두 번째 인자가 LinkedList 타입이 아니면 throw', function() {
                 expect(addLists.bind(null, 1, 1)).toThrowError(TypeError);
                 expect(addLists.bind(null, false, 1)).toThrowError(TypeError);
                 expect(addLists.bind(null, 'str', 1)).toThrowError(TypeError);
@@ -67,16 +83,156 @@
                 expect(addLists.bind(null, 1, 'str')).toThrowError(TypeError);
                 expect(addLists.bind(null, 1, {})).toThrowError(TypeError);
                 expect(addLists.bind(null, 1, [])).toThrowError(TypeError);
-                expect(addLists.bind(null, llist1, llist2)).not.toThrowError(TypeError);
+                expect(addLists.bind(null, new LinkedList(), new LinkedList())).not.toThrowError(TypeError);
 			});
 		});
 
         describe('정합성 확인', function() {
-            debugger;
+            let llist1 = new LinkedList();
+            llist1.linkLast(7);
+            llist1.linkLast(1);
+            llist1.linkLast(6);
+
+            let llist2 = new LinkedList();
+            llist2.linkLast(5);
+            llist2.linkLast(9);
+            llist2.linkLast(2);
+
             let resultLL = addLists(llist1, llist2);
 
             it('resultLL.get(0) === 2', function() {
                 expect(resultLL.get(0)).toEqual(2);
+            });
+            it('resultLL.get(1) === 1', function() {
+                expect(resultLL.get(1)).toEqual(1);
+            });
+            it('resultLL.get(2) === 9', function() {
+                expect(resultLL.get(2)).toEqual(9);
+            });
+		});
+	});
+
+	describe('addListsRecv(node1, node2, 0, ll) : 리스트의 각 자리수의 합', function() {
+
+		describe('예외처리', function() {
+			it('파라미터를 세 개 다 넘기지 않으면 throw', function() {
+				expect(addListsRecv.bind(null)).toThrow(MSG.errParam);
+				expect(addListsRecv.bind(null, new Node(null, null))).toThrow(MSG.errParam);
+				expect(addListsRecv.bind(null, new Node(null, null), new Node(null, null))).toThrow(MSG.errParam);
+				expect(addListsRecv.bind(null, new Node(null, null), new Node(null, null), 0, new LinkedList())).not.toThrow(MSG.errParam);
+			});
+            it('첫 번째 인자와 두 번째 인자가 Node 타입이 아니면 throw', function() {
+                expect(addListsRecv.bind(null, 1, 1, 1, 1)).toThrowError(TypeError);
+                expect(addListsRecv.bind(null, false, 1, 1, 1)).toThrowError(TypeError);
+                expect(addListsRecv.bind(null, 'str', 1, 1, 1)).toThrowError(TypeError);
+                expect(addListsRecv.bind(null, {}, 1, 1, 1)).toThrowError(TypeError);
+                expect(addListsRecv.bind(null, [], 1, 1, 1)).toThrowError(TypeError);
+                expect(addListsRecv.bind(null, 1, true, 1, 1)).toThrowError(TypeError);
+                expect(addListsRecv.bind(null, 1, 'string', 1, 1)).toThrowError(TypeError);
+                expect(addListsRecv.bind(null, 1, {}, 1, 1)).toThrowError(TypeError);
+                expect(addListsRecv.bind(null, 1, [], 1, 1)).toThrowError(TypeError);
+			});
+            it('세 번째 인자인 자리수가 숫자가 아니거나 1 초과면 throw', function() {
+                expect(addListsRecv.bind(null, new Node(null, null), new Node(null, null), true, new LinkedList())).toThrow('자리올림수는 0 또는 1만 올 수 있습니다.');
+                expect(addListsRecv.bind(null, new Node(null, null), new Node(null, null), 'string', new LinkedList())).toThrow('자리올림수는 0 또는 1만 올 수 있습니다.');
+                expect(addListsRecv.bind(null, new Node(null, null), new Node(null, null), {}, new LinkedList())).toThrow('자리올림수는 0 또는 1만 올 수 있습니다.');
+                expect(addListsRecv.bind(null, new Node(null, null), new Node(null, null), 2, new LinkedList())).toThrow('자리올림수는 0 또는 1만 올 수 있습니다.');
+                expect(addListsRecv.bind(null, new Node(null, null), new Node(null, null), undefined, new LinkedList())).not.toThrow('자리올림수는 0 또는 1만 올 수 있습니다.');
+                expect(addListsRecv.bind(null, new Node(null, null), new Node(null, null), 0, new LinkedList())).not.toThrow('자리올림수는 0 또는 1만 올 수 있습니다.');
+                expect(addListsRecv.bind(null, new Node(null, null), new Node(null, null), 1, new LinkedList())).not.toThrow('자리올림수는 0 또는 1만 올 수 있습니다.');
+			});
+            it('네 번째 인자가 LinkedList가 아니면 throw', function() {
+                expect(addListsRecv.bind(null, new Node(null, null), new Node(null, null), 0, false)).toThrowError(TypeError);
+                expect(addListsRecv.bind(null, new Node(null, null), new Node(null, null), 0, 'str')).toThrowError(TypeError);
+                expect(addListsRecv.bind(null, new Node(null, null), new Node(null, null), 0, {})).toThrowError(TypeError);
+                expect(addListsRecv.bind(null, new Node(null, null), new Node(null, null), 0, [])).toThrowError(TypeError);
+                expect(addListsRecv.bind(null, new Node(null, null), new Node(null, null), 0, new LinkedList())).not.toThrowError(TypeError);
+			});
+		});
+
+        describe('정합성 확인', function() {
+            let llist1 = new LinkedList();
+            llist1.linkLast(7);
+            llist1.linkLast(1);
+            llist1.linkLast(6);
+
+            let llist2 = new LinkedList();
+            llist2.linkLast(5);
+            llist2.linkLast(9);
+            llist2.linkLast(2);
+            let resultLL = addListsRecv(llist1.first, llist2.first, 0, new LinkedList());
+
+            it('resultLL.get(0) === 2', function() {
+                expect(resultLL.get(0)).toEqual(2);
+            });
+            it('resultLL.get(1) === 1', function() {
+                expect(resultLL.get(1)).toEqual(1);
+            });
+            it('resultLL.get(2) === 9', function() {
+                expect(resultLL.get(2)).toEqual(9);
+            });
+		});
+
+        describe('마지막에 자리올림수가 하나 더 있는 경우', function() {
+            let llist1 = new LinkedList();
+            llist1.linkLast(7);
+            llist1.linkLast(1);
+            llist1.linkLast(6);
+
+            let llist2 = new LinkedList();
+            llist2.linkLast(5);
+            llist2.linkLast(9);
+            llist2.linkLast(8);
+            let resultLL = addListsRecv(llist1.first, llist2.first, 0, new LinkedList());
+
+            it('resultLL.get(0) === 2', function() {
+                expect(resultLL.get(0)).toEqual(2);
+            });
+            it('resultLL.get(1) === 1', function() {
+                expect(resultLL.get(1)).toEqual(1);
+            });
+            it('resultLL.get(2) === 9', function() {
+                expect(resultLL.get(2)).toEqual(5);
+            });
+            it('resultLL.get(3) === 1', function() {
+                expect(resultLL.get(3)).toEqual(1);
+            });
+		});
+
+        describe('두 개의 리스트의 인자의 개수가 다른 경우 정합성 확인', function () {
+            let llist1 = new LinkedList();
+            llist1.linkLast(7);
+            llist1.linkLast(1);
+            llist1.linkLast(6);
+            llist1.linkLast(7);
+
+            let llist2 = new LinkedList();
+            llist2.linkLast(5);
+            llist2.linkLast(9);
+            llist2.linkLast(8);
+            let resultLL = addListsRecv(llist1.first, llist2.first, 0, new LinkedList());
+
+            it('resultLL.get(0) === 2', function() {
+                expect(resultLL.get(0)).toEqual(2);
+            });
+            it('resultLL.get(1) === 1', function() {
+                expect(resultLL.get(1)).toEqual(1);
+            });
+            it('resultLL.get(2) === 9', function() {
+                expect(resultLL.get(2)).toEqual(5);
+            });
+            it('resultLL.get(3) === 1', function() {
+                expect(resultLL.get(3)).toEqual(8);
+            });
+        });
+	});
+
+	// TODO : 정뱡향으로 리스트의 각각의 인자끼리 더하는 로직 구현
+    describe('addListsRevRecv(node1, node2, 0, ll) : 리스트의 각 자리수의 합(역순이 아니라 정방향으로 계산)', function() {
+
+        describe('예외처리', function() {
+            it('파라미터를 세 개 다 넘기지 않으면 throw', function() {
+//                expect(addListsRevRecv.bind(null)).toThrow();
             });
 		});
 	});
