@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>리스트의 합</title>
+	<!-- 재스민 라이브러리 파일 -->
+	<link data-require="jasmine@*" data-semver="2.0.0" rel="stylesheet" href="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine.css" />
+	<script data-require="jasmine@*" data-semver="2.0.0" src="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine.js"></script>
+	<script data-require="jasmine@*" data-semver="2.0.0" src="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine-html.js"></script>
+	<script data-require="jasmine@*" data-semver="2.0.0" src="http://cdn.jsdelivr.net/jasmine/2.0.0/boot.js"></script>
+</head>
+<body>
+
+<script src="../util.js"></script>
+<script src="LinkedList.js"></script>
+<script>
+
+	function test(a=errParam(), b=errParam()) {
+
+	}
+
+	describe('test(p1, p2)', function() {
+
+		describe('예외처리', function() {
+			it('파라미터를 두 개 다 넘기지 않으면 throw', function() {
+				expect(test.bind(null)).toThrow(MSG.errParam);
+				expect(test.bind(null, 1)).toThrow();
+//				expect(test.bind(null, 1, 1)).not.toThrow(MSG.errParam);
+//				expect(test.bind(null, 1, 1)).toThrow(MSG.errParam);
+//				expect(addLists.bind(null), llist1).toThrow(MSG.errParam);
+			});
+//            it('첫 번째 인자와 두 번째 인자가 LinkedList이 타입이 아니면 throw', function() {
+//                expect(addLists.bind(null, 1, 1)).toThrowError(TypeError);
+//                expect(addLists.bind(null, false, 1)).toThrowError(TypeError);
+//                expect(addLists.bind(null, 'str', 1)).toThrowError(TypeError);
+//                expect(addLists.bind(null, {}, 1)).toThrowError(TypeError);
+//                expect(addLists.bind(null, [], 1)).toThrowError(TypeError);
+//                expect(addLists.bind(null, 1, false)).toThrowError(TypeError);
+//                expect(addLists.bind(null, 1, 'str')).toThrowError(TypeError);
+//                expect(addLists.bind(null, 1, {})).toThrowError(TypeError);
+//                expect(addLists.bind(null, 1, [])).toThrowError(TypeError);
+//                expect(addLists.bind(null, llist1, llist2)).not.toThrowError(TypeError);
+//			});
+		});
+
+	});
+
+
+</script>
+</body>
+</html>

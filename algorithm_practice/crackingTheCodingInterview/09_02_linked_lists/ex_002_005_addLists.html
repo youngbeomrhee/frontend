@@ -66,6 +66,10 @@
 		}
     }
 
+    function addListsReverseRecv() {
+
+	}
+
 	describe('addLists(ll1, ll2) : 리스트의 각 자리수의 합', function() {
 
 		describe('예외처리', function() {
@@ -228,11 +232,13 @@
 	});
 
 	// TODO : 정뱡향으로 리스트의 각각의 인자끼리 더하는 로직 구현
-    describe('addListsRevRecv(node1, node2, 0, ll) : 리스트의 각 자리수의 합(역순이 아니라 정방향으로 계산)', function() {
+    describe('addListsReverseRecv(node1, node2, 0, ll) : 리스트의 각 자리수의 합(역순이 아니라 정방향으로 계산)', function() {
 
         describe('예외처리', function() {
-            it('파라미터를 세 개 다 넘기지 않으면 throw', function() {
+			it('파라미터를 세 개 다 넘기지 않으면 throw', function() {
 //                expect(addListsRevRecv.bind(null)).toThrow();
+                expect(addListsReverseRecv.bind(null)).toThrow();
+
             });
 		});
 	});
