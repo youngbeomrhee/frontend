@@ -66,7 +66,16 @@
 		}
     }
 
-    function addListsReverseRecv() {
+    function addListsReverseRecv(node1=errParam(), node2=errParam(), added=0, resultLL=errParam()) {
+        if(node1) typeCheck(node1, Node);
+        if(node2) typeCheck(node2, Node);
+        if(added !== 0 && added !== 1) throw '자리올림수는 0 또는 1만 올 수 있습니다.';
+        typeCheck(resultLL, LinkedList);
+
+        // node의 갯수가 다를 경우에 임시값 부여
+        if(!node1) node1 = new Node(null, 0, null);
+        if(!node2) node2 = new Node(null, 0, null);
+
 
 	}
 
@@ -235,13 +244,66 @@
     describe('addListsReverseRecv(node1, node2, 0, ll) : 리스트의 각 자리수의 합(역순이 아니라 정방향으로 계산)', function() {
 
         describe('예외처리', function() {
-			it('파라미터를 세 개 다 넘기지 않으면 throw', function() {
-//                expect(addListsRevRecv.bind(null)).toThrow();
-                expect(addListsReverseRecv.bind(null)).toThrow();
-
+            it('파라미터를 세 개 다 넘기지 않으면 throw', function() {
+                expect(addListsReverseRecv.bind(null)).toThrow(MSG.errParam);
+                expect(addListsReverseRecv.bind(null, new Node(null, null))).toThrow(MSG.errParam);
+                expect(addListsReverseRecv.bind(null, new Node(null, null), new Node(null, null))).toThrow(MSG.errParam);
+                expect(addListsReverseRecv.bind(null, new Node(null, null), new Node(null, null), 0, new LinkedList())).not.toThrow(MSG.errParam);
+            });
+            it('첫 번째 인자와 두 번째 인자가 Node 타입이 아니면 throw', function() {
+                expect(addListsReverseRecv.bind(null, 1, 1, 1, 1)).toThrowError(TypeError);
+                expect(addListsReverseRecv.bind(null, false, 1, 1, 1)).toThrowError(TypeError);
+                expect(addListsReverseRecv.bind(null, 'str', 1, 1, 1)).toThrowError(TypeError);
+                expect(addListsReverseRecv.bind(null, {}, 1, 1, 1)).toThrowError(TypeError);
+                expect(addListsReverseRecv.bind(null, [], 1, 1, 1)).toThrowError(TypeError);
+                expect(addListsReverseRecv.bind(null, 1, true, 1, 1)).toThrowError(TypeError);
+                expect(addListsReverseRecv.bind(null, 1, 'string', 1, 1)).toThrowError(TypeError);
+                expect(addListsReverseRecv.bind(null, 1, {}, 1, 1)).toThrowError(TypeError);
+                expect(addListsReverseRecv.bind(null, 1, [], 1, 1)).toThrowError(TypeError);
+            });
+            it('세 번째 인자인 자리수가 숫자가 아니거나 1 초과면 throw', function() {
+                expect(addListsReverseRecv.bind(null, new Node(null, null), new Node(null, null), true, new LinkedList())).toThrow('자리올림수는 0 또는 1만 올 수 있습니다.');
+                expect(addListsReverseRecv.bind(null, new Node(null, null), new Node(null, null), 'string', new LinkedList())).toThrow('자리올림수는 0 또는 1만 올 수 있습니다.');
+                expect(addListsReverseRecv.bind(null, new Node(null, null), new Node(null, null), {}, new LinkedList())).toThrow('자리올림수는 0 또는 1만 올 수 있습니다.');
+                expect(addListsReverseRecv.bind(null, new Node(null, null), new Node(null, null), 2, new LinkedList())).toThrow('자리올림수는 0 또는 1만 올 수 있습니다.');
+                expect(addListsReverseRecv.bind(null, new Node(null, null), new Node(null, null), undefined, new LinkedList())).not.toThrow('자리올림수는 0 또는 1만 올 수 있습니다.');
+                expect(addListsReverseRecv.bind(null, new Node(null, null), new Node(null, null), 0, new LinkedList())).not.toThrow('자리올림수는 0 또는 1만 올 수 있습니다.');
+                expect(addListsReverseRecv.bind(null, new Node(null, null), new Node(null, null), 1, new LinkedList())).not.toThrow('자리올림수는 0 또는 1만 올 수 있습니다.');
+            });
+            it('네 번째 인자가 LinkedList가 아니면 throw', function() {
+                expect(addListsReverseRecv.bind(null, new Node(null, null), new Node(null, null), 0, false)).toThrowError(TypeError);
+                expect(addListsReverseRecv.bind(null, new Node(null, null), new Node(null, null), 0, 'str')).toThrowError(TypeError);
+                expect(addListsReverseRecv.bind(null, new Node(null, null), new Node(null, null), 0, {})).toThrowError(TypeError);
+                expect(addListsReverseRecv.bind(null, new Node(null, null), new Node(null, null), 0, [])).toThrowError(TypeError);
+                expect(addListsReverseRecv.bind(null, new Node(null, null), new Node(null, null), 0, new LinkedList())).not.toThrowError(TypeError);
             });
 		});
-	});
+
+        describe('정합성 확인', function() {
+            let llist1 = new LinkedList();
+            llist1.linkLast(7);
+            llist1.linkLast(1);
+            llist1.linkLast(6);
+
+            let llist2 = new LinkedList();
+            llist2.linkLast(5);
+            llist2.linkLast(9);
+            llist2.linkLast(2);
+            let resultLL = addListsRecv(llist1.first, llist2.first, 0, new LinkedList());
+
+            it('resultLL.get(0) === 2', function() {
+                expect(resultLL.get(0)).toEqual(2);
+            });
+            it('resultLL.get(1) === 1', function() {
+                expect(resultLL.get(1)).toEqual(1);
+            });
+            it('resultLL.get(2) === 9', function() {
+                expect(resultLL.get(2)).toEqual(9);
+            });
+        });
+
+
+    });
 
 
 </script>
