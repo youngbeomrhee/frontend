@@ -72,11 +72,12 @@
         if(added !== 0 && added !== 1) throw '자리올림수는 0 또는 1만 올 수 있습니다.';
         typeCheck(resultLL, LinkedList);
 
-        // node의 갯수가 다를 경우에 임시값 부여
+        // node의 갯수가 다를 경우에 리스트의 앞에 자리수만큼 0을 채움
+		const length1 = node1.le
         if(!node1) node1 = new Node(null, 0, null);
         if(!node2) node2 = new Node(null, 0, null);
 
-
+		let sum = node1.item + node2.item;
 	}
 
 	describe('addLists(ll1, ll2) : 리스트의 각 자리수의 합', function() {
@@ -101,6 +102,7 @@
 		});
 
         describe('정합성 확인', function() {
+
             let llist1 = new LinkedList();
             llist1.linkLast(7);
             llist1.linkLast(1);
@@ -164,6 +166,7 @@
 		});
 
         describe('정합성 확인', function() {
+            // 617 + 295
             let llist1 = new LinkedList();
             llist1.linkLast(7);
             llist1.linkLast(1);
@@ -187,6 +190,7 @@
 		});
 
         describe('마지막에 자리올림수가 하나 더 있는 경우', function() {
+            // 617 + 295
             let llist1 = new LinkedList();
             llist1.linkLast(7);
             llist1.linkLast(1);
@@ -213,6 +217,7 @@
 		});
 
         describe('두 개의 리스트의 인자의 개수가 다른 경우 정합성 확인', function () {
+            // 617 + 295
             let llist1 = new LinkedList();
             llist1.linkLast(7);
             llist1.linkLast(1);
@@ -280,16 +285,17 @@
 		});
 
         describe('정합성 확인', function() {
+            // 617 + 295
             let llist1 = new LinkedList();
-            llist1.linkLast(7);
-            llist1.linkLast(1);
             llist1.linkLast(6);
+            llist1.linkLast(1);
+            llist1.linkLast(7);
 
             let llist2 = new LinkedList();
-            llist2.linkLast(5);
-            llist2.linkLast(9);
             llist2.linkLast(2);
-            let resultLL = addListsRecv(llist1.first, llist2.first, 0, new LinkedList());
+            llist2.linkLast(9);
+            llist2.linkLast(5);
+            let resultLL = addListsReverseRecv(llist1, llist2, 0, new LinkedList());
 
             it('resultLL.get(0) === 2', function() {
                 expect(resultLL.get(0)).toEqual(2);
@@ -301,7 +307,6 @@
                 expect(resultLL.get(2)).toEqual(9);
             });
         });
-
 
     });
 
