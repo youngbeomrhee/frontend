@@ -16,23 +16,10 @@
 <script>
 
 	class PartialSum {
-	    constructor() {
+        constructor() {
 	        this.sum = null;
 	        this.carry = 0;
 		}
-	}
-	function length(head) {
-	    let i = head ? 1 : 0,
-			temp = head;
-	    while(temp && temp.next) {
-            temp = temp.next;
-	        i++;
-		}
-		return i;
-	}
-
-	function insertBefore(node, prev) {
-        node.prev = prev;
 	}
 
 	function addLists(l1, l2) {
@@ -64,10 +51,11 @@
 	        return sum;
 		}
 		/* 작은 자릿수를 재귀적으로 더한다. */
+		/* 재귀를 통해 입력한 순서의 역순으로 연산이 가능 */
         const sum = addListsHelper(l1.next, l2.next);
 
         /* 현재 값에 넘김수를 더한다. */
-        const val =  sum.carry + l1.data + l2.data;
+        const val = sum.carry + l1.item + l2.item;
 
         /* 현재 자릿수를 합한 결과를 삽입한다. */
         const full_result = insertBefore(sum.sum, val % 10);
@@ -87,7 +75,35 @@
         return head;
 	}
 
+    function insertBefore(node, item) {
+        let tempNode = new Node(null, item);
+        if(node) {
+            tempNode.next = node;
+        }
+        return tempNode;
+    }
 
+    function length(head) {
+        let i = head ? 1 : 0,
+            temp = head;
+        while(temp && temp.next) {
+            temp = temp.next;
+            i++;
+        }
+        return i;
+    }
+
+    let llist1 = new LinkedList();
+    llist1.linkLast(7);
+    llist1.linkLast(1);
+    llist1.linkLast(6);
+
+    let llist2 = new LinkedList();
+    llist2.linkLast(5);
+    llist2.linkLast(9);
+    llist2.linkLast(2);
+
+    console.log(addLists(llist1.first, llist2.first));
 </script>
 </body>
 </html>

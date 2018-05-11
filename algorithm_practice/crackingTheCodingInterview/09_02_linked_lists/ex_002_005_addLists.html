@@ -66,6 +66,9 @@
 		}
     }
 
+    /*
+    	cf. 꼭 재귀를 통해서 구해야 된다는 제약이 있다면 ex_002_005_addLists_ans.html 처럼 메인 함수를 따로 만들고 내부에서 재귀함수를 호출해서 연산순서를 역순으로 하는 방법이 있다
+    */
     function addListsReverseRecv(node1=errParam(), node2=errParam(), added=0, resultLL=errParam()) {
         if(node1) typeCheck(node1, Node);
         if(node2) typeCheck(node2, Node);
@@ -73,12 +76,63 @@
         typeCheck(resultLL, LinkedList);
 
         // node의 갯수가 다를 경우에 리스트의 앞에 자리수만큼 0을 채움
-		const length1 = node1.le
-        if(!node1) node1 = new Node(null, 0, null);
-        if(!node2) node2 = new Node(null, 0, null);
+		const length1 = length(node1),
+            length2 = length(node2);
 
-		let sum = node1.item + node2.item;
+		if(length1 > length2) {
+            padList(node2, (length1 - length2));
+		} else {
+            padList(node1, (length2 - length1));
+		}
+
+		const addedList = addLists2(node1, node2);
+
+        // TODO : addedList를 가공해서 결과 구하기
 	}
+
+	function addLists2(head1, head2) {
+        if(length(head1) !== length(head2)) throw '더하려는 list의 인자 갯수가 다릅니다.';
+        let addedList = [];
+
+        do {
+            const val1 = head1 ? head1.item : 0,
+                val2 = head2 ? head2.item : 0;
+
+            addedList.push(val1 + val2);
+
+            head1 = head1.next ? head1.next : null;
+            head2 = head2.next ? head2.next : null;
+		} while(head1);
+
+        return addedList;
+	}
+
+    function length(head) {
+        let i = head ? 1 : 0,
+            temp = head;
+        while(temp && temp.next) {
+            temp = temp.next;
+            i++;
+        }
+        return i;
+    }
+
+	/* 리스트 앞에 0을 추가한다. */
+    function padList(l, padding) {
+        let head = l;
+        for (let i = 0; i < padding; i++) {
+            head = insertBefore(head, 0);
+        }
+        return head;
+    }
+
+    function insertBefore(node, item) {
+        let tempNode = new Node(null, item);
+        if(node) {
+            tempNode.next = node;
+        }
+        return tempNode;
+    }
 
 	describe('addLists(ll1, ll2) : 리스트의 각 자리수의 합', function() {
 
@@ -159,8 +213,7 @@
             it('네 번째 인자가 LinkedList가 아니면 throw', function() {
                 expect(addListsRecv.bind(null, new Node(null, null), new Node(null, null), 0, false)).toThrowError(TypeError);
                 expect(addListsRecv.bind(null, new Node(null, null), new Node(null, null), 0, 'str')).toThrowError(TypeError);
-                expect(addListsRecv.bind(null, new Node(null, null), new Node(null, null), 0, {})).toThrowError(TypeError);
-                expect(addListsRecv.bind(null, new Node(null, null), new Node(null, null), 0, [])).toThrowError(TypeError);
+                expect(addListsRecv.bind(null, new Node(null, null), new Node(null, null), 0, {})).toThrowError(TypeError); expect(addListsRecv.bind(null, new Node(null, null), new Node(null, null), 0, [])).toThrowError(TypeError);
                 expect(addListsRecv.bind(null, new Node(null, null), new Node(null, null), 0, new LinkedList())).not.toThrowError(TypeError);
 			});
 		});

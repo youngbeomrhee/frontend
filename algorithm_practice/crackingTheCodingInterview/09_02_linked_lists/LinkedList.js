@@ -13,7 +13,7 @@ class Node {
     constructor(prev, item=errParam(), next) {
         this.prev = prev ? prev : null;
         this.next = next ? next : null;
-        this.item = item ? item : null;
+        this.item = item;
     }
 }
 
