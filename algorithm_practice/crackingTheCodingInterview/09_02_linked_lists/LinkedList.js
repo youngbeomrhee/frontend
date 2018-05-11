@@ -179,5 +179,10 @@ class LinkedList {
         this.size++;
     }
 
+    addAll(arr) {
+        arr.forEach((item) => {
+            this.linkLast(item);
+        });
+    }
 }
 
