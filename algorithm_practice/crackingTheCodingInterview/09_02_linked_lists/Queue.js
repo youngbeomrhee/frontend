@@ -1,15 +1,15 @@
 /**
  * Created by yblee on 2018-05-14.
  */
-class Stack {
+class Queue extends LinkedList {
     constructor(arr) {
-        this.data = [];
+        this.data = new LinkedList();
         if(arr) {
             this._addAll(arr);
         }
     }
     size() {
-        return this.data.length;
+        return this.data.size;
     }
     push(item=errParam()) {
         this._addElement(item);
@@ -31,7 +31,6 @@ class Stack {
         return this.size() === 0;
     }
     search(obj) {
-        debugger;
         const i = this._lastIndexOf(obj);
         if(i >= 0) {
             return this.size() - i;
@@ -44,7 +43,7 @@ class Stack {
         }
     }
     _addElement(item=errParam()) {
-        this.data.push(item);
+        this.data.linkFirst(item);
     }
     _removeElementAt(i) {
         return this.data.pop();

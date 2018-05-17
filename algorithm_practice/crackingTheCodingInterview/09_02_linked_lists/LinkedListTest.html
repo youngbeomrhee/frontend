@@ -358,6 +358,31 @@
                 });
             });
         });
+
+        describe('unlinkFirst()', function() {
+            describe('에러처리 확인', function() {
+                it('두 번째 인자가 제대로 된 타입이고, 원본 리스트의 요소면 오류발생 안함', function () {
+                    expect(ll.ll.unlinkFirst.bind(ll)).toThrow(RangeError);
+                });
+            });
+            /*
+            describe('값이 제대로 들어갔는지 확인', function() {
+                beforeEach(function () {
+                    ll.linkFirst('test1');
+                    ll.linkAfter('test2', ll.getFirst());
+                });
+                it('제대로 된 위치에 들어갔는지 확인', function () {
+                    expect(ll.getLast().item).toEqual('test2');
+                });
+                it('인자의 개수 확인', function () {
+                    expect(ll.size).toEqual(2);
+                });
+                it('last 확인', function () {
+                    expect(ll.getLast().item).toEqual(ll.last.item);
+                });
+            });
+            */
+        });
     });
 
 </script>
