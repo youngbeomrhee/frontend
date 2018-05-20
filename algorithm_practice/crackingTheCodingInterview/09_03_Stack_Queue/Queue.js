@@ -1,7 +1,7 @@
 /**
  * Created by yblee on 2018-05-14.
  */
-class Queue extends LinkedList {
+class Queue {
     constructor(arr) {
         this.data = new LinkedList();
         if(arr) {
@@ -25,7 +25,7 @@ class Queue extends LinkedList {
     peek() {
         const len = this.size();
         if(len < 1) throw new RangeError(len);
-        return this._elementAt(len - 1);
+        return this._elementAt(0);
     }
     isEmpty() {
         return this.size() === 0;
@@ -43,13 +43,13 @@ class Queue extends LinkedList {
         }
     }
     _addElement(item=errParam()) {
-        this.data.linkFirst(item);
+        this.data.linkLast(item);
     }
     _removeElementAt(i) {
-        return this.data.pop();
+        return this.data.unlinkFirst();
     }
     _elementAt(i) {
-        return this.data[i];
+        return this.data.get(i);
     }
     _lastIndexOf(obj) {
         const len = this.data.length-1;

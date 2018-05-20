@@ -12,7 +12,7 @@
 <body>
 <h2>LinkedList test cases</h2>
 <script src="LinkedList.js"></script>
-<script src="/algorithm_practice/crackingTheCodingInterview/util.js"></script>
+<script src="/jssample/algorithm_practice/crackingTheCodingInterview/util.js"></script>
 <script>
 
     describe('LinkedList 테스트', function() {
@@ -361,27 +361,83 @@
 
         describe('unlinkFirst()', function() {
             describe('에러처리 확인', function() {
-                it('두 번째 인자가 제대로 된 타입이고, 원본 리스트의 요소면 오류발생 안함', function () {
-                    expect(ll.ll.unlinkFirst.bind(ll)).toThrow(RangeError);
+                it('요소가 하나도 없는데 삭제하려고 하면 예외처리', function () {
+                    expect(ll.unlinkFirst.bind(ll)).toThrowError(RangeError);
                 });
             });
-            /*
-            describe('값이 제대로 들어갔는지 확인', function() {
+            describe('값이 제대로 삭제됐는지 확인', function() {
                 beforeEach(function () {
-                    ll.linkFirst('test1');
-                    ll.linkAfter('test2', ll.getFirst());
+                    ll.linkLast('test1');
+                    ll.linkLast('test2');
+                    ll.linkLast('test3');
+                    ll.linkLast('test4');
                 });
                 it('제대로 된 위치에 들어갔는지 확인', function () {
-                    expect(ll.getLast().item).toEqual('test2');
-                });
-                it('인자의 개수 확인', function () {
-                    expect(ll.size).toEqual(2);
-                });
-                it('last 확인', function () {
-                    expect(ll.getLast().item).toEqual(ll.last.item);
+                    expect(ll.getFirst().item).toEqual('test1');
+                    ll.unlinkFirst();
+                    expect(ll.getFirst().item).toEqual('test2');
+                    ll.unlinkFirst();
+                    expect(ll.getFirst().item).toEqual('test3');
                 });
             });
-            */
+        });
+
+        describe('unlinkLast()', function() {
+            describe('에러처리 확인', function() {
+                it('요소가 하나도 없는데 삭제하려고 하면 예외처리', function () {
+                    expect(ll.unlinkLast.bind(ll)).toThrowError(RangeError);
+                });
+            });
+            describe('값이 제대로 삭제됐는지 확인', function() {
+                beforeEach(function () {
+                    ll.linkLast('test1');
+                    ll.linkLast('test2');
+                    ll.linkLast('test3');
+                    ll.linkLast('test4');
+                });
+                it('제대로 된 위치에 들어갔는지 확인', function () {
+                    expect(ll.getLast().item).toEqual('test4');
+                    ll.unlinkLast();
+                    expect(ll.getLast().item).toEqual('test3');
+                    ll.unlinkLast();
+                    expect(ll.getLast().item).toEqual('test2');
+                    ll.unlinkLast();
+                    expect(ll.getLast().item).toEqual('test1');
+                });
+            });
+        });
+
+        describe('getHalf(node, len)', function() {
+            describe('에러처리 확인', function() {
+                it('인자가 안들어오는 경우 throw', function() {
+                    expect(getHalf.bind(ll)).toThrow(MSG.errParam);
+                });
+                it('인자가 안들어오는 경우 throw', function() {
+                    expect(getHalf.bind(ll, new Node(null, null))).toThrow(MSG.errParam);
+                });
+                it('모든 인자가 들어오는 경우 에러발생 안함', function() {
+                    expect(getHalf.bind(ll, new Node(null, null), 12)).not.toThrow(MSG.errParam);
+                });
+            });
+
+            describe('정합성 확인', function() {
+                it('값이 제대로 구해졌는지 확인', function () {
+                    ll.linkLast('test1');
+                    ll.linkLast('test2');
+                    ll.linkLast('test3');
+                    ll.linkLast('test4');
+                    ll.linkLast('test5');
+                    ll.linkLast('test6');
+                    ll.linkLast('test7');
+                    expect(getHalf(ll.first, 7).item).toEqual('test4');
+                    ll.linkLast('test8');
+                    expect(getHalf(ll.first, 8).item).toEqual('test5');
+                    ll.linkLast('test9');
+                    expect(getHalf(ll.first, 9).item).toEqual('test5');
+                    ll.linkLast('test10');
+                    expect(getHalf(ll.first, 10).item).toEqual('test6');
+                });
+            });
         });
     });
 

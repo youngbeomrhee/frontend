@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>리스트의 합</title>
+	<!-- 재스민 라이브러리 파일 -->
+	<link data-require="jasmine@*" data-semver="2.0.0" rel="stylesheet" href="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine.css" />
+	<script data-require="jasmine@*" data-semver="2.0.0" src="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine.js"></script>
+	<script data-require="jasmine@*" data-semver="2.0.0" src="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine-html.js"></script>
+	<script data-require="jasmine@*" data-semver="2.0.0" src="http://cdn.jsdelivr.net/jasmine/2.0.0/boot.js"></script>
+</head>
+<body>
+
+<script src="../util.js"></script>
+<script src="LinkedList.js"></script>
+<script>
+
+	function findBeginning(head) {
+	    debugger;
+		let slow = head,
+			fast = head;
+
+		/* 만나는 지점을 찾는다. 연결리스트 안에서 LOOP_SIZE-k만큼 들어간 상태이다. */
+		while (fast && fast.next) {
+		    slow = slow.next;
+		    fast = fast.next.next;
+		    if(slow === fast) {	// 충돌
+		        break;
+			}
+		}
+
+		/* 에러 체크. 만나는 지점이 없다면 루프도 없다. */
+		if(fast === null || fast.next === null) {
+		    return null;
+		}
+
+		/* slow를 head로 옮기고 fast는 그대로 둔다 이 둘은 루프 시작 지점에서 k만큼 떨어져 있다.
+		 * 이 둘이 같은 속도로 움직인다면 시작 지점에서 만나게 된다. */
+		slow = head;
+		while (slow !== fast) {
+		    slow = slow.next;
+		    fast = fast.next;
+		}
+
+		/* 둘 다 루프의 시작 지점을 가리킨다. */
+		return fast;
+	}
+
+	let ll = new LinkedList([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+
+	ll.last.next = ll.node(3);
+
+    findBeginning(ll.first);
+
+</script>
+</body>
+</html>

@@ -9,6 +9,14 @@ function require(...args) {
     if(nullEles.size > 0) throw '필수값이 누락되었습니다 : ' + nullEles;
 }
 
+function getHalf(node=errParam(), len=errParam()) {
+    typeCheck(node, Node);
+    if(len === 0 || len === 1) {
+        return node;
+    }
+    return getHalf(node.next, len-2);
+}
+
 class Node {
     constructor(prev, item=errParam(), next) {
         this.prev = prev ? prev : null;
@@ -185,39 +193,36 @@ class LinkedList {
         });
     }
 
-/*
-    unlinkFirst(Node<E> f) {
-        // assert f == first && f != null;
-        final E element = f.item;
-        final Node<E> next = f.next;
-        f.item = null;
-        f.next = null; // help GC
-        first = next;
-        if (next == null)
-        last = null;
-        else
-        next.prev = null;
-        size--;
-        modCount++;
-        return element;
+    unlinkFirst() {
+        if(this.size < 1) throw RangeError(this.size);
+
+        const first = this.first,
+            next = first.next;
+
+        this.first = next;
+        if(next === null) {
+            this.last = null;
+        } else {
+            next.prev = null;
+        }
+        this.size--;
+        return first.item;
     }
 
-    unlinkLast(Node<E> l) {
-        // assert l == last && l != null;
-        final E element = l.item;
-        final Node<E> prev = l.prev;
-        l.item = null;
-        l.prev = null; // help GC
-        last = prev;
-        if (prev == null)
-            first = null;
-        else
+    unlinkLast() {
+        if(this.size < 1) throw RangeError(this.size);
+
+        const last = this.last,
+            prev = last.prev;
+
+        this.last = prev;
+        if(prev === null) {
+            this.first = null;
+        } else {
             prev.next = null;
-        size--;
-        modCount++;
-        return element;
+        }
+        this.size--;
+        return last.item;
     }
-*/
-
 }
 
