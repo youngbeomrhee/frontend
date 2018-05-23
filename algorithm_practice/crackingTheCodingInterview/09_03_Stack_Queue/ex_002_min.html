@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Linked List Test</title>
+    <!-- 재스민 라이브러리 파일 -->
+    <link data-require="jasmine@*" data-semver="2.0.0" rel="stylesheet" href="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine.css" />
+    <script data-require="jasmine@*" data-semver="2.0.0" src="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine.js"></script>
+    <script data-require="jasmine@*" data-semver="2.0.0" src="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine-html.js"></script>
+    <script data-require="jasmine@*" data-semver="2.0.0" src="http://cdn.jsdelivr.net/jasmine/2.0.0/boot.js"></script>
+</head>
+<body>
+<h2>Stack test cases</h2>
+<script src="/jssample/algorithm_practice/crackingTheCodingInterview/util.js"></script>
+<script>
+
+    class StackWithMin {
+        constructor(devided) {
+            super();
+            this.data = [];
+            this.minStack = [];
+        }
+        push(item=errParam(), i) {
+            this._addElement(item, i);
+            if(minStack.length < 1) {
+                minStack.push(item);
+            } else {
+                let min = minStack[minStack.length-1];
+                if(item<min) {
+                    minStack.push(item);
+                }
+            }
+            return item;
+        }
+        pop(i) {
+            const obj = this.peek(i),
+                len = this.size();
+            if(len < 1) throw new RangeError(len);
+            this._removeElementAt(len - 1);
+            return obj;
+        }
+        min() {
+
+        }
+        addMin() {
+
+        }
+        _addElement(item=errParam()) {
+            this.data.push(item);
+        }
+        _removeElementAt(i) {
+            return this.data.pop(i);
+        }
+    }
+
+    describe('Stack 테스트', function() {
+        let stm;
+
+        beforeEach(function() { // 각각의 테스트 전에 실행할 로직을 입력
+            stm = new StackWithMin();
+        });
+
+        describe('Stack 객체생성 테스트', function() {
+            it('Stack 객체는 data: [], minStack: [] 를 element로 가지고 있어야 한다.', function() {
+                expect(stm).toEqual(jasmine.objectContaining({
+                    data: [],
+                    minStack: []
+                }));
+            });
+        });
+
+        describe('push(), pop()', function() {
+            describe('에러처리', function() {
+                it('push() 실행시에 파라미터를 넘기지 않으면 에러.', function() {
+                    expect(stm.push.bind(st)).toThrow(MSG.errParam);
+                });
+                it('pop() 실행시에 요소가 없으면 에러.', function() {
+                    expect(stm.pop.bind(st)).toThrowError(RangeError);
+                });
+                it('size() 실행시에 요소가 없으면 에러.', function() {
+                    expect(Number.isInteger(st.size())).toBeTruthy();
+                });
+            });
+            describe('정합성 확인', function() {
+                it('요소를 넣지 않았을 때 size()===0', function() {
+                    expect(st.size()).toBe(0);
+                });
+                it('push(item) 1번 size()===1', function() {
+                    let st = new Stack();
+                    st.push('item1');
+                    expect(st.size()).toBe(1);
+                });
+                it('push(item) 3번 size()===3', function() {
+                    let st = new Stack();
+                    st.push('item1');
+                    st.push('item2');
+                    st.push('item3');
+                    expect(st.size()).toBe(3);
+                });
+                it('push(item) 3번 후 pop()', function() {
+                    let st = new Stack();
+                    st.push('item1');
+                    st.push('item2');
+                    st.push('item3');
+                    expect(st.pop()).toBe('item3');
+                    expect(st.pop()).toBe('item2');
+                    expect(st.pop()).toBe('item1');
+                });
+                it('search("test2") === 1 ', function() {
+                    let st = new Stack();
+                    st.push('item1');
+                    st.push('item2');
+                    expect(st.search('item2')).toBe(1);
+                });
+            });
+        });
+
+    });
+
+</script>
+</body>
+</html>
