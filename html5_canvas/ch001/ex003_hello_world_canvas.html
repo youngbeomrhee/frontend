@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>CH1EX3: Your first canvas application</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+	<script src="../util/Debugger.js"></script>
+	<script>
+        Debugger.log('runtime execution start');
+        window.addEventListener('load', eventWindowLoaded);	// 페이지가 모두 로드되고 실행되도록 설정. window 객체가 DOM의 root
+
+        function eventWindowLoaded() {
+            if(!canvasSupport()) return;	// canvas를 지원하는지 여부를 확인
+            Debugger.log('window has loaded');
+            canvasApp();
+        }
+        function canvasSupport() {
+//            return Boolean(theCanvas && theCanvas.getContext);	// canvas element에 직접 접근하여 필요한 메서드가 있는지 확인하는 방법
+//			return Boolean(document.createElement('canvas').getContext);	// 마크필그림(http://diveintohtml5.org)의 방법
+            return Modernizr.canvas;	// Moernizr를 사용하는 방법
+        }
+        function canvasApp() {
+            const theCanvas = document.querySelector('#canvasOne'),
+                context = theCanvas.getContext('2d');
+
+            function drawScreen() {
+                // 배경 화면
+                context.fillStyle = '#ffffaa';	// 색상 설정
+                context.fillRect(0, 0, 500, 300);	// 화면에 사각형 생성
+                // context의 메서드를 사용했다는 점에 주목하자. 화면 객체, 색상 객체 같은 것을 사용하지 않았다. 이것이 앞에서 언급했던 즉시 모드의 특징이다.
+
+                // 문자
+                context.fillStyle = '#000000';	// 색상 설정
+                context.font = '20px _sans';	// 폰트 크기와 두께를 설정
+                context.textBaseline = "top";	// 폰트의 수직 정렬 방법을 설정
+                context.fillText('Hello World!', 195, 80);
+
+                // 이미지
+                const helloWorldImage = new Image();
+                helloWorldImage.src = 'helloworld.gif';	// 소스경로
+                helloWorldImage.onload = function () {	// 이미지 로드가 끝나면 실행
+                    context.drawImage(helloWorldImage, 160, 130);
+                }
+
+                // 사각형
+                context.strokeStyle = '#000000';
+                context.strokeRect(5, 5, 490, 290);
+            }
+            drawScreen();
+        }
+        Debugger.log('runtime execution end');
+	</script>
+</head>
+<body>
+	<div style="position: absolute; top: 50px; left: 50px">
+		<canvas id="canvasOne" width="500" height="300">
+			Your browser does not support HTML5 Canvas.
+		</canvas>
+	</div>
+</body>
+</html>

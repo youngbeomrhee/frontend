@@ -31,7 +31,6 @@ class Stack {
         return this.size() === 0;
     }
     search(obj) {
-        debugger;
         const i = this._lastIndexOf(obj);
         if(i >= 0) {
             return this.size() - i;

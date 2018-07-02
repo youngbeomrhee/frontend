@@ -18,48 +18,42 @@
     class SetOfStacks {
         constructor() {
             this.stacks = [];
-            this.minStack = [];
+            this.currentStack = null;
         }
-        push(item=errParam(), i) {
-            this._addElement(item, i);
-            if(minStack.length < 1) {
-                minStack.push(item);
-            } else {
-                let min = minStack[minStack.length-1];
-                if(item<min) {
-                    minStack.push(item);
-                }
+        push(item=errParam()) {
+            if(!this.currentStack) {
+                this.currentStack = new Stack();
+                this.stacks.push(currentStack);
             }
+            if(this.currentStack.size()>10) {   // JS에는 Array가 가변길이기 때문에 길이 제한을 10으로 강제로 설정
+                this.currentStack = new Stack();
+                this.stacks.push(currentStack);
+            }
+            this.currentStack.push(item);
             return item;
         }
-        pop(i) {
-            const obj = this.peek(i),
-                len = this.size();
-            if(len < 1) throw new RangeError(len);
-            this._removeElementAt(len - 1);
-            return obj;
-        }
-        min() {
-
-        }
-        addMin() {
-
-        }
-        _addElement(item=errParam()) {
-            this.data.push(item);
-        }
-        _removeElementAt(i) {
-            return this.data.pop(i);
+        pop() {
+            if(this.currentStack.size()<1) {
+                this.currentStack = this.stacks.push();
+                if(!this.currentStack) {
+                    throw RangeError();
+                }
+            }
+            return this.currentStack.pop();
         }
     }
 
-    describe('Stack 테스트', function() {
-        let stm;
+    describe('SetOfStacks 테스트', function() {
+        let sos;
 
         beforeEach(function() { // 각각의 테스트 전에 실행할 로직을 입력
-            stm = new StackWithMin();
+            sos = new SetOfStacks();
         });
 
+        describe('Stack 객체생성 테스트', function() {
+
+        });
+        /*
         describe('Stack 객체생성 테스트', function() {
             it('Stack 객체는 data: [], minStack: [] 를 element로 가지고 있어야 한다.', function() {
                 expect(stm).toEqual(jasmine.objectContaining({
@@ -114,7 +108,7 @@
                 });
             });
         });
-
+        */
     });
 
 </script>
