@@ -25,9 +25,9 @@
                 context.fillStyle = '#000000';	// 색상 설정
                 context.strokeStyle = '#ff00ff';	// 색상 설정
 				context.lineWidth = 2;
-                context.fillRect(10, 10, 40, 40);	// 화면에 사각형 생성
-                context.strokeRect(0, 0, 60, 60);
-                context.clearRect(20, 20, 20, 20);
+                context.fillRect(10, 10, 40, 40);	// Paints the given rectangle onto the canvas, using the current fill style.
+                context.strokeRect(0, 0, 60, 60);	// Paints the box that outlines the given rectangle onto the canvas, using the current stroke style.
+                context.clearRect(20, 20, 20, 20);	// Clears all pixels on the canvas in the given rectangle to transparent black.
             }
             drawScreen();
         }

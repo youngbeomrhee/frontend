@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas 예제 001</title>
+</head>
+<body>
+
+<canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;"></canvas>
+
+</body>
+
+<script>
+    /* Draw a Line */
+    (function () {
+        const c = document.querySelector('#myCanvas'),
+            ctx = c.getContext("2d"),
+            r = 40;
+
+        let x1 = 210,
+            x2 = x1+r,
+            y1 = 210,
+            y2 = y1;
+
+        ctx.beginPath();
+//        ctx.moveTo(x1, y1);
+//        ctx.arcTo(x1, y1, x2, y2, r);  // (x, y, r, startAngle, EndAngle)
+//        ctx.stroke();
+//        ctx.moveTo(250, 210);
+        ctx.arc(x1, y1, 40, 0, 2 * Math.PI / 2, true);  // (x, y, r, startAngle, EndAngle)
+        ctx.stroke();
+        x1 += 80;
+//        y1 += 40;
+        ctx.moveTo(x1, y1);
+        ctx.arc(x1, y1, 40, 0, 2 * Math.PI / 2, true);  // (x, y, r, startAngle, EndAngle)
+        ctx.stroke();
+//        ctx.fillStyle = 'red';
+//        ctx.fill();
+
+
+//        ctx.moveTo(0, 0);
+//        ctx.lineTo(200, 100);
+//        ctx.stroke();
+    })();
+
+    /* Draw a Circle */
+    /*
+    (function () {
+        const c = document.querySelector('#myCanvas002'),
+            ctx = c.getContext("2d");
+        ctx.beginPath();
+        ctx.arc(95, 50, 40, 0, 2 * Math.PI);  // (x, y, r, startAngle, EndAngle)
+        ctx.stroke();
+    })();
+    */
+</script>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas 예제 000</title>
+</head>
+<body>
+
+<h2>basic, empty canvas</h2>
+<canvas id="myCanvas000" width="200" height="100" style="border:1px solid #000000;"></canvas>
+
+<h2>Draw a Line</h2>
+<canvas id="myCanvas001" width="200" height="100" style="border:1px solid #000000;"></canvas>
+
+<h2>Draw a Circle</h2>
+<canvas id="myCanvas002" width="200" height="100" style="border:1px solid #000000;"></canvas>
+
+<h2>Draw a Text</h2>
+<canvas id="myCanvas003" width="200" height="100" style="border:1px solid #000000;"></canvas>
+
+<h2>Stroke a Text</h2>
+<canvas id="myCanvas004" width="200" height="100" style="border:1px solid #000000;"></canvas>
+
+<h2>Draw a linear gradient</h2>
+<canvas id="myCanvas005" width="200" height="100" style="border:1px solid #000000;"></canvas>
+
+<h2>Draw a image</h2>
+<img id="myImage" src="../image/img_the_scream.jpg"/>
+<canvas id="myCanvas006" width="250" height="300" style="border:1px solid #000000;"></canvas>
+
+
+</body>
+
+<script>
+    /* Draw a Line */
+    (function () {
+        const c = document.querySelector('#myCanvas001'),
+            ctx = c.getContext("2d");
+        ctx.moveTo(0, 0);
+        ctx.lineTo(200, 100);
+        ctx.stroke();
+    })();
+
+    /* Draw a Circle */
+    (function () {
+        const c = document.querySelector('#myCanvas002'),
+            ctx = c.getContext("2d");
+        ctx.beginPath();
+        ctx.arc(95, 50, 40, 0, 2 * Math.PI);  // (x, y, r, startAngle, EndAngle)
+        ctx.stroke();
+    })();
+
+    /* Draw a Text */
+    (function () {
+        const c = document.querySelector('#myCanvas003'),
+            ctx = c.getContext("2d");
+        ctx.beginPath();
+        ctx.font = '30px Verdana';
+        ctx.fillText('Hello world!', 10, 50);
+    })();
+
+    /* Stroke a Text */
+    (function () {
+        const c = document.querySelector('#myCanvas004'),
+            ctx = c.getContext("2d");
+        ctx.beginPath();
+        ctx.font = '30px Verdana';
+        ctx.strokeText('Hello world!', 10, 50);
+    })();
+
+    /* Draw a linear gradient */
+    (function () {
+        const c = document.querySelector('#myCanvas005'),
+            ctx = c.getContext("2d"),
+            grd = ctx.createLinearGradient(0, 0, 200, 0);   // create gradient
+
+        grd.addColorStop(0, 'red');
+        grd.addColorStop(1, 'white');
+
+        // Fill with gradient
+        ctx.fillStyle = grd;
+        ctx.fillRect(10, 10, 150, 80);
+    })();
+
+    /* Draw a image */
+    function drawImage() {
+        const c = document.querySelector('#myCanvas006'),
+            ctx = c.getContext("2d"),
+            img = document.querySelector('#myImage');
+        ctx.drawImage(img, 10, 10);
+    };
+    window.addEventListener('load', drawImage);
+</script>
+
+</html>
