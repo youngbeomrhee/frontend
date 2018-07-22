@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>triangle</title>
+    <script type="application/javascript">
+        function draw() {
+            var canvas = document.getElementById('canvas');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+
+                ctx.beginPath();
+                ctx.moveTo(45, 50);
+                ctx.lineTo(70, 75);
+                ctx.lineTo(70, 25);
+                ctx.lineTo(45, 50);
+                /*
+                 When you call fill(), any open shapes are closed automatically, so you don't have to call closePath().
+                 This is not the case when you call stroke().
+                */
+                ctx.fill();
+
+                ctx.beginPath();
+
+                ctx.moveTo(75, 50);
+                ctx.lineTo(100, 75);
+                ctx.lineTo(100, 25);
+                ctx.lineTo(75, 50);
+
+                ctx.moveTo(105, 50);
+                ctx.lineTo(130, 75);
+                ctx.lineTo(130, 25);
+                ctx.lineTo(105, 50);
+
+                ctx.stroke();
+            }
+        }
+    </script>
+</head>
+<body onload="draw();">
+<canvas id="canvas" width="150" height="150">
+    Your browser does not support HTML5 Canvas
+</canvas>
+</body>
+</html>
