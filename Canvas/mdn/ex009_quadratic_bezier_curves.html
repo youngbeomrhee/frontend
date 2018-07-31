@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>quadratic bezier curves</title>
+    <script type="application/javascript">
+        function addPoint(ctx, x, y, r, color) {
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.fillStyle = color;
+            ctx.arc(x, y, r, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        function linePointToControlPoint(ctx, cp1x, cp1y, x1, y1, x2, y2) {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+//            ctx.fillStyle = 'red';
+            ctx.lineTo(cp1x, cp1y);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+        }
+        function quadraticCurveFromTo(ctx, cp1x, cp1y, x1, y1, x2, y2) {
+            addPoint(ctx, x1, y1, 2, 'blue');
+            addPoint(ctx, x2, y2, 2, 'blue');
+            addPoint(ctx, cp1x, cp1y, 2, 'red');
+            linePointToControlPoint(ctx, cp1x, cp1y, x1, y1, x2, y2);
+
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.quadraticCurveTo(cp1x, cp1y, x2, y2);
+            ctx.stroke();
+        }
+
+        function draw() {
+            var canvas = document.getElementById('canvas');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d'),
+                    x1, y1, cp1x, cp1y, x2, y2, distance = 60, multiple = 1;
+
+                // Quadratic bezier curves example
+                x1 = 10;    // start point of x
+                y1 = 10;    // start point of y
+                cp1x = x1;  // control point of x
+                cp1y = y1 + (10 * multiple++);  // control point of y
+                x2 = x1 + 50;    // end point of x
+                y2 = y1 + 50;    // end point of y
+                quadraticCurveFromTo(ctx, cp1x, cp1y, x1, y1, x2, y2);
+
+                x1 += distance;    // start point of x
+                y1 = y1;    // start point of y
+                cp1x = x1;  // control point of x
+                cp1y = y1 + (10 * multiple++);  // control point of y
+                x2 = x1 + 50;    // end point of x
+                y2 = y1 + 50;    // end point of y
+                quadraticCurveFromTo(ctx, cp1x, cp1y, x1, y1, x2, y2);
+
+                x1 += distance;    // start point of x
+                y1 = y1;    // start point of y
+                cp1x = x1;  // control point of x
+                cp1y = y1 + (10 * multiple++);  // control point of y
+                x2 = x1 + 50;    // end point of x
+                y2 = y1 + 50;    // end point of y
+                quadraticCurveFromTo(ctx, cp1x, cp1y, x1, y1, x2, y2);
+
+                x1 += distance;    // start point of x
+                y1 = y1;    // start point of y
+                cp1x = x1;  // control point of x
+                cp1y = y1 + (10 * multiple++);  // control point of y
+                x2 = x1 + 50;    // end point of x
+                y2 = y1 + 50;    // end point of y
+                quadraticCurveFromTo(ctx, cp1x, cp1y, x1, y1, x2, y2);
+
+                x1 += distance;    // start point of x
+                y1 = y1;    // start point of y
+                cp1x = x1;  // control point of x
+                cp1y = y1 + (10 * multiple++);  // control point of y
+                x2 = x1 + 50;    // end point of x
+                y2 = y1 + 50;    // end point of y
+                quadraticCurveFromTo(ctx, cp1x, cp1y, x1, y1, x2, y2);
+
+
+
+                // 2번째 라인
+                multiple = 1;
+
+                x1 = 10;
+                y1 += 60;
+                cp1x = x1;  // control point of x
+                cp1y = y1 + 50;  // control point of y
+                x2 = x1 + 50;    // end point of x
+                y2 = y1 + 50;    // end point of y
+                quadraticCurveFromTo(ctx, cp1x, cp1y, x1, y1, x2, y2);
+
+                x1 += distance;
+                y1 = y1;
+                cp1x = x1 + (10 * multiple++);  // control point of x
+                cp1y = y1 + 50;  // control point of y
+                x2 = x1 + 50;    // end point of x
+                y2 = y1 + 50;    // end point of y
+                quadraticCurveFromTo(ctx, cp1x, cp1y, x1, y1, x2, y2);
+
+                x1 += distance;
+                y1 = y1;
+                cp1x = x1 + (10 * multiple++);  // control point of x
+                cp1y = y1 + 50;  // control point of y
+                x2 = x1 + 50;    // end point of x
+                y2 = y1 + 50;    // end point of y
+                quadraticCurveFromTo(ctx, cp1x, cp1y, x1, y1, x2, y2);
+
+                x1 += distance;
+                y1 = y1;
+                cp1x = x1 + (10 * multiple++);  // control point of x
+                cp1y = y1 + 50;  // control point of y
+                x2 = x1 + 50;    // end point of x
+                y2 = y1 + 50;    // end point of y
+                quadraticCurveFromTo(ctx, cp1x, cp1y, x1, y1, x2, y2);
+
+                x1 += distance;
+                y1 = y1;
+                cp1x = x1 + (10 * multiple++);  // control point of x
+                cp1y = y1 + 50;  // control point of y
+                x2 = x1 + 50;    // end point of x
+                y2 = y1 + 50;    // end point of y
+                quadraticCurveFromTo(ctx, cp1x, cp1y, x1, y1, x2, y2);
+
+
+                // 3번째 줄
+                multiple = 1;
+
+                x1 = 10;
+                y1 += 60;
+                cp1x = x1 + 50;  // control point of x
+                cp1y = y1 + 50 - (10 * multiple++);  // control point of y
+                x2 = x1 + 50;    // end point of x
+                y2 = y1 + 50;    // end point of y
+                quadraticCurveFromTo(ctx, cp1x, cp1y, x1, y1, x2, y2);
+
+                x1 += distance;
+                y1 = y1;
+                cp1x = x1 + 50;  // control point of x
+                cp1y = y1 + 50 - (10 * multiple++);  // control point of y
+                x2 = x1 + 50;    // end point of x
+                y2 = y1 + 50;    // end point of y
+                quadraticCurveFromTo(ctx, cp1x, cp1y, x1, y1, x2, y2);
+
+                x1 += distance;
+                y1 = y1;
+                cp1x = x1 + 50;  // control point of x
+                cp1y = y1 + 50 - (10 * multiple++);  // control point of y
+                x2 = x1 + 50;    // end point of x
+                y2 = y1 + 50;    // end point of y
+                quadraticCurveFromTo(ctx, cp1x, cp1y, x1, y1, x2, y2);
+
+                x1 += distance;
+                y1 = y1;
+                cp1x = x1 + 50;  // control point of x
+                cp1y = y1 + 50 - (10 * multiple++);  // control point of y
+                x2 = x1 + 50;    // end point of x
+                y2 = y1 + 50;    // end point of y
+                quadraticCurveFromTo(ctx, cp1x, cp1y, x1, y1, x2, y2);
+
+                x1 += distance;
+                y1 = y1;
+                cp1x = x1 + 50;  // control point of x
+                cp1y = y1 + 50 - (10 * multiple++);  // control point of y
+                x2 = x1 + 50;    // end point of x
+                y2 = y1 + 50;    // end point of y
+                quadraticCurveFromTo(ctx, cp1x, cp1y, x1, y1, x2, y2);
+
+
+
+                // 4번째 줄
+                multiple = 1;
+
+                x1 = 10;
+                y1 += 60;
+                cp1x = x1 + 50;  // control point of x
+                cp1y = y1;  // control point of y
+                x2 = x1 + 50;    // end point of x
+                y2 = y1 + 50;    // end point of y
+                quadraticCurveFromTo(ctx, cp1x, cp1y, x1, y1, x2, y2);
+
+                x1 += distance;
+                y1 = y1;
+                cp1x = x1 + 50 - (10 * multiple++);  // control point of x
+                cp1y = y1;  // control point of y
+                x2 = x1 + 50;    // end point of x
+                y2 = y1 + 50;    // end point of y
+                quadraticCurveFromTo(ctx, cp1x, cp1y, x1, y1, x2, y2);
+
+                x1 += distance;
+                y1 = y1;
+                cp1x = x1 + 50 - (10 * multiple++);  // control point of x
+                cp1y = y1;  // control point of y
+                x2 = x1 + 50;    // end point of x
+                y2 = y1 + 50;    // end point of y
+                quadraticCurveFromTo(ctx, cp1x, cp1y, x1, y1, x2, y2);
+
+                x1 += distance;
+                y1 = y1;
+                cp1x = x1 + 50 - (10 * multiple++);  // control point of x
+                cp1y = y1;  // control point of y
+                x2 = x1 + 50;    // end point of x
+                y2 = y1 + 50;    // end point of y
+                quadraticCurveFromTo(ctx, cp1x, cp1y, x1, y1, x2, y2);
+
+                x1 += distance;
+                y1 = y1;
+                cp1x = x1 + 50 - (10 * multiple++);  // control point of x
+                cp1y = y1;  // control point of y
+                x2 = x1 + 50;    // end point of x
+                y2 = y1 + 50;    // end point of y
+                quadraticCurveFromTo(ctx, cp1x, cp1y, x1, y1, x2, y2);
+
+                // TODO : 마우스 커서의 움직임에 따라서 quadraticCurveTo 눈으로 보이도록 구현해보기
+
+                /*
+                ctx.moveTo(60, 10);
+                ctx.quadraticCurveTo(60, 30, 110, 60);
+
+                ctx.moveTo(110, 10);
+                ctx.quadraticCurveTo(110, 40, 160, 60);
+
+                ctx.moveTo(160, 10);
+                ctx.quadraticCurveTo(160, 50, 210, 60);
+
+                ctx.moveTo(210, 10);
+                ctx.quadraticCurveTo(210, 60, 260, 60);
+
+                ctx.moveTo(10, 60);
+                ctx.quadraticCurveTo(60, 70, 60, 110);
+                */
+/*
+
+                ctx.moveTo(10, 60);
+                ctx.quadraticCurveTo(60, 70, 60, 110);
+*/
+
+                ctx.stroke();
+
+/*
+
+                ctx.moveTo(50, 50);
+                ctx.beginPath();
+                ctx.arc(50, 50, 2, 0, Math.PI * 2);
+                ctx.fillStyle = 'red';
+                ctx.fill();
+*/
+
+            }
+        }
+    </script>
+</head>
+<body onload="draw();">
+<canvas id="canvas" width="400" height="400">
+    Your browser does not support HTML5 Canvas
+</canvas>
+</body>
+</html>

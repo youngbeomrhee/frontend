@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>smiley face</title>
+    <script type="application/javascript">
+        function draw() {
+            var canvas = document.getElementById('canvas');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d'),
+                    showEndAndStartLine = false;
+
+                ctx.beginPath();
+                // arc(x, y, r, startAngle, endAngle, anticlockwise);
+                ctx.arc(75, 75, 50, 0, Math.PI * 2, true); // Outer circle
+
+                showEndAndStartLine || ctx.moveTo(110, 75);
+                ctx.arc(75, 75, 35, 0, Math.PI, false); // Mouth (clockwise)
+
+                showEndAndStartLine || ctx.moveTo(65, 65);
+                ctx.arc(60, 65, 5, 0, Math.PI * 2, true); // Left eye
+
+                showEndAndStartLine || ctx.moveTo(95, 65);
+                ctx.arc(90, 65, 5, 0, Math.PI * 2, true); // Left eye
+
+                ctx.stroke();
+            }
+        }
+    </script>
+</head>
+<body onload="draw();">
+<canvas id="canvas" width="150" height="150">
+    Your browser does not support HTML5 Canvas
+</canvas>
+</body>
+</html>

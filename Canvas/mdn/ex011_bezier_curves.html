@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>arc</title>
+    <script type="application/javascript">
+        var isSmall = false;
+
+        function draw() {
+            var canvas = document.getElementById('canvas');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d'),
+                    scale;
+                if(isSmall) {
+                    scale = 1.04;
+                    isSmall = false;
+                } else {
+                    scale = 0.8;
+                    isSmall = true;
+                }
+
+                // Cubic curves example
+                ctx.beginPath();
+                ctx.fillStyle = 'red';
+                ctx.scale(1.05, 1.05);
+                ctx.moveTo(75, 40);
+                ctx.bezierCurveTo(75, 37, 70, 25, 50, 25);
+                ctx.bezierCurveTo(20, 25, 20, 62.5, 20, 62.5);
+                ctx.bezierCurveTo(20, 80, 40, 102, 75, 120);
+                ctx.bezierCurveTo(110, 102, 130, 80, 130, 62.5);
+                ctx.bezierCurveTo(130, 62.5, 130, 25, 100, 25);
+                ctx.bezierCurveTo(85, 25, 75, 37, 75, 40);
+                ctx.stroke();
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            setInterval(function(){
+                draw();
+            }, 150);
+        }
+    </script>
+</head>
+<body onload="init();">
+<canvas id="canvas" width="1500" height="1500">
+    Your browser does not support HTML5 Canvas
+</canvas>
+</body>
+</html>

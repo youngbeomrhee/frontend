@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>arcs</title>
+    <script type="application/javascript">
+        function draw() {
+            var canvas = document.getElementById('canvas');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+
+                for (var i = 0; i < 4; i++) {   // rows
+                    for (var j = 0; j < 3; j++) {    // columns
+                        ctx.beginPath();
+                        var x = 25 + (j * 50),  // x coordinate
+                            y = 25 + (i * 50),  // y coordinate
+                            radius = 20,    // Arc radius
+                            startAngle = 0, // Starting point on circle
+                            endAngle = Math.PI + (Math.PI * j / 2),
+                            antiClockwise = i % 2 !== 0;    // 반시계방향 -> 홀수면 true, 짝수면 false
+
+                        ctx.arc(x, y, radius, startAngle, endAngle, antiClockwise);
+
+                        if(i > 1) {     // 처음 두 줄을 제외한 나머지 줄은 fill
+                            ctx.fill();
+                        } else {
+                            ctx.stroke()
+                        }
+
+                    }
+                    
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="draw();">
+<canvas id="canvas" width="150" height="200">
+    Your browser does not support HTML5 Canvas
+</canvas>
+</body>
+</html>
