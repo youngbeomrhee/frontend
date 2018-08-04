@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>quadratic bezier curves</title>
+    <script type="application/javascript">
+        function addPoint(ctx, x, y, r, color) {
+            ctx.fillStyle = color;
+            ctx.arc(x, y, r, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        function quadraticCurveTo(ctx, cp1x, cp1y, x2, y2) {
+            addPoint(ctx, x2, y2, 2, 'blue');
+            addPoint(ctx, cp1x, cp1y, 2, 'red');
+//            linePointToControlPoint(ctx, cp1x, cp1y, null, null, x2, y2);
+
+//            ctx.beginPath();
+            ctx.quadraticCurveTo(cp1x, cp1y, x2, y2);
+            ctx.stroke();
+            ctx.moveTo(x2, y2);
+        }
+
+        // TODO : ctx.quadraticCurveTo 처럼 연쇄해서 그리는 경우에 해당 포인트에 점을 찍어줄 방법이 없다
+        // TODO : beginPath(), closePath(), fill(), stroke() 등을 목적에 맞춰서 유기적으로 사용할 수 있도록 해보자
+        // TODO : 좌표를 리스트로 받아서 먼저 ctx.quadraticCurveTo로 다 그린 후에 나중에 좌표를 찍어주는 방법은 있다. 이게 베스트?
+        function draw() {
+            var canvas = document.getElementById('canvas');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+
+                // Quadratric curves example
+                addPoint(ctx, 75, 25, 2, 'blue');   // 시작점 표시
+
+                ctx.beginPath();
+                ctx.moveTo(75, 25);
+                quadraticCurveTo(ctx, 25, 25, 25, 62.5);
+                ctx.stroke();
+            }
+        }
+    </script>
+</head>
+<body onload="draw();">
+<canvas id="canvas" width="400" height="400">
+    Your browser does not support HTML5 Canvas
+</canvas>
+</body>
+</html>

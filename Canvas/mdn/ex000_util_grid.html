@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>add grid</title>
+    <script type="application/javascript">
+        function addGrid(ctx, width, height, distance, lineWidth) {
+            for (var i = 0; distance * i <= height; i++) {
+                ctx.beginPath();
+                ctx.lineWidth = lineWidth;
+                ctx.moveTo(0, distance*i);
+                ctx.lineTo(width, distance*i);
+                ctx.stroke();
+            }
+            for (var i = 0; distance * i <= width; i++) {
+                ctx.beginPath();
+                ctx.lineWidth = lineWidth;
+                ctx.moveTo(distance * i, 0);
+                ctx.lineTo(distance * i, height);
+                ctx.stroke();
+            }
+        }
+        function draw() {
+            var canvas = document.getElementById('canvas');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+                addGrid(ctx, 400, 400, 5, 0.2);
+            }
+        }
+    </script>
+</head>
+<body onload="draw();">
+<canvas id="canvas" width="400" height="400">
+    Your browser does not support HTML5 Canvas
+</canvas>
+</body>
+</html>
