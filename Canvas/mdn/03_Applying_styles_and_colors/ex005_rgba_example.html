@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>rgba example</title>
+    <script type="application/javascript">
+        function draw() {
+            const canvas = document.getElementById('canvas');
+            if (canvas.getContext) {
+                const ctx = canvas.getContext('2d'),
+                    width = 150,
+                    height = 37.5;
+
+                // draw background
+                ctx.fillStyle = 'rgb(255, 221, 0)';
+                ctx.fillRect(0, 0, width, height);
+                ctx.fillStyle = 'rgb(102, 204, 0)';
+                ctx.fillRect(0, height, width, height);
+                ctx.fillStyle = 'rgb(0, 153, 255)';
+                ctx.fillRect(0, height*2, width, height);
+                ctx.fillStyle = 'rgb(255, 51, 0)';
+                ctx.fillRect(0, height*3, width, height);
+
+                // Draw semi transparent rectangles
+                for (var i = 0; i < 10; i++) {
+                    ctx.fillStyle = 'rgba(255, 255, 255, ' + (i + 1) / 10 + ')';
+                    for (var j = 0; j < 4; j++) {
+                        ctx.fillRect(5 + i * 14, 5 + j * height, 14, 27.5);
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="draw();">
+<canvas id="canvas" width="400" height="400">
+    Your browser does not support HTML5 Canvas
+</canvas>
+<!--<div id="showMessage">test</div>-->
+</body>
+</html>

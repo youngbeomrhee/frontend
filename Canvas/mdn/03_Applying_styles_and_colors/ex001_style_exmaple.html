@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>fill style</title>
+    <script type="application/javascript">
+        function draw() {
+            const canvas = document.getElementById('canvas');
+            if (canvas.getContext) {
+                const ctx = canvas.getContext('2d');
+
+                const x1 = 10,
+                    y1 = 10,
+                    length = 100,
+                    x2 = 150,
+                    y2 = 10;
+
+                // first square
+                ctx.beginPath();
+                ctx.strokeStyle = '#ea4335';
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x1 + length, y1);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.strokeStyle = '#3a7ced';
+                ctx.moveTo(x1 + length, y1);
+                ctx.lineTo(x1 + length, y1 + length);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.strokeStyle = '#2ba14d';
+                ctx.moveTo(x1 + length, y1 + length);
+                ctx.lineTo(x1, y1 + length);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.strokeStyle = '#f1b500';
+                ctx.moveTo(x1, y1 + length);
+                ctx.lineTo(x1, y1);
+                ctx.stroke();
+
+                // next square
+                // different values represents one color
+                ctx.beginPath();
+                ctx.strokeStyle = 'orange';
+                ctx.moveTo(x2, y2);
+                ctx.lineTo(x2 + length, y2);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.strokeStyle = '#FFA500';
+                ctx.moveTo(x2 + length, y2);
+                ctx.lineTo(x2 + length, y2 + length);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.strokeStyle = 'rgb(255, 165, 0)';
+                ctx.moveTo(x2 + length, y2 + length);
+                ctx.lineTo(x2, y2 + length);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.strokeStyle = 'rgba(255, 165, 0, 1)';
+                ctx.moveTo(x2, y2 + length);
+                ctx.lineTo(x2, y2);
+                ctx.stroke();
+            }
+        }
+    </script>
+</head>
+<body onload="draw();">
+<canvas id="canvas" width="400" height="400">
+    Your browser does not support HTML5 Canvas
+</canvas>
+<!--<div id="showMessage">test</div>-->
+</body>
+</html>

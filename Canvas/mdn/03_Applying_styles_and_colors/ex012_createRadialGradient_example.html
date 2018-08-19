@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>radial gradient example</title>
+</head>
+<body onload="draw()">
+    <canvas id="canvas" width="150" height="150">
+        Your browser does not support HTML5 Canvas
+    </canvas>
+    <script type="application/javascript">
+
+        const canvas = document.getElementById('canvas'),
+            ctx = canvas.getContext('2d');
+
+        function draw() {
+            // Create radial gradient
+            const radialGrad = ctx.createRadialGradient(45, 45, 10, 52, 50, 30);
+            radialGrad.addColorStop(0, '#A7D30C')
+            radialGrad.addColorStop(0.9, '#019F62')
+            radialGrad.addColorStop(1, 'rgba(1, 159, 98, 0)');
+
+            const radialGrad2 = ctx.createRadialGradient(105, 105, 20, 112, 120, 50);
+            radialGrad2.addColorStop(0, '#FF5F98')
+            radialGrad2.addColorStop(0.75, '#FF0188')
+            radialGrad2.addColorStop(1, 'rgba(255, 1, 136, 0)');
+
+            const radialGrad3 = ctx.createRadialGradient(95, 15, 15, 102, 20, 40);
+            radialGrad3.addColorStop(0, '#00C9FF')
+            radialGrad3.addColorStop(0.8, '#00B5E2')
+            radialGrad3.addColorStop(1, 'rgba(0, 201, 255, 0)');
+
+            const radialGrad4 = ctx.createRadialGradient(0, 150, 50, 0, 140, 90);
+            radialGrad4.addColorStop(0, '#F4F201')
+            radialGrad4.addColorStop(0.8, '#E4C700')
+            radialGrad4.addColorStop(1, 'rgba(228, 199, 0, 0)');
+
+            ctx.fillStyle = radialGrad4;
+            ctx.fillRect(0, 0, 150, 150);
+
+            ctx.fillStyle = radialGrad3;
+            ctx.fillRect(0, 0, 150, 150);
+
+            ctx.fillStyle = radialGrad2;
+            ctx.fillRect(0, 0, 150, 150);
+
+            ctx.fillStyle = radialGrad;
+            ctx.fillRect(0, 0, 150, 150);
+        }
+    </script>
+</body>
+</html>

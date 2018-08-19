@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>lineWidth example</title>
+    <script type="application/javascript">
+        function draw() {
+            const canvas = document.getElementById('canvas');
+            if (canvas.getContext) {
+                const ctx = canvas.getContext('2d'),
+                    x1 = 5,
+                    y1st = 5,
+                    y1ed = 140,
+                    y2st = 145,
+                    y2ed = 280,
+                    distance = 14;
+
+                for (var i = 0; i < 10; i++) {
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(x1 + i * distance, y1st);
+                    ctx.lineTo(x1 + i * distance, y1ed);
+                    ctx.stroke();
+                }
+
+                for (var i = 0; i < 10; i++) {
+                    ctx.lineWidth = 1 + i;
+                    ctx.beginPath();
+                    ctx.moveTo(x1 + i * distance, y2st);
+                    ctx.lineTo(x1 + i * distance, y2ed);
+                    ctx.stroke();
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="draw();">
+<canvas id="canvas" width="400" height="400">
+    Your browser does not support HTML5 Canvas
+</canvas>
+<!--<div id="showMessage">test</div>-->
+</body>
+</html>

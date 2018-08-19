@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>scaling images</title>
+</head>
+<body onload="draw()">
+    <canvas id="canvas" width="500" height="300">
+        Your browser does not support HTML5 Canvas
+    </canvas>
+    <script type="application/javascript">
+
+        const canvas = document.getElementById('canvas'),
+            ctx = canvas.getContext('2d');
+
+        function draw() {
+            const img = new Image();
+            img.src = 'https://mdn.mozillademos.org/files/5397/rhino.jpg';
+            img.onload = function () {
+                for (let i = 0; i < 4; i++) {
+                    for (let j = 0; j < 3; j++) {
+                        ctx.drawImage(img, j * 50, i * 38, 50, 38);
+                    }
+                }
+            };
+        }
+
+    </script>
+</body>
+</html>

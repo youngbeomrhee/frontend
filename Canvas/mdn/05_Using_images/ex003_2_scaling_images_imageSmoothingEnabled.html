@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>scaling images</title>
+</head>
+<body onload="draw()">
+    <canvas id="canvas" width="700" height="700">
+        Your browser does not support HTML5 Canvas
+    </canvas>
+    <div style="display: none;">
+        <img id="source" src="https://mdn.mozillademos.org/files/5397/rhino.jpg" width="300" height="227">
+    </div>
+    <script type="application/javascript">
+
+        const canvas = document.getElementById('canvas'),
+            ctx = canvas.getContext('2d');
+
+        function draw() {
+            function setImageSmoothingEnabled(flag) {
+                ctx.mozImageSmoothingEnabled = flag;
+                ctx.webkitImageSmoothingEnabled = flag;
+                ctx.msImageSmoothingEnabled = flag;
+                ctx.imageSmoothingEnabled = flag;
+            }
+            const source = document.getElementById('source');
+
+            ctx.font = '20px sans-serif';
+            ctx.fillText('default', 0, 20);
+            ctx.drawImage(source, 33, 71, 104, 122, 10, 30, 104, 122);
+
+            // scale down
+            ctx.fillText('scale down', 0, 180);
+            ctx.drawImage(source, 33, 71, 104, 122, 10, 190, 52, 61);
+
+            // set imageSmoothingEnabled to false
+            setImageSmoothingEnabled(false);
+            ctx.fillText('imageSmoothingEnabled = false', 120, 180);
+            ctx.drawImage(source, 33, 71, 104, 122, 130, 190, 52, 61);
+
+            // scale up
+            setImageSmoothingEnabled(true);
+            ctx.fillText('scale up', 0, 281);
+            ctx.drawImage(source, 33, 71, 104, 122, 10, 291, 208, 244);
+
+            // set imageSmoothingEnabled to false
+            setImageSmoothingEnabled(false);
+            ctx.fillText('imageSmoothingEnabled = false', 230, 281);
+            ctx.drawImage(source, 33, 71, 104, 122, 240, 291, 208, 244);
+        }
+
+    </script>
+</body>
+</html>

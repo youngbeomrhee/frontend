@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>miterLimit example</title>
+</head>
+<body onload="draw()">
+    <canvas id="canvas" width="150" height="150">
+        Your browser does not support HTML5 Canvas
+    </canvas>
+    <script type="application/javascript">
+
+        const canvas = document.getElementById('canvas'),
+            ctx = canvas.getContext('2d');
+
+        function draw() {
+            // Create gradients
+            const linearGrad = ctx.createLinearGradient(0, 0, 0, 150);
+            linearGrad.addColorStop(0, '#00ABEB');
+            linearGrad.addColorStop(0.5, '#fff');
+            linearGrad.addColorStop(0.5, '#26C000');
+            linearGrad.addColorStop(1, '#fff');
+
+            const linearGrad2 = ctx.createLinearGradient(0, 50, 0, 95);
+            linearGrad2.addColorStop(0.5, '#000');
+            linearGrad2.addColorStop(1, 'rgba(0, 0, 0, 0.1)');
+
+            // assign gradients to fill and stroke styles
+            ctx.fillStyle = linearGrad;
+            ctx.strokeStyle = linearGrad2;
+
+            // draw shapes
+            ctx.fillRect(10, 10, 130, 130);
+            ctx.strokeRect(50, 50, 50, 50);
+        }
+    </script>
+</body>
+</html>

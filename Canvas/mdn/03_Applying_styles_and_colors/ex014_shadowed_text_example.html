@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>pattern example</title>
+</head>
+<body onload="draw()">
+    <canvas id="canvas" width="150" height="150">
+        Your browser does not support HTML5 Canvas
+    </canvas>
+    <script type="application/javascript">
+
+        const canvas = document.getElementById('canvas'),
+            ctx = canvas.getContext('2d');
+
+        function draw() {
+            ctx.shadowOffsetX = 2;
+            ctx.shadowOffsetY = 2;
+            ctx.shadowBlur = 2;
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+
+            ctx.font = '20px Times New Roman';
+            ctx.fillStyle = 'Black';
+            ctx.fillText('Sample String', 5, 20);
+        }
+
+    </script>
+</body>
+</html>

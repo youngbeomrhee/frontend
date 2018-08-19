@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>textBaseline example</title>
+</head>
+<body onload="draw()">
+    <article>
+        textBaseline : <br>
+        <div style="font-size:10px;margin-left:10px;">
+            default<br>
+            top<br>
+            hanging<br>
+            middle<br>
+            alphabetic<br>
+            ideographic<br>
+            bottom
+        </div>
+    </article>
+    <canvas id="canvas" width="500" height="300">
+        Your browser does not support HTML5 Canvas
+    </canvas>
+    <script type="application/javascript">
+
+        const canvas = document.getElementById('canvas'),
+            ctx = canvas.getContext('2d');
+
+        function draw() {
+            // TODO : 각각 해당 element에 마우스 커스를 올렸을 때 강조하기
+            ctx.beginPath();
+            ctx.moveTo(10, 50);
+//            ctx.arc(10, 50, 5, 0, Math.PI * 2);
+            ctx.lineTo(300, 50);
+            ctx.stroke();
+            ctx.fillText('baseline', 300, 50);
+
+            ctx.font = '48px serif';
+            ctx.fillText('default', 10, 50);
+
+            ctx.fillStyle = 'rgba(255, 0, 0, 0.8)';
+            ctx.textBaseline = 'top';
+            ctx.fillText('top', 20, 50);
+
+            ctx.fillStyle = 'rgba(0, 255, 0, 0.8)';
+            ctx.textBaseline = 'hanging';
+            ctx.fillText('hanging', 30, 50);
+
+            ctx.fillStyle = 'rgba(0, 0, 255, 0.8)';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('middle', 40, 50);
+
+            ctx.fillStyle = 'rgba(0, 255, 255, 0.8)';
+            ctx.textBaseline = 'alphabetic';
+            ctx.fillText('alphabetic', 50, 50);
+
+            ctx.fillStyle = 'rgba(255, 0, 255, 0.8)';
+            ctx.textBaseline = 'ideographic';
+            ctx.fillText('ideographic', 60, 50);
+
+            ctx.fillStyle = 'rgba(255, 255, 0, 0.8)';
+            ctx.textBaseline = 'bottom';
+            ctx.fillText('bottom', 70, 50);
+        }
+
+    </script>
+</body>
+</html>

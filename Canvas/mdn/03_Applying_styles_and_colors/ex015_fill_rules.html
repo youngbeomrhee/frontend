@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>pattern example</title>
+</head>
+<body onload="draw()">
+    <canvas id="canvas" width="600" height="600">
+        Your browser does not support HTML5 Canvas
+    </canvas>
+    <script type="application/javascript">
+
+        const canvas = document.getElementById('canvas'),
+            ctx = canvas.getContext('2d');
+
+        function draw() {
+            ctx.beginPath();
+            ctx.arc(50, 50, 30, 0, Math.PI * 2, false);
+            ctx.arc(50, 50, 15, 0, Math.PI * 2, false);
+            ctx.fill('evenodd');
+
+            ctx.beginPath();
+            ctx.arc(120, 50, 30, 0, Math.PI * 2, true);
+            ctx.arc(120, 50, 15, 0, Math.PI * 2, false);
+            ctx.fill('nonzero');
+
+            ctx.beginPath();
+            ctx.arc(190, 50, 30, 0, Math.PI * 2, true);
+            ctx.arc(190, 50, 15, 0, Math.PI * 2, true);
+            ctx.fill('nonzero');
+
+            ctx.beginPath();
+            ctx.arc(120, 150, 15, 0, Math.PI * 2, false);
+            ctx.arc(120, 150, 30, 0, Math.PI * 2, false);
+            ctx.arc(120, 150, 45, 0, Math.PI * 2, false);
+            ctx.arc(120, 150, 60, 0, Math.PI * 2, false);
+            ctx.fill('evenodd');
+
+            ctx.beginPath();
+            ctx.arc(120, 300, 15, 0, Math.PI * 2, true);
+            ctx.arc(120, 300, 30, 0, Math.PI * 2, true);
+            ctx.arc(120, 300, 45, 0, Math.PI * 2, true);
+            ctx.arc(120, 300, 60, 0, Math.PI * 2, true);
+            ctx.fill('nonzero');
+
+            ctx.beginPath();
+            ctx.arc(120, 450, 15, 0, Math.PI * 2, true);
+            ctx.arc(120, 450, 30, 0, Math.PI * 2, false);
+            ctx.arc(120, 450, 45, 0, Math.PI * 2, true);
+            ctx.arc(120, 450, 60, 0, Math.PI * 2, false);
+            ctx.fill('nonzero');
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>scaling images</title>
+</head>
+<body onload="draw()">
+    <canvas id="canvas" width="500" height="500">
+        Your browser does not support HTML5 Canvas
+    </canvas>
+    <div style="display: none;">
+        <img id="source" src="https://mdn.mozillademos.org/files/5397/rhino.jpg" width="300" height="227">
+        <img id="frame" src="https://mdn.mozillademos.org/files/242/Canvas_picture_frame.png" width="132" height="150">
+    </div>
+    <script type="application/javascript">
+
+        const canvas = document.getElementById('canvas'),
+            ctx = canvas.getContext('2d');
+
+        function draw() {
+            const source = document.getElementById('source'),
+                frame = document.getElementById('frame');
+
+            // Draw slice
+            ctx.drawImage(source, 33, 71, 104, 121, 21, 20, 87, 104);
+
+            // Draw frame
+            ctx.drawImage(frame, 0, 0);
+        }
+
+    </script>
+</body>
+</html>
