@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>save and restore canvas state</title>
+</head>
+<body onload="draw()">
+    <canvas id="canvas" width="500" height="500">
+        Your browser does not support HTML5 Canvas
+    </canvas>
+    <script type="application/javascript">
+        const canvas = document.getElementById('canvas'),
+            ctx = canvas.getContext('2d');
+
+        function draw() {
+            ctx.fillRect(0, 0, 150, 150);
+            ctx.save(); // Save the default state
+
+            ctx.fillStyle = '#09F';
+            ctx.fillRect(15, 15, 120, 120);
+            ctx.save(); // Save the current state
+
+            ctx.fillStyle = '#FFF';
+            ctx.globalAlpha = 0.5;
+            ctx.fillRect(30, 30, 90, 90);   // Draw a rectangle with new settings
+
+            ctx.restore();  // Restore previous state
+            ctx.fillRect(45, 45, 60, 60);   // Draw rectangle with restored settings
+
+            ctx.restore();  // Restore original state
+            ctx.fillRect(60, 60, 30, 30);   // Draw rectangle with restored settings
+        }
+
+    </script>
+</body>
+</html>

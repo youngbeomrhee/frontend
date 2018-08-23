@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>translating</title>
+</head>
+<body onload="draw()">
+    <canvas id="canvas" width="700" height="700">
+        Your browser does not support HTML5 Canvas
+    </canvas>
+    <script type="application/javascript">
+        const canvas = document.getElementById('canvas'),
+            ctx = canvas.getContext('2d');
+
+        function draw() {
+            const rectangleCount = 250,
+                maxCount = rectangleCount / 2,
+                addedRgb = 255 / maxCount,
+                maxWidth = 500,
+                width = Math.floor(maxWidth / maxCount),
+                cycle = maxWidth / rectangleCount
+                ;
+            function translateDraw(i, j, width, cycle) {
+                setTimeout(function () {
+                    ctx.save();
+                    ctx.fillStyle = 'rgb(' + (addedRgb * i) + ', ' + (255 - addedRgb * i) + ', 255)';
+                    ctx.translate(j * width, i * width);
+                    ctx.fillRect(0, 0, width, width);
+                    ctx.restore();
+                }, i * cycle + j * cycle);
+            }
+            for (var i = 0; i < maxCount; i++) {
+                for (var j = 0; j < maxCount; j++) {
+                    translateDraw(i, j, width, cycle);
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
