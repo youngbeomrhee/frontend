@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>translating</title>
+</head>
+<body onload="draw()">
+    <canvas id="canvas" width="700" height="700">
+        Your browser does not support HTML5 Canvas
+    </canvas>
+    <script type="application/javascript">
+        const canvas = document.getElementById('canvas'),
+            ctx = canvas.getContext('2d');
+        function getRadian(degree) {
+            return Math.PI / 180 * degree
+        }
+        function draw() {
+            const x1 = 30,
+                y1 = 30,
+                x2 = 150,
+                y2 = 30,
+                width = 100,
+                height = 100,
+                rotateAngle = 25,
+                originX2 = 200,
+                originY2 = 80;
+
+            ctx.save();
+
+            // left rectangle, rotate from canvas origin
+            // blue rect
+            ctx.fillStyle = '#0095DD';
+            ctx.fillRect(x1, y1, width, height);
+
+            ctx.rotate(getRadian(rotateAngle));
+
+            // grey rect
+            ctx.fillStyle = '#4D4E53';
+            ctx.fillRect(x1, y1, width, height);
+
+            // right blue rect
+            ctx.restore();
+            ctx.fillStyle = '#0095DD';
+            ctx.fillRect(x2, y2, width, height);
+
+            // translate to rectangle center
+            // x2 = x1(150) + width(100) / 2
+            // y2 = y1(30) + height(100) / 2
+            ctx.translate(originX2, originY2);
+            ctx.rotate(getRadian(rotateAngle));
+            // translate back
+            ctx.translate(-originX2, -originY2);
+
+            // right grey rect
+            ctx.fillStyle = '#4D4E53';
+            ctx.fillRect(x2, y2, width, height);
+        }
+
+    </script>
+</body>
+</html>
