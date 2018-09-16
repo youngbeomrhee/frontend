@@ -1,15 +1,20 @@
 /**
  * Created by whybe on 2018. 9. 16..
  */
-const condition = false,
+const condition = true,
     promise = new Promise((resolve, reject) => {
         if(condition) {
-            resolve('성공');
+            setTimeout(function () {
+                resolve('resolve');
+            }, 1000);
         } else {
-            reject('실패');
+            setTimeout(function () {
+                reject('reject');
+            }, 1000);
         }
     });
 
+console.log(`프로그램 시작`);
 promise
     .then(message => {
         console.log(`message -> `, message);
@@ -17,3 +22,4 @@ promise
     .catch(error => {
         console.log(`error -> `, error);
     });
+console.log(`프로그램 끝`);

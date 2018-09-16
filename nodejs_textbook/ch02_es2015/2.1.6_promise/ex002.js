@@ -4,27 +4,39 @@
 const condition = true,
     promise = new Promise((resolve, reject) => {
         if(condition) {
-            resolve('성공');
+            resolve('resolve');
         } else {
             reject('실패');
         }
     });
 
+let date = new Date();
+console.log(`start -> ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}.${date.getMilliseconds()}`);
+
 promise
     .then(message => {
         return new Promise((resolve, reject) => {
-            resolve(message);
+            setTimeout(() => {
+                const date = new Date();
+                resolve(`${message} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}.${date.getMilliseconds()}`);
+            }, 1000);
         });
     })
-    .then(message2 => {
-        console.log(`message2 -> `, message2);
+    .then(message => {
+        console.log(`message1 -> ${message}`);
         return new Promise((resolve, reject) => {
-            resolve(message2);
+            setTimeout(() => {
+                const date = new Date();
+                resolve(`${message} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}.${date.getMilliseconds()}`);
+            }, 2000);
         });
     })
-    .then(message3 => {
-        console.log(`message3 -> `, message3);
+    .then(message => {
+        const date = new Date();
+        console.log(`message2 -> ${message}`);
     })
     .catch(error => {
-        console.log(`error -> `, error);
+        console.log(`error -> ${error}`);
     });
+date = new Date();
+console.log(`end -> ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}.${date.getMilliseconds()}`);
