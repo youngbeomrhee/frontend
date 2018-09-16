@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>translating</title>
+</head>
+<body onload="draw()">
+    <canvas id="canvas" width="700" height="700">
+        Your browser does not support HTML5 Canvas
+    </canvas>
+    <script type="application/javascript">
+        const canvas = document.getElementById('canvas'),
+            ctx = canvas.getContext('2d');
+
+        function draw() {
+            const sin = Math.sin(Math.PI / 6),
+                cos = Math.cos(Math.PI / 6);
+
+            let c = 0;
+
+            ctx.translate(100, 100);
+
+            for (var i = 0; i < 13; i++) {
+                c = Math.floor(255 / 12 * i);
+                ctx.fillStyle = 'rgb(' + c + ', ' + c + ', ' + c + ')';
+                ctx.fillRect(0, 0, 100, 10);
+                ctx.transform(cos, sin, -sin, cos, 0, 0);
+            }
+
+        }
+    </script>
+</body>
+</html>

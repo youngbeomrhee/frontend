@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>translating</title>
+</head>
+<body onload="draw()">
+    <canvas id="canvas" width="700" height="900">
+        Your browser does not support HTML5 Canvas
+    </canvas>
+    <script type="application/javascript">
+        const canvas = document.getElementById('canvas'),
+            ctx = canvas.getContext('2d');
+
+        const sin = Math.sin(Math.PI / 6),
+            cos = Math.cos(Math.PI / 6);
+
+        function draw() {
+            ctx.resetTransform();
+            ctx.transform(1, 0, 0, 1, 0, 0);
+            ctx.fillText('ctx.transform(1, 0, 0, 1, 0, 0) : not changed', 10, 10);
+            ctx.fillRect(0, 20, 20, 20);
+
+            ctx.resetTransform();
+            ctx.translate(0, 100);
+            ctx.fillText('ctx.transform(2, 0, 0, 1, 0, 0) : horizontal scaling x 2', 10, 10);
+            ctx.transform(2, 0, 0, 1, 0, 0);
+            ctx.fillRect(0, 20, 20, 20);
+
+            ctx.resetTransform();
+            ctx.translate(0, 200);
+            ctx.fillText('ctx.transform(1, 0, 0, 2, 0, 0) : vertical scaling x 2', 10, 10);
+            ctx.transform(1, 0, 0, 2, 0, 0);
+            ctx.fillRect(0, 20, 20, 20);
+
+            ctx.resetTransform();
+            ctx.translate(0, 300);
+            ctx.fillText('ctx.transform(1, 1, 0, 1, 0, 0) : horizontal skewing', 10, 10);
+            ctx.transform(1, 1, 0, 1, 0, 0);
+            ctx.fillRect(0, 20, 20, 20);
+
+            ctx.resetTransform();
+            ctx.translate(0, 400);
+            ctx.fillText('ctx.transform(1, 0, 1, 1, 0, 0) : vertical skewing', 10, 10);
+            ctx.transform(1, 0, 1, 1, 0, 0);
+            ctx.fillRect(0, 20, 20, 20);
+
+            ctx.resetTransform();
+            ctx.translate(0, 500);
+            ctx.fillText('ctx.transform(1, 0, 0, 1, 100, 0) : horizontal moving', 10, 10);
+            ctx.transform(1, 0, 0, 1, 100, 0);
+            ctx.fillRect(0, 20, 20, 20);
+
+            ctx.resetTransform();
+            ctx.translate(0, 600);
+            ctx.fillText('ctx.transform(1, 0, 0, 1, 0, 100) : vertical moving', 10, 10);
+            ctx.transform(1, 0, 0, 1, 0, 100);
+            ctx.fillRect(0, 20, 20, 20);
+
+
+        }
+    </script>
+</body>
+</html>

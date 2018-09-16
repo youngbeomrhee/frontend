@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>translating</title>
+    <style>
+        input.rectangle {
+            width: 50px
+        }
+        input.transformInput {
+            width: 20px
+        }
+    </style>
+</head>
+<body onload="draw()">
+    rectangle <input id="width" class="rectangle" type="text" value="100"/> x <input id="height" class="rectangle" type="text" value="100"/><br>
+    transform(
+        <input id="horizontalScaling" class="transformInput" type="text" value="1"/>,
+        <input id="horizontalSkewing" class="transformInput" type="text" value="0"/>,
+        <input id="verticalSkewing" class="transformInput" type="text" value="0"/>,
+        <input id="verticalScaling" class="transformInput" type="text" value="1"/>,
+        <input id="horizontalMoving" class="transformInput" type="text" value="0"/>,
+        <input id="verticalMoving" class="transformInput" type="text" value="0"/>
+    )
+
+    <canvas id="canvas" width="1000" height="1000">
+        Your browser does not support HTML5 Canvas
+    </canvas>
+    <script type="application/javascript">
+        const canvas = document.getElementById('canvas'),
+            ctx = canvas.getContext('2d');
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            function parseFloat2(val) {
+                return parseFloat(val || 0);
+            }
+            const width = parseFloat2(document.querySelector('#width').value),
+                height = parseFloat2(document.querySelector('#height').value),
+                hScaling = parseFloat2(document.querySelector('#horizontalScaling').value),
+                hSkewing = parseFloat2(document.querySelector('#horizontalSkewing').value),
+                vSkewing = parseFloat2(document.querySelector('#verticalSkewing').value),
+                vScaling = parseFloat2(document.querySelector('#verticalScaling').value),
+                hMoving = parseFloat2(document.querySelector('#horizontalMoving').value),
+                vMoving = parseFloat2(document.querySelector('#verticalMoving').value)
+                ;
+
+            ctx.resetTransform();
+            ctx.translate(10, 10);
+            ctx.transform(hScaling, hSkewing, vSkewing, vScaling, hMoving, vMoving);
+            ctx.fillRect(0, 0, width, height);
+        }
+
+        document.querySelectorAll('input').forEach(function(ele) {
+            ele.addEventListener('keyup', draw);
+        });
+
+    </script>
+</body>
+</html>

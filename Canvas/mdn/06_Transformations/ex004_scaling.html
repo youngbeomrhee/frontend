@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>translating</title>
+</head>
+<body onload="draw()">
+    <canvas id="canvas" width="700" height="700">
+        Your browser does not support HTML5 Canvas
+    </canvas>
+    <script type="application/javascript">
+        const canvas = document.getElementById('canvas'),
+            ctx = canvas.getContext('2d');
+
+        function draw() {
+            ctx.fillText('default square', 10, 10);
+            ctx.fillRect(10, 20, 20, 20);
+
+            // scale
+            ctx.save();
+            ctx.scale(2, 1);
+            ctx.fillText('scale(2, 1) square', 10, 70);
+            ctx.fillRect(10, 90, 20, 20);
+            ctx.restore();
+
+            // scale
+            ctx.save();
+            ctx.scale(1, 2);
+            ctx.fillText('scale(1, 2) square', 10, 80);
+            ctx.fillRect(10, 85, 20, 20);
+            ctx.restore();
+
+            // mirror horizontally
+            ctx.save();
+            ctx.scale(-1, 1);
+            ctx.fillText('scale(-1, -1) square', -100, 250);
+            ctx.fillRect(-100, 260, 20, 20);
+            ctx.restore();
+
+        }
+    </script>
+</body>
+</html>
