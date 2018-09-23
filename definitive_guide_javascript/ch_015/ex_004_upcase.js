@@ -12,14 +12,14 @@ function upcase(n) {
     }
 }
 
-function allNodeShow(root) {
+function allNodeShow(root) {    // show all children nodes
     console.log(root.nodeType, root);
 
     var kids = root.childNodes;
     for(var i=0; i<kids.length; i++) allNodeShow(kids[i]);
 }
 
-function showDomTree(root, _spaces='') {
+function showDomTree(root, _spaces='') {    // show only children elements
     const spaces = _spaces + '.',
         children = root.children,
         tagName = root === document ? '#document' : root.tagName;
