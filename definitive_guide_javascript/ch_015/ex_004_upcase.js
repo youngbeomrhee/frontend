@@ -19,4 +19,14 @@ function allNodeShow(root) {
     for(var i=0; i<kids.length; i++) allNodeShow(kids[i]);
 }
 
-
+function showDomTree(root, _spaces='') {
+    const spaces = _spaces + '.',
+        children = root.children,
+        tagName = root === document ? '#document' : root.tagName;
+    console.log(_spaces + tagName);
+    if(children && children.length>0) {
+        [].forEach.call(children, (ele) => {
+            showDomTree(ele, spaces);
+        });
+    }
+}
