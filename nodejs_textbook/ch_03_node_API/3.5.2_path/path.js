@@ -23,8 +23,9 @@ console.log('path.isAbsolute("/Users") ->', path.isAbsolute("/Users"));
 console.log('path.isAbsolute("./home") ->', path.isAbsolute("./home"));
 console.log('-----------------------------------');
 console.log('path.relative("/Users/whybe/WebstormProjects/jssample/nodejs_textbook/ch_03_node_API/3.5.2_path", "/Users") ->', path.relative("/Users/whybe/WebstormProjects/jssample/nodejs_textbook/ch_03_node_API/3.5.2_path", "/Users"));
-console.log('path.join(__dirname, "..", "..", "/ch_03_node_API", ".", "/3.5.2_path") ->', path.join(__dirname, "..", "..", "/ch_03_node_API", ".", "/3.5.2_path"));
-console.log('path.resolve(__dirname, "..", "ch_03_node_API", ".", "/3.5.2_path") ->', path.resolve(__dirname, "..", "ch_03_node_API", ".", "/3.5.2_path"));
-// console.log();
-// console.log('전체--------------------------------')
-// console.log(path);
+console.log('path.join(__dirname, "..", "..", "/ch_03_node_API", ".", "/3.5.2_path") ->', path.join(__dirname, "..", "..", "/ch_03_node_API", ".", "/3.5.2_path")); // "/"를 만나면 상대경로로 인식 : /Users/whybe/WebstormProjects/jssample/nodejs_textbook/ch_03_node_API/3.5.2_path
+console.log('path.resolve(__dirname, "..", "ch_03_node_API", ".", "/3.5.2_path") ->', path.resolve(__dirname, "..", "ch_03_node_API", ".", "/3.5.2_path")); // "/"를 만나면 절대경로로 인식해서 앞의 경로를 무시 : /3.5.2_path
+
+console.log();
+console.log('전체--------------------------------')
+console.log(path);
