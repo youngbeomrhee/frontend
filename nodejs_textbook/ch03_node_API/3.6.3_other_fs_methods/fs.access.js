@@ -2,7 +2,7 @@ const fs = require('fs');
 
 // fs.access(path[, mode=fs.constants.F_OK], callback)
 
-// console.log("fs.constants ->", fs.constants); // F_OK: 0, X_OK: 1, W_OK: 2, R_OK: 4
+console.log("fs.constants ->", fs.constants); // F_OK: 0, X_OK: 1, W_OK: 2, R_OK: 4
 
 /*
 

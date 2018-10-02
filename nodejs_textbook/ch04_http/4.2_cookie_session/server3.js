@@ -17,7 +17,7 @@ http.createServer((req, res) => {
     console.log("req.url ->", req.url);
     console.log("cookies ->", cookies);
     res.writeHead(200, {
-        'Set-cookie': ['mycookie4=test4','mycookie5=test5']
+        'Set-cookie': ['mycookie10=test10','mycookie11=test11']
     });
     res.end('Hello cookie');
 }).listen(8082, () => {
