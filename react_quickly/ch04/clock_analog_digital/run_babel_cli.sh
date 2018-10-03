@@ -7,6 +7,6 @@ npm init;
 },
 */
 
-npm i babel-cli babel-preset-react --save-dev;
+npm i babel-cli babel-preset-react--save-dev;
 
 ./node_modules/.bin/babel ./jsx -d ./js -w

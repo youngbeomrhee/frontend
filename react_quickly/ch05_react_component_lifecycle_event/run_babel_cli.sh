@@ -1,10 +1,10 @@
 npm init;
 /* 아래 구문 추가
-"babel": {
+  "babel": {
     "presets": [
-        "react"
+      "react"
     ]
-},
+  },
 */
 
 npm i babel-cli babel-preset-react --save-dev;

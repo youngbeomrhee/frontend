@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            border:1px solid black;
+            color: black;
+            padding: 10px
+        }
+
+    </style>
+</head>
+<body>
+<h1>bubble</h1>
+<div onclick="alert(1)">
+    div1
+    <div onclick="alert(2)">
+        div2
+        <div onclick="alert(3)">
+            div3
+        </div>
+    </div>
+</div>
+
+<h1>capture</h1>
+<div id="capture1" style="border:1px solid black;color: black">
+    div1
+    <div id="capture2" style="border:1px solid black;color: black">
+        div2
+        <div id="capture3" style="border:1px solid black;color: black">
+            div3
+        </div>
+    </div>
+</div>
+<script>
+    document.querySelector('#capture1').addEventListener('click', () => {
+        alert('div1');
+    }, true);
+    document.querySelector('#capture2').addEventListener('click', () => {
+        alert('div2');
+    }, true);
+    document.querySelector('#capture3').addEventListener('click', () => {
+        alert('div3');
+    }, true);
+
+</script>
+</body>
+</html>
