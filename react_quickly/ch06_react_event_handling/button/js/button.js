@@ -1,4 +1,8 @@
 class SaveButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSave = handleSave.bind(this);
+  }
   handleSave(event) {
     console.log(this, event);
   }
@@ -8,7 +12,7 @@ class SaveButton extends React.Component {
       null,
       React.createElement(
         "button",
-        { onClick: this.handleSave.bind(this) },
+        { onClick: this.handleSave },
         "Save"
       )
     );

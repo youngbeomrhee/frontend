@@ -8,10 +8,10 @@ class SliderValue extends React.Component {
     this.setState({ sliderValue: event.detail.ui.value });
   }
   componentDidMount() {
-    window.addEventListener('slide', this.handleSlide);
+    window.addEventListener('mySlide', this.handleSlide);
   }
   componentWillUnmount() {
-    window.removeEventListener('slide', this.handleSlide);
+    window.removeEventListener('mySlide', this.handleSlide);
   }
   render() {
     return React.createElement(

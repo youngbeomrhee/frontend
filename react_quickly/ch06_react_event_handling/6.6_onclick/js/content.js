@@ -13,7 +13,11 @@ class Content extends React.Component {
       React.createElement(
         "button",
         {
-          onClick: this.handleClick.bind(this),
+          onClick: (function(){
+            debugger;
+            return this.handleClick;
+          }).call(this),
+
           className: "btn btn-primary" },
         "Don't click me ",
         this.state.counter,
