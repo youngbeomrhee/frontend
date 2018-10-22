@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Vue</title>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- production version, optimized for size and speed -->
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
+</head>
+<body>
+<div id="app">
+    <h1>{{ message }}</h1>
+</div>
+<script>
+    let idx = 0,
+        interval = 1000;
+    const messages = [
+        'Hello Vue!',
+        'Nice to see you.',
+        'Let\'s have some fun :)'
+        ],
+        app = new Vue({
+            el: '#app',
+            data: {
+                message: messages[idx]
+            }
+        }),
+        it = setInterval(() => {
+            app.message = messages[++idx%messages.length];
+        }, interval);
+
+    setTimeout(() => {
+        clearInterval(it);
+        console.log('Iteration has stopped');
+    }, (messages.length - 1) * interval);
+
+</script>
+</body>
+</html>
