@@ -1,0 +1,3 @@
+# 해당 영역에 기재된 모든 resource가 git에 커밋되지 않음
+node_modules
+
