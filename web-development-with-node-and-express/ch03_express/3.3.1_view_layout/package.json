@@ -1,0 +1,14 @@
+{
+  "name": "3.3.1_view_layout",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express-handlebars": "^3.0.0"
+  }
+}
