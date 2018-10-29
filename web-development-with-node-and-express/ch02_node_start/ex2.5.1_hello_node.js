@@ -7,6 +7,3 @@ http.createServer(function (req, res) {
 }).listen(3000);
 
 console.log('Server started on http://localhost:3000; press Ctrl + c to terminate...');
-
-
-
