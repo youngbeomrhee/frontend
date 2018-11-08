@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Response header</title>
+</head>
+<body>
+
+<script>
+    // TODO : 유용한 정보가 표시되도록 변경
+    fetch(new Request('http://localhost:3000'))
+        .then((response) => {
+            let s = '{Response header: {<br>';
+            for(let name in response) s += name + ': ' + response[name] + '<br>';
+            s += '}}<br>';
+            document.body.innerHTML = s;
+        })
+</script>
+
+</body>
+</html>
