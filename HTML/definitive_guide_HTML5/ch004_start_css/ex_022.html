@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>스타일에서 픽셀단위 사용하기</title>
+    <style>
+        .bar {
+            outline: 1px solid blue;
+            height: 20px;
+            margin-bottom: 3px
+        }
+    </style>
+</head>
+<body>
+    <h1>절대길이 비교</h1>
+    <hr/>
+    <h2>inch (in)</h2>
+    <p><div class='bar' style="width:1in"></div><span>1 inch(in) = 2.54 centimeters</span></p>
+    <p><div class='bar' style="width:2.54cm"></div><span>2.54 centimeters</span></p>
+    <p><div class='bar' style="width:96px"></div><span>96 pixels(px) = 1 inch (96dpi = 1/96 inches)</span></p>
+    <p><div class='bar' style="width:72pt"></div><span>72 points(pt) = 1 inch</span></p>
+    <h2>picas (pc)</h2>
+    <p><div class='bar' style="width:1pc"></div><span>1pc = 12pt</span></p>
+    <p><div class='bar' style="width:12pt"></div><span>12pt</span></p>
+    <h2>pixel (px)</h2>
+    <p><div class='bar' style="width:100px"></div><span>100px = 75 pt (1 px = 0.75 pt)</span></p>
+    <p><div class='bar' style="width:75pt"></div><span>75pt</span></p>
+
+</body>
+</html>

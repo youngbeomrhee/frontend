@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>박스의 너비를 지정</title>
+	<style>
+		.box {
+			outline: 1px solid black;
+			height: 200px;
+			text-align: center;
+			line-height: 200px
+		}
+		.boxA:after {
+			content: "";
+			display: block;
+			clear: both
+		}
+		.box2, .box3 {
+			float: left
+		}
+		.box2 {
+			line-height: 20px;
+			height: auto;
+			width: 100%;
+			margin-right: -300px;
+			padding-right: 300px;
+			box-sizing: border-box; /* 여백이 width 속성으로 지정한 너비에 포함되어 처리할 수 있도록 설 */
+		}
+		.box3 {
+			width: 300px;
+			/*
+			float: none;
+			width: auto;
+			margin-left: 300px*/
+		}
+	</style>
+</head>
+<body>
+	<h3>p.42~43 box3의 너비를 고정하는 경우 완성본</h3>
+		<div class="box1 box">
+			BOX1
+		</div>
+		<div class="boxA">
+			<div class="box2 box">
+				BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2
+				BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2
+				BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2
+				BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2
+				BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2
+				BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2 BOX2
+				BOX2 BOX2 BOX2 BOX2 BOX2
+			</div>
+			<div class="box3 box">
+				BOX3
+			</div>
+		</div>
+		<div class="box4 box">
+			BOX4
+		</div>
+</body>
+</html>

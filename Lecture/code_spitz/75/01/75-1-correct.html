@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CodeSpitz75-1</title>
+	<style>
+		table {
+			border-collapse: collapse;
+		}
+		th, td {
+			border: 1px solid #d4d4d4;
+			padding: 10px;
+		}
+		th {
+			background-color: #5a83bc;
+		}
+	</style>
+</head>
+<body>
+<section id="data"></section>
+<script>
+
+    const Table = (_=>{
+        const Private = Symbol();
+        return class{
+            constructor(parent){
+                if(typeof parent != 'string' || !parent) throw "invalid param";
+                this[Private] = {parent, title:null, header:null, items:null};
+            }
+            async load(url){
+                const response = await fetch(url);
+                if(!response.ok) throw "invaild response";
+                const json = await response.json();
+                const {title, header, items} = json;
+                if(!items.length) throw "no items";
+                Object.assign(this[Private], {title, header, items});
+                this._render();
+            }
+            _render(){
+                const fields = this[Private];
+                const parent = document.querySelector(fields.parent);
+                if(!parent) throw "invaild parent";
+                if(!fields.items || !fields.items.length){
+                    parent.innerHTML = "no data";
+                    return;
+                }else parent.innerHTML = "";
+                const table = document.createElement("table");
+                const caption = document.createElement("caption");
+                caption.innerHTML = fields.title;
+                table.appendChild(caption);
+                table.appendChild(
+                    fields.header.reduce((thead, data)=>{
+                        const th = document.createElement("th");
+                        th.innerHTML = data;
+                        thead.appendChild(th);
+                        return thead;
+                    }, document.createElement("thead"))
+                );
+                parent.appendChild(
+                    fields.items.reduce((table, row)=>{
+                        table.appendChild(
+                            row.reduce((tr, data)=>{
+                                const td = document.createElement("td");
+                                td.innerHTML = data;
+                                tr.appendChild(td);
+                                return tr;
+                            }, document.createElement("tr"))
+                        );
+                        return table;
+                    }, table)
+                );
+            }
+        };
+    })();
+
+
+    const Info = class {
+        constructor(json) {
+            const {title, header, items} = json;
+            if(!title || typeof title !== 'string') throw "invalid title";
+            if(!Array.isArray(header) || !header.length) throw "invalid header";
+//            if(!Array.isArray(items) || !items.length) throw "invalid items";
+            this._private = {title, header, items};
+        } itemValidator(items) {
+            function _validator(func, param, errMsg) {
+				return _=>func.call(null, param) ? null : errMsg;
+			}
+			function _checker(validators) {
+                return validators.reduce((errs, validator) => {
+                    let err = validator();
+                    if(err) errs.push(err);
+                    return errs;
+				}, []);
+			}
+
+            if(!Array.isArray(items) || !items.length) throw "invalid items"; if (items.length>0) {
+                let errors = items.reduce((errs, item, i) => {
+                    let err = _checker([
+                        _validator(ele=> ele.length===6, item, 'items['+i+'] : 총 6개의 데이터가 필요합니다.'),
+                        _validator(ele=> Number.isInteger(Number.parseInt(ele)), item[0], 'items['+i+']['+0+'] : 숫자만 가능합니다'),
+                        _validator(ele=> Number.isInteger(Number.parseInt(ele)), item[1], 'items['+i+']['+1+'] : 숫자만 가능합니다'),
+                        _validator(ele=> !ele || ele==='change', item[2], 'items['+i+']['+2+'] :  빈 값 또는 "change"만 가능합니다.'),
+                        _validator(ele=> ele && /^-?\d+.?\d{2}?%/.test(ele), item[4], 'items['+i+']['+4+'] :  해당 값은 2.25%, -0.24%와 같은 형식만 가능합니다.'),
+                        _validator(ele=> ele && /^-?\d+.?\d{2}?%/.test(ele), item[5], 'items['+i+']['+5+'] :  해당 값은 2.25%, -0.24%와 같은 형식만 가능합니다.')
+                    ]);
+                    if(err && err.length>0) errs.push(err);
+                    return errs;
+				}, []);
+				if(errors && errors.length>0) console.error(errors);
+			}
+        }
+        get title() { return this._private.title; }
+        get header() { return this._private.header; }
+        get items() {
+            this.itemValidator(this._private.items);
+            return this._private.items;
+        }
+    }
+
+    const Data = class {
+        async getData() {
+            const json = await this._getData();
+            return new Info(json);
+        }
+        async _getData() {
+            throw "getData must override";
+        }
+    };
+
+    const JsonData = class extends Data {
+        constructor(data) {
+            super();
+            this._data = data;
+        }
+        async _getData() {
+            let json;
+            if(typeof this._data === 'string') {
+                const response = await fetch(this._data);
+                return await response.json();
+            } else {
+                return this._data;
+            }
+        }
+    }
+
+    const Renderer = class {
+        constructor() {}
+        async render(data) {
+            if(!(data instanceof Data)) throw "invalid data type";
+            this._info = await data.getData();
+            this._render();
+        }
+        _render() {
+            throw "_render must overrided";
+		}
+    }
+
+    const TableRenderer = class extends Renderer {
+        constructor(parent) {
+            if(!parent || typeof parent !== 'string') throw "invalid param";
+            super();
+            this._parent = parent;
+		}
+		_render() {
+            const parent = document.querySelector(this._parent);
+            if(!parent) throw "invalid parent";
+            parent.innerHTML = "";
+            const [table, caption] = "table,caption".split(',').map(v=>document.createElement(v));
+            caption.innerHTML = this._info.title;
+            table.appendChild(caption);
+            table.appendChild(
+                this._info.header.reduce(
+					(thead, data)=>(thead.appendChild(document.createElement("th")).innerHTML = data, thead), document.createElement("thead")
+				)
+			);
+            parent.appendChild(
+                this._info.items.reduce(
+					(table, row)=>(table.appendChild(
+					    row.reduce(
+							(tr, data)=>(tr.appendChild(document.createElement("td")).innerHTML = data, tr), document.createElement("tr")
+						)
+					), table)
+            	, table)
+			);
+		}
+	}
+
+    const data = new JsonData("75_1_correct.json");
+    const renderer = new TableRenderer('#data');
+    renderer.render(data);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "removeme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "next ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^7.0.2",
+    "next.js": "^1.0.3",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  }
+}

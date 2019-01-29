@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>샘플</title>
+<link rel="stylesheet" href="grid-guide.css">
+<style>
+
+/* 박스의 색과 높이 */
+.boxA	{border: solid 8px #00a0e9;
+	background-color: #a0e0fe;
+	color: #00a0e9}
+
+.boxA .box1	{border: solid 8px #e0e03d;
+	background-color: #ffffee;
+	color: #e0e03d;
+	line-height: 200px}
+
+.boxA .box2	{border: solid 8px #eb6877;
+	background-color: #ffc2c9;
+	color: #eb6877;
+	line-height: 100px}
+
+
+/* 박스를 중첩하는 설정 */
+.boxA	{position: relative}
+
+.box2	{position: absolute;
+	top: 150px;
+	left: 60px}
+
+</style>
+</head>
+<body>
+
+
+<div class="boxA">
+<div class="box1">
+BOX1
+</div>
+
+<div class="box2">
+BOX2
+</div>
+</div>
+
+
+
+</body>
+</html>

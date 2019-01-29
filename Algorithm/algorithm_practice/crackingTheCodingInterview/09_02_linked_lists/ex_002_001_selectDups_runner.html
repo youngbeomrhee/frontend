@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>중복 없애기</title>
+</head>
+<body>
+
+<script src="ex_002_0_doubly_linked_lists.js"></script>
+<script>
+    function deleteDups(linkedList) {
+        let set = new Set(),
+			current = linkedList.head;
+		while(current) {
+		    debugger;
+		    let runner = current;
+		    while(runner.next) {
+		        if(runner.next.element === current.element) {
+                    runner.next = runner.next.next;		// current도 바뀜
+                } else {
+                    runner = runner.next;	// 이때는 current에 영향을 미치지 않음
+                }
+			}
+			current = current.next;
+		}
+		return linkedList
+    }
+
+    let ll = new DoubleLinkedList();
+    ll.push('test1');
+    ll.push('test2');
+    ll.push('test1');
+    ll.push('test3');
+    ll.push('test4');
+    ll.push('test5');
+    ll.push('test4');
+//    ll.push('test5');
+//    ll.push('test5');
+//    ll.push('test5');
+    ll.display();
+    console.log('# 중복제거');
+    deleteDups(ll);
+    ll.display();
+</script>
+</body>
+</html>

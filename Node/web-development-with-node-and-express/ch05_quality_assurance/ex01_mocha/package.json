@@ -1,0 +1,24 @@
+{
+  "name": "ex01_mocha",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express-handlebars": "^3.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "grunt": "^1.0.3",
+    "grunt-cafe-mocha": "^0.1.13",
+    "grunt-contrib-jshint": "^2.0.0",
+    "grunt-exec": "^3.0.0",
+    "linkchecker": "^1.1.0",
+    "mocha": "^5.2.0",
+    "zombie": "^6.1.3"
+  }
+}

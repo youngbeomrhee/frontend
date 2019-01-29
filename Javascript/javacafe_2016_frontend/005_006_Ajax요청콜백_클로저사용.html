@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Closure 예제</title>
+</head>
+<body>
+    <button type="button" id="testButton">Go!</button>
+    <div id="testSubject"></div>
+
+    <script src="https://code.jquery.com/jquery-2.2.3.js"></script>
+    <script>
+        $('#testButton').click(function () {
+            var elem$ = $('#testSubject');
+
+            elem$.html('로딩 중...');
+            $.ajax({
+                url: 'http://api.wunderground.com/api/6f2dab0bdac81cbf/almanac/q/CA/San_Francisco.json'
+                , success: function (data) {
+                    console.dir(this.success);
+                    elem$.html(JSON.stringify(data));
+                }
+            });
+        });
+    </script>
+</body>
+</html>

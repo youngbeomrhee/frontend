@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>샘플</title>
+<link rel="stylesheet" href="grid-guide.css">
+<style>
+
+/* BOX A */
+.boxA	{border: solid 8px #00a0e9;
+	background-color: #a0e0fe;
+	color: #00a0e9}
+
+.boxA:after	{content: "BOX A 내부에 출력을 확인하기 위해 넣은 글자입니다.";
+	display: block;
+	clear: both}
+
+
+/* BOX2와 BOX3를 가로 정렬 */
+.box2	{float: left}
+
+.box3	{float: left}
+
+
+</style>
+</head>
+<body>
+
+
+<div class="box1">
+BOX1
+</div>
+
+<div class="boxA">
+<div class="box2">
+BOX2
+</div>
+
+<div class="box3">
+BOX3
+</div>
+</div>
+
+<div class="box4">
+BOX4
+</div>
+
+
+</body>
+</html>

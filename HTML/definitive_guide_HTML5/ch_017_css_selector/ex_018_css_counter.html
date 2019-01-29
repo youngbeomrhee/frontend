@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <title>psudo selector</title>
+    <style>
+        body {
+            counter-reset: from-body;
+        }
+        div {
+            border: 1px solid black;
+            margin: 10px
+        }
+        div:before {
+            counter-increment: from-body;
+            content: "/from-body " counter(from-body) "'th div/ ";
+        }
+    </style>
+</head>
+<body>
+    <h2>psudo selector</h2>
+    <div class="a" data-x="pre1-x-1suf" id="id1">class="a" data-x="pre1-x-1suf" id="id1"</div>
+    <div class="a b" data-x="pre2-x-2suf">class="a b" data-x="pre2-x-2suf"</div>
+    <div class="a b c" data-x="pre3-x-3suf" id="id2">class="a b c" data-x="pre3-x-3suf" id="id2"</div>
+    <div>
+        <div class="b" data-x="x-suf">class="b" data-x="x-suf"</div>
+        <div class="b c" data-x="pre-x">class="b c" data-x="pre-x"</div>
+    </div>
+    <div class="c" data-x="x">class="c" data-x="x"</div>
+    non-block element
+</body>
+</html>

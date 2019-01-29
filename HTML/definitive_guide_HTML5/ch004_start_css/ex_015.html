@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>동일한 우선 순위 사이에 스타일 순서 결정하기</title>
+</head>
+<body>
+<a href="http://www.nextree.co.kr/p8468/#2cssspecificity"><h3 id="2cssspecificity">2) CSS 명시도(Specificity) 계산법</h3></a>
+<pre><code>!important &gt; id [ 100 ] &gt; class [ 10 ] &gt; tag [ 1 ] &gt; * [ 0 ]</code></pre>
+<p>!important선언을 사용한 형식이 가장 우선 순위가 높습니다. 그래서 다른 선언들을 덮어버릴 수 있기 때문에 꼭 필요한 곳에만 사용해야 합니다.</p>
+<p>이를 제외한 나머지 선택자는 대괄호 "[]"안에 있는 숫자를 각각의 점수로 부여하여 우선순위를 계산합니다.</p>
+<ul>
+    <li>ID 선택자의 갯수를 세어서 개당 100 으로 계산합니다. (= a)</li>
+    <li>클래스 선택자의 갯수를 세어서 개당 10 으로 계산합니다. (= b)</li>
+    <li>태그 선택자의 갯수를 세어서 개당 1 로 계산합니다. (= c)</li>
+    <li>공용 선택자는 모두 0으로 계산합니다. (= d)</li>
+    <li>가상 엘리먼트는 무시합니다.</li>
+</ul>
+</body>
+</html>

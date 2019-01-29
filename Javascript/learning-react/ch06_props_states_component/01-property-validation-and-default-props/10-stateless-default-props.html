@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>10 상태가 없는 함수형 컴포넌트의 디폴트 프로퍼티</title>
+</head>
+<body>
+<div id="react-container"></div>
+
+<script src="https://unpkg.com/prop-types/prop-types.js"></script>
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+<script type="text/babel">
+
+    const { Component } = React
+    const { render } = ReactDOM
+
+    const Summary = ({ingredients=0, steps=0, title='[무제]'}) =>
+        <div className="summary">
+            <h1>{title}</h1>
+            <p>
+                <span>재료  {ingredients} 종류 | </span>
+                <span>총 {steps} 단계</span>
+            </p>
+        </div>
+
+    Summary.propTypes = {
+        ingredients: PropTypes.number,
+        steps: PropTypes.number,
+        title: (props, propName) =>
+            (typeof props[propName] !== 'string') ?
+                new Error("제목(title)은 문자열이어야 합니다.") :
+                (props[propName].length > 20) ?
+                    new Error(`제목은 20자 이내여야 합니다.`) :
+                    null
+    }
+
+    render(
+        <Summary title="땅콩버터와 잼"  />,
+        document.getElementById('react-container')
+    )
+
+</script>
+
+</body>
+</html>

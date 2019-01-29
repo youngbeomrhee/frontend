@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1-2 박스 가로 정렬</title>
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .box {
+            border: 1px solid black;
+            line-height: 200px;
+            text-align: center;
+        }
+        .boxA:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .box2 {
+            float: left;
+            /*width: 50%;*/
+        }
+        .box3 {
+            float: left;
+            /*width: 50%;*/
+        }
+    </style>
+</head>
+<body>
+    1-2 박스 가로 정렬
+    <div class="box1 box">
+        BOX1
+    </div>
+    <div class="boxA">
+        <div class="box box2">
+            BOX2
+        </div>
+        <div class="box box3">
+            BOX3
+        </div>
+    </div>
+    <div class="box box4">
+        BOX4
+    </div>
+</body>
+</html>

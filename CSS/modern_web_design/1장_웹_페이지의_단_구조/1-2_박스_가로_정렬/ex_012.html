@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>박스 가로 정렬</title>
+	<style>
+		.box {
+			outline: 1px solid black;
+			height: 200px;
+			text-align: center;
+			line-height: 200px;
+		}
+		.box2, .box3 {
+			float: left;
+		}
+		/*.boxA {
+			background-color: #63bafb;
+		}*/
+		.boxA:after {		/* clearfix */
+			content: "";
+			display: block;
+			clear: both;
+		}
+	</style>
+</head>
+<body>
+	<h3>p.31 clearfix 완료</h3>
+	<div class="box1 box">
+		BOX1
+	</div>
+	<div class="boxA">
+		<div class="box2 box">
+			BOX2
+		</div>
+		<div class="box3 box">
+			BOX3
+		</div>
+	</div>
+		<div class="box4 box">
+			BOX4
+		</div>
+</body>
+</html>

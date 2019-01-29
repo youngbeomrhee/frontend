@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>연결리스트 회문검사</title>
+	<!-- 재스민 라이브러리 파일 -->
+	<link data-require="jasmine@*" data-semver="2.0.0" rel="stylesheet" href="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine.css" />
+	<script data-require="jasmine@*" data-semver="2.0.0" src="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine.js"></script>
+	<script data-require="jasmine@*" data-semver="2.0.0" src="http://cdn.jsdelivr.net/jasmine/2.0.0/jasmine-html.js"></script>
+	<script data-require="jasmine@*" data-semver="2.0.0" src="http://cdn.jsdelivr.net/jasmine/2.0.0/boot.js"></script>
+</head>
+<body>
+
+<script src="../util.js"></script>
+<script src="LinkedList.js"></script>
+<script>
+	function isPalindrome(ll=errParam()) {
+        typeCheck(ll, LinkedList);
+        if(ll.size<2) return false;
+
+		let forwardNode = ll.first,
+			backwardNode = ll.last,
+			centerIdx = Math.ceil(ll.size / 2),
+			idx = 0,
+			isAllSame = true;
+
+		do {
+            isAllSame = forwardNode.item === backwardNode.item;
+            forwardNode = forwardNode.next;
+            backwardNode = backwardNode.prev;
+            idx++;
+		} while(isAllSame && idx<centerIdx);
+
+		return isAllSame;
+	}
+
+
+	describe('isPalindrome(ll) : 회문인지 확인', function() {
+
+		describe('예외처리', function() {
+			it('파라미터를 넘기지 않으면 throw', function() {
+				expect(isPalindrome.bind(null)).toThrow(MSG.errParam);
+			});
+            it('인자가 LinkedList 타입이 아니면 throw', function() {
+                expect(isPalindrome.bind(null, false)).toThrowError(TypeError);
+                expect(isPalindrome.bind(null, 'str')).toThrowError(TypeError);
+                expect(isPalindrome.bind(null, {})).toThrowError(TypeError);
+                expect(isPalindrome.bind(null, 1)).toThrowError(TypeError);
+                expect(isPalindrome.bind(null, [])).toThrowError(TypeError);
+			});
+		});
+
+        describe('정합성 확인', function() {
+            let palindrome = new LinkedList();
+            palindrome.linkLast(0);
+            palindrome.linkLast(1);
+            palindrome.linkLast(2);
+            palindrome.linkLast(3);
+            palindrome.linkLast(2);
+            palindrome.linkLast(1);
+            palindrome.linkLast(0);
+
+            let palindrome2 = new LinkedList();
+            palindrome2.linkLast(0);
+            palindrome2.linkLast(1);
+            palindrome2.linkLast(2);
+            palindrome2.linkLast(2);
+            palindrome2.linkLast(1);
+            palindrome2.linkLast(0);
+
+            let notPalindrome = new LinkedList();
+            notPalindrome.linkLast(0);
+            notPalindrome.linkLast(1);
+            notPalindrome.linkLast(2);
+            notPalindrome.linkLast(1);
+            notPalindrome.linkLast(1);
+            notPalindrome.linkLast(0);
+
+            it('isPalindrome(new LinkedList()) === false // 빈리스트를 넣을 경우 false', function() {
+                expect(isPalindrome(new LinkedList())).toBeFalsy();
+            });
+            it('isPalindrome(palindrome) === true // palindrome인 리스트를 넣을 경우 true', function() {
+                expect(isPalindrome(palindrome)).toBeTruthy();
+            });
+            it('isPalindrome(palindrome2) === true // palindrome인 리스트를 넣을 경우 true', function() {
+                expect(isPalindrome(palindrome2)).toBeTruthy();
+            });
+            it('isPalindrome(notPalindrome) === true // palindrome인 리스트를 넣을 경우 true', function() {
+                expect(isPalindrome(notPalindrome)).toBeFalsy();
+            });
+		});
+	});
+
+
+</script>
+</body>
+</html>

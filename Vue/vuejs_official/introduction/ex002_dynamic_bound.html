@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic bound</title>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- production version, optimized for size and speed -->
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
+</head>
+<body>
+<div id="app">
+    <input type="text" v-bind:value="message" style="width:300px" readonly/>
+    <!--
+    <span v-bind:title="message">
+        Hover your mouse over me for a few seconds to see me my dynamically bound title.
+    </span>
+    -->
+</div>
+<script>
+    const defaultMsg = 'You loaded this page on ',
+        app = new Vue({
+            el: '#app',
+            data: {
+                message: defaultMsg + new Date().toLocaleString()
+            }
+        });
+
+    setInterval(() => {
+        app.message = defaultMsg + new Date().toLocaleString()
+    }, 1000);
+</script>
+</body>
+</html>

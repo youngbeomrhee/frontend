@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- head에는 meta 정보를 작성합니다. -->
+    <meta charset="UTF-8">
+    <title>html, css, script 선언위치</title>
+    <!-- css import 위치 -->
+    <link rel="stylesheet" src="/css/myCss.css"/>
+    <style>
+        /* css를 파일 내부에서 정의할 경우 여기에 기재합니다. */
+        span {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    body에 기재 할 Contents
+    <!-- script import 위치 -->
+    <script src="/js/myJs.js"></script>
+    <script>
+        debugger;
+        document.body.innerHTML = "<span>Script로 추가한 Contents</span>";
+    </script>
+</body>
+</html>

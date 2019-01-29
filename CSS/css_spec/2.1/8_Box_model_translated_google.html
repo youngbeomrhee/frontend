@@ -1,0 +1,1069 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!-- saved from url=(0063)#box-model -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<base href="./8_Box_model.html">
+<title>Box model</title>
+<link rel="stylesheet" href="https://www.w3.org/TR/2011/REC-CSS2-20110607/style/default.css" type="text/css">
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/W3C-REC.css" type="text/css">
+<link rel="prev" href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html">
+<link rel="next" href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html">
+<link rel="contents" href="https://www.w3.org/TR/2011/REC-CSS2-20110607/cover.html#minitoc">
+<link rel="CSS-properties" href="https://www.w3.org/TR/2011/REC-CSS2-20110607/propidx.html" title="properties">
+<link rel="index" href="https://www.w3.org/TR/2011/REC-CSS2-20110607/indexlist.html" title="index">
+<link rel="first" href="https://www.w3.org/TR/2011/REC-CSS2-20110607/cover.html">
+</head>
+<body>
+<div class="navbar">
+<p><a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html">previous</a> &nbsp;
+<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html">next</a> &nbsp;
+<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/cover.html#minitoc">contents</a> &nbsp;
+<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/propidx.html">properties</a> &nbsp;
+<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/indexlist.html">index</a> &nbsp;
+</p></div>
+<hr class="navbar">
+
+<h1>8 <a name="box-model">Box model</a></h1>
+<div class="subtoc">
+<p><strong>Contents</strong>
+	</p><ul class="toc">
+		<li class="tocline2"><a href="#box-dimensions" class="tocxref">8.1 Box dimensions</a>
+		</li><li class="tocline2"><a href="#mpb-examples" class="tocxref">8.2 Example of margins, padding, and borders</a>
+		</li><li class="tocline2"><a href="#margin-properties" class="tocxref">8.3 Margin properties: <span class="propinst-margin-top">'margin-top'</span>, <span class="propinst-margin-right">'margin-right'</span>,	<span class="propinst-margin-bottom">'margin-bottom'</span>, <span class="propinst-margin-left">'margin-left'</span>, and <span class="propinst-margin">'margin'</span></a>
+		<ul class="toc">
+			<li class="tocline3"><a href="#collapsing-margins" class="tocxref">8.3.1 Collapsing margins</a>
+		</li></ul>
+		</li><li class="tocline2"><a href="#padding-properties" class="tocxref">8.4 Padding properties: <span class="propinst-padding-top">'padding-top'</span>, <span class="propinst-padding-right">'padding-right'</span>, <span class="propinst-padding-bottom">'padding-bottom'</span>, <span class="propinst-padding-left">'padding-left'</span>, and <span class="propinst-padding">'padding'</span></a>
+		</li><li class="tocline2"><a href="#border-properties" class="tocxref">8.5 Border properties</a>
+		<ul class="toc">
+			<li class="tocline3"><a href="#border-width-properties" class="tocxref">8.5.1 Border width: <span class="propinst-border-top-width">'border-top-width'</span>, <span class="propinst-border-right-width">'border-right-width'</span>, <span class="propinst-border-bottom-width">'border-bottom-width'</span>, <span class="propinst-border-left-width">'border-left-width'</span>, and <span class="propinst-border-width">'border-width'</span></a>
+			</li><li class="tocline3"><a href="#border-color-properties" class="tocxref">8.5.2 Border color: <span class="propinst-border-top-color">'border-top-color'</span>, <span class="propinst-border-right-color">'border-right-color'</span>, <span class="propinst-border-bottom-color">'border-bottom-color'</span>, <span class="propinst-border-left-color">'border-left-color'</span>, and <span class="propinst-border-color">'border-color'</span></a>
+			</li><li class="tocline3"><a href="#border-style-properties" class="tocxref">8.5.3 Border style: <span class="propinst-border-top-style">'border-top-style'</span>, <span class="propinst-border-right-style">'border-right-style'</span>, <span class="propinst-border-bottom-style">'border-bottom-style'</span>, <span class="propinst-border-left-style">'border-left-style'</span>, and <span class="propinst-border-style">'border-style'</span></a>
+			</li><li class="tocline3"><a href="#border-shorthand-properties" class="tocxref">8.5.4 Border shorthand properties: <span class="propinst-border-top">'border-top'</span>, <span class="propinst-border-right">'border-right'</span>, <span class="propinst-border-bottom">'border-bottom'</span>, <span class="propinst-border-left">'border-left'</span>, and <span class="propinst-border">'border'</span></a>
+		</li></ul>
+		</li><li class="tocline2"><a href="#bidi-box-model" class="tocxref">8.6 The box model for inline elements in bidirectional context</a>
+	</li></ul>
+</div>
+<!-- warning -->
+<div> <input id="annoying-warning" type="checkbox" title="hide note"> <label for="annoying-warning">(hide)</label> <div class="annoying-warning"> <p><strong>Note:</strong> Several sections of this specification have been updated by other specifications. Please, see <a href="https://www.w3.org/TR/CSS/#css">"Cascading Style Sheets (CSS) ? The Official Definition"</a> in the latest <cite>CSS Snapshot</cite> for a list of specifications and the sections they replace. </p><p>The CSS Working Group is also developing <a href="http://www.w3.org/TR/CSS22/">CSS level&nbsp;2 revision&nbsp;2 (CSS&nbsp;2.2).</a> </p></div> </div>
+<!-- /warning -->
+
+<p>
+	The CSS box model describes the rectangular boxes that are generated for elements in the
+	<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#doctree">document tree</a>
+	and laid out according to the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html">visual formatting model</a>.
+</p>
+<h2>8.1 <a name="box-dimensions">Box dimensions - 상자크기</a></h2>
+
+<p>
+	Each box has a
+	<span class="index-def" title="box::content|content::of a box"><a name="box-content-area"><dfn>content area</dfn></a></span> (e.g., text, an image, etc.) and optional surrounding
+	<span class="index-def" title="box::padding|padding::of a box"><a name="box-padding-area"><dfn>padding</dfn></a></span>,
+	<span class="index-def" title="box::border|border::of a box"><a name="box-border-area"><dfn>border</dfn></a></span>, and
+	<span class="index-def" title="box::margin|margin::of a box"><a name="box-margin-area"><dfn>margin</dfn></a></span> areas;
+	the size of each area is specified by properties defined below. The following diagram shows how these areas relate and the terminology used to refer to pieces of margin, border, and padding:
+</p>
+<p>
+	각 상자에는
+	<span class="index-def" title="box::content|content::of a box"><a name="box-content-area"><dfn>content area</dfn></a></span> (예 : text, image 등) 및 선택적 주변
+	<span class="index-def" title="box::padding|padding::of a box"><a name="box-padding-area"><dfn>padding</dfn></a></span>,
+	<span class="index-def" title="box::border|border::of a box"><a name="box-border-area"><dfn>border</dfn></a></span>, 및
+	<span class="index-def" title="box::margin|margin::of a box"><a name="box-margin-area"><dfn>margin</dfn></a></span> 영역이 있습니다.
+	각 영역의 크기는 아래에 정의 된 속성에 의해 지정됩니다. 다음 diagram은 이러한 영역이 어떻게 관련되어 있으며, margin, border 및 padding 조각을 나타내는 데 사용되는 용어를 보여줍니다.
+</p>
+
+<div class="figure">
+<p>
+	<img src="https://www.w3.org/TR/2011/REC-CSS2-20110607/images/boxdim.png" alt="Image illustrating the relationship between content, padding, borders, and margins.">
+	<span class="dlink">&nbsp;&nbsp;&nbsp;<a name="img-boxdim" href="https://www.w3.org/TR/2011/REC-CSS2-20110607/images/longdesc/boxdim-desc.html" title="Long description of illustration of box areas">[D]</a></span>
+</p>
+</div>
+
+<p>
+	The margin, border, and padding can be broken down into top, right,
+	bottom, and left segments (e.g., in the diagram, "LM" for left margin,
+	"RP" for right padding, "TB" for top border, etc.).
+</p>
+<p>
+	margin, border 및 padding은 top, right, bottom 및 left 부분으로 나눌 수 있습니다 (예 : 다이어그램에서 왼쪽 margin은 "LM", 오른쪽 paddng은 "RP", 위쪽 border는 "TB"등).
+</p>
+<br>
+
+<p>
+	The perimeter of each of the four areas (content, padding, border,
+	and margin) is called an "edge", so each box has four edges:
+</p>
+<p>
+	네 개의 영역(content, padding, border 및 margin)의 둘레를 "edge"라고 하며 각 상자의 edge는 4개입니다.
+</p>
+<dl>
+	<dt>
+		<span class="index-def" title="content edge"><a name="content-edge"><strong>content edge</strong></a></span> or <span class="index-def" title="inner edge"><a name="inner-edge"><strong>inner edge</strong></a></span>
+	</dt>
+	<dd>
+		The content edge surrounds the rectangle given by the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#Computing_widths_and_margins">width</a> and <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#Computing_heights_and_margins">height</a>
+		of the box, which often depend on the element's <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#rendered-content">rendered content</a>.
+		The four content edges define the
+		box's <dfn><a name="x10"><span class="index-def">content box</span></a></dfn>.
+	</dd>
+	<dd>
+		content edge는 box의 width와 height로 지정된 사각형을 둘러싸고 있으며, 이것은 종종 요소의 렌더링 된 내용에 따라 달라집니다. 네 개의 content edge는 box의 <dfn><a name="x10"><span class="index-def">content box</span></a></dfn>를 정의합니다 .
+	</dd>
+
+	<dt>
+		<span class="index-def" title="padding edge"><a name="padding-edge"><strong>padding edge</strong></a></span>
+	</dt>
+	<dd>
+		The padding edge surrounds the box padding. If the padding
+		has 0 width, the padding edge is the same as the content edge.
+		The four padding edges define the
+		box's <dfn><a name="x12"><span class="index-def">padding box</span></a></dfn>.
+	</dd>
+	<dd>
+		padding edge가 box padding을 둘러 쌉니다. padding의 width가 0인 경우, padding edge는 content edge와 같습니다. 네 개의 padding edge는 box의 <dfn><a name="x12"><span class="index-def">padding box</span></a></dfn>를 정의합니다 .
+	</dd>
+
+	<dt>
+		<span class="index-def" title="border edge"><a name="border-edge"><strong>border edge</strong></a></span>
+	</dt>
+	<dd>
+		The border edge surrounds the box's border. If the border has 0 width, the border edge is the same as the padding edge.
+		The four border edges define the box's <dfn><a name="x14"><span class="index-def">border box</span></a></dfn>.
+	</dd>
+	<dd>
+		border edge가 box border를 둘러 쌉니다. border의 width가 0인 경우, border edge는 padding edge와 동일합니다. 네 개의 border edge는 box의 <dfn><a name="x14"><span class="index-def">border box</span></a></dfn>를 정의합니다 .
+	</dd>
+
+	<dt>
+		<span class="index-def" title="margin edge"><a name="margin-edge"><strong>margin edge</strong></a></span>
+		or <span class="index-def" title="outer edge"><a name="outer-edge"><strong>outer edge</strong></a></span>
+	</dt>
+	<dd>
+		The margin edge surrounds the box margin. If the margin has 0 width, the margin edge is the same as the border edge. The four margin edges define the box's <dfn><a name="x17"><span class="index-def">margin box</span></a></dfn>.
+	</dd>
+	<dd>
+		margin edge가 box margin을 둘러 쌉니다. 여백의 width가 0인 경우 margin edge는 border edge와 같습니다. 네 개의 margin edge는 box의 <dfn><a name="x17"><span class="index-def">margin box</span></a></dfn>를 정의합니다 .
+	</dd>
+</dl>
+
+<p>
+	Each edge may be broken down into a top, right, bottom, and left edge.
+</p>
+<p>
+	각각의 edge는 top, right, bottom 및 left edge로 나눌 수 있습니다.
+</p>
+<br>
+
+<p>
+	The dimensions of the content area of a box
+	- the <span class="index-def" title="box::content width"><a name="content-width"><dfn>content width</dfn></a></span>
+	and <span class="index-def" title="box::content height"><a name="content-height"><dfn>content height</dfn></a></span> -
+	depend on several factors: whether the element generating the box has the
+	<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>
+	or <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>
+	property set, whether the box contains text or other boxes, whether the box is a table, etc.
+	Box widths and heights are discussed in the chapter on <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html">visual formatting model details</a>.
+</p>
+<p>
+	box의 content area의 크기 - <span class="index-def" title="box::content width"><a name="content-width"><dfn>content width</dfn></a></span>
+	와 <span class="index-def" title="box::content height"><a name="content-height"><dfn>content height</dfn></a></span> -
+	는 다음 몇 가지 요소에 따라 달라집니다 :
+	box를 생성하는 element가
+	<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#propdef-width" class="noxref"><span class="propinst-width">'width'</span></a>
+	또는 <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>
+	속성집합을 가지고 있는지 여부, 상자에 text 또는 다른 box를 포함하는지 여부, box가 table인지 여부, 등등.
+	box의 width와 height는 <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html">visual formatting model details</a> 장에서 다루어 집니다.
+</p>
+<br>
+
+<p>
+	The background style of the content, padding, and border areas of a box is specified by the
+	<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/colors.html#propdef-background" class="noxref"><span class="propinst-background">'background'</span></a>
+	property of the generating element. Margin backgrounds are always transparent.
+</p>
+<p>
+	box의 content, padding 및 border 영역의 background style은 생성되는 element의
+	<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/colors.html#propdef-background" class="noxref"><span class="propinst-background">'background'</span></a>
+	property에 의해 지정됩니다 . margin의 background은 항상 투명합니다.
+</p>
+
+
+<h2>8.2 <a name="mpb-examples">Example of margins, padding, and borders</a> - <a name="mpb-examples">margins, padding, 및 borders</a> 예제</h2>
+
+<p>
+	This example illustrates how margins, padding, and borders interact. The example HTML document:
+</p>
+
+<pre class="html-example">
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"&gt;
+&lt;HTML&gt;
+  &lt;HEAD&gt;
+    &lt;TITLE&gt;Examples of margins, padding, and borders&lt;/TITLE&gt;
+    &lt;STYLE type="text/css"&gt;
+      UL {
+        background: yellow;
+        margin: 12px 12px 12px 12px;
+        padding: 3px 3px 3px 3px;
+                                     /* No borders set */
+      }
+      LI {
+        color: white;                /* text color is white */
+        background: blue;            /* Content, padding will be blue */
+        margin: 12px 12px 12px 12px;
+        padding: 12px 0px 12px 12px; /* Note 0px padding right */
+        list-style: none             /* no glyphs before a list item */
+                                     /* No borders set */
+      }
+      LI.withborder {
+        border-style: dashed;
+        border-width: medium;        /* sets border width on all sides */
+        border-color: lime;
+      }
+    &lt;/STYLE&gt;
+  &lt;/HEAD&gt;
+  &lt;BODY&gt;
+    &lt;UL&gt;
+      &lt;LI&gt;First element of list
+      &lt;LI class="withborder"&gt;Second element of list is
+           a bit longer to illustrate wrapping.
+    &lt;/UL&gt;
+  &lt;/BODY&gt;
+&lt;/HTML&gt;
+</pre>
+
+<p>
+	results in a <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#doctree">document tree</a> with (among other relationships) a UL element that has two LI children.
+</p>
+<p>
+	(다른 관계들 사이에서) 두 개의 LI 자손을 가지고 있는 UL element의 <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/conform.html#doctree">document tree</a> 결과 .
+</p>
+<br>
+
+<p>
+	The first of the following diagrams illustrates what this example would produce.
+	The second illustrates the relationship between the margins, padding, and borders of the UL elements and those of its children LI elements. (Image is not to scale.)
+</p>
+<p>
+	다음 diagram 중 첫 번째는 이 예제가 어떤 것을 생성하는지 보여줍니다.
+	두 번째는 UL element의 margins, padding 및 border와 그것들의 하위 자손요소인 LI elements 사이의 관계를 보여줍니다. (이미지 크기는 측정하지 않습니다.)
+</p>
+<br>
+
+<div class="figure">
+	<p>
+		<img src="https://www.w3.org/TR/2011/REC-CSS2-20110607/images/boxdimeg.png" alt="Image illustrating how parent and child margins, borders, and padding relate.">
+		<span class="dlink">
+			<a name="img-boxdimeg" href="https://www.w3.org/TR/2011/REC-CSS2-20110607/images/longdesc/boxdimeg-desc.html" title="Long description of list box example showing margins, padding, and borders">[D]</a>
+		</span>
+	</p>
+</div>
+
+<p>Note that:</p>
+
+<ul>
+	<li>
+		The <a href="#content-width">content width</a> for each LI box is calculated top-down;
+		the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#containing-block">containing block</a> for each LI box is established by the UL element.
+		<br>
+		각각의 LI box의 <a href="#content-width">content width</a>는 하향식으로 계산됩니다;
+		각각의 LI box의 <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#containing-block">containing block</a>은 UL element에 의해서 설정됩니다.
+	</li>
+	<li>
+		The margin box height of each LI box depends on its <a href="#content-height">content height</a>,
+		plus top and bottom padding, borders, and margins. Note that vertical margins between the LI boxes <a href="#collapsing-margins">collapse.</a>
+		<br>
+		각각의 LI box의 margin box height는 그것의 <a href="#content-height">content height</a>와 추가적으로 top과 bottom의 padding, borders, 및 margins에 따라 달라집니다.
+		LI box들 사이의 수직 margins은 <a href="#collapsing-margins">collapse.(붕괴)</a>되는걸 주의하세요.
+	</li>
+	<li>
+		The right padding of the LI boxes has been set to zero width (the <a href="#propdef-padding" class="noxref"><span class="propinst-padding">'padding'</span></a> property).
+		The effect is apparent in the second illustration.
+		<br>
+		LI box들의 우측 padding은 0 width(the <a href="#propdef-padding" class="noxref"><span class="propinst-padding">'padding'</span></a> property)으로 설정되었습니다.
+		그 효과는 두 번째 그림에서 분명히 보입니다.
+	</li>
+	<li>
+		The margins of the LI boxes are transparent - margins are always transparent - so the background color (yellow) of the UL padding and content areas shines through them.
+		<br>
+		LI box들의 margins 투명하므로 - marin은 언제나 투명합니다 - UL padding과 content areas의 background color (노란색)는 그것들을 통과해서 보이게 됩니다.
+	</li>
+	<li>
+		The second LI element specifies a dashed border (the <a href="#propdef-border-style" class="noxref"><span class="propinst-border-style">'border-style'</span></a> property).
+		<br>
+	</li>
+</ul>
+
+<h2>8.3 <a name="margin-properties">Margin properties</a>:
+<a href="#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a>, 
+<a href="#propdef-margin-right" class="noxref"><span class="propinst-margin-right">'margin-right'</span></a>, 
+<a href="#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a>,
+<a href="#propdef-margin-left" class="noxref"><span class="propinst-margin-left">'margin-left'</span></a>, and
+<a href="#propdef-margin" class="noxref"><span class="propinst-margin">'margin'</span></a></h2>
+
+<p>Margin properties specify the width of the <a href="#box-margin-area">margin area</a> of a box.  The <a href="#propdef-margin" class="noxref"><span class="propinst-margin">'margin'</span></a> shorthand property sets the
+margin for all four sides while the other margin properties only set
+their respective side.  These properties apply to all elements, but
+vertical margins will not have any effect on non-replaced inline
+elements.
+
+</p><p>The properties defined in this section refer to the <span class="index-def" title="&lt;margin-width&gt;::definition of"><a name="value-def-margin-width"><strong>&lt;margin-width&gt;</strong></a></span>
+value type, which may take one of the following values:</p>
+
+<dl>
+<dt><a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/syndata.html#value-def-length" class="noxref"><span class="value-inst-length"><strong>&lt;length&gt;</strong></span></a>
+</dt><dd>Specifies a fixed width.
+</dd><dt><a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage"><strong>&lt;percentage&gt;</strong></span></a>
+</dt><dd>The percentage is calculated
+with respect to the <em>width</em> of the generated box's 
+<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#containing-block">containing block</a>.
+<span class="note">Note that this is true for <a href="#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a> and <a href="#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a> as well.</span>
+If the containing block's width depends on this element, then the
+resulting layout is undefined in CSS&nbsp;2.1.
+</dd><dt><strong>auto</strong>
+</dt><dd>See the section on <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#Computing_widths_and_margins">calculating widths and 
+margins</a> for behavior.
+</dd></dl>
+
+<p>Negative values for margin properties are allowed, but there may be
+implementation-specific limits. 
+
+</p><div class="propdef">
+<dl><dt>
+<span class="index-def" title="&#39;margin-top&#39;"><a name="propdef-margin-top" class="propdef-title"><strong>'margin-top'</strong></a></span>, <span class="index-def" title="&#39;margin-bottom&#39;"><a name="propdef-margin-bottom" class="propdef-title"><strong>'margin-bottom'</strong></a></span>
+</dt><dd>
+<table class="propinfo" cellspacing="0" cellpadding="0">
+<tbody><tr valign="baseline"><td><em>Value:</em>&nbsp;&nbsp;</td><td><a href="#value-def-margin-width" class="noxref"><span class="value-inst-margin-width">&lt;margin-width&gt;</span></a> | <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+</td></tr><tr valign="baseline"><td><em>Initial:</em>&nbsp;&nbsp;</td><td>0
+</td></tr><tr valign="baseline"><td><em>Applies to:</em>&nbsp;&nbsp;</td><td>all elements except elements with table display
+    types other than table-caption, table and inline-table
+</td></tr><tr valign="baseline"><td><em>Inherited:</em>&nbsp;&nbsp;</td><td>no
+</td></tr><tr valign="baseline"><td><em>Percentages:</em>&nbsp;&nbsp;</td><td>refer to width of containing block
+</td></tr><tr valign="baseline"><td><em>Media:</em>&nbsp;&nbsp;</td><td><a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#visual-media-group" class="noxref">visual</a>
+</td></tr><tr valign="baseline"><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;</td><td>the percentage as specified or the absolute length
+</td></tr></tbody></table>
+</dd></dl>
+</div>
+
+
+<p class="note">These properties have no effect on non-replaced inline
+elements.</p>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="&#39;margin-right&#39;"><a name="propdef-margin-right" class="propdef-title"><strong>'margin-right'</strong></a></span>, <span class="index-def" title="&#39;margin-left&#39;"><a name="propdef-margin-left" class="propdef-title"><strong>'margin-left'</strong></a></span>
+</dt><dd>
+<table class="propinfo" cellspacing="0" cellpadding="0">
+<tbody><tr valign="baseline"><td><em>Value:</em>&nbsp;&nbsp;</td><td><a href="#value-def-margin-width" class="noxref"><span class="value-inst-margin-width">&lt;margin-width&gt;</span></a> | <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+</td></tr><tr valign="baseline"><td><em>Initial:</em>&nbsp;&nbsp;</td><td>0
+</td></tr><tr valign="baseline"><td><em>Applies to:</em>&nbsp;&nbsp;</td><td>all elements except elements with table display
+    types other than table-caption, table and inline-table
+</td></tr><tr valign="baseline"><td><em>Inherited:</em>&nbsp;&nbsp;</td><td>no
+</td></tr><tr valign="baseline"><td><em>Percentages:</em>&nbsp;&nbsp;</td><td>refer to width of containing block
+</td></tr><tr valign="baseline"><td><em>Media:</em>&nbsp;&nbsp;</td><td><a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#visual-media-group" class="noxref">visual</a>
+</td></tr><tr valign="baseline"><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;</td><td>the percentage as specified or the absolute length
+</td></tr></tbody></table>
+</dd></dl>
+</div>
+
+
+<p>These properties set the top, right, bottom, and left margin of a
+box.
+
+</p><div class="example"><p style="display:none">Example(s):</p><p>
+</p><pre>h1 { margin-top: 2em }
+</pre>
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="&#39;margin&#39;"><a name="propdef-margin" class="propdef-title"><strong>'margin'</strong></a></span>
+</dt><dd>
+<table class="propinfo" cellspacing="0" cellpadding="0">
+<tbody><tr valign="baseline"><td><em>Value:</em>&nbsp;&nbsp;</td><td><a href="#value-def-margin-width" class="noxref"><span class="value-inst-margin-width">&lt;margin-width&gt;</span></a>{1,4} | <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+</td></tr><tr valign="baseline"><td><em>Initial:</em>&nbsp;&nbsp;</td><td>see individual properties
+</td></tr><tr valign="baseline"><td><em>Applies to:</em>&nbsp;&nbsp;</td><td>all elements except elements with table display
+    types other than table-caption, table and inline-table
+</td></tr><tr valign="baseline"><td><em>Inherited:</em>&nbsp;&nbsp;</td><td>no
+</td></tr><tr valign="baseline"><td><em>Percentages:</em>&nbsp;&nbsp;</td><td>refer to width of containing block
+</td></tr><tr valign="baseline"><td><em>Media:</em>&nbsp;&nbsp;</td><td><a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#visual-media-group" class="noxref">visual</a>
+</td></tr><tr valign="baseline"><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;</td><td>see individual properties
+</td></tr></tbody></table>
+</dd></dl>
+</div>
+
+
+<p> The <a href="#propdef-margin" class="noxref"><span class="propinst-margin">'margin'</span></a> property is a
+shorthand property for setting <a href="#propdef-margin-top" class="noxref"><span class="propinst-margin-top">'margin-top'</span></a>, <a href="#propdef-margin-right" class="noxref"><span class="propinst-margin-right">'margin-right'</span></a>, <a href="#propdef-margin-bottom" class="noxref"><span class="propinst-margin-bottom">'margin-bottom'</span></a>, and <a href="#propdef-margin-left" class="noxref"><span class="propinst-margin-left">'margin-left'</span></a> at the same place in
+the style sheet.
+
+</p><p> If there is only one component value, it applies to all
+sides. If there are two values, the top and bottom margins
+are set to the first value and the right and left margins are
+set to the second. If there are three values, the top is
+set to the first value, the left and right are set to the
+second, and the bottom is set to the third. If there are
+four values, they apply to the top, right, bottom, and left,
+respectively.
+
+</p><div class="example"><p style="display:none">Example(s):</p><p>
+</p><pre>body { margin: 2em }         /* all margins set to 2em */
+body { margin: 1em 2em }     /* top &amp; bottom = 1em, right &amp; left = 2em */
+body { margin: 1em 2em 3em } /* top=1em, right=2em, bottom=3em, left=2em */
+</pre>
+
+<p> The last rule of the example above is equivalent to the example
+below:
+
+</p><pre>body {
+  margin-top: 1em;
+  margin-right: 2em;
+  margin-bottom: 3em;
+  margin-left: 2em;        /* copied from opposite side (right) */
+}
+</pre>
+</div>
+
+<h3>8.3.1 <a name="collapsing-margins">Collapsing margins</a></h3>
+
+<p>In CSS, the adjoining margins of two or more boxes (which might or
+might not be siblings) can combine to form a single margin. Margins
+that combine this way are said to <dfn><a name="x26"><span class="index-def">collapse</span></a></dfn>, and the
+resulting combined margin is called a <dfn><a name="x27"><span class="index-def" title="collapsing margin">collapsed margin</span></a></dfn>.
+
+</p><p>Adjoining vertical margins collapse, except:
+
+</p><ul>
+  <li>Margins of the root element's box do not collapse.
+
+  </li><li>If the top and bottom margins of an element with <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#clearance">clearance</a> are adjoining, its
+  margins collapse with the adjoining margins of following siblings
+  but that resulting margin does not collapse with the bottom margin
+  of the parent block.
+</li></ul>
+
+<p>Horizontal margins never collapse.
+
+</p><p id="what-is-adjoining">Two margins are <a name="x28"><span class="index-def" title="adjoining margins"><dfn>adjoining</dfn></span></a> if and only if:
+
+</p><ul>
+  <li>both belong to in-flow <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#block-boxes">block-level boxes</a> that
+  participate in the same <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#block-formatting">block formatting context</a>
+
+  </li><li>no line boxes, no clearance, no padding and no border separate
+  them <span class="note">(Note that <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#phantom-line-box">certain zero-height line
+  boxes</a> (see <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#inline-formatting">9.4.2</a>)
+  are ignored for this purpose.)</span>
+
+  </li><li>both belong to vertically-adjacent box edges, i.e. form one of
+  the following pairs:
+
+  <ul>
+    <li>top margin of a box and top margin of its first in-flow child
+
+    </li><li>bottom margin of box and top margin of its next in-flow
+    following sibling
+
+    </li><li>bottom margin of a last in-flow child and bottom margin of its
+    parent if the parent has 'auto' computed height
+
+    </li><li>top and bottom margins of a box that does not establish a new
+    block formatting context and that has zero computed <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#propdef-min-height" class="noxref"><span class="propinst-min-height">'min-height'</span></a>, zero or 'auto'
+    computed <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a>, and no
+    in-flow children
+  </li></ul>
+</li></ul>
+
+<p>A collapsed margin is considered adjoining to another margin if any
+of its component margins is adjoining to that margin.
+
+</p><p class="note"><strong>Note.</strong> Adjoining margins can be
+generated by elements that are not related as siblings or ancestors.
+
+</p><div class="note">
+<p><strong>Note</strong> the above rules imply that:
+
+</p><ul>
+  <li>Margins between a <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#floats">floated</a> box
+  and any other box do not collapse (not even between a float and its
+  in-flow children).
+
+  </li><li>Margins of elements that establish new block formatting contexts
+  (such as floats and elements with <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visufx.html#propdef-overflow" class="noxref"><span class="propinst-overflow">'overflow'</span></a> other than 'visible') do
+  not collapse with their in-flow children.
+
+  </li><li>Margins of <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#absolutely-positioned">absolutely positioned</a>
+  boxes do not collapse (not even with their in-flow children).
+
+  </li><li>Margins of inline-block boxes do not collapse (not even with
+  their in-flow children).
+
+  </li><li>The bottom margin of an in-flow block-level element always
+  collapses with the top margin of its next in-flow block-level
+  sibling, unless that sibling has clearance.
+
+  </li><li>The top margin of an in-flow block element collapses with its
+  first in-flow block-level child's top margin if the element has no
+  top border, no top padding, and the child has no clearance.
+
+  </li><li>The bottom margin of an in-flow block box with a <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a> of 'auto' and a <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#propdef-min-height" class="noxref"><span class="propinst-min-height">'min-height'</span></a> of zero collapses
+  with its last in-flow block-level child's bottom margin if the box
+  has no bottom padding and no bottom border and the child's bottom
+  margin does not collapse with a top margin that has clearance.
+
+  </li><li>A box's own margins collapse if the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#propdef-min-height" class="noxref"><span class="propinst-min-height">'min-height'</span></a> property is zero,
+  and it has neither top or bottom borders nor top or bottom padding,
+  and it has a <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visudet.html#propdef-height" class="noxref"><span class="propinst-height">'height'</span></a> of either
+  0 or 'auto', and it does not contain a line box, and all of its
+  in-flow children's margins (if any) collapse.
+</li></ul>
+</div>
+
+<p>When two or more margins collapse, the resulting margin width is
+the maximum of the collapsing margins' widths. In the case of negative
+margins, the maximum of the absolute values of the negative adjoining
+margins is deducted from the maximum of the positive adjoining
+margins.  If there are no positive margins, the maximum of the
+absolute values of the adjoining margins is deducted from zero.
+
+</p><p id="collapsed-through">If the top and bottom margins of a box are
+adjoining, then it is possible for margins to <dfn><a name="x29"><span class="index-def">collapse through</span></a></dfn> it. In this case,
+the position of the element depends on its relationship with the other
+elements whose margins are being collapsed.
+
+</p><ul>
+  <li>If the element's margins are collapsed with its parent's top
+  margin, the top border edge of the box is defined to be the same as
+  the parent's.
+
+  </li><li>Otherwise, either the element's parent is not taking part in the
+  margin collapsing, or only the parent's bottom margin is
+  involved. The position of the element's top border edge is the same
+  as it would have been if the element had a non-zero bottom border.
+</li></ul>
+
+<p>Note that the positions of elements that have been collapsed
+through have no effect on the positions of the other elements with
+whose margins they are being collapsed; the top border edge position
+is only required for laying out descendants of these elements.
+
+
+</p><h2>8.4 <a name="padding-properties">Padding properties</a>:
+<a href="#propdef-padding-top" class="noxref"><span class="propinst-padding-top">'padding-top'</span></a>,
+<a href="#propdef-padding-right" class="noxref"><span class="propinst-padding-right">'padding-right'</span></a>,
+<a href="#propdef-padding-bottom" class="noxref"><span class="propinst-padding-bottom">'padding-bottom'</span></a>,
+<a href="#propdef-padding-left" class="noxref"><span class="propinst-padding-left">'padding-left'</span></a>, and
+<a href="#propdef-padding" class="noxref"><span class="propinst-padding">'padding'</span></a>
+</h2> 
+
+<p>The padding properties specify the width of the <a href="#box-padding-area">padding area</a> of a box. The <a href="#propdef-padding" class="noxref"><span class="propinst-padding">'padding'</span></a> shorthand property sets the
+padding for all four sides while the other padding properties only set
+their respective side. 
+
+</p><p>The properties defined in this section refer to the <span class="index-def" title="&lt;padding-width&gt;::definition of"><a name="value-def-padding-width"><strong>&lt;padding-width&gt;</strong>
+</a></span> value type, which may take one of the following values:</p>
+
+<dl>
+<dt><a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/syndata.html#value-def-length" class="noxref"><span class="value-inst-length"><strong>&lt;length&gt;</strong></span></a>
+</dt><dd>Specifies a fixed width.
+</dd><dt><a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/syndata.html#value-def-percentage" class="noxref"><span class="value-inst-percentage"><strong>&lt;percentage&gt;</strong></span></a>
+</dt><dd>The percentage is calculated with
+respect to the <em>width</em> of the generated box's <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#containing-block">containing block</a>, even for
+<a href="#propdef-padding-top" class="noxref"><span class="propinst-padding-top">'padding-top'</span></a> and <a href="#propdef-padding-bottom" class="noxref"><span class="propinst-padding-bottom">'padding-bottom'</span></a>.
+If the containing block's width depends on this element, then the
+resulting layout is undefined in CSS&nbsp;2.1.
+</dd></dl>
+
+<p>Unlike margin properties, values for padding values cannot be
+negative. Like margin properties, percentage values for padding
+properties refer to the width of the generated box's containing block.
+
+</p><div class="propdef">
+<dl><dt>
+<span class="index-def" title="&#39;padding-top&#39;"><a name="propdef-padding-top" class="propdef-title"><strong>'padding-top'</strong></a></span>, <span class="index-def" title="&#39;padding-right&#39;"><a name="propdef-padding-right" class="propdef-title"><strong>'padding-right'</strong></a></span>, <span class="index-def" title="&#39;padding-bottom&#39;"><a name="propdef-padding-bottom" class="propdef-title"><strong>'padding-bottom'</strong></a></span>, <span class="index-def" title="&#39;padding-left&#39;"><a name="propdef-padding-left" class="propdef-title"><strong>'padding-left'</strong></a></span>
+</dt><dd>
+<table class="propinfo" cellspacing="0" cellpadding="0">
+<tbody><tr valign="baseline"><td><em>Value:</em>&nbsp;&nbsp;</td><td><a href="#value-def-padding-width" class="noxref"><span class="value-inst-padding-width">&lt;padding-width&gt;</span></a> | <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+</td></tr><tr valign="baseline"><td><em>Initial:</em>&nbsp;&nbsp;</td><td>0
+</td></tr><tr valign="baseline"><td><em>Applies to:</em>&nbsp;&nbsp;</td><td>all elements except table-row-group, table-header-group, table-footer-group, table-row, table-column-group and table-column
+</td></tr><tr valign="baseline"><td><em>Inherited:</em>&nbsp;&nbsp;</td><td>no
+</td></tr><tr valign="baseline"><td><em>Percentages:</em>&nbsp;&nbsp;</td><td>refer to width of containing block
+</td></tr><tr valign="baseline"><td><em>Media:</em>&nbsp;&nbsp;</td><td><a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#visual-media-group" class="noxref">visual</a>
+</td></tr><tr valign="baseline"><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;</td><td>the percentage as specified or the absolute length
+</td></tr></tbody></table>
+</dd></dl>
+</div>
+
+
+<p>These properties set the top, right, bottom, and left padding of
+a box.
+
+</p><div class="example"><p style="display:none">Example(s):</p><p>
+</p><pre>blockquote { padding-top: 0.3em }
+</pre>
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="&#39;padding&#39;"><a name="propdef-padding" class="propdef-title"><strong>'padding'</strong></a></span>
+</dt><dd>
+<table class="propinfo" cellspacing="0" cellpadding="0">
+<tbody><tr valign="baseline"><td><em>Value:</em>&nbsp;&nbsp;</td><td><a href="#value-def-padding-width" class="noxref"><span class="value-inst-padding-width">&lt;padding-width&gt;</span></a>{1,4} | <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+</td></tr><tr valign="baseline"><td><em>Initial:</em>&nbsp;&nbsp;</td><td>see individual properties
+</td></tr><tr valign="baseline"><td><em>Applies to:</em>&nbsp;&nbsp;</td><td>all elements except table-row-group, table-header-group, table-footer-group, table-row, table-column-group and table-column
+</td></tr><tr valign="baseline"><td><em>Inherited:</em>&nbsp;&nbsp;</td><td>no
+</td></tr><tr valign="baseline"><td><em>Percentages:</em>&nbsp;&nbsp;</td><td>refer to width of containing block
+</td></tr><tr valign="baseline"><td><em>Media:</em>&nbsp;&nbsp;</td><td><a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#visual-media-group" class="noxref">visual</a>
+</td></tr><tr valign="baseline"><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;</td><td>see individual properties
+</td></tr></tbody></table>
+</dd></dl>
+</div>
+
+
+<p> The <a href="#propdef-padding" class="noxref"><span class="propinst-padding">'padding'</span></a> property is a
+shorthand property for setting <a href="#propdef-padding-top" class="noxref"><span class="propinst-padding-top">'padding-top'</span></a>, <a href="#propdef-padding-right" class="noxref"><span class="propinst-padding-right">'padding-right'</span></a>, <a href="#propdef-padding-bottom" class="noxref"><span class="propinst-padding-bottom">'padding-bottom'</span></a>, and <a href="#propdef-padding-left" class="noxref"><span class="propinst-padding-left">'padding-left'</span></a> at the same place
+in the style sheet.
+
+</p><p> If there is only one component value, it applies to all
+sides. If there are two values, the top and bottom paddings
+are set to the first value and the right and left paddings are
+set to the second. If there are three values, the top is
+set to the first value, the left and right are set to the
+second, and the bottom is set to the third. If there are
+four values, they apply to the top, right, bottom, and left,
+respectively.
+
+</p><p> The surface color or image of the padding area is specified via
+the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/colors.html#propdef-background" class="noxref"><span class="propinst-background">'background'</span></a> property:
+
+</p><div class="example"><p style="display:none">Example(s):</p><p>
+</p><pre>h1 { 
+  background: white; 
+  padding: 1em 2em;
+} 
+</pre>
+
+<p> The example above specifies a '1em' vertical padding (<a href="#propdef-padding-top" class="noxref"><span class="propinst-padding-top">'padding-top'</span></a> and <a href="#propdef-padding-bottom" class="noxref"><span class="propinst-padding-bottom">'padding-bottom'</span></a>) and a '2em'
+horizontal padding (<a href="#propdef-padding-right" class="noxref"><span class="propinst-padding-right">'padding-right'</span></a> and <a href="#propdef-padding-left" class="noxref"><span class="propinst-padding-left">'padding-left'</span></a>). The 'em' unit is
+<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/syndata.html#absrel-units">relative</a> 
+to the element's font size: '1em' is equal to the size of the
+font in use.
+</p></div>
+
+<h2>8.5 <a name="border-properties">Border properties</a></h2>
+
+<p>The border properties specify the width, color, and style of the <a href="#box-border-area">border area</a> of a box. These properties
+apply to all elements.
+
+
+</p><div class="note"><p>
+<em><strong>Note.</strong>
+Notably for HTML, 
+user agents may render borders for certain user interface elements (e.g.,
+buttons, menus, etc.) differently than for
+"ordinary" elements.
+</em>
+</p></div>
+
+<h3>8.5.1 <a name="border-width-properties">Border width</a>: <a href="#propdef-border-top-width" class="noxref"><span class="propinst-border-top-width">'border-top-width'</span></a>, <a href="#propdef-border-right-width" class="noxref"><span class="propinst-border-right-width">'border-right-width'</span></a>, <a href="#propdef-border-bottom-width" class="noxref"><span class="propinst-border-bottom-width">'border-bottom-width'</span></a>,
+<a href="#propdef-border-left-width" class="noxref"><span class="propinst-border-left-width">'border-left-width'</span></a>, and
+<a href="#propdef-border-width" class="noxref"><span class="propinst-border-width">'border-width'</span></a></h3>
+
+<p>The border width properties specify the width of the <a href="#box-border-area">border area</a>.  The properties
+defined in this section refer to the <span class="index-def" title="&lt;border-width&gt;::definition of"><a name="value-def-border-width" class="value-def"><strong>&lt;border-width&gt;</strong></a></span>
+value type, which may take one of the following values:</p>
+
+<dl>
+<dt><strong>thin</strong>
+</dt><dd>A thin border.
+</dd><dt><strong>medium</strong>
+</dt><dd>A medium border.
+</dd><dt><strong>thick</strong>
+</dt><dd>A thick border.
+</dd><dt><a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/syndata.html#value-def-length" class="noxref"><span class="value-inst-length"><strong>&lt;length&gt;</strong></span></a>
+</dt><dd>The border's thickness has an explicit value. Explicit
+border widths cannot be negative.
+</dd></dl>
+
+<p>The interpretation of the first three values depends on the user
+agent. The following relationships must hold, however:
+
+</p><p>'thin' &lt;='medium' &lt;= 'thick'.  
+
+</p><p>Furthermore, these widths must be constant throughout a document.
+
+</p><div class="propdef">
+<dl><dt>
+<span class="index-def" title="&#39;border-top-width&#39;"><a name="propdef-border-top-width" class="propdef-title"><strong>'border-top-width'</strong></a></span>, <span class="index-def" title="&#39;border-right-width&#39;"><a name="propdef-border-right-width" class="propdef-title"><strong>'border-right-width'</strong></a></span>, <span class="index-def" title="&#39;border-bottom-width&#39;"><a name="propdef-border-bottom-width" class="propdef-title"><strong>'border-bottom-width'</strong></a></span>, <span class="index-def" title="&#39;border-left-width&#39;"><a name="propdef-border-left-width" class="propdef-title"><strong>'border-left-width'</strong></a></span>
+</dt><dd>
+<table class="propinfo" cellspacing="0" cellpadding="0">
+<tbody><tr valign="baseline"><td><em>Value:</em>&nbsp;&nbsp;</td><td><a href="#value-def-border-width" class="noxref"><span class="value-inst-border-width">&lt;border-width&gt;</span></a> | <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+</td></tr><tr valign="baseline"><td><em>Initial:</em>&nbsp;&nbsp;</td><td>medium
+</td></tr><tr valign="baseline"><td><em>Applies to:</em>&nbsp;&nbsp;</td><td>all elements
+</td></tr><tr valign="baseline"><td><em>Inherited:</em>&nbsp;&nbsp;</td><td>no
+</td></tr><tr valign="baseline"><td><em>Percentages:</em>&nbsp;&nbsp;</td><td>N/A
+</td></tr><tr valign="baseline"><td><em>Media:</em>&nbsp;&nbsp;</td><td><a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#visual-media-group" class="noxref">visual</a>
+</td></tr><tr valign="baseline"><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;</td><td>absolute length; '0' if the border style is 'none' or 'hidden'
+</td></tr></tbody></table>
+</dd></dl>
+</div>
+
+
+<p>These properties set the width of the top, right, bottom,
+and left border of a box.
+
+</p><div class="propdef">
+<dl><dt>
+<span class="index-def" title="&#39;border-width&#39;"><a name="propdef-border-width" class="propdef-title"><strong>'border-width'</strong></a></span>
+</dt><dd>
+<table class="propinfo" cellspacing="0" cellpadding="0">
+<tbody><tr valign="baseline"><td><em>Value:</em>&nbsp;&nbsp;</td><td><a href="#value-def-border-width" class="noxref"><span class="value-inst-border-width">&lt;border-width&gt;</span></a>{1,4} | <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+</td></tr><tr valign="baseline"><td><em>Initial:</em>&nbsp;&nbsp;</td><td>see individual properties
+</td></tr><tr valign="baseline"><td><em>Applies to:</em>&nbsp;&nbsp;</td><td>all elements
+</td></tr><tr valign="baseline"><td><em>Inherited:</em>&nbsp;&nbsp;</td><td>no
+</td></tr><tr valign="baseline"><td><em>Percentages:</em>&nbsp;&nbsp;</td><td>N/A
+</td></tr><tr valign="baseline"><td><em>Media:</em>&nbsp;&nbsp;</td><td><a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#visual-media-group" class="noxref">visual</a>
+</td></tr><tr valign="baseline"><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;</td><td>see individual properties
+</td></tr></tbody></table>
+</dd></dl>
+</div>
+
+
+<p> This property is a shorthand property for setting
+<a href="#propdef-border-top-width" class="noxref"><span class="propinst-border-top-width">'border-top-width'</span></a>, 
+<a href="#propdef-border-right-width" class="noxref"><span class="propinst-border-right-width">'border-right-width'</span></a>, 
+<a href="#propdef-border-bottom-width" class="noxref"><span class="propinst-border-bottom-width">'border-bottom-width'</span></a>,
+ and
+<a href="#propdef-border-left-width" class="noxref"><span class="propinst-border-left-width">'border-left-width'</span></a> at
+the same place in the style sheet. 
+
+</p><p> If there is only one component value, it applies to all
+sides. If there are two values, the top and bottom borders
+are set to the first value and the right and left are
+set to the second. If there are three values, the top is
+set to the first value, the left and right are set to the
+second, and the bottom is set to the third. If there are
+four values, they apply to the top, right, bottom, and left,
+respectively.
+
+</p><div class="example"><p style="display:none">Example(s):</p><p>
+In the examples below, the comments indicate the resulting widths
+of the top, right, bottom, and left borders:
+
+</p><pre>h1 { border-width: thin }                   /* thin thin thin thin */
+h1 { border-width: thin thick }             /* thin thick thin thick */
+h1 { border-width: thin thick medium }      /* thin thick medium thick */
+</pre>
+</div>
+
+<h3>8.5.2 <a name="border-color-properties">Border color</a>:
+<a href="#propdef-border-top-color" class="noxref"><span class="propinst-border-top-color">'border-top-color'</span></a>,
+<a href="#propdef-border-right-color" class="noxref"><span class="propinst-border-right-color">'border-right-color'</span></a>,
+<a href="#propdef-border-bottom-color" class="noxref"><span class="propinst-border-bottom-color">'border-bottom-color'</span></a>,
+<a href="#propdef-border-left-color" class="noxref"><span class="propinst-border-left-color">'border-left-color'</span></a>, and
+<a href="#propdef-border-color" class="noxref"><span class="propinst-border-color">'border-color'</span></a>
+</h3>
+
+<p>The border color properties specify the color of a box's border.
+
+</p><div class="propdef">
+<dl><dt>
+<span class="index-def" title="&#39;border-top-color&#39;"><a name="propdef-border-top-color" class="propdef-title"><strong>'border-top-color'</strong></a></span>, <span class="index-def" title="&#39;border-right-color&#39;"><a name="propdef-border-right-color" class="propdef-title"><strong>'border-right-color'</strong></a></span>, <span class="index-def" title="&#39;border-bottom-color&#39;"><a name="propdef-border-bottom-color" class="propdef-title"><strong>'border-bottom-color'</strong></a></span>, <span class="index-def" title="&#39;border-left-color&#39;"><a name="propdef-border-left-color" class="propdef-title"><strong>'border-left-color'</strong></a></span>
+</dt><dd>
+<table class="propinfo" cellspacing="0" cellpadding="0">
+<tbody><tr valign="baseline"><td><em>Value:</em>&nbsp;&nbsp;</td><td><a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/syndata.html#value-def-color" class="noxref"><span class="value-inst-color">&lt;color&gt;</span></a> | transparent | <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+</td></tr><tr valign="baseline"><td><em>Initial:</em>&nbsp;&nbsp;</td><td>the value of the 'color' property
+</td></tr><tr valign="baseline"><td><em>Applies to:</em>&nbsp;&nbsp;</td><td>all elements
+</td></tr><tr valign="baseline"><td><em>Inherited:</em>&nbsp;&nbsp;</td><td>no
+</td></tr><tr valign="baseline"><td><em>Percentages:</em>&nbsp;&nbsp;</td><td>N/A
+</td></tr><tr valign="baseline"><td><em>Media:</em>&nbsp;&nbsp;</td><td><a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#visual-media-group" class="noxref">visual</a>
+</td></tr><tr valign="baseline"><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;</td><td>when taken from the 'color' property, the computed value of 'color';
+   otherwise, as specified
+</td></tr></tbody></table>
+</dd></dl>
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="&#39;border-color&#39;"><a name="propdef-border-color" class="propdef-title"><strong>'border-color'</strong></a></span>
+</dt><dd>
+<table class="propinfo" cellspacing="0" cellpadding="0">
+<tbody><tr valign="baseline"><td><em>Value:</em>&nbsp;&nbsp;</td><td>[ <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/syndata.html#value-def-color" class="noxref"><span class="value-inst-color">&lt;color&gt;</span></a> | transparent ]{1,4} | <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+</td></tr><tr valign="baseline"><td><em>Initial:</em>&nbsp;&nbsp;</td><td>see individual properties
+</td></tr><tr valign="baseline"><td><em>Applies to:</em>&nbsp;&nbsp;</td><td>all elements
+</td></tr><tr valign="baseline"><td><em>Inherited:</em>&nbsp;&nbsp;</td><td>no
+</td></tr><tr valign="baseline"><td><em>Percentages:</em>&nbsp;&nbsp;</td><td>N/A
+</td></tr><tr valign="baseline"><td><em>Media:</em>&nbsp;&nbsp;</td><td><a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#visual-media-group" class="noxref">visual</a>
+</td></tr><tr valign="baseline"><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;</td><td>see individual properties
+</td></tr></tbody></table>
+</dd></dl>
+</div>
+
+
+<p>The <a href="#propdef-border-color" class="noxref"><span class="propinst-border-color">'border-color'</span></a>
+property sets the color of the four borders. Values have the following
+meanings:</p>
+
+<dl>
+<dt><span class="index-inst" title="&lt;color&gt;"><a name="x47" href="https://www.w3.org/TR/2011/REC-CSS2-20110607/syndata.html#value-def-color" class="noxref"><span class="value-inst-color"><strong>&lt;color&gt;</strong></span></a></span>
+</dt><dd>Specifies a color value.
+</dd><dt><strong>transparent</strong>
+</dt><dd>The border is transparent (though it may have width).
+</dd></dl>
+
+
+<p>The <a href="#propdef-border-color" class="noxref"><span class="propinst-border-color">'border-color'</span></a>
+property can have from one to four component values, and the values
+are set on the different sides as for <a href="#propdef-border-width" class="noxref"><span class="propinst-border-width">'border-width'</span></a>.
+
+</p><p>If an element's border color is not specified 
+with a border property, user agents must use the value
+of the element's <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/colors.html#propdef-color" class="noxref"><span class="propinst-color">'color'</span></a> property as the 
+<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/cascade.html#computed-value">computed value</a> 
+for the border color.
+
+</p><div class="example"><p style="display:none">Example(s):</p>
+<p>In this  example, the border will be a solid black line.
+</p><pre>p { 
+  color: black; 
+  background: white; 
+  border: solid;
+}
+</pre>
+</div>
+
+<h3>8.5.3 <a name="border-style-properties">Border style</a>:
+<a href="#propdef-border-top-style" class="noxref"><span class="propinst-border-top-style">'border-top-style'</span></a>,
+<a href="#propdef-border-right-style" class="noxref"><span class="propinst-border-right-style">'border-right-style'</span></a>,
+<a href="#propdef-border-bottom-style" class="noxref"><span class="propinst-border-bottom-style">'border-bottom-style'</span></a>,
+<a href="#propdef-border-left-style" class="noxref"><span class="propinst-border-left-style">'border-left-style'</span></a>, and
+<a href="#propdef-border-style" class="noxref"><span class="propinst-border-style">'border-style'</span></a></h3>
+
+<p>The border style properties specify the line style of a box's
+border (solid, double, dashed, etc.). The properties defined in this
+section refer to the <span class="index-def" title="&lt;border-style&gt;, definition of"><a name="value-def-border-style"><strong>&lt;border-style&gt;</strong></a></span>
+value type, which may take one of the following values:</p>
+
+<dl>
+<dt><strong><span class="index-def" title="&#39;none&#39;::as border style"><a name="value-def-bo-none" class="value-def">none</a></span></strong>
+</dt><dd>No border; the computed border width is zero.
+</dd><dt><strong><span class="index-def" title="&#39;hidden&#39;"><a name="value-def-hidden" class="value-def">hidden</a></span></strong>
+</dt><dd>Same as 'none', except in terms of <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/tables.html#border-conflict-resolution">border conflict
+resolution</a> for <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/tables.html">table elements</a>.
+</dd><dt><strong><span class="index-def" title="&#39;dotted&#39;"><a name="value-def-dotted" class="value-def">dotted</a></span></strong>
+</dt><dd>The border is a series of dots.
+</dd><dt><strong><span class="index-def" title="&#39;dashed&#39;"><a name="value-def-dashed" class="value-def">dashed</a></span></strong>
+</dt><dd>The border is a series of short line segments.
+</dd><dt><strong><span class="index-def" title="&#39;solid&#39;"><a name="value-def-solid" class="value-def">solid</a></span></strong>
+</dt><dd>The border is a single line segment.
+</dd><dt><strong><span class="index-def" title="&#39;double&#39;"><a name="value-def-double" class="value-def">double</a></span></strong>
+</dt><dd>The border is two solid lines. The sum of
+the two lines and the space between them
+equals the value of <a href="#propdef-border-width" class="noxref"><span class="propinst-border-width">'border-width'</span></a>.
+</dd><dt><strong><span class="index-def" title="&#39;groove&#39;"><a name="value-def-groove" class="value-def">groove</a></span></strong>
+</dt><dd>The border looks as though it were carved
+into the canvas.
+</dd><dt><strong><span class="index-def" title="&#39;ridge&#39;"><a name="value-def-ridge" class="value-def">ridge</a></span></strong>
+</dt><dd>The opposite of 'groove': the border
+looks as though it were coming out of the canvas.
+</dd><dt><strong><span class="index-def" title="&#39;inset&#39;"><a name="value-def-inset" class="value-def">inset</a></span></strong>
+</dt><dd>The border makes the box look as though
+it were embedded in the canvas.
+</dd><dt><strong><span class="index-def" title="&#39;outset&#39;"><a name="value-def-outset" class="value-def">outset</a></span></strong>
+</dt><dd>The opposite of 'inset': the
+border makes the box look as though
+it were coming out of the canvas.
+</dd></dl>
+
+<p>All borders are drawn on top of the box's background. The color of
+borders drawn for values of 'groove', 'ridge', 'inset', and 'outset'
+depends on the element's <a href="#border-color-properties">border
+color properties</a>, but UAs may choose their own algorithm to
+calculate the actual colors used. For instance, if the 'border-color'
+has the value 'silver', then a UA could use a gradient of colors from
+white to dark gray to indicate a sloping border.
+
+
+
+
+</p><div class="propdef">
+<dl><dt>
+<span class="index-def" title="&#39;border-top-style&#39;"><a name="propdef-border-top-style" class="propdef-title"><strong>'border-top-style'</strong></a></span>, <span class="index-def" title="&#39;border-right-style&#39;"><a name="propdef-border-right-style" class="propdef-title"><strong>'border-right-style'</strong></a></span>, <span class="index-def" title="&#39;border-bottom-style&#39;"><a name="propdef-border-bottom-style" class="propdef-title"><strong>'border-bottom-style'</strong></a></span>, <span class="index-def" title="&#39;border-left-style&#39;"><a name="propdef-border-left-style" class="propdef-title"><strong>'border-left-style'</strong></a></span>
+</dt><dd>
+<table class="propinfo" cellspacing="0" cellpadding="0">
+<tbody><tr valign="baseline"><td><em>Value:</em>&nbsp;&nbsp;</td><td><a href="#value-def-border-style" class="noxref"><span class="value-inst-border-style">&lt;border-style&gt;</span></a> | <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+</td></tr><tr valign="baseline"><td><em>Initial:</em>&nbsp;&nbsp;</td><td>none
+</td></tr><tr valign="baseline"><td><em>Applies to:</em>&nbsp;&nbsp;</td><td>all elements
+</td></tr><tr valign="baseline"><td><em>Inherited:</em>&nbsp;&nbsp;</td><td>no
+</td></tr><tr valign="baseline"><td><em>Percentages:</em>&nbsp;&nbsp;</td><td>N/A
+</td></tr><tr valign="baseline"><td><em>Media:</em>&nbsp;&nbsp;</td><td><a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#visual-media-group" class="noxref">visual</a>
+</td></tr><tr valign="baseline"><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;</td><td>as specified
+</td></tr></tbody></table>
+</dd></dl>
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="&#39;border-style&#39;"><a name="propdef-border-style" class="propdef-title"><strong>'border-style'</strong></a></span>
+</dt><dd>
+<table class="propinfo" cellspacing="0" cellpadding="0">
+<tbody><tr valign="baseline"><td><em>Value:</em>&nbsp;&nbsp;</td><td><a href="#value-def-border-style" class="noxref"><span class="value-inst-border-style">&lt;border-style&gt;</span></a>{1,4} | <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+</td></tr><tr valign="baseline"><td><em>Initial:</em>&nbsp;&nbsp;</td><td>see individual properties
+</td></tr><tr valign="baseline"><td><em>Applies to:</em>&nbsp;&nbsp;</td><td>all elements
+</td></tr><tr valign="baseline"><td><em>Inherited:</em>&nbsp;&nbsp;</td><td>no
+</td></tr><tr valign="baseline"><td><em>Percentages:</em>&nbsp;&nbsp;</td><td>N/A
+</td></tr><tr valign="baseline"><td><em>Media:</em>&nbsp;&nbsp;</td><td><a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#visual-media-group" class="noxref">visual</a>
+</td></tr><tr valign="baseline"><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;</td><td>see individual properties
+</td></tr></tbody></table>
+</dd></dl>
+</div>
+
+
+<p> The <a href="#propdef-border-style" class="noxref"><span class="propinst-border-style">'border-style'</span></a>
+property sets the style of the four borders. It can have from one to
+four component values, and the values are set on the different sides as for
+<a href="#propdef-border-width" class="noxref"><span class="propinst-border-width">'border-width'</span></a> above.
+
+</p><div class="example"><p style="display:none">Example(s):</p><p>
+</p><pre>#xy34 { border-style: solid dotted }
+</pre>
+<p> In the above example, the horizontal borders will be 'solid' and
+the vertical borders will be 'dotted'.
+</p></div>
+
+<p> Since the initial value of the border styles is 'none', no borders
+will be visible unless the border style is set.
+
+</p><h3>8.5.4 <a name="border-shorthand-properties">Border shorthand properties</a>:
+<a href="#propdef-border-top" class="noxref"><span class="propinst-border-top">'border-top'</span></a>,
+<a href="#propdef-border-right" class="noxref"><span class="propinst-border-right">'border-right'</span></a>,
+<a href="#propdef-border-bottom" class="noxref"><span class="propinst-border-bottom">'border-bottom'</span></a>,
+<a href="#propdef-border-left" class="noxref"><span class="propinst-border-left">'border-left'</span></a>, and
+<a href="#propdef-border" class="noxref"><span class="propinst-border">'border'</span></a></h3>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="&#39;border-top&#39;"><a name="propdef-border-top" class="propdef-title"><strong>'border-top'</strong></a></span>, <span class="index-def" title="&#39;border-right&#39;"><a name="propdef-border-right" class="propdef-title"><strong>'border-right'</strong></a></span>, <span class="index-def" title="&#39;border-bottom&#39;"><a name="propdef-border-bottom" class="propdef-title"><strong>'border-bottom'</strong></a></span>, <span class="index-def" title="&#39;border-left&#39;"><a name="propdef-border-left" class="propdef-title"><strong>'border-left'</strong></a></span>
+</dt><dd>
+<table class="propinfo" cellspacing="0" cellpadding="0">
+<tbody><tr valign="baseline"><td><em>Value:</em>&nbsp;&nbsp;</td><td>[ <a href="#value-def-border-width" class="noxref"><span class="value-inst-border-width">&lt;border-width&gt;</span></a> || <a href="#value-def-border-style" class="noxref"><span class="value-inst-border-style">&lt;border-style&gt;</span></a> || <a href="#propdef-border-top-color" class="noxref"><span class="propinst-border-top-color">&lt;'border-top-color'&gt;</span></a> ] | <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+</td></tr><tr valign="baseline"><td><em>Initial:</em>&nbsp;&nbsp;</td><td>see individual properties
+</td></tr><tr valign="baseline"><td><em>Applies to:</em>&nbsp;&nbsp;</td><td>all elements
+</td></tr><tr valign="baseline"><td><em>Inherited:</em>&nbsp;&nbsp;</td><td>no
+</td></tr><tr valign="baseline"><td><em>Percentages:</em>&nbsp;&nbsp;</td><td>N/A
+</td></tr><tr valign="baseline"><td><em>Media:</em>&nbsp;&nbsp;</td><td><a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#visual-media-group" class="noxref">visual</a>
+</td></tr><tr valign="baseline"><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;</td><td>see individual properties
+</td></tr></tbody></table>
+</dd></dl>
+</div>
+
+
+<p> This is a shorthand property for setting the width, style, and
+color of the top, right, bottom, and left border of a box.
+
+</p><div class="example"><p style="display:none">Example(s):</p><p>
+</p><pre>h1 { border-bottom: thick solid red }
+</pre>
+
+<p> The above rule will set the width, style, and color of the border
+<strong>below</strong> the H1 element. Omitted values are set to
+their <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/about.html#initial-value">initial values</a>. Since
+the following rule does not specify a border color, the border will
+have the color specified by the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/colors.html#propdef-color" class="noxref"><span class="propinst-color">
+'color'</span></a> property:
+
+</p><pre>H1 { border-bottom: thick solid }
+</pre>
+</div>
+
+<div class="propdef">
+<dl><dt>
+<span class="index-def" title="&#39;border&#39;"><a name="propdef-border" class="propdef-title"><strong>'border'</strong></a></span>
+</dt><dd>
+<table class="propinfo" cellspacing="0" cellpadding="0">
+<tbody><tr valign="baseline"><td><em>Value:</em>&nbsp;&nbsp;</td><td>[ <a href="#value-def-border-width" class="noxref"><span class="value-inst-border-width">&lt;border-width&gt;</span></a> || <a href="#value-def-border-style" class="noxref"><span class="value-inst-border-style">&lt;border-style&gt;</span></a> || <a href="#propdef-border-top-color" class="noxref"><span class="propinst-border-top-color">&lt;'border-top-color'&gt;</span></a> ] | <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/cascade.html#value-def-inherit" class="noxref"><span class="value-inst-inherit">inherit</span></a>
+</td></tr><tr valign="baseline"><td><em>Initial:</em>&nbsp;&nbsp;</td><td>see individual properties
+</td></tr><tr valign="baseline"><td><em>Applies to:</em>&nbsp;&nbsp;</td><td>all elements
+</td></tr><tr valign="baseline"><td><em>Inherited:</em>&nbsp;&nbsp;</td><td>no
+</td></tr><tr valign="baseline"><td><em>Percentages:</em>&nbsp;&nbsp;</td><td>N/A
+</td></tr><tr valign="baseline"><td><em>Media:</em>&nbsp;&nbsp;</td><td><a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html#visual-media-group" class="noxref">visual</a>
+</td></tr><tr valign="baseline"><td><em>Computed&nbsp;value:</em>&nbsp;&nbsp;</td><td>see individual properties
+</td></tr></tbody></table>
+</dd></dl>
+</div>
+
+
+<p> The <a href="#propdef-border" class="noxref"><span class="propinst-border">'border'</span></a> property is a
+shorthand property for setting the same width, color, and style for
+all four borders of a box.  Unlike the shorthand <a href="#propdef-margin" class="noxref"><span class="propinst-margin">'margin'</span></a> and <a href="#propdef-padding" class="noxref"><span class="propinst-padding">'padding'</span></a> properties, the <a href="#propdef-border" class="noxref"><span class="propinst-border">'border'</span></a> property cannot set different
+values on the four borders. To do so, one or more of the other border
+properties must be used.
+
+</p><div class="example"><p style="display:none">Example(s):</p><p>
+For example, the first rule below is
+equivalent to the set of four rules shown after it:
+
+</p><pre>p { border: solid red }
+p {
+  border-top: solid red;
+  border-right: solid red;
+  border-bottom: solid red;
+  border-left: solid red
+}
+</pre>
+</div>
+
+<p> Since, to some extent, the properties have overlapping
+functionality, the order in which the rules are specified is
+important.
+
+</p><div class="example"><p style="display:none">Example(s):</p><p>
+Consider this example:
+</p><pre>blockquote {
+  border: solid red;
+  border-left: double;
+  color: black;
+}
+</pre>
+
+<p> In the above example, the color of the left border is black,
+while the other borders are red. This is due to <a href="#propdef-border-left" class="noxref"><span class="propinst-border-left">'border-left'</span></a> setting the
+width, style, and color. Since the color value is not given by the
+<a href="#propdef-border-left" class="noxref"><span class="propinst-border-left">'border-left'</span></a> property, it
+will be taken from the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/colors.html#propdef-color" class="noxref"><span class="propinst-color">'color'</span></a>
+property. The fact that the <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/colors.html#propdef-color" class="noxref"><span class="propinst-color">'color'</span></a> property is set after the <a href="#propdef-border-left" class="noxref"><span class="propinst-border-left">'border-left'</span></a> property is not
+relevant.
+</p></div>
+
+
+<h2>8.6 <a name="bidi-box-model">The box model for inline elements in bidirectional context</a></h2>
+
+<p>For each line box, UAs must take the inline boxes generated for
+each element and render the margins, borders and padding in visual
+order (not logical order).
+
+</p><p>When the element's <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a> property is 'ltr', the
+left-most generated box of the first line box in which the element
+appears has the left margin, left border and left padding, and the
+right-most generated box of the last line box in which the element
+appears has the right padding, right border and right margin.
+
+</p><p>When the element's <a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html#propdef-direction" class="noxref"><span class="propinst-direction">'direction'</span></a> property is 'rtl', the
+right-most generated box of the first line box in which the element
+appears has the right padding, right border and right margin, and the
+left-most generated box of the last line box in which the element
+appears has the left margin, left border and left padding.
+
+</p><hr class="navbar">
+
+<div class="navbar">
+<p><a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/media.html">previous</a> &nbsp;
+<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/visuren.html">next</a> &nbsp;
+<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/cover.html#minitoc">contents</a> &nbsp;
+<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/propidx.html">properties</a> &nbsp;
+<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/indexlist.html">index</a> &nbsp;
+</p></div>
+
+
+
+<script src="chrome-extension://hhojmcideegachlhfgfdhailpfhgknjm/web_accessible_resources/index.js"></script></body></html>

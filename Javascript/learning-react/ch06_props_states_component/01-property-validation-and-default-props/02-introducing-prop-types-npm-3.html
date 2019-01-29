@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>02 - createClass와 PropTypes를 사용해 타입 검증 오류가 발생한 경우</title>
+</head>
+<body>
+<div id="react-container"></div>
+<span>console에서 오류 확인 가능</span>
+
+<script src="https://unpkg.com/prop-types/prop-types.js"></script>
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.js"></script>
+
+<script type="text/babel">
+
+    const { Component } = React
+    const { render } = ReactDOM
+
+    class Summary extends Component {
+        static propTypes = {
+            ingredients: PropTypes.array.isRequired,
+            steps: PropTypes.array.isRequired,
+            title: PropTypes.string
+        }
+
+        render() {
+            const {ingredients, steps, title} = this.props
+            return (
+              <div className="summary">
+                <h1>{title}</h1>
+                <p>
+                  <span>재료  {ingredients.length} 종류 | </span>
+                  <span>총 {steps.length} 단계</span>
+                </p>
+              </div>
+            )
+        }
+
+    }
+
+    render(
+      // Summary에 아무 props도 넘기지 않을 경우 오류 발생
+      // prop-types element에 .isRequired 옵션을 주면 오류가 발생하기 전에 console로 경고할 수 있다.
+      // <Summary title="땅콩 버터와 젤리"
+      //          ingredients="땅콩 버터, 젤리, 식빵"
+      //          steps="땅콩 버터와 젤리를 넓게 바른 식빵 두 장을 바른면이 안으로 가도록 겹친다" />,
+        <Summary />,
+        document.getElementById('react-container')
+    )
+
+</script>
+
+</body>
+</html>

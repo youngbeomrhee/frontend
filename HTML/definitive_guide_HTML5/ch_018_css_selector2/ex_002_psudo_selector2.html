@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>psudo selector</title>
+    <style>
+        div {
+            border: 1px solid black;
+            margin: 10px
+        }
+    </style>
+</head>
+<body>
+    <h2>selector 조합하기</h2>
+    <div class="a" data-x="pre1-x-1suf" id="id1">class="a" data-x="pre1-x-1suf" id="id1"</div>
+    <div class="a b" data-x="pre2-x-2suf">class="a b" data-x="pre2-x-2suf"</div>
+    <div class="a b c" data-x="pre3-x-3suf" id="id2">class="a b c" data-x="pre3-x-3suf" id="id2"</div>
+    <div id="container1">
+        id="container1"
+        <div class="b" data-x="x-suf">class="b" data-x="x-suf"</div>
+        <a>test</a>
+        <div class="b c" data-x="pre-x">class="b c" data-x="pre-x"</div>
+    </div>
+    <div id="container2">
+        id="container2"
+        <div class="c" data-x="x">class="c" data-x="x"</div>
+    </div>
+    <script>
+        const $ = document.querySelectorAll.bind(document);
+        console.log(`$(':first-child') -> `, $(':first-child'));
+        console.log(`$('div:first-child') -> `, $('div:first-child'));
+        console.log(`$(':last-child') -> `, $(':last-child'));
+        console.log(`$('div:last-child') -> `, $('div:last-child'));
+        console.log(`$(':only-child') -> `, $(':only-child'));
+        console.log(`$(':only-of-type') -> `, $(':only-of-type'));  // The :only-of-type CSS pseudo-class represents an element that has no "siblings" of the same type.
+        console.log(`$(':nth-child(2)') -> `, $(':nth-child(2)'));
+        console.log(`$(':nth-last-child(2)') -> `, $(':nth-last-child(2)'));
+        console.log(`$(':nth-of-type(2)') -> `, $(':nth-of-type(2)'));
+        console.log(`$(':nth-last-of-type(2)') -> `, $(':nth-last-of-type(2)'));
+    </script>
+</body>
+</html>

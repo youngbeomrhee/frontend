@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page Loading test</title>
+    <script>
+        alert('Script in head has been running!');
+    </script>
+</head>
+<body>
+    <h1>Before Script 1</h1>
+    <script>
+        alert('Script 1 in body has been running!');
+    </script>
+    <h1>Before Script 2</h1>
+    <script defer>
+        alert('Script 2 in body has been running!');
+        function deferedFunc() {
+            alert('deferedFunc has called');
+        }
+        alert('After deferedFunc has called');
+        function deferedFunc2() {
+            alert('deferedFunc2 has called');
+        }
+    </script>
+    <h1>Before Script 3</h1>
+    <script defer>
+        alert('Script 3 in body has been running!');
+        document.write('embeded string');
+    </script>
+    <h1>Before Script 4</h1>
+    <script>
+        alert('Script 4 in body has been running!');
+        deferedFunc();
+        deferedFunc2();
+    </script>
+</body>
+</html>

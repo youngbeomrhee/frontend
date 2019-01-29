@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello React</title>
+</head>
+<body>
+<div id="container"></div>
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.js"></script>
+
+<script type="text/babel">
+    function BoilingVerdict(props) {
+        if(props.celsius >= 100) {
+            return <p>The water would boil.</p>;
+        }
+        return <p>The water would not boil.</p>;
+    }
+
+    class Calculator extends React.Component {
+        constructor(props) {
+            super(props);
+            this.handleChange = this.handleChange.bind(this);
+            this.state = {temperature: ''};
+        }
+        handleChange(e) {
+            this.setState({temperature: e.target.value});
+        }
+        render() {
+            const temperature = this.state.temperature;
+            return (
+                <fieldset>
+                    <legend>Enter temperature in Celsius:</legend>
+                    <input
+                        value={temperature}
+                        onChange={this.handleChange} />
+                    <BoilingVerdict celsius={parseFloat(temperature)} />
+                </fieldset>
+            );
+        }
+    }
+
+    ReactDOM.render(
+            <Calculator />,
+            document.getElementById('container')
+    );
+</script>
+</body>
+</html>

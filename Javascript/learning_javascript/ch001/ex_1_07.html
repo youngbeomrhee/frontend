@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.9.25/paper-full.min.js"></script>
+    <style>
+        #mainCanvas {
+            width: 400px;
+            height: 400px;
+            border: solid 1px black;
+        }
+    </style>
+</head>
+<body>
+<canvas id="mainCanvas"></canvas>
+<script>
+    'use strict';
+    paper.install(window);
+    paper.setup(document.getElementById('mainCanvas'));
+
+    // TODO
+    var c = Shape.Circle(100, 100, 50);
+    c.fillColor = 'green';
+    Shape.Circle(200, 200, 50).fillColor = 'red';
+    Shape.Circle(300, 300, 50).fillColor = 'blue';
+    paper.view.draw();
+</script>
+</body>
+</html>

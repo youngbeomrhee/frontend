@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello React</title>
+</head>
+<body>
+<div id="container"></div>
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.js"></script>
+
+<script type="text/babel">
+    function Welcome(props) {
+        return <h1>Hello, {props.name}</h1>;
+    }
+    ReactDOM.render(
+        <Welcome name="Sara" />,
+        document.getElementById('container')
+    );
+</script>
+</body>
+</html>

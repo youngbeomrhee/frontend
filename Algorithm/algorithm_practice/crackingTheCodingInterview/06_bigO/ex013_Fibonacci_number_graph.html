@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title value="Amortized big-O"></title>
+</head>
+<body>
+<h2>Amortized Big-O</h2>
+<div>원소의 개수 : <input id="eleLength" value="100000"/><input type="button" id="setGraph" value="실행" style="margin-left:3px"/></div>
+<div id="chartContainer" style="height: 400px; width: 100%;"></div>
+<div id="reportArea"></div>
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="ex013_Fibonacci_number.js"></script>
+<script>
+
+
+    function setChart(eleLength, func) {
+        let data= func ? func(eleLength) : [{y:0}],
+			chart = new CanvasJS.Chart("chartContainer", {
+				animationEnabled: true,
+				theme: "light2",
+				axisY:{
+					includeZero: false
+				},
+				data: [{
+					type: "line",
+					dataPoints: data
+				}]
+			});
+        chart.render();
+
+        return data;
+	}
+
+
+	function showReport(data, showArea) {
+        let values = data.map(ele=>ele.y),
+			average=values.reduce((p, n)=>p+n)/values.length,
+            max=values.reduce((max, curr)=>curr>max?curr:max, Number.MIN_VALUE),
+            min=values.reduce((min, curr)=>curr<min?curr:min, Number.MAX_VALUE);
+
+        showArea.innerHTML = `max : ${max}, min : ${min}, average : ${average}`;
+	}
+
+	const $ = document.querySelector.bind(document);
+	$('#setGraph').addEventListener('click', _=>{
+        setChart(0);
+		let eleLength =  $('#eleLength').value;
+        showReport(setChart(eleLength, func), $('#reportArea'));
+	});
+
+	(_=>showReport(setChart(1000000, func), $('#reportArea')))();
+</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+@charset "UTF-8";
+
+
+body	{margin: 0;
+	font-family: '맑은 고딕', 'Apple SD Gothic Neo', sans-serif}
+
+
+/* 사이트 이름 */
+.site h1 a	{color: #000000;
+	text-decoration: none}
+
+.site h1	{margin: 0;
+	font-size: 30px}
+
+
+/* 내비게이션 */
+.menu ul	{margin: 0;
+	padding: 0;
+	list-style: none}
+
+.menu li a	{display: block;
+	padding: 10px 15px;
+	color: #000000;
+	font-size: 14px;
+	text-decoration: none}
+
+.menu li a:hover	{background-color: #eeeeee}
+
+.menu ul:after	{content: "";
+	display: block;
+	clear: both}
+
+.menu li	{float: left;
+	width: auto}
+
+
+/* 헤더 그림 */
+.topimg	{max-width: 100%;
+	height: auto;
+	vertical-align: bottom}
+
+
+/* 공지사항 */
+.news h1	{margin-top: 0;
+	margin-bottom: 5px;
+	font-size: 18px;
+	color: #666666}
+
+.news ul	{margin: 0;
+	padding: 0;
+	list-style: none}
+
+.news li a	{display: block;
+	padding: 5px;
+	border-bottom: dotted 2px #dddddd;
+	color: #000000;
+	font-size: 14px;
+	text-decoration: none}
+
+.news li a:hover	{background-color: #eeeeee}
+
+.news time	{color: #888888;
+	font-weight: bold}
+
+.news a:after	{content: "";
+	display: block;
+	clear: both}
+
+.news time	{float: left;
+	width: 60px}
+
+.news .text	{float: none;
+	width: auto;
+	margin-left: 60px}
+
+
+
+/* 저작권 */
+.copyright p	{margin: 0;
+	color: #666666;
+	font-size: 14px}
+
+
+/* BOX5를 바의 형태로 디자인 */
+.box5	{padding-top: 15px;
+	padding-bottom: 15px;
+	background-color: #dddddd}
+
+
+/* 박스의 왼쪽 오른쪽 */
+.boxA, .box4, .box5
+	{padding-left: 15px;
+	padding-right: 15px}
+
+
+/* 박스의 위 아래 */
+.boxA	{padding-top: 20px;
+	padding-bottom: 10px}
+
+.box4	{padding-top: 20px;
+	padding-bottom: 20px}
+
+
+
+/* ########### 599px 이하 ########### */
+@media (max-width: 599px) {
+
+/* 내비게이션 */
+.menu li a	{padding: 10px 7px;
+	font-size: 11px}
+
+
+}
+
+
+/* ########### 768px 이상 ########### */
+@media (min-width: 768px) {
+
+/* BOX1과 BOX2를 가로 정렬하는 설정 */
+.boxA:after	{content: "";
+	display: block;
+	clear: both}
+
+.box1	{float: left;
+	width: auto}
+
+.box2	{float: right;
+	width: auto}
+
+}
+
+
+/* ########### 1190px 이상 ########### */
+@media (min-width: 1190px) {
+
+}
+

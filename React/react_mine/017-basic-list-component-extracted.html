@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello React</title>
+</head>
+<body>
+<div id="container"></div>
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.js"></script>
+
+<script type="text/babel">
+    function ListItem(props) {
+        return <li>{props.value}</li>;
+    }
+
+    function NumberList(props) {
+        const numbers = props.numbers,
+            listItems = numbers.map((number) => <ListItem key={number.toString()} value={number} />);
+        return (
+            <ul>{listItems}</ul>
+        );
+    }
+
+    const numbers = [1, 2, 3, 4, 5];
+    ReactDOM.render(
+            <NumberList numbers={numbers} />,
+            document.getElementById('container')
+    );
+</script>
+</body>
+</html>

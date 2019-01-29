@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1-6</title>
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .box {
+            border: 1px solid black;
+            /*line-height: 200px;*/
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            .body-content {
+                line-height: 600px;
+            }
+            .boxA:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+            .box1 {
+                float: left;
+                width: 100%;
+                line-height: 100px;
+            }
+            .box2 {
+                float: left;
+                width: 20%;
+            }
+            .box3 {
+                float: left;
+                width: 60%;
+            }
+            .box4 {
+                float: left;
+                width: 20%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+1-6 반응형 웹 디자인과 관련된 설정 - 반응형 웹 디자인 응용
+<div class="boxA">
+    <div class="box1 box">
+        BOX1
+    </div>
+    <div class="box2 box body-content">
+        BOX2
+    </div>
+    <div class="box3 box body-content">
+        BOX3
+    </div>
+    <div class="box4 box body-content">
+        BOX4
+    </div>
+</div>
+</body>
+</html>

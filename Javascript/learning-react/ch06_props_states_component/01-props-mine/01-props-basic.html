@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>02 - createClass와 PropTypes를 사용해 타입 검증 오류가 발생한 경우</title>
+</head>
+<body>
+<div id="react-container"></div>
+<span>console에서 오류 확인 가능</span>
+
+<script src="https://unpkg.com/prop-types/prop-types.js"></script>
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.js"></script>
+<script type="text/babel">
+
+
+    class Child extends Component {
+
+    }
+    class Parent extends Component {
+        render() {
+
+        }
+    }
+
+    ReactDOM.render(<Parent />, document.getElementById('react-container'));
+</script>
+</body>
+</html>

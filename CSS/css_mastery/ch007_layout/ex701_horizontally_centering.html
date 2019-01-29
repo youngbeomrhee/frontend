@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>디자인을 가로 중간에 배치하기</title>
+    <style>
+        .content {
+            outline: 1px solid;
+        }
+        .wrapper {
+            width: 720px;
+            margin: 0 auto;
+        }
+        .wrapper2 {
+            text-align: center;
+            /*outline: 1px solid silver;*/
+        }
+        .wrapper2-inner {
+            width: 720px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .wrapper3 {
+            width: 720px;
+            position: relative;
+            left: 50%;
+            margin-left: -360px;
+        }
+    </style>
+</head>
+<body>
+<h1>디자인을 가로 중간에 배치하기</h1>
+<section class="wrapper content">
+    <h3>auto 마진 이용 방법</h3>
+    <p>가로너비 폭을 지정하고 수평 마진을 auto로 지정하기만 하면 된다.</p>
+    <code>
+        .wrapper {
+            width: 720px;
+            margin: 0 auto;
+        }
+    </code>
+</section>
+<div class="wrapper2">
+    <section class="wrapper2-inner content">
+        <h3>text-align 이용 방법 (hack)</h3>
+        <p>부모 element에서 모든 자식 element를 가운데로 정렬시켰다가 다시 원래대로 좌측으로 정렬시킨다.</p>
+        <code>
+            .wrapper2 {
+               text-align: center;
+            }<br>
+            .wrapper2-inner {
+                width: 720px;
+                margin: 0 auto;
+                text-align: left;
+            }
+        </code>
+    </section>
+</div>
+<section class="wrapper3 content">
+    <h3>포지셔닝과 음수 마진값 이용 방법</h3>
+    <p>
+        position: relative;
+        left: 50%;
+        으로 wrapper3의 왼쪽 끝이 페이지의 중간으로 오게 하고
+    </p>
+    <p>
+        margin-left: -360px;
+        으로 wrapper3의 중간 점이 페이지 가운데로 오게 한다.
+    </p>
+    <code>
+        .wrapper3 {
+            width: 720px;
+            position: relative;
+            left: 50%;
+            margin-left: -360px;
+        }
+    </code>
+</section>
+</body>
+</html>

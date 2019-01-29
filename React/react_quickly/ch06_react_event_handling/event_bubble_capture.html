@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event</title>
+    <style>
+        div {
+            border:1px solid black;
+            color: black;
+            padding: 10px
+        }
+    </style>
+</head>
+<body>
+<h1>Bubble phase - from ancestors to the target</h1>
+<h3>click div1~3 and watch the phase</h3>
+<div onclick="alert('bubble1')">
+    div1
+    <div onclick="alert('bubble2')">
+        div2
+        <div onclick="alert('bubble3')">
+            div3
+        </div>
+    </div>
+</div>
+
+<h1>Event phase - from target to ancestors</h1>
+<h3>click div1~3 and watch the phase</h3>
+<div id="capture1" style="border:1px solid black;color: black">
+    div1
+    <div id="capture2" style="border:1px solid black;color: black">
+        div2
+        <div id="capture3" style="border:1px solid black;color: black">
+            div3
+        </div>
+    </div>
+</div>
+<script>
+    document.querySelector('#capture1').addEventListener('click', () => { alert('capture1'); }, true);
+    document.querySelector('#capture2').addEventListener('click', () => { alert('capture2'); }, true);
+    document.querySelector('#capture3').addEventListener('click', () => { alert('capture3'); }, true);
+</script>
+</body>
+</html>

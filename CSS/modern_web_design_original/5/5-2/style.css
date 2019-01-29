@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+
+body	{font-family: '맑은 고딕', 'Apple SD Gothic Neo', sans-serif}
+
+
+/* 사이트 이름 */
+.site h1 a	{color: #000000;
+	text-decoration: none}
+
+.site h1	{margin: 0;
+	font-size: 30px}
+
+
+/* 내비게이션 */
+.menu ul	{margin: 0;
+	padding: 0;
+	list-style: none}
+
+.menu li a	{display: block;
+	padding: 5px;
+	color: #000000;
+	font-size: 14px;
+	text-decoration: none}
+
+.menu li a:hover	{background-color: #eeeeee}
+
+.menu ul:after	{content: "";
+	display: block;
+	clear: both}
+
+.menu li	{float: left;
+	width: auto}
+
+
+/* 헤더 그림 */
+.topimg	{max-width: 100%;
+	height: auto;
+	vertical-align: bottom}
+
+
+/* 공지사항 */
+.news h1	{margin-top: 0;
+	margin-bottom: 5px;
+	font-size: 18px;
+	color: #666666}
+
+.news ul	{margin: 0;
+	padding: 0;
+	list-style: none}
+
+.news li a	{display: block;
+	padding: 5px;
+	border-bottom: dotted 2px #dddddd;
+	color: #000000;
+	font-size: 14px;
+	text-decoration: none}
+
+.news li a:hover	{background-color: #eeeeee}
+
+.news time	{margin-right: 10px;
+	color: #888888;
+	font-weight: bold}
+
+
+
+/* 저작권 */
+.copyright p	{margin: 0;
+	color: #666666;
+	font-size: 14px}
+
+
+
+
+/* ########### 768px 이상 ########### */
+@media (min-width: 768px) {
+
+/* BOX1과 BOX2를 가로 정렬하는 설정 */
+.boxA:after	{content: "";
+	display: block;
+	clear: both}
+
+.box1	{float: left;
+	width: 50%}
+
+.box2	{float: left;
+	width: 50%}
+
+}
+

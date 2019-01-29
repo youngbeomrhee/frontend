@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>auto 사용하기</title>
+    <style>
+        .outline {
+            outline: 1px solid
+        }
+        .red {
+            color: red
+        }
+        .content {
+            width: auto;
+            margin: auto
+        }
+        .content2 {
+            width: 400px;
+            margin: auto
+        }
+        .parent3 {
+            width: 500px
+        }
+        .content3 {
+            margin-left: auto;
+            margin-right: 100px;
+            width: 200px
+        }
+        .content4 {
+            margin-left: 100px;
+            margin-right: 100px;
+            width: 100px
+        }
+        .content5 {
+            margin-left: 100px;
+            margin-right: 100px;
+            width: auto
+        }
+        .content6 {
+            margin-left: 100px;
+            margin-right: 100px;
+        }
+        .content7 {
+            margin-left: auto;
+            margin-right: 100px;
+            width: auto
+        }
+        .content8 {
+            margin-left: auto;
+            margin-right: auto;
+            width: auto
+        }
+        .rtl {
+            direction: rtl
+        }
+    </style>
+</head>
+<body>
+    <h4>auto value는 width와 margin-left, margin-right에만 줄 수 있다.</h4>
+    <section class="outline parent">
+        <span>.parent</span>
+        <p class="content outline">
+            <span>
+                .content {width: <span class="red">auto</span>; margin: <span class="red">auto</span>}
+            </span>
+        </p>
+    </section>
+    <br>
+
+    <section class="outline parent2">
+        <span>.parent2</span>
+        <p class="content2 outline">
+            <span>
+                .content2 {<span class="red">width: 400px</span>; margin: auto}
+            </span>
+        </p>
+    </section>
+    <br>
+
+    <h4>
+        auto로 지정된 property를 포함한 7 properties(2 margins, 2 borders, 2 paddings, 1 content width)의 합은 parent element의 width와 같아지도록 auto의 값이 결정된다.<br>
+        아래의 예와 같이 parent element의 length가 500px일 때, auto로 지정된 margin-left의 value는 200px(500 - width - right margin  = left margin)가 된다.
+    </h4>
+    <section class="outline parent3">
+        <span>.parent3 {width: 500px}</span>
+        <p class="content3 outline">
+            <span>
+                .content3 { <br>
+                    margin-left: <span class="red">auto</span>; <br>
+                    margin-right: 100px; <br>
+                    width: 200px <br>
+                }<br>
+            </span>
+        </p>
+    </section>
+
+    <h4>3가지 property 모두가 auto가 아닌 특정한 값으로 지정될 경우, (left-to-right text direction인 경우) right-margin에 준 값은 의미가 없다</h4>
+    <section class="outline parent3">
+        <span>.parent3 {width: 500px}</span>
+        <p class="content4 outline">
+            <span>
+                .content4 { <br>
+                    margin-left: 100px; <br>
+                    margin-right: <span class="red">100px</span>; <br>
+                    width: 100px <br>
+                }<br>
+            </span>
+        </p>
+    </section>
+
+    <h4>반대로 (right-to-left text direction인 경우)는 left-margin에 준 값은 의미가 없다</h4>
+    <section class="outline parent3 rtl">
+        <span>
+            .parent3 { <br>
+            width: 500px;<br>
+            <span class="red">direction: rtl</span><br>
+            }
+        </span>
+        <p class="content4 outline">
+            <span>
+                .content4 { <br>
+                    margin-left: <span class="red">100px</span>; <br>
+                    margin-right: 100px; <br>
+                    width: 100px <br>
+                }<br>
+            </span>
+        </p>
+    </section>
+
+    <h4>양쪽 마진이 명시적으로 설정되고, width가 auto로 된다면 width 값은 (부모 요소의 콘텐츠 너비로 요구되는) 임의의 값으로 설정된다.</h4>
+    <section class="outline parent3">
+        <span>
+            .parent3 {width: 500px}
+        </span>
+        <p class="content5 outline">
+            <span>
+                .content5 { <br>
+                    margin-left: 100px; <br>
+                    margin-right: 100px; <br>
+                    width: <span class="red">auto</span> <br>
+                }<br>
+            </span>
+        </p>
+    </section>
+
+    <h4>양쪽 마진만 지정하고 width는 지정하지 않으면 위의 경우와 같다</h4>
+    <section class="outline parent3">
+        <span>
+            .parent3 {width: 500px}
+        </span>
+        <p class="content6 outline">
+            <span>
+                .content6 { <br>
+                    margin-left: 100px; <br>
+                    margin-right: 100px; <br>
+                }<br>
+            </span>
+        </p>
+    </section>
+
+    <h4>margin과 width를 auto로 설정하면 auto로 지정된 margin은 0으로 결정된다. width는 자신이 포함되는 block을 채우기 위해 필요한 값으로 설정된다.</h4>
+    <section class="outline parent3">
+        <span>
+            .parent3 {width: 500px}
+        </span>
+        <p class="content7 outline">
+            <span>
+                .content7 { <br>
+                    margin-left: <span class="red">auto</span>; <br>
+                    margin-right: 100px; <br>
+                    width: <span class="red">auto</span>
+                }<br>
+            </span>
+        </p>
+    </section>
+
+    <h4>세 가지의 property 모두 auto로 설정하면 양쪽 마진이 0으로 설정되고 width는 가능한 만큼 넓어진다. 이 결과는 margin이나 width에 대해 아무런 값도 정의되지 않을 때와 같아진다.</h4>
+    <section class="outline parent3">
+        <span>
+            .parent3 {width: 500px}
+        </span>
+        <p class="content7 outline">
+            <span>
+                .content7 { <br>
+                    margin-left: <span class="red">auto</span>; <br>
+                    margin-right: 100px; <br>
+                    width: <span class="red">auto</span>
+                }<br>
+            </span>
+        </p>
+    </section>
+</body>
+</html>

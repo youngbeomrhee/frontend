@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    var ww = new Worker('ex_003_Web_Worker_001.js');
+    setTimeout(function(){
+        ww.postMessage([1, 2]);
+    }, 2000);
+
+
+    var ww2 = new Worker('ex_003_Web_Worker_002.js');
+    setTimeout(function(){
+        ww2.postMessage([3, 4]);
+    }, 1000);
+
+
+    ww.onmessage = function(e) {
+        console.log('#1 Message received from worker');
+        console.log('#1 Message : ', e.data);
+    };
+
+    ww2.onmessage = function(e) {
+        console.log('#2 Message received from worker');
+        console.log('#2 Message : ', e.data);
+    };
+
+</script>
+</body>
+</html>

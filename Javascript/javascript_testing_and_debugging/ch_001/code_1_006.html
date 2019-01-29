@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- p.15~15 코드 1-16 8자리, 9자리 테스트 -->
+    <meta charset="UTF-8">
+    <title>Set Comma Test Suite</title>
+    <link rel="stylesheet" href="qunit/qunit-2.2.0.css" type="text/css" media="screen">
+    <script type="text/javascript" src="qunit/qunit-2.2.0.js"></script>
+</head>
+<body>
+    <!-- qunit 테스트 결과 표시 영역 -->
+    <div id="qunit"></div>
+    <div id="qunit-fixture">test markup</div>
+    <script>
+        /* 구현코드를 넣는다. */
+        function setComma (p) {
+            var num = String(p);
+            if(num.length <= 3) {
+                return num;
+            } else if (num.length > 3 && num.length < 7){
+                var mod = num.length % 3;
+                mod = mod===0?3:mod;
+                return num.substr(0, mod) + ',' + num.substr(mod, 3);
+            } else {
+                return num.substr(0, 1) + ',' + num.substr(1, 3) + ',' + num.substr(4, 3);
+            }
+        }
+    </script>
+    <script>
+        /* 테스트코드를 넣는다. */
+        QUnit.test('세 자리 이하인 경우는 매개변수를 바로 반환한다.', function (assert) {
+            assert.equal(setComma(1), 1, '한 자리는 그냥 반환된다.');
+            assert.equal(setComma(12), 12, '두 자리는 그냥 반환된다.');
+            assert.equal(setComma(123), 123, '세 자리는 그냥 반환된다.');
+        });
+        QUnit.test('세 자리가 넘는 경우 세 자리마다 쉼표를 넣는다.', function (assert) {
+            assert.equal(setComma(1234), '1,234', '4자리도 세 자리 간격으로 쉼표가 표시된다.');
+            assert.equal(setComma(12345), '12,345', '5자리도 세 자리 간격으로 쉼표가 표시된다.');
+            assert.equal(setComma(123456), '123,456', '6자리도 세 자리 간격으로 쉼표가 표시된다.');
+
+            assert.equal(setComma(1234567), '1,234,567', '7자리는 쉼표가 2개가 표시된다.');
+            assert.equal(setComma(12345678), '12,345,678', '8자리는 쉼표가 2개가 표시된다.');
+            assert.equal(setComma(123456789), '123,456,789', '9자리는 쉼표가 2개가 표시된다.');
+        });
+    </script>
+</body>
+</html>

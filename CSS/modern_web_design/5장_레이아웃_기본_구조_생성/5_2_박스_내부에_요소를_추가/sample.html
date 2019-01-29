@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <!--<link rel="stylesheet" href="grid-guide.css">-->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet">
+    <title>박스 준비</title>
+    <style>
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 공통 >>>>>>>>>>>>>>>>>>>>>>>*/
+        body {
+            margin: 0;
+            font-family: '맑은 고딕', 'Apple SD Gothic Neo', sans-serif
+        }
+        .logo {
+            width: 250px;
+            height: 33px;
+        }
+        .boxA, .box4, .box5, .box6 {
+            padding-left: 15px;
+            padding-right: 15px
+        }
+        .boxA {
+            padding-top: 20px;
+            padding-bottom: 10px;
+/*            background-color: #333333;*/
+/*            margin-bottom: 20px;*/
+/*            border-bottom: solid 1px #dddddd*/
+        }
+        .box4 {
+            padding-top: 20px;
+            padding-bottom: 20px;
+/*            background-color: #e8e8c4*/
+        }
+        .box5 {
+            background-color: #dddddd;
+            padding-top: 15px;
+            padding-bottom: 15px
+        }
+        .box6 {
+            padding-top: 20px
+        }
+        .box6-1, .box6-2, .box6-3 {
+            padding-bottom: 10px
+        }
+        
+        .site h1 {
+            margin: 0;
+            font-size: 30px
+        }
+        .site h1 a {
+            color: #ffffff;
+            text-decoration: none
+        }
+        .site img {
+            border: none;
+        }
+        
+        .topimg {
+            width: 100%;
+            height: auto;
+            vertical-align: bottom
+        }
+        
+        .news {
+            padding: 20px;
+            border: 2px solid #dddddd
+        }
+        .news h1 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 18px;
+            color: #666666
+        }
+        .news ul {
+            margin: 0;
+            padding: 0;
+            list-style: none
+        }
+        .news li a {
+            display: block;
+            padding: 5px;
+            color: #000000;
+            font-size: 14px;
+            text-decoration: none;
+            border-bottom: dotted 2px #dddddd
+        }
+        .news li a:hover {
+            background-color: #eeeeee
+        }
+        .news time {
+            color: #888888;
+            font-weight: bold;
+            float: left;
+            width: 60px
+        }
+        .news .text {
+            float: none;
+            width: auto;
+            margin-left: 60px
+        }
+        .news a:after {
+            content: "";
+            display: block;
+            clear: both
+        }
+        
+        .copyright p {
+            margin: 0;
+            color: #666666;
+            font-size: 14px
+        }
+        
+        .follow ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .follow li a {
+            display: block;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            color: #ffffff;
+            font-size: 14px;
+            text-decoration: none
+        }
+        .follow li a:hover {
+            opacity: 0.8
+        }
+        .follow-tw {
+            background-color: #63bafb
+        }
+        .follow-fb {
+            background-color: #5288f7
+        }
+        .follow-gp {
+            background-color: #f65d4a
+        }
+        .follow i {
+            margin-right: 10px;
+            font-size: 24px;
+            vertical-align: middle
+        }
+        .follow p {
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #dddddd;
+            font-size: 14px;
+            text-align: center
+        }
+        
+        .follow-info {
+            position: relative;
+            background: #dddddd;
+        }
+        .follow-info:after {
+            top: 100%;
+            left: 50%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+            border-color: rgba(221, 221, 221, 0);
+            border-top-color: #dddddd;
+            border-width: 15px;
+            margin-left: -15px;
+        }
+        
+        .summary a {
+            display: block;
+            background-color: #222222;
+            color: #ffffff;
+            text-align: center;
+            text-decoration: none
+        }
+        .summary a:hover {
+            opacity: 0.8
+        }
+        .summary i {
+            display: block;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            font-size: 38px
+        }
+        .summary h1 {
+            margin-top: 0;
+            margin-bottom: 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            font-size: 20px;
+            font-weight: normal
+        }
+        .summary p {
+            margin-top: 0;
+            margin-bottom: 0;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            background-color: #524e3c;
+            font-size: 12px
+        }
+        .summary .fa-database {
+            background-color: #bfbd13
+        }
+        .summary .fa-bar-chart-o {
+            background-color: #c58839
+        }
+        .summary .fa-envelope {
+            background-color: #859f46
+        }
+        .catch {
+            margin: 0;
+            font-size: 28px
+        }
+        .top {
+            position: relative
+        }
+        .catch {
+            position: absolute;
+            bottom: 7%;
+            left: 3%;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.7);
+            font-size: 28px
+        }
+        
+        /*<<<<<<<<<<<<<<<<<<<<<<< 공통 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 359px 이하 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        @media (max-width: 359px) {
+            .site img {
+                width: 225px;
+                height: auto
+            }
+        }
+        /*<<<<<<<<<<<<<<<<<<<<<<< 359px 이하 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+
+        /*>>>>>>>>>>>>>>>>>>>>>>> 599px 이하 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        @media (max-width: 599px) {
+            .menu li a {
+                padding: 10px 7px;
+                font-size: 11px
+            }
+            .catch {
+                padding: 5px 10px;
+                font-size: 13px
+            }
+
+            .summary i {
+                display: block;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                font-size: 38px
+            }
+            .summary h1 {
+                font-size: 17px;
+                font-weight: normal
+            }
+            .summary p {
+                padding-top: 10px;
+                padding-bottom: 10px;
+                background-color: #524e3c;
+                font-size: 12px
+            }
+        }   
+        /*<<<<<<<<<<<<<<<<<<<<<<< 599px 이하 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 767px 이하 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        @media (max-width: 767px) {
+            .box4-1 {
+                padding-bottom: 20px
+            }  
+            .menu ul {
+                margin: 0;
+                padding: 0;
+                list-style: none
+            }
+            .menu li a {
+                display: block;
+                padding: 5px;
+                color: #000000;
+                font-size: 14px;
+                text-decoration: none
+            }
+            .menu li a:hover {
+                background-color: #eeeeee
+            }
+            #menu {
+                display: none
+            }
+            #menubtn {
+                padding: 6px 12px;
+                border: solid 1px #aaaaaa;
+                border-radius: 5px;
+                background-color: #ffffff;
+                position: absolute;
+                top: 24px;
+                right: 15px;
+                cursor: pointer
+            }
+            #menubtn:hover {
+                background-color: #dddddd
+            }
+            #menubtn:focus {
+                outline: none
+            }
+            #menubtn span {
+                display: inline-block;
+                text-indent: -9999px
+            }
+            #menubtn i {
+                color: #888888;
+                font-size: 18px;
+            }
+        }
+        /*<<<<<<<<<<<<<<<<<<<<<<< 767px 이하 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 768px 이상 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        @media (min-width: 768px) {
+            .boxA:after {
+                content: "";
+                display: block;
+                clear: both
+            }
+            .box1, .box2  {
+                float: left;
+                width: auto
+            }
+            .box2 {
+                float: right;
+            }
+            .box4:after {
+                content: "";
+                display: block;
+                clear: both
+            }
+            .box4-1 {
+                float: left;
+                width: 70%;
+                padding-right: 35px;
+                box-sizing: border-box
+            }
+            .box4-2 {
+                float: left;
+                width: 30%
+            }
+            .box6:after {
+                content: "";
+                display: block;
+                clear: both
+            }
+            .box6-1, .box6-2, .box6-3 {
+                padding-top: 10px;
+                float:left;
+                width: 32%;
+            }
+            .box6-1, .box6-2 {
+                margin-right: 2%
+            }
+            .menu ul {
+                margin: 0;
+                padding: 0;
+                list-style: none
+            }
+            .menu li {
+                float: left;
+                width: auto
+            }
+            .menu li a {
+                display: block;
+                padding: 10px 15px;
+    /*            color: #ffffff;*/
+                color: #000000;
+                font-size: 14px;
+                text-decoration: none
+            }
+            .menu li a:hover {
+                background-color: #eeeeee
+            }
+            .menu ul:after {
+                content: "";
+                display: block;
+                clear: both
+            }
+            #menubtn {
+                display: none
+            }
+            #menu {
+                display: block !important
+            }
+        }
+        /*<<<<<<<<<<<<<<<<<<<<<<< 768px 이상 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 1190px 이상 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        @media (min-width: 1190px) {
+            .box4, .boxA-inner, .box5-inner, .box6 {
+                width: 1140px;
+                margin-left: auto;
+                margin-right: auto;
+                box-sizing: border-box
+            }
+        }
+        /*<<<<<<<<<<<<<<<<<<<<<<< 1190px 이상 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        /*<<<<<<<<<<<<<<<<<<<<<<< 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        /*<<<<<<<<<<<<<<<<<<<<<<< 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        /*<<<<<<<<<<<<<<<<<<<<<<< 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        /*<<<<<<<<<<<<<<<<<<<<<<< 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        /*<<<<<<<<<<<<<<<<<<<<<<< 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+    </style>
+</head>
+<body>
+    <div class="boxA">
+        <div class="boxA-inner">
+            <div class="box box1">
+                <div class="site">
+                    <h1>
+                        <a href="#">
+                            <img src="img/logo-large.png" alt="TimeSwitch" class="logo">
+                        </a>
+                    </h1>
+                </div>
+            </div>
+            <div class="box box2">
+                <button type="button" id="menubtn">
+                    <i class="fa fa-bars"></i><span>MENU</span>
+                </button>
+                <nav class="menu" id="menu">
+                    <ul>
+                        <li><a href="#">메인</a></li>
+                        <li><a href="#">연혁</a></li>
+                        <li><a href="#">사업 소개</a></li>
+                        <li><a href="#">채용 정보</a></li>
+                        <li><a href="#">문의</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+	<div class="box3">
+        <div class="top">
+            <img src="img/header.jpg" alt="회사이미지" class="topimg">
+            <p class="catch">
+                TimeSwitch는 데이터 축적과<br>
+                분석/해석 서비스를 제공합니다.
+            </p>
+        </div>
+	</div>
+    <div class="box6">
+        <div class="box6-1">
+            <div class="summary">
+                <a href="#">
+                    <i class="fa fa-database"></i>
+                    <h1>데이터 분석/해석</h1>
+                    <p>목적에 맞는 다양한 각도로<br>
+                    데이터를 분석/해석합니다.</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="box6-2">
+            <div class="summary">
+                <a href="#">
+                    <i class="fa fa-bar-chart-o"></i>
+                    <h1>데이터 시각화</h1>
+                    <p>해석 결과는 데이터 시각화해서<br>
+                    활용할 수 있게 합니다.</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="box6-3">
+            <div class="summary">
+                <a href="#">
+                    <i class="fa fa-envelope"></i>
+                    <h1>24시간 지원</h1>
+                    <p>24시간 대응 팀으로<br>
+                    장애에 신속하게 대응합니다.</p>
+                </a>
+            </div>
+        </div>
+    </div>
+	<div class="box4">
+        <div class="box4-1">
+            <div class="news">
+                <h1>공지사항</h1>
+                <ul>
+                <li>
+                    <a href="#">
+                        <time datetime="2014-10-15">10/15</time>
+                        <div class="text">데이터센터 유지 보수를 수행합니다.</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <time datetime="2014-10-05">10/05</time>
+                        <div class="text">안드로이드 애플리케이션 버전 1.2를 출시했습니다.</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <time datetime="2014-09-22">09/22</time>
+                        <div class="text">세미나/캠페인과 관련된 공지사항</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <time datetime="2014-09-15">09/15</time>
+                        <div class="text">그래프 표시의 변경 방식을 쉽게 바꿨습니다.</div>
+                    </a>
+                </li>
+                </ul>
+            </div>
+        </div>
+        <div class="box4-2">
+            
+            <div class="follow">
+
+                <p class="follow-info">최신 정보를 여기서도 받아보세요!</p>
+
+                <ul>
+                    <li>
+                        <a href="#" class="follow-tw">
+                            <i class="fa fa-fw fa-twitter"></i>
+                            Twitter
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="follow-fb">
+                            <i class="fa fa-fw fa-facebook"></i>
+                            Facebook
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="follow-gp">
+                            <i class="fa fa-fw fa-google-plus"></i>
+                        Google+
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+	</div>
+	<div class="box5">
+        <div class="box5-inner">
+            <div class="copyright">
+              <p>Copyright &copy; TimeSwitch</p>
+            </div>
+        </div>
+	</div>
+    <script>
+        const $$ = document.querySelectorAll.bind(document),
+              $ = document.querySelector.bind(document);
+        
+        (function(){
+            $('#menubtn').addEventListener('click', (eve)=>{
+                const target = $('#menu');
+                target.style.display === 'none' ? target.style.display = 'block' : target.style.display = 'none';
+            });
+        })();
+    </script>
+</body>
+</html>

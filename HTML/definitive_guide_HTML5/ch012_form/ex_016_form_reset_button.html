@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Form 안의 모든 input엘리먼트들을 초기값으로 리셋시키는 butto의 reset attribute</title>
+        <meta name="author" content="Adam Freeman"/>
+        <meta name="description" content="A simple example"/>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    </head>
+    <body>
+        <form method="post" action="http://titan:8080/form">
+            <p>
+                <label for="fave">Fruit: <input autofocus id="fave" name="fave"/></label>
+            </p>
+            <p>
+                <label for="name">Name: <input id="name" name="name"/></label>
+            </p>
+            <button type="submit">Submit Vote</button>
+            <button type="reset">Reset</button>
+        </form>
+    </body>
+</html>

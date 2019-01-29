@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>display</title>
+    <style>
+        p, span {
+            border: 1px solid black;
+            padding: 2px;
+            width: 300px;
+            height: 40px;
+            /*margin: 5px;*/
+        }
+        /*
+        p {
+            width: 300px;
+            height: 40px;
+            margin: 5px;
+        }
+        */
+        .block {
+            display: block;
+        }
+        .inline {
+            display: inline;
+        }
+        .inlineBlock {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <p>p - display:block;</p>
+    <p>p - display:block;</p>
+    <span>span - display:inline</span><span>span - display:inline</span>
+    <span class="block">span -> display:block 변경</span>
+    <span>span - display:inline</span>
+    <p class="inline">p -> display:inline 변경. inline으로 변경되면 width, height, margin(top, bottom)값이 모두 무시된다.</p>
+    <span>span - display:inline</span>
+    <p>p - display:block;</p>
+    <p>p - display:block;</p>
+    <span class="inlineBlock">span -> display:inline-block 변경 => 박스의 바깥은 inline 안쪽은 block element처럼 다루어진다</span>
+    <span class="inlineBlock">span - display:inline-block</span>
+    <span class="inlineBlock">span - display:inline-block</span>
+    <span class="inlineBlock">span - display:inline-block</span>
+</body>
+</html>

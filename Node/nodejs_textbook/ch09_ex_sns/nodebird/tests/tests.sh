@@ -1,0 +1,1 @@
+jasmine ./tests/models/user_test.js

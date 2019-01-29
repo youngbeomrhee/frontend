@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>그림자 생성하기</title>
+    <style>
+        p {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #f4f5ff;
+            margin-top: 20px;
+        }
+        p:nth-child(1) {
+            box-shadow: 10px 10px;  /* hoffset, voffset */
+        }
+        p:nth-child(2) {
+            box-shadow: 5px 10px;  /* hoffset, voffset */
+        }
+        p:nth-child(3) {
+            box-shadow: 10px 5px;  /* hoffset, voffset */
+        }
+        p:nth-child(4) {
+            box-shadow: 10px 10px 10px;  /* hoffset, voffset blur */
+        }
+        p:nth-child(5) {
+            box-shadow: 10px 10px 10px 2px;  /* hoffset, voffset blur spread */
+        }
+        p:nth-child(6) {
+            box-shadow: 10px 10px 10px -2px;  /* hoffset, voffset blur spread */
+        }
+        p:nth-child(7) {
+            box-shadow: 10px 10px 10px 1px silver;  /* hoffset, voffset blur spread color */
+        }
+        p:nth-child(8) {
+            box-shadow: 10px 10px 10px 1px silver inset;  /* hoffset, voffset blur spread color */
+        }
+        p:nth-child(9) {
+            border: 0px;
+            border-radius: 7px;
+            box-shadow: 5px 5px 10px 1px silver inset, 10px 10px 10px 1px darkgrey;  /* hoffset, voffset blur spread color */
+        }
+    </style>
+</head>
+<body>
+    <p></p>box-shadow: 10px 10px;  /* hoffset, voffset */
+    <p></p>box-shadow: 5px 10px;  /* hoffset, voffset */
+    <p></p>box-shadow: 10px 5px;  /* hoffset, voffset */
+    <p></p>box-shadow: 10px 10px 10px;  /* hoffset, voffset blur */
+    <p></p>box-shadow: 10px 10px 10px 2px;  /* hoffset, voffset blur spread */
+    <p></p>box-shadow: 10px 10px 10px -2px;  /* hoffset, voffset blur spread */
+    <p></p>box-shadow: 10px 10px 10px 1px silver;  /* hoffset, voffset blur spread color */
+    <p></p>box-shadow: 10px 10px 10px 1px silver inset  /* hoffset, voffset blur spread color inset */
+    <p></p>box-shadow: 5px 5px 10px 1px silver inset, 10px 10px 10px 1px darkgrey;  /* hoffset, voffset blur spread color inset */
+</body>
+</html>

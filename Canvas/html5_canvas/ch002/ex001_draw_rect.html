@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>CH2EX1: 기본 사각형</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+	<script src="../util/Debugger.js"></script>
+	<script>
+        Debugger.log('runtime execution start');
+        window.addEventListener('load', eventWindowLoaded);	// 페이지가 모두 로드되고 실행되도록 설정. window 객체가 DOM의 root
+
+        function eventWindowLoaded() {
+            if(!canvasSupport()) return;	// canvas를 지원하는지 여부를 확인
+            Debugger.log('window has loaded');
+            canvasApp();
+        }
+        function canvasSupport() {
+            return Modernizr.canvas;	// Moernizr를 사용하는 방법
+        }
+        function canvasApp() {
+            const theCanvas = document.querySelector('#canvasOne'),
+                context = theCanvas.getContext('2d');
+
+            function drawScreen() {
+                context.fillStyle = '#000000';	// 색상 설정
+                context.strokeStyle = '#ff00ff';	// 색상 설정
+				context.lineWidth = 2;
+                context.fillRect(10, 10, 40, 40);	// Paints the given rectangle onto the canvas, using the current fill style.
+                context.strokeRect(0, 0, 60, 60);	// Paints the box that outlines the given rectangle onto the canvas, using the current stroke style.
+                context.clearRect(20, 20, 20, 20);	// Clears all pixels on the canvas in the given rectangle to transparent black.
+            }
+            drawScreen();
+        }
+        Debugger.log('runtime execution end');
+	</script>
+</head>
+<body>
+	<div style="position: absolute; top: 50px; left: 50px">
+		<canvas id="canvasOne" width="500" height="500">
+			Your browser does not support HTML5 Canvas.
+		</canvas>
+	</div>
+</body>
+</html>

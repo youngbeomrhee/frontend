@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>두 개의 children을 갖는 element 생성</title>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+</head>
+<body>
+<div id="content">Error! See a console.</div>
+<script>
+    const h1 = React.createElement('h1', null, 'Hello world!');
+    ReactDOM.render(
+        React.createElement('div', null, h1, h1, h1, h1),   // 3번째 인자부터는 모두 자식 element
+        document.getElementById('content')
+    );
+</script>
+</body>
+</html>

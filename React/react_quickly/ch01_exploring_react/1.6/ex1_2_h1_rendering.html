@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>react 렌더링</title>
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+</head>
+<body>
+<div id="content">Error! See a console.</div>
+<script>
+    const h1 = React.createElement('h1', null, 'Hello world!');
+    ReactDOM.render(
+        h1,
+        document.getElementById('content')
+    );
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page Loading test</title>
+</head>
+<body>
+    <script>
+        document.body.onload = function() {
+            alert('body has loaed!');
+        };
+        window.onbeforeunload = function(event) {
+//            alert('body has been unloading!');
+//            if(!confirm('You wanna leave, seriously?')) {
+//                event.preventDefault();
+//            }
+            event.returnValue = 'You wanna leave, seriously?';
+        };
+    </script>
+    <h1>"onload" event & "onunload" event test</h1>
+    <a href="http://www.naver.com">다른 페이지로 이동</a>
+</body>
+</html>

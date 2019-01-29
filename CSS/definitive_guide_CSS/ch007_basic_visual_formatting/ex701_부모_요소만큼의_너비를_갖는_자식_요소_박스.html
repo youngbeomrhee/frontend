@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>부모 요소만큼의 너비를 갖는 요소 박스</title>
+    <style>
+        .outline {
+            outline: 1px solid black;
+        }
+        .parent {
+            width: 30em
+        }
+        .child {
+            margin: 1em
+        }
+    </style>
+</head>
+<body>
+    <h5>가장 간단한 규칙은 일반적인 문서 흐름 안에서 블록 레벨 요소의 수평적 구성 요소들(width, padding, border, margin)의 합이 부모 요소의 width와 항상 같다는 것이다.</h5>
+    <section class="parent outline">
+        <span>.parent {width: 30em}</span>
+        <p class="child outline">
+            <span>.child {margin: 1em}</span>
+        </p>
+        <p class="child outline">
+            <span>.child {margin: 1em}</span>
+        </p>
+    </section>
+</body>
+</html>

@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+/* 그리드 가이드 */
+
+[class^="box"],
+div:not([class]) 
+	{
+	border: solid 8px #faa;
+	color: #faa;
+	background-color: #fee;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+	text-align: center;
+	line-height: 200px;
+	font-family: Verdata, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 40px;
+	}
+
+body > div:not([class]) {min-height: 200px}
+
+[class^="box"] > *:not([class^="box"]) {
+	min-height: 0;
+	line-height: 1.5;
+	color: #000000;
+	font-size: 14px;
+	font-family: '맑은 고딕', 'Apple SD Gothic Neo', sans-serif;
+	font-weight: normal;
+	text-align: left;
+	}
+
+
+/* BOX A를 테두리로 둘러싸지 않도록 설정 */
+.boxA	{border: none;
+	background: none;
+	line-height: normal;
+	text-align: left}
+
+
+
+/* 박스마다 색을 변경하는 설정 */
+.box1	{
+	border-color: #faa;
+	color: #faa;
+	background-color: #fee;
+	}
+
+.box2	{
+	border-color: #e0e03d;
+	color: #e0e03d;
+	background-color: #ffe;
+	}
+
+
+.box3	{
+	border-color: #65c4cf;
+	color: #65c4cf;
+	background-color: #b2eaf1;
+	}
+
+.box4	{
+	border-color: #82d99f;
+	color: #82d99f;
+	background-color: #c4f6d4;
+	}
+
+.boxB	{
+	border-color: #b236ab;
+	color: #b236ab;
+	background-color: #ffccfc;
+	}
+
+
+
+/* 박스의 높이 */
+
+@media (min-width: 600px) {
+
+.box2	{line-height: 384px}
+
+.box3	{line-height: 384px}
+
+.box4	{line-height: 800px}
+
+}
+
+
+@media (min-width: 768px) {
+
+.box2	{line-height: 400px}
+
+.box3	{line-height: 400px}
+
+.box4	{line-height: 400px}
+
+
+.boxB .box2,
+.boxB .box3
+	{line-height: 384px}
+
+}
+
+

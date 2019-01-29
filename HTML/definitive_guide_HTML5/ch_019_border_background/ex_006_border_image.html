@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>이미지를 잘라서 테두리로 활용하기</title>
+    <style>
+        /* TODO : https://www.w3.org/TR/css3-background/ 조금 더 연구 */
+        /*
+        Border Image Shortand
+        value : <‘border-image-source’> || <‘border-image-slice’> [ / <‘border-image-width’> | / <‘border-image-width’>? / <‘border-image-outset’> ]? || <‘border-image-repeat’>
+        */
+        article {
+            text-align: center;
+        }
+        .content p {
+            margin: 0 auto;
+            width: 100px;
+            height: 100px;
+            margin-top: 30px;
+        }
+        .content :nth-child(1) {
+            border: double orange 1em;
+            border-image-source: url("bordergrid.png");
+        }
+        .content :nth-child(2) {
+            border: double orange 1em;
+            border-image-source: url("bordergrid.png");
+            border-image-slice: 33% 33% 33% 33%;
+        }
+        .content :nth-child(3) {
+            border: double orange 1em;
+            border-image-source: url("bordergrid.png");
+            border-image-slice: 33% 33% 33% 33%;
+            border-image-width: 10% 20% 30% 40%;
+        }
+        .content :nth-child(4) {
+            border: double orange 1em;
+            margin-bottom: 20px;
+            border-image-source: url("bordergrid.png");
+            border-image-slice: 33%;
+            border-image-width: 33%;
+            border-image-outset: 0.3 0.6 0.9 1.2;
+            outline: 1px solid red;
+        }
+        .content :nth-child(5) {
+            border: double orange 1em;
+            border-image-source: url("bordergrid.png");
+            border-image-slice: 33%;
+            border-image-repeat: repeat;
+        }
+        .content :nth-child(6) {
+            border: double orange 1em;
+            border-image-source: url("bordergrid.png");
+            border-image-slice: 33%;
+            border-image-repeat: stretch;
+        }
+        .content :nth-child(7) {
+            border: double orange 1em;
+            border-image-source: url("bordergrid.png");
+            border-image-slice: 33%;
+            border-image-repeat: round;
+        }
+        .content :nth-child(8) {
+            border: double orange 1em;
+            border-image-source: url("bordergrid.png");
+            border-image-slice: 33%;
+            border-image-repeat: space;
+        }
+        .content :nth-child(9) {
+            border: double orange 1em;
+            border-image-source: url("bordergrid.png");
+            border-image-slice: 33%;
+            border-image-repeat: repeat stretch;
+        }
+
+        .content :nth-child(10) {
+            border: double orange 1em;
+            outline: 1px solid red;
+            margin-bottom: 20px;
+            border-image: url("bordergrid.png") /* <‘border-image-source’> */
+                33% /* <‘border-image-slice’> */
+                / 10% 20% 30% 40% /* <‘border-image-width’> */
+                / 0.3 0.6 0.9 1.2 /* <‘border-image-outset’> */
+                round /* <‘border-image-repeat’> vertical */
+                stretch /* <‘border-image-repeat’> horizontal */;
+        }
+
+    </style>
+</head>
+<body>
+    <article>
+        <img src="bordergrid.png"><br>
+        original Image
+    </article>
+    <article class="content">
+        <p>The image is stretched to fill the area.</p>border-image-source: url("bordergrid.png");
+        <p>The image is stretched to fill the area.</p>border-image-source: url("bordergrid.png"); border-image-slice: 33% 33% 33% 33%;
+        <p>The image is stretched to fill the area.</p>border-image-source: url("bordergrid.png"); border-image-slice: 33% 33% 33% 33%; border-image-width: 10% 20% 30% 40%;
+        <p>The image is stretched to fill the area.</p>border-image-source: url("bordergrid.png"); border-image-slice: 33%; border-image-width: 33%; border-image-outset: 0.3 0.6 0.9 1.2;
+        <p>The image is stretched to fill the area.</p>border-image-source: url("bordergrid.png"); border-image-slice: 33%; border-image-repeat: repeat;
+        <p>The image is stretched to fill the area.</p>border-image-source: url("bordergrid.png"); border-image-slice: 33%; border-image-repeat: stretch;
+        <p>The image is stretched to fill the area.</p>border-image-source: url("bordergrid.png"); border-image-slice: 33%; border-image-repeat: round;
+        <p>The image is stretched to fill the area.</p>border-image-source: url("bordergrid.png"); border-image-slice: 33%; border-image-repeat: space;
+        <p>The image is stretched to fill the area.</p>border-image-source: url("bordergrid.png"); border-image-slice: 33%; border-image-repeat: repeat stretch;
+        <p>The image is stretched to fill the area.</p>border-image: url("bordergrid.png") 33% / 10% 20% 30% 40% / 0.3 0.6 0.9 1.2 round stretch;
+
+    </article>
+</body>
+</html>

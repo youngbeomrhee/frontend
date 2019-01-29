@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <!--<link rel="stylesheet" href="grid-guide.css">-->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet">
+    <title>박스 준비</title>
+    <style>
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 공통 >>>>>>>>>>>>>>>>>>>>>>>*/
+        body {
+            margin: 0;
+            font-family: '맑은 고딕', 'Apple SD Gothic Neo', sans-serif
+        }
+        .logo {
+            width: 250px;
+            height: 33px;
+        }
+        .boxA, .box4, .box5, .box6, .box7 {
+            padding-left: 15px;
+            padding-right: 15px
+        }
+        .boxA {
+            padding-top: 20px;
+            padding-bottom: 10px;
+/*            background-color: #333333;*/
+/*            margin-bottom: 20px;*/
+/*            border-bottom: solid 1px #dddddd*/
+        }
+        .box4 {
+            padding-top: 20px;
+            padding-bottom: 20px;
+/*            background-color: #e8e8c4*/
+        }
+        .box5 {
+            background-color: #dddddd;
+            padding-top: 15px;
+            padding-bottom: 15px
+        }
+        .box6 {
+            padding-top: 20px
+        }
+        .box6-1, .box6-2, .box6-3 {
+            padding-bottom: 10px
+        }
+        .box7 {
+            padding-top: 25px;
+            padding-bottom: 25px;
+        }
+        
+        .contents .boxA {
+            border-bottom: solid 1px #dddddd
+        }
+        
+        .site h1 {
+            margin: 0;
+            font-size: 30px
+        }
+        .site h1 a {
+            color: #ffffff;
+            text-decoration: none
+        }
+        .site img {
+            border: none;
+        }
+        
+        .topimg {
+            width: 100%;
+            height: auto;
+            vertical-align: bottom
+        }
+        
+        .news {
+            padding: 20px;
+            border: 2px solid #dddddd
+        }
+        .news h1 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 18px;
+            color: #666666
+        }
+        .news ul {
+            margin: 0;
+            padding: 0;
+            list-style: none
+        }
+        .news li a {
+            display: block;
+            padding: 5px;
+            color: #000000;
+            font-size: 14px;
+            text-decoration: none;
+            border-bottom: dotted 2px #dddddd
+        }
+        .news li a:hover {
+            background-color: #eeeeee
+        }
+        .news time {
+            color: #888888;
+            font-weight: bold;
+            float: left;
+            width: 60px
+        }
+        .news .text {
+            float: none;
+            width: auto;
+            margin-left: 60px
+        }
+        .news a:after {
+            content: "";
+            display: block;
+            clear: both
+        }
+        
+        .copyright p {
+            margin: 0;
+            color: #666666;
+            font-size: 14px
+        }
+        
+        .follow ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .follow li a {
+            display: block;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            color: #ffffff;
+            font-size: 14px;
+            text-decoration: none
+        }
+        .follow li a:hover {
+            opacity: 0.8
+        }
+        .follow-tw {
+            background-color: #63bafb
+        }
+        .follow-fb {
+            background-color: #5288f7
+        }
+        .follow-gp {
+            background-color: #f65d4a
+        }
+        .follow i {
+            margin-right: 10px;
+            font-size: 24px;
+            vertical-align: middle
+        }
+        .follow p {
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #dddddd;
+            font-size: 14px;
+            text-align: center
+        }
+        
+        .follow-info {
+            position: relative;
+            background: #dddddd;
+        }
+        .follow-info:after {
+            top: 100%;
+            left: 50%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+            border-color: rgba(221, 221, 221, 0);
+            border-top-color: #dddddd;
+            border-width: 15px;
+            margin-left: -15px;
+        }
+        
+        .summary a {
+            display: block;
+            background-color: #222222;
+            color: #ffffff;
+            text-align: center;
+            text-decoration: none
+        }
+        .summary a:hover {
+            opacity: 0.8
+        }
+        .summary i {
+            display: block;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            font-size: 38px
+        }
+        .summary h1 {
+            margin-top: 0;
+            margin-bottom: 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            font-size: 20px;
+            font-weight: normal
+        }
+        .summary p {
+            margin-top: 0;
+            margin-bottom: 0;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            background-color: #524e3c;
+            font-size: 12px
+        }
+        .summary .fa-database {
+            background-color: #bfbd13
+        }
+        .summary .fa-bar-chart-o {
+            background-color: #c58839
+        }
+        .summary .fa-envelope {
+            background-color: #859f46
+        }
+        .catch {
+            margin: 0;
+            font-size: 28px
+        }
+        .top {
+            position: relative
+        }
+        .catch {
+            position: absolute;
+            bottom: 7%;
+            left: 3%;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.7);
+            font-size: 28px
+        }
+        
+        .story h1 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 36px;
+            padding-left: 20px;
+            border-left: solid 20px #c50018;
+            font-weight: normal
+        }
+        .story h2 {
+            margin-top: 50px;
+            margin-bottom: 20px;
+            border-bottom: solid 1px #dddddd;
+            font-size: 28px;
+            font-weight: normal
+        }
+        .story h2 i {
+            margin-right: 7px;
+            color: #888888
+        }
+        .story p {
+            margin-top: 0;
+            margin-bottom: 20px;
+            max-width: 640px
+        }
+        .story .lead {
+            max-width: 100%;
+            font-size: 20px;
+            color: #666666
+        }
+        
+        .sidemenu {
+            border: solid 6px #dddddd
+        }
+        .sidemenu h1 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: normal;
+            padding: 10px
+        }
+        .sidemenu ul {
+            margin: 0;
+            padding: 0;
+            list-style: none
+        }
+        .sidemenu li a {
+            display: block;
+            padding: 5px;
+            color: #000000;
+            font-size: 14px;
+            text-decoration: none;
+            border-top: solid 1px #dddddd
+        }
+        .sidemenu li a:hover {
+            background-color: #eeeeee
+        }
+        .sidemenu h1 i {
+            margin-right: 5px;
+            color: #8abc60;
+            font-size: larger
+        }
+        .storyimg {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px
+        }
+        
+        .bread {
+            margin-bottom: 20px
+        }
+        .bread ol {
+            margin: 0;
+            padding: 0;
+            list-style: none
+        }
+        .bread li a {
+            display: inline-block;
+            padding: 5px;
+            color: #000000;
+            font-size: 14px;
+            text-decoration: none
+        }
+        .bread li a:hover {
+            background-color: #eeeeee
+        }
+        .bread ol:after {
+            content: "";
+            display: block;
+            clear: both
+        }
+        .bread li {
+            float: left;
+            width: auto
+        }
+        .bread li:after {
+            content: '\003e';
+            color: #888888;
+            margin-left: 10px;
+            margin-right: 10px
+        }
+
+        .story-body {
+            column-count: 2;
+            column-gap: 40px;
+        }
+
+        /*<<<<<<<<<<<<<<<<<<<<<<< 공통 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 359px 이하 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        @media (max-width: 359px) {
+            .site img {
+                width: 225px;
+                height: auto
+            }
+        }
+        /*<<<<<<<<<<<<<<<<<<<<<<< 359px 이하 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+
+        /*>>>>>>>>>>>>>>>>>>>>>>> 599px 이하 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        @media (max-width: 599px) {
+            .menu li a {
+                padding: 10px 7px;
+                font-size: 11px
+            }
+            .catch {
+                padding: 5px 10px;
+                font-size: 13px
+            }
+
+            .summary i {
+                display: block;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                font-size: 38px
+            }
+            .summary h1 {
+                font-size: 17px;
+                font-weight: normal
+            }
+            .summary p {
+                padding-top: 10px;
+                padding-bottom: 10px;
+                background-color: #524e3c;
+                font-size: 12px
+            }
+            .story h1 {
+                font-size: 26px;
+            }
+            .story h2 {
+                font-size: 20px;
+            }
+            .story .lead {
+                font-size: 16px;
+            }
+        }   
+        /*<<<<<<<<<<<<<<<<<<<<<<< 599px 이하 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 767px 이하 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        @media (max-width: 767px) {
+            .box4-1 {
+                padding-bottom: 20px
+            }  
+            .menu ul {
+                margin: 0;
+                padding: 0;
+                list-style: none
+            }
+            .menu li a {
+                display: block;
+                padding: 5px;
+                color: #000000;
+                font-size: 14px;
+                text-decoration: none
+            }
+            .menu li a:hover {
+                background-color: #eeeeee
+            }
+            #menu {
+                display: none
+            }
+            #menubtn {
+                padding: 6px 12px;
+                border: solid 1px #aaaaaa;
+                border-radius: 5px;
+                background-color: #ffffff;
+                position: absolute;
+                top: 24px;
+                right: 15px;
+                cursor: pointer
+            }
+            #menubtn:hover {
+                background-color: #dddddd
+            }
+            #menubtn:focus {
+                outline: none
+            }
+            #menubtn span {
+                display: inline-block;
+                text-indent: -9999px
+            }
+            #menubtn i {
+                color: #888888;
+                font-size: 18px;
+            }
+        }
+        /*<<<<<<<<<<<<<<<<<<<<<<< 767px 이하 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 768px 이상 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        @media (min-width: 768px) {
+            .boxA:after {
+                content: "";
+                display: block;
+                clear: both
+            }
+            .box1, .box2  {
+                float: left;
+                width: auto
+            }
+            .box2 {
+                float: right;
+            }
+            .box4:after {
+                content: "";
+                display: block;
+                clear: both
+            }
+            .box4-1 {
+                float: left;
+                width: 70%;
+                padding-right: 35px;
+                box-sizing: border-box
+            }
+            .box4-2 {
+                float: left;
+                width: 30%
+            }
+            .box6:after {
+                content: "";
+                display: block;
+                clear: both
+            }
+            .box6-1, .box6-2, .box6-3 {
+                padding-top: 10px;
+                float:left;
+                width: 32%;
+            }
+            .box6-1, .box6-2 {
+                margin-right: 2%
+            }
+            .menu ul {
+                margin: 0;
+                padding: 0;
+                list-style: none
+            }
+            .menu li {
+                float: left;
+                width: auto
+            }
+            .menu li a {
+                display: block;
+                padding: 10px 15px;
+    /*            color: #ffffff;*/
+                color: #000000;
+                font-size: 14px;
+                text-decoration: none
+            }
+            .menu li a:hover {
+                background-color: #eeeeee
+            }
+            .menu ul:after {
+                content: "";
+                display: block;
+                clear: both
+            }
+            #menubtn {
+                display: none
+            }
+            #menu {
+                display: block !important
+            }
+            .box7:after {
+                content: "";
+                display: block;
+                clear: both
+            }
+            .box7-1 {
+                float: right;
+                width: 80%;
+                padding-left: 50px;
+                box-sizing: border-box
+            }
+            .box7-2 {
+                float: left;
+                width: 20%
+            }
+        }
+        /*<<<<<<<<<<<<<<<<<<<<<<< 768px 이상 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 1190px 이상 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        @media (min-width: 1190px) {
+            .box4, .boxA-inner, .box5-inner, .box6, .box7 {
+                width: 1140px;
+                margin-left: auto;
+                margin-right: auto;
+                box-sizing: border-box
+            }
+            .story-body {
+                column-count: 2;
+                column-gap: 40px
+            }
+        }
+        /*<<<<<<<<<<<<<<<<<<<<<<< 1190px 이상 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        /*<<<<<<<<<<<<<<<<<<<<<<< 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        /*<<<<<<<<<<<<<<<<<<<<<<< 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        /*<<<<<<<<<<<<<<<<<<<<<<< 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        /*<<<<<<<<<<<<<<<<<<<<<<< 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+        
+        /*>>>>>>>>>>>>>>>>>>>>>>> 시작 >>>>>>>>>>>>>>>>>>>>>>>*/
+        /*<<<<<<<<<<<<<<<<<<<<<<< 종료 <<<<<<<<<<<<<<<<<<<<<<<*/
+    </style>
+</head>
+<body class="contents">
+    <div class="boxA">
+        <div class="boxA-inner">
+            <div class="box box1">
+                <div class="site">
+                    <h1>
+                        <a href="#">
+                            <img src="img/logo-large.png" alt="TimeSwitch" class="logo">
+                        </a>
+                    </h1>
+                </div>
+            </div>
+            <div class="box box2">
+                <button type="button" id="menubtn">
+                    <i class="fa fa-bars"></i><span>MENU</span>
+                </button>
+                <nav class="menu" id="menu">
+                    <ul>
+                        <li><a href="#">메인</a></li>
+                        <li><a href="#">연혁</a></li>
+                        <li><a href="#">사업 소개</a></li>
+                        <li><a href="#">채용 정보</a></li>
+                        <li><a href="#">문의</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="box7">
+        <div class="box7-1">
+            <article class="story">
+                
+                <div class="bread">
+                    <ol>
+                        <li><a href="#">메인</a></li>
+                        <li><a href="#">사업 소개</a></li>
+                    </ol>
+                </div>
+
+                <h1>데이터 분석/해석</h1>
+                <img src="img/header-data.jpg" alt="chart image" class="storyimg">
+                <p class="lead">축적된 데이터를 활용하려면 어떻게 분석/해석할지가 중요합니다. TimeSwitch에서는 표준적인 분석 방법과 활용 목적에 따른 해석을 제공합니다.</p>
+                <div class="story-body">
+                    
+                    <h2><i class="fa fa-check-square-o"></i>평균값 확인</h2>
+                    <p>기본적인 평균입니다. 대상 데이터들의 대표적인 수치를 확인할 수 있습니다. 다만 평균만으로는 데이터 쏠림 등의 문제를 확인할 수 없습니다.</p>
+                    <h2><i class="fa fa-check-square-o"></i>분산 확인</h2>
+                    <p>분산 확인 통계적인 방법을 사용해서 축적된 데이터의 분산을 확인합니다. 분산을 사용하면 평균값으로는 보이지 않는 문제와 특징을 찾아낼 수 있습니다.</p>
+                    <h2><i class="fa fa-check-square-o"></i>상관관계/인과관계 도출</h2>
+                    <p>여러 개의 데이터를 조합하고 분석/해석해서 상관관계와 인과 관계가 있다고 생각되는 데이터를 추출합니다.</p>
+                </div>
+            </article>
+        </div>
+        <div class="box7-2">
+            <aside class="sidemenu">
+                <h1><i class="fa fa-caret-square-o-down"></i>사업 소개</h1>
+                <ul>
+                    <li><a href="#">데이터 축적</a></li>
+                    <li><a href="#">데이터 분석/해석</a></li>
+                    <li><a href="#">데이터 시각화</a></li>
+                    <li><a href="#">애플리케이션 활용</a></li>
+                    <li><a href="#">24시간 지원</a></li>
+                    <li><a href="#">실적 소개</a></li>
+                </ul>
+            </aside>
+        </div>
+    </div>
+	<div class="box5">
+        <div class="box5-inner">
+            <div class="copyright">
+              <p>Copyright &copy; TimeSwitch</p>
+            </div>
+        </div>
+	</div>
+</body>
+</html>

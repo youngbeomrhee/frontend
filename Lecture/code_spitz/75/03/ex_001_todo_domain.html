@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>TODO Domain</title>
+</head>
+<body>
+<h1>TODO Domain</h1>
+<div>check console</div>
+<script src="ex_001_todoDomain.js"></script>
+<script>
+    const list1 = new TaskList('비사이드');
+    list1.add('지라설치');
+    list1.add('지라클라우드접속');
+
+    const list2 = new TaskList('s75');
+    list2.add('2강 답안 작성'); list2.add('3강 교안 작성');
+
+    console.log(list1.byTitle());
+    console.log(list2.byDate());
+</script>
+</body>
+</html>

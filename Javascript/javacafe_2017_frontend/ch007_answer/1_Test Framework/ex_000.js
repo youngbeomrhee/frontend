@@ -1,0 +1,3 @@
+﻿function func() {
+    return true;
+}

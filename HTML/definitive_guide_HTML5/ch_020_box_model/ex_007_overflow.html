@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>오버플로우</title>
+    <style>
+        p {
+            width: 100px;
+            height: 120px;
+            border: 1px solid black;
+            margin: 10px
+        }
+        :nth-child(1) {
+            overflow: auto
+        }
+        :nth-child(2) {
+            overflow: hidden
+        }
+        :nth-child(3) {
+            overflow: scroll
+        }
+        :nth-child(4) {
+            overflow: visible
+        }
+    </style>
+</head>
+<body>
+    <p>auto 시작 : auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto 끝</p>
+    <p>hidden 시작 : hidden hidden hidden hidden hidden hidden hidden hidden hidden hidden hidden hidden hidden hidden 끝</p>
+    <p>scroll 시작 : scroll scroll scroll scroll scroll scroll scroll scroll scroll scroll scroll scroll scroll scroll 끝</p>
+    <p>visible 시작 : visible visible 다 보이는게 아니라 경계면과 맞닿은 부분만 보이고 나머지는 잘린다 visible visible visible visible 끝</p>
+</body>
+</html>
