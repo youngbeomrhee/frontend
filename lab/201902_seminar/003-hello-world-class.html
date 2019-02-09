@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>순수 리액트 예제</title>
+</head>
+<body>
+
+<!-- 타겟 컨테이너 -->
+<div id="react-container"></div>
+
+<!--React와 ReactDOM 라이브러리React Library & React DOM-->
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+<script type="text/javascript">
+    let h1 = React.createElement('h1', null, 'Hello world!')
+    class HelloWorld extends React.Component {
+        render() {
+            return React.createElement('div', null, h1, h1, h1, h1, h1) // 재활용이 가능해짐
+        }
+    }
+    ReactDOM.render(
+            React.createElement(HelloWorld, null),
+            document.getElementById('react-container')
+    )
+</script>
+
+</body>
+</html>
