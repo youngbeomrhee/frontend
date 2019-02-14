@@ -1,6 +1,6 @@
 "use strict";
-function greeter(person) {
+function greeter(person: string) {
     return 'Hello, ' + person;
 }
-var user = "YB3";
+var user = "Jane User";
 document.body.innerHTML = greeter(user);
