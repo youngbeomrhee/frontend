@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BFC 예제</title>
+    <style>
+        .container {
+            outline: 1px solid black;
+        }
+        .box {
+            float: left;
+            outline: 1px solid red
+        }
+        .text-box {
+            outline: 1px solid blue
+        }
+    </style>
+</head>
+<body>
+<h4>container에 BFC가 생성되지 않은 경우</h4>
+<div class="container">
+    <div class="box">
+        <p class="text-box">I am floated left.</p>
+    </div>
+</div>
+</body>
+</html>

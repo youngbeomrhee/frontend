@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        html {
+            font-size: 18px;
+        }
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px
+        }
+        .cards {
+            margin: 0 -10px;
+            padding: 0;
+            list-style: none;
+        }
+        .cards li {
+            display: inline-block;
+            vertical-align: top;
+            width: calc(33.333333333% - 20px);
+            background-color: rgba(236, 115, 115, 0.30);
+            border: 1px solid #fcc2d7;
+            margin: 0 10px 20px 10px;
+            padding: 10px;
+        }
+    </style>
+    <title>float 속성을 적용한 다중 컬럼 레이아웃</title>
+</head>
+<body>
+<article class="content">
+    <ul class="cards">
+        <li>
+            <h1>카드 1</h1>
+            <p>플로팅 요소는 항상 위로 떠오르므로 이를 사용하면 다중 칼럼 레이아웃을 작성할 수 있습니다</p>
+        </li><li><!-- inline 요소로 쓰이기 때문에 해당 영역에 공백이 들어가면 레이아웃이 깨지게 된다 -->
+            <h2>카드 2</h2>
+            <p>플로팅 요소는 항상 위로 떠오르므로 이를 사용하면 다중 칼럼 레이아웃을 작성할 수 있습니다</p>
+            <p>이 카드는 다른 카드보다 텍스트가 조금 더 있습니다.</p>
+        </li><li>
+            <h2>카드 3</h2>
+            <p>플로팅 요소는 항상 위로 떠오르므로 이를 사용하면 다중 칼럼 레이아웃을 작성할 수 있습니다</p>
+        </li><li>
+            <h2>카드 4</h2>
+            <p>플로팅 요소는 항상 위로 떠오르므로 이를 사용하면 다중 칼럼 레이아웃을 작성할 수 있습니다</p>
+        </li><li>
+            <h2>카드 5</h2>
+            <p>플로팅 요소는 항상 위로 떠오르므로 이를 사용하면 다중 칼럼 레이아웃을 작성할 수 있습니다</p>
+        </li><li>
+            <h2>카드 6</h2>
+            <p>플로팅 요소는 항상 위로 떠오르므로 이를 사용하면 다중 칼럼 레이아웃을 작성할 수 있습니다</p>
+        </li><li>
+            <h2>카드 7</h2>
+            <p>플로팅 요소는 항상 위로 떠오르므로 이를 사용하면 다중 칼럼 레이아웃을 작성할 수 있습니다</p>
+        </li><li>
+            <h2>카드 8</h2>
+            <p>플로팅 요소는 항상 위로 떠오르므로 이를 사용하면 다중 칼럼 레이아웃을 작성할 수 있습니다</p>
+        </li>
+    </ul>
+</article>
+
+</body>
+</html>

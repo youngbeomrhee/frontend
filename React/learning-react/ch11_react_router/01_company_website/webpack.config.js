@@ -1,6 +1,7 @@
 var webpack = require("webpack")
 var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 var path = require('path')
+var UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 process.noDeprecation = true
 
@@ -33,7 +34,7 @@ module.exports = {
                 use: ['style-loader','css-loader', {
                     loader: 'postcss-loader',
                     options: {
-                      plugins: () => [require('autoprefixer')]
+                        plugins: () => [require('autoprefixer')]
                     }}]
             },
             {
@@ -41,7 +42,7 @@ module.exports = {
                 use: ['style-loader','css-loader', {
                     loader: 'postcss-loader',
                     options: {
-                      plugins: () => [require('autoprefixer')]
+                        plugins: () => [require('autoprefixer')]
                     }}, 'sass-loader']
             }
         ]
@@ -52,11 +53,20 @@ module.exports = {
                 NODE_ENV: JSON.stringify("production")
             }
         }),
-        new webpack.optimize.UglifyJsPlugin({
-            sourceMap: true,
-            warnings: false,
-            mangle: false
+        new UglifyJsPlugin({
+            uglifyOptions: {
+                warnings: false,
+                ie8: false,
+                output: {
+                    comments: false
+                }
+            }
         }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     sourceMap: true,
+        //     warnings: false,
+        //     mangle: false
+        // }),
         new OptimizeCssAssetsPlugin({
             assetNameRegExp: /\.optimize\.css$/g,
             cssProcessor: require('cssnano'),

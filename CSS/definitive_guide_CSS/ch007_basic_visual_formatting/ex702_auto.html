@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>auto 사용하기</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
         .outline {
             outline: 1px solid
         }
@@ -20,6 +23,10 @@
         }
         .parent3 {
             width: 500px
+        }
+        .parent4 {
+            width: 500px;
+            padding:30px
         }
         .content3 {
             margin-left: auto;
@@ -49,6 +56,10 @@
             margin-left: auto;
             margin-right: auto;
             width: auto
+        }
+        .content9 {
+            margin: 20px;
+            padding: 20px
         }
         .rtl {
             direction: rtl
@@ -179,12 +190,27 @@
         <span>
             .parent3 {width: 500px}
         </span>
-        <p class="content7 outline">
+        <p class="content8 outline">
             <span>
-                .content7 { <br>
+                .content8 { <br>
                     margin-left: <span class="red">auto</span>; <br>
-                    margin-right: 100px; <br>
+                margin-right: <span class="red">auto</span>; <br>
                     width: <span class="red">auto</span>
+                }<br>
+            </span>
+        </p>
+    </section>
+
+    <h4>부모 요소의 패딩, 보더, 마진이 자식요소에 영향을 미칠 수 있다.</h4>
+    <section class="outline parent4">
+        <span>
+            .parent4 {width: 500px; padding:30px;}
+        </span>
+        <p class="content9 outline">
+            <span>
+                .content9 { <br>
+                    margin: 20px</span>; <br>
+                    padding: 20px; <br>
                 }<br>
             </span>
         </p>

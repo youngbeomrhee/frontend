@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BFC 예제</title>
+    <style>
+        .container {
+            outline: 1px solid black;
+            overflow: hidden
+        }
+        .container2 {
+            outline: 1px solid black;
+            float: left
+        }
+        .container3 {
+            outline: 1px solid black;
+            display: flow-root
+        }
+        .box {
+            float: left;
+            outline: 2px solid red
+        }
+        .text-box {
+            outline: 3px solid blue
+        }
+        .clearfix:after {
+            content:" ";
+            display:block;
+            clear:both;
+        }
+
+    </style>
+</head>
+<body>
+<h4>container에 BFC를 생성</h4>
+<h5>container에 <code>overflow: hidden</code> 추가</h5>
+<div class="container">
+    <div class="box">
+        <p class="text-box">I am floated left.</p>
+    </div>
+</div>
+<h5>container에도 <code>float: left</code> 추가</h5>
+<div class="container2">
+    <div class="box">
+        <p class="text-box">I am floated left.</p>
+    </div>
+</div>
+<div class="clearfix"></div>
+<h5>container에 <code>display: flow-root</code> 지정 (<code>overflow: hidden</code>시 shadow box가 잘리는 등의 문제 보완)</h5>
+<div class="container3">
+    <div class="box">
+        <p class="text-box">I am floated left.</p>
+    </div>
+</div>
+</body>
+</html>

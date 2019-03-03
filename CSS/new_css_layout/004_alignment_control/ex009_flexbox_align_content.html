@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flexbox grid</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .container {
+            height: 700px;
+            width: 700px;
+            outline: 1px solid black;
+        }
+
+        .cards {
+            padding: 0;
+            list-style: none;
+            display: flex;
+            height: 50vh;
+            flex-wrap: wrap;
+            align-content: space-between;
+        }
+
+        .cards li {
+            background-color: #e5dbff;
+            border: 1px solid #d0bfff;
+            margin: 0 10px 20px 10px;
+            padding: 10px;
+            border-radius: 5px;
+            flex: 1 1 250px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <ul class="cards">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        <li>Item 6</li>
+    </ul>
+</div>
+</body>
+</html>

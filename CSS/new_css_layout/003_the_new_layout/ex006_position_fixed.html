@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BFC 예제</title>
+    <style>
+        .container {
+            outline: 1px solid black;
+            width: 400px;
+            height: 1600px;
+            position: relative;
+        }
+        .box {
+            top: 100px;
+            right: 60px;
+            position: fixed;
+            width: 200px;
+            outline: 2px solid red;
+        }
+        .container p {
+            outline: 3px solid blue
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    container
+    <div class="box">
+        <p>I am a fixed position box. I will stay 100 pixels from the top and 60 pixels from the right of the viewport as the document scrolls.</p>
+    </div>
+</div>
+
+</body>
+</html>

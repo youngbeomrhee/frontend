@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BFC 예제</title>
+    <style>
+        .container {
+            outline: 1px solid black;
+            width: 400px;
+            height: 1600px;
+        }
+        .box {
+            top: 20px;
+            position: sticky;
+            width: 200px;
+            outline: 2px solid red;
+        }
+        .container p {
+            outline: 3px solid blue
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    container<br>
+    container<br>
+    container<br>
+    container<br>
+    container<br>
+    container<br>
+    container<br>
+    container<br>
+    container<br>
+    container<br>
+    <div class="box">
+        <p>I am a sticky position box. I will display in my static position, but when the document scrolls and I reach 20 pixels from the top of the viewport, I become stuck to that location.</p>
+    </div>
+    container<br>
+    container<br>
+    container<br>
+    container<br>
+    container<br>
+    container<br>
+    container<br>
+    container<br>
+    container<br>
+    container<br>
+</div>
+
+</body>
+</html>

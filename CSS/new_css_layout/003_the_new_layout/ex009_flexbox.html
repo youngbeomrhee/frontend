@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flexbox</title>
+    <style>
+        .container {
+            height: 500px;
+            width: 700px;
+            outline: 1px solid black;
+        }
+
+        .cards {
+            margin: 0 -10px;
+            padding: 0;
+            list-style: none;
+            display: flex;
+        }
+
+        .cards li {
+            background-color: #e5dbff;
+            border: 1px solid #d0bfff;
+            margin: 0 10px 20px 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    container
+    <ul class="cards">
+        <li>
+            <h2>Card 1</h2>
+            <p>These cards have been laid out using flexbox. By setting <code>display: flex</code> on the parent, all direct children become flex items.</p>
+            <p>This card has some extra content in it, making it taller than the others.</p>
+        </li>
+        <li>
+            <h2>Card 2</h2>
+            <p>These cards have been laid out using flexbox. By setting <code>display: flex</code> on the parent, all direct children become flex items.</p>
+        </li>
+        <li>
+            <h2>Card 3</h2>
+            <p>These cards have been laid out using flexbox. By setting <code>display: flex</code> on the parent, all direct children become flex items.</p>
+        </li>
+        <li>
+            <h2>Card 3</h2>
+            <p>These cards have been laid out using flexbox. By setting <code>display: flex</code> on the parent, all direct children become flex items.</p>
+        </li>
+        <li>
+            <h2>Card 3</h2>
+            <p>These cards have been laid out using flexbox. By setting <code>display: flex</code> on the parent, all direct children become flex items.</p>
+        </li>
+        <li>
+            <h2>Card 3</h2>
+            <p>These cards have been laid out using flexbox. By setting <code>display: flex</code> on the parent, all direct children become flex items.</p>
+        </li>
+    </ul>
+</div>
+<script>
+    /*
+    const cards = document.querySelector('.cards');
+    let additionalLi;
+
+    setInterval(() => {
+        additionalLi = document.createElement('div');
+        additionalLi.innerHTML = `<li>
+            <h2>Card x</h2>
+            <p>These cards have been laid out using flexbox. By setting <code>display: flex</code> on the parent, all direct children become flex items.</p>
+        </li>`;
+        cards.appendChild(additionalLi);
+    }, 2000);
+*/
+</script>
+
+</body>
+</html>

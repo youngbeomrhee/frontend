@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BFC 예제</title>
+    <style>
+        .container {
+            outline: 1px solid black;
+            width: 400px;
+            overflow: hidden
+        }
+        .box {
+            float: left;
+            width: 200px;
+            outline: 2px solid red
+        }
+        .container p {
+            background-color: #e5dbff
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="box">
+        floating되어 flow에서 벗어난 요소
+    </div>
+    <p>컨테이너 내부의 텍스트 문단. 흐름 내부에 있습니다. 텍스트는 플로팅된 요소 주변을 배치되지만 배경색은 플로팅된 요소 뒤쪽에도 표시됩니다.</p>
+</div>
+
+</body>
+</html>

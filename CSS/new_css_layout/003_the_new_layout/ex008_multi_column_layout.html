@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BFC 예제</title>
+
+    <style>
+        .container {
+            column-width: 100px; /*해당조건을 주면 column-count가 적용되지 않는다*/
+            column-count: 3;
+            height: 500px;
+            width: 700px;
+            outline: 1px solid black;
+            background-color: red;
+        }
+
+        .container p {
+            outline: 3px solid blue
+        }
+
+        .card {
+            width: 300px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container card" >
+    container
+    <p>One of the first questions the visitor to an aerodrome, when watching the altitude tests, asks is: "How is it known that the airman has risen to a height of so many feet?" Does he guess at the distance he is above the earth?</p>
+    <p>If this were so, then it is very evident that there would be great difficulty in awarding a prize to a number of competitors each trying to ascend higher than his rivals.</p>
+    <p>No; the pilot does not guess at his flying height, but he finds it by a height-recording instrument called the BAROGRAPH. In the last chapter we saw how the ordinary mercurial barometer can be used to ascertain fairly accurately the height of mountains. But the airman does not take a mercurial barometer up with him. There is for his use another form of barometer much more suited to his purpose, namely, the barograph, which is really a development of the aneroid barometer.</p>
+</div>
+</body>
+</html>

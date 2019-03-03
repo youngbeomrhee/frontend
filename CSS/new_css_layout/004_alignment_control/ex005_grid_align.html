@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flexbox grid</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .container {
+            height: 700px;
+            width: 700px;
+            outline: 1px solid black;
+        }
+
+        .cards {
+            padding: 0;
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 100px);
+            grid-template-areas:
+                    "a a a b"
+                    "a a a b"
+                    "c d d d";
+            grid-gap: 20px;
+            align-items: start;
+        }
+
+        .cards li {
+            background-color: #e5dbff;
+            border: 1px solid #d0bfff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .one {
+            grid-area: a;
+        }
+
+        .two {
+            grid-area: b;
+        }
+
+        .three {
+            grid-area: c;
+        }
+
+        .four {
+            grid-area: d;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <ul class="cards">
+        <li class="one">Item 1</li>
+        <li class="two">Item 2</li>
+        <li class="three">Item 3</li>
+        <li class="four">Item 4</li>
+    </ul>
+</div>
+</body>
+</html>

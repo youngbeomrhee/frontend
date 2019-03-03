@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flexbox grid</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .container {
+            height: 700px;
+            width: 700px;
+            outline: 1px solid black;
+        }
+
+        .cards {
+            padding: 0;
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            grid-template-areas:
+                    "a a b"
+                    ". d d"
+                    "c e e";
+        }
+
+        .cards li {
+            background-color: #e5dbff;
+            border: 1px solid #d0bfff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .card1 {
+            grid-area: a;
+        }
+
+        .card2 {
+            grid-area: b;
+        }
+
+        .card3 {
+            grid-area: c;
+        }
+
+        .card4 {
+            grid-area: d;
+        }
+
+        .card5 {
+            grid-area: e;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    container
+    <ul class="cards">
+        <li class="card1">
+            <h2>Card 1 (a)</h2>
+            <p>These cards have been laid out using grid layout. Card 1 is between column lines 1 and 3, row lines 1 and 2.</p>
+        </li>
+        <li class="card2">
+            <h2>Card 2 (b)</h2>
+            <p>These cards have been laid out using grid layout. Card 2 is between column lines 3 and 4, row lines 1 and 2.</p>
+        </li>
+
+        <li class="card3">
+            <h2>Card 3 (c)</h2>
+            <p>These cards have been laid out using grid layout. Card 3 is between column lines 1 and 2, row lines 2 and 4.</p>
+        </li>
+        <li class="card4">
+            <h2>Card 4 (d)</h2>
+            <p>These cards have been laid out using grid layout. Card 4 is between column lines 2 and 4, row lines 2 and 3.</p>
+        </li>
+        <li class="card5">
+            <h2>Card 5 (e)</h2>
+            <p>These cards have been laid out using grid layout. Card 5 is between column lines 2 and 4, row lines 3 and 4.</p>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
