@@ -28,6 +28,11 @@ let myAdd3: (baseValue: number, increment: number) => number = function(x: numbe
     let result3 = buildName("Bob", "Adams");         // 아, 딱 맞습니다
 })();
 
+(() => {
+    let myAdd: (baseValue: number, increment: number) => number =
+        function(x, y) { return x + y; };
+});
+
 
 (() => {
     function buildName(firstName: string, lastName?: string) {
@@ -42,7 +47,6 @@ let myAdd3: (baseValue: number, increment: number) => number = function(x: numbe
     let result3 = buildName("Bob", "Adams");         // 아, 딱 맞습니다
 })();
 
-
 (() => {
     function buildName(firstName: string, lastName = "Smith") {
         return firstName + " " + lastName;
@@ -50,6 +54,9 @@ let myAdd3: (baseValue: number, increment: number) => number = function(x: numbe
 
     let result1 = buildName("Bob");                  // 올바르게 작동하며 "Bob Smith"를 반환합니다
     let result2 = buildName("Bob", undefined);       // 여전히 작동하며 "Bob Smith"를 반환합니다.
+    console.log('# result2', result2);
+    let result3 = buildName("Bob", null);       // 여전히 작동하며 "Bob Smith"를 반환합니다.
+    console.log('# result3', result3);
     // let result3 = buildName("Bob", "Adams", "Sr.");  // 오류, 너무 많은 매개변수
     let result4 = buildName("Bob", "Adams");         // 아, 딱 맞습니다
 })();
