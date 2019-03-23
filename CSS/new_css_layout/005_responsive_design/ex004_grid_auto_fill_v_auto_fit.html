@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>grid auto fill min max</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .container {
+            height: 700px;
+            width: 50%;
+            outline: 1px solid black;
+        }
+        .cards {
+            padding: 0;
+            list-style: none;
+            display: grid;
+            grid-gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        }
+        .cards2 {
+            padding: 0;
+            list-style: none;
+            display: grid;
+            grid-gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        }
+        .cards li, .cards2 li {
+            background-color: #e5dbff;
+            border: 1px solid #d0bfff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>auto-fill</h2>
+    <ul class="cards">
+        <li>
+            <h2>1</h2>
+        </li>
+        <li>
+            <h2>2</h2>
+        </li>
+        <li>
+            <h2>3</h2>
+        </li>
+        <li>
+            <h2>4</h2>
+        </li>
+    </ul>
+    <h2>auto-fit</h2>
+    <ul class="cards2">
+        <li>
+            <h2>1</h2>
+        </li>
+        <li>
+            <h2>2</h2>
+        </li>
+        <li>
+            <h2>3</h2>
+        </li>
+        <li>
+            <h2>4</h2>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

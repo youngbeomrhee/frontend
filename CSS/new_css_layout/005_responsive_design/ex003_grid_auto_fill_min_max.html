@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>grid auto fill min max</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .container {
+            height: 700px;
+            width: 50%;
+            outline: 1px solid black;
+        }
+        .cards {
+            padding: 0;
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+        .cards li {
+            background-color: #e5dbff;
+            border: 1px solid #d0bfff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <ul class="cards">
+        <li>
+            <h2>Card 1</h2>
+            <p>These cards have been laid out using grid layout. By setting <code>display: grid</code> on the parent, all direct children become grid items.</p>
+            <p>This card has some extra content in it, making it taller than the others.</p>
+        </li>
+        <li>
+            <h2>Card 2</h2>
+            <p>These cards have been laid out using grid layout. By setting <code>display: grid</code> on the parent, all direct children become grid items.</p>
+        </li>
+
+        <li>
+            <h2>Card 3</h2>
+            <p>These cards have been laid out using grid layout. By setting <code>display: grid</code> on the parent, all direct children become grid items.</p>
+        </li>
+        <li>
+            <h2>Card 4</h2>
+            <p>These cards have been laid out using grid layout. By setting <code>display: grid</code> on the parent, all direct children become grid items.</p>
+        </li>
+        <li>
+            <h2>Card 5</h2>
+            <p>These cards have been laid out using grid layout. By setting <code>display: grid</code> on the parent, all direct children become grid items.</p>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

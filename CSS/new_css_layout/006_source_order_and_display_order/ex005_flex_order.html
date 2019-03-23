@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flexbox grid</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .container {
+            height: 700px;
+            width: 50%;
+            outline: 1px solid black;
+        }
+
+        .cards {
+            margin: 0 -10px;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: row-reverse;
+        }
+
+        .cards li, .cards2 li {
+            background-color: #e5dbff;
+            border: 1px solid #d0bfff;
+            margin: 0 10px 20px 10px;
+            padding: 10px;
+            border-radius: 5px;
+            /*flex: 0 0 200px;*/
+        }
+
+        .cards li:nth-child(1) {
+            order: 3;
+        }
+
+        .cards li:nth-child(2) {
+            order: 1;
+        }
+
+        .cards li:nth-child(3) {
+            order: 2;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>flex-direction: row-reverse;</h2>
+    <ul class="cards">
+        <li>
+            <h2><a tabindex="1" href="#">Card 1</a></h2>
+        </li>
+        <li>
+            <h2><a tabindex="3" href="#">Card 2</a></h2>
+        </li>
+        <li>
+            <h2><a tabindex="2" href="#">Card 3</a></h2>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flexbox grid</title>
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            height: 700px;
+            width: 70%;
+            outline: 1px solid black;
+        }
+
+        .cards {
+            padding: 0;
+            display: grid;
+            grid-gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+
+        .cards > * {
+            background-color: #edf2ff;
+            border: 1px solid #bac8ff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .cards ul {
+            list-style: none;
+            margin: 0;
+            display: contents;
+        }
+
+        .cards li {
+            background-color: #e5dbff;
+            border: 1px solid #d0bfff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="cards">
+        <div>
+            <h2>Card 1</h2>
+        </div>
+        <div>
+            <h2>Card 2</h2>
+        </div>
+        <div>
+            <h2>Card 3</h2>
+        </div>
+        <ul>
+            <li>List item 1</li>
+            <li>List item 2</li>
+            <li>List item 3</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

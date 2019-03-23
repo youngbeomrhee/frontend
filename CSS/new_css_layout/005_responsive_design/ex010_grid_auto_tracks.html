@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>grid auto fill min max</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .container {
+            height: 700px;
+            width: 50%;
+            outline: 1px solid black;
+        }
+        .cards {
+            padding: 0;
+            list-style: none;
+            display: grid;
+            grid-gap: 20px;
+            grid-template-columns: 1fr auto 1fr;
+        }
+        .cards li {
+            background-color: #e5dbff;
+            border: 1px solid #d0bfff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .card2 {
+            width: 300px;
+        }
+        .cards li:nth-child(5) {
+            width: 400px;
+        }
+        .card4 {
+            height: 300px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <ul class="cards">
+        <li>
+            <h2>Card 1</h2>
+        </li>
+        <li class="card2">
+            <h2>Card 2</h2>
+            <p>This card has a width of 300px set.</p>
+        </li>
+        <li>
+            <h2>Card 3</h2>
+        </li>
+        <li class="card4">
+            <h2>Card 4</h2>
+        </li>
+        <li>
+            <h2>Card 5</h2>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

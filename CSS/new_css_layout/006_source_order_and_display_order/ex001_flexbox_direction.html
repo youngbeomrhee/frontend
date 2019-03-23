@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flexbox grid</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .container {
+            height: 700px;
+            width: 50%;
+            outline: 1px solid black;
+        }
+
+        .cards {
+            margin: 0 -10px;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: row-reverse;
+        }
+
+        .cards2 {
+            margin: 0 -10px;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: flex-start;
+        }
+
+        .cards li, .cards2 li {
+            background-color: #e5dbff;
+            border: 1px solid #d0bfff;
+            margin: 0 10px 20px 10px;
+            padding: 10px;
+            border-radius: 5px;
+            /*flex: 0 0 200px;*/
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>flex-direction: row-reverse;</h2>
+    <ul class="cards">
+        <li>
+            <h2>Card 1</h2>
+        </li>
+        <li>
+            <h2>Card 2</h2>
+        </li>
+        <li>
+            <h2>Card 3</h2>
+        </li>
+    </ul>
+    <h2>flex-direction: column-reverse;</h2>
+    <ul class="cards2">
+        <li>
+            <h2>Card 1</h2>
+        </li>
+        <li>
+            <h2>Card 2</h2>
+        </li>
+        <li>
+            <h2>Card 3</h2>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

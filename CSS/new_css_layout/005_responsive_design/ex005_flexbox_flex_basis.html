@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flexbox grid</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .container {
+            height: 700px;
+            width: 2000px;
+            outline: 1px solid black;
+        }
+
+        .cards {
+            margin: 0 -10px;
+            padding: 0;
+            list-style: none;
+            display: flex;
+        }
+
+        .cards li {
+            background-color: #e5dbff;
+            border: 1px solid #d0bfff;
+            margin: 0 10px 20px 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .cards1 li{
+            flex: 0 0 200px;
+        }
+
+        .cards1-2 li{
+            flex: 1 1 200px;
+        }
+
+        .cards2 li{
+            flex: 1 0 200px;
+        }
+
+        .cards3 li {
+            flex: 1 0 200px;
+        }
+
+        .cards3 li:first-child {
+            flex: 2 0 200px;
+        }
+
+        .cards4 li {
+            flex: 1 0 0;
+        }
+
+        .cards4 li:first-child {
+            flex: 2 0 0;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <p>flex: 0 0 200px</p>
+    <ul class="cards cards1">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+
+    <p>flex: 1 1 200px</p>
+    <ul class="cards cards1-2">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+
+    <p>flex: 1 0 200px</p>
+    <ul class="cards cards2">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+
+    <p>flex: 1 0 200px / first-child flex: 2 0 200px</p>
+    <ul class="cards cards3">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+
+    <p>flex: 1 0 0 / first-child flex: 2 0 0</p>
+    <ul class="cards cards4">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+
+</div>
+
+</body>
+</html>

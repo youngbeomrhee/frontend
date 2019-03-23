@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flexbox grid</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        .container {
+            height: 700px;
+            width: 50%;
+            outline: 1px solid black;
+        }
+
+        .cards {
+            padding: 0;
+            list-style: none;
+            display: grid;
+            grid-gap: 20px;
+            grid-auto-flow: column;
+            grid-template-rows: repeat(2, auto);
+        }
+
+        .cards2 {
+            padding: 0;
+            list-style: none;
+            display: grid;
+            grid-gap: 20px;
+            grid-auto-flow: row;
+            grid-template-rows: repeat(2, auto);
+        }
+
+        .cards li, .cards2 li {
+            background-color: #e5dbff;
+            border: 1px solid #d0bfff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>grid-auto-flow: column;</h2>
+    <ul class="cards">
+        <li>
+            <h2>Card 1</h2>
+        </li>
+        <li>
+            <h2>Card 2</h2>
+        </li>
+        <li>
+            <h2>Card 3</h2>
+        </li>
+    </ul>
+    <h2>grid-auto-flow: row;</h2>
+    <ul class="cards2">
+        <li>
+            <h2>Card 1</h2>
+        </li>
+        <li>
+            <h2>Card 2</h2>
+        </li>
+        <li>
+            <h2>Card 3</h2>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
