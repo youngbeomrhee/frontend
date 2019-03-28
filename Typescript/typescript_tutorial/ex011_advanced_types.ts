@@ -26,9 +26,55 @@
         }
     }
 
-    var jim = extend(new Person("Jim"), new ConsoleLogger());
+    let jim = extend(new Person("Jim"), new ConsoleLogger());
     console.dir(jim);
 
+    let x = extend({ a: "hello" }, { b: 42 });
+    let s = x.a;
+    let n = x.b;
+
+    interface Ix {
+        a: string;
+    }
+    interface Iy {
+        b: number;
+    }
+    let x2: Ix & Iy = extend({ a: 'hello' }, { b: 42 });
+    let s2 = x2.a;
+    let n2 = x2.b;
+
+    let x3: Ix & Iy = { a: 'hello', b: 42 };
+    let s3 = x3.a;
+    let n3 = x3.b;
+})();
+
+/* Intersection types examples */
+(()=>{
+    interface Ia { a: number; }
+    interface Ib { b: string; }
+
+    let ab: Ia & Ib = {a: 1, b: 'str'};
+    let a: Ia = ab;
+    let b: Ib = ab;
+
+    interface Ix { p: Ia; }
+    interface Iy { p: Ib; }
+
+    let xy: Ix & Iy = { p: ab }
+
+    type F1 = (a: string, b: string) => void;
+    type F2 = (a: number, b: number) => void;
+
+    var f: F1 & F2 = (a: string | number, b: string | number) => { };
+    f("hello", "world");  // Ok
+    f(1, 2);              // Ok
+    // f(1, "test");         // Error
+
+    function func(a: string | number, b: string | number) { };
+    func('str', 1);
+    func(1, 1);
+    func(1, 'str');
+    // func(1, false); // Error
 })();
 
 
@@ -83,7 +129,8 @@
     }
     function getSmallPet(): Fish | Bird {
         // ...
-        return <Fish>{};
+        let result: Fish = { swim: ()=>{}, layEggs: ()=>undefined};
+        return result;
     }
     let pet = getSmallPet();
     pet.layEggs(); // okay
@@ -120,6 +167,25 @@
     }
 
 })();
+
+(() => {
+    let str_n_num: { a: string } & { b: number };
+    // str_n_num = { a: 'str'};    // str_n_num type Error
+    // str_n_num = { b: 1};    // str_n_num type Error
+    // str_n_num = { a: 1, b: 1};  // a type Error
+    // str_n_num = { a: 'str', b: 'str'};  // b type Error
+    str_n_num = { a: 'str', b: 1};
+
+    let str_u_num: { a: string } | { b: number };
+    // str_u_num = { a: 1 }    // a type Error
+    str_u_num = { a: 'str' }
+    // str_u_num = { b: 'str' }    // b type Error
+    str_u_num = { b: 1 }
+    str_u_num = { a: 'str', b: 1 };
+    str_u_num = { a: 'str', b: 'str' };
+
+})();
+
 
 /* typeof type guards */
 (()=>{
@@ -217,7 +283,7 @@
 
 (()=>{
     class C {
-        a: number;
+        a!: number;
         b?: number;
     }
     let c = new C();
@@ -307,9 +373,9 @@
     }
     var people: LinkedList<Person> = <LinkedList<Person>>{name: 'John'};
     var s = people.name;
-    var s = people.next.name;
-    var s = people.next.next.name;
-    var s = people.next.next.next.name;
+    // var s = people.next.name;    Runtime Error
+    // var s = people.next.next.name;
+    // var s = people.next.next.next.name;
 })();
 
 
@@ -445,9 +511,19 @@ declare function interfaced(arg: Interface): Interface;
 
 /* Index types */
 (()=>{
-    function pluck(o, names) {
+    function pluck(o: any, names: string[]) {
         return names.map(n => o[n]);
     }
+
+    const obj = {
+        a: 1,
+        b: 2,
+        c: 3
+    }
+
+    const pluckAB = pluck(obj, ['a', 'b']);
+    console.log('pluckAB : ');
+    console.dir(pluckAB);
 })();
 
 
@@ -466,6 +542,8 @@ declare function interfaced(arg: Interface): Interface;
     let strings: string[] = pluck(person, ['name']); // ok, string[]
 
     let personProps: keyof Person; // 'name' | 'age'
+    personProps = "name";
+    personProps = "age";
 
     // pluck(person, ['age', 'unknown']); // error, 'unknown' is not in 'name' | 'age'
     pluck(person, ['age', 'name']); // ok
@@ -500,10 +578,18 @@ declare function interfaced(arg: Interface): Interface;
         readonly age: number;
     }
 
+    const personPartial: PersonPartial = { name: 'anonymous' };
+    personPartial.name = 'Tom';
+    const personReadonly: PersonReadonly = { name: 'anonymous', age: 0 };
+    // personReadonly.name = 'Tom'; // Error
 })();
 
 
 (()=>{
+    interface Person {
+        name: string;
+        age: number;
+    }
     type Readonly<T> = {
         readonly [P in keyof T]: T[P];
     }
@@ -512,18 +598,29 @@ declare function interfaced(arg: Interface): Interface;
     }
 
     type PersonPartial = Partial<Person>;
-    type ReadonlyPerson = Readonly<Person>;
+    type PersonReadonly = Readonly<Person>;
+
+    const personPartial: PersonPartial = { name: 'anonymous' };
+    personPartial.name = 'Tom';
+    const personReadonly: PersonReadonly = { name: 'anonymous', age: 0 };
+    // personReadonly.name = 'Tom'; // Error
 })();
 
 
 (()=>{
     type Keys = 'option1' | 'option2';
     type Flags = { [K in Keys]: boolean };
-
+    const v: Flags = { option1: true, option2: false };
+    console.dir(v);
 })();
 
 
 (()=>{
+    interface Person {
+        name: string;
+        age: number;
+    }
+
     type Flags = {
         option1: boolean;
         option2: boolean;
@@ -532,23 +629,57 @@ declare function interfaced(arg: Interface): Interface;
     type NullablePerson = { [P in keyof Person]: Person[P] | null }
     type PartialPerson = { [P in keyof Person]?: Person[P] }
 
+    const nullablePerson: NullablePerson = { name: 'anonymous', age: 0 };
+    nullablePerson.name = 'Tom';
+    nullablePerson.age = 37;
+    nullablePerson.name = null;
+    nullablePerson.age = null;
+
+    const partialPerson: PartialPerson = { name: 'anonymous' };
+    partialPerson.name = 'Tom';
+    partialPerson.age = 37;
+    // partialPerson.name = null;
+    // partialPerson.age = null;
+
     type Nullable<T> = { [P in keyof T]: T[P] | null }
     type Partial<T> = { [P in keyof T]?: T[P] }
+    type Readonly<T> = { readonly [P in keyof T]: T[P] }
+
+
+    const nullablePerson2: Nullable<Person> = { name: 'anonymous', age: 0 };
+    nullablePerson2.name = 'Tom';
+    nullablePerson2.age = 37;
+    nullablePerson2.name = null;
+    nullablePerson2.age = null;
+
+    const partialPerson2: Partial<Person> = { name: 'anonymous'};
+    partialPerson2.name = 'Tom';
+    partialPerson2.age = 37;
+    // partialPerson.name = null;
+    // partialPerson.age = null;
+
+    const readonlyPerson3: Readonly<Person> = { name: 'anonymous', age: 0 };
+    // readonlyPerson3.name = 'Tom';    Error
+
+    // 읽기 전용이면서 partial인 Readonly<Partial<Person>>
+    const readonlyPartialPerson: Readonly<Partial<Person>> = { name: 'anonymous' };
 })();
 
 
 (()=>{
-    type Proxy<T> = {
-        get(): T;
-        set(value: T): void;
-    }
-    type Proxify<T> = {
-        [P in keyof T]: Proxy<T[P]>;
-    }
-    function proxify<T>(o: T): Proxify<T> {
-        // ... wrap proxies ...
-    }
-    let proxyProps = proxify(props);
+    // type Proxy<T> = {
+    //     get(): T;
+    //     set(value: T): void;
+    // }
+    // type Proxify<T> = {
+    //     [P in keyof T]: Proxy<T[P]>;
+    // }
+    // function proxify<T>(o: T): Proxify<T> {
+    //     // ... wrap proxies ...
+    //     const result: Proxify<T> = <Proxy<T>>o;
+    //     return result;
+    // }
+    // let proxyProps = proxify({ ip: '127.0.0.1', name: 'proxy' });
 
 
     type Pick<T, K extends keyof T> = {
@@ -560,28 +691,78 @@ declare function interfaced(arg: Interface): Interface;
 
     type ThreeStringProps = Record<'prop1' | 'prop2' | 'prop3', string>
 
+    let threeStringProps: ThreeStringProps;
+    threeStringProps = {
+        'prop1': 'str',
+        'prop2': 'str2',
+        'prop3': 'str3',
+    };
 
-    function unproxify<T>(t: Proxify<T>): T {
-        let result = {} as T;
-        for (const k in t) {
-            result[k] = t[k].get();
-        }
-        return result;
+    console.log('threeStringProps : ');
+    console.dir(threeStringProps);
+
+    type ThreeStringPropsPicked = Pick<ThreeStringProps, 'prop1'>;
+    let threeStringPropsPicked: ThreeStringPropsPicked = threeStringProps;
+
+    console.log('threeStringPropsPicked : ');
+    console.dir(threeStringPropsPicked);
+
+    // function unproxify<T>(t: Proxify<T>): T {
+    //     let result = {} as T;
+    //     for (const k in t) {
+    //         result[k] = t[k].get();
+    //     }
+    //     return result;
+    // }
+    // let originalProps = unproxify(proxyProps);
+
+})();
+
+declare function func<T extends boolean>(x: T): T extends true ? string : number;
+
+// Type is 'string | number
+let funcX = func(Math.random() < 0.5)
+console.log(funcX);
+
+(()=>{
+    type TypeName<T> =
+        T extends string ? "string" :
+            T extends number ? "number" :
+                T extends boolean ? "boolean" :
+                    T extends undefined ? "undefined" :
+                        T extends Function ? "function" :
+                            "object";
+
+    type T0 = TypeName<string>;  // "string"
+    type T1 = TypeName<"a">;  // "string"
+    type T2 = TypeName<true>;  // "boolean"
+    type T3 = TypeName<() => void>;  // "function"
+    type T4 = TypeName<string[]>;  // "object"
+})();
+
+
+interface Foo {
+    propA: boolean;
+    propB: boolean;
+}
+
+declare function funcB<T>(x: T): T extends Foo ? string : number;
+
+(()=>{
+
+    function foo<U>(x: U) {
+        // Has type 'U extends Foo ? string : number'
+        let a = funcB(x);
+
+        // This assignment is allowed though!
+        let b: string | number = a;
     }
-    let originalProps = unproxify(proxyProps);
-
-})();
-
-(()=>{
 })();
 
 
 (()=>{
+    var a: string ? string : number = 1;
 
-})();
-
-
-(()=>{
 })();
 
 

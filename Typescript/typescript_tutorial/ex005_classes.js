@@ -5,7 +5,7 @@ var __extends = (this && this.__extends) || (function () {
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
-    };
+    }
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -301,7 +301,8 @@ department2.generateReports(); // error: method doesn't exist on declared abstra
 /* Advanced Techniques */
 /* Constructor functions */
 var Greeter2 = /** @class */ (function () {
-    function Greeter2() {
+    function Greeter2(greeting) {
+        this.greeting = greeting;
     }
     Greeter2.prototype.greet = function () {
         if (this.greeting) {
@@ -315,15 +316,17 @@ var Greeter2 = /** @class */ (function () {
     return Greeter2;
 }());
 var greeter3;
-greeter3 = new Greeter2();
+greeter3 = new Greeter2('');
 console.log(greeter3.greet());
 var greeterMaker = Greeter2;
 greeterMaker.standardGreeting = "Hey there!";
-var greeter4 = new greeterMaker();
+var greeter4 = new greeterMaker('');
 console.log(greeter4.greet());
 /* Using a class as an interface */
 var Point2 = /** @class */ (function () {
-    function Point2() {
+    function Point2(x, y) {
+        this.x = x;
+        this.y = y;
     }
     return Point2;
 }());

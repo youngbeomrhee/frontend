@@ -183,7 +183,7 @@ dad2.printName();
 /* Accessors */
 /* no getters/setters */
 class Employee4 {
-    fullName: string;
+    fullName: string | undefined;
 }
 
 let employee4 = new Employee4();
@@ -196,7 +196,7 @@ if (employee4.fullName) {
 let passcode = "secret passcode";
 
 class Employee5 {
-    private _fullName: string;
+    _fullName!: string;
 
     get fullName(): string {
         return this._fullName;
@@ -297,6 +297,9 @@ department2.generateReports(); // error: method doesn't exist on declared abstra
 /* Advanced Techniques */
 /* Constructor functions */
 class Greeter2 {
+    constructor(greeting: string) {
+        this.greeting = greeting;
+    }
     static standardGreeting = "Hello, there";
     greeting: string;
     greet() {
@@ -310,18 +313,22 @@ class Greeter2 {
 }
 
 let greeter3: Greeter2;
-greeter3 = new Greeter2();
+greeter3 = new Greeter2('');
 console.log(greeter3.greet());
 
 let greeterMaker: typeof Greeter2 = Greeter2;
 greeterMaker.standardGreeting = "Hey there!";
 
-let greeter4: Greeter = new greeterMaker();
+let greeter4: Greeter = new greeterMaker('');
 console.log(greeter4.greet());
 
 
 /* Using a class as an interface */
 class Point2 {
+    constructor(x: number, y: number) {
+        this.x = x;
+        this.y = y;
+    }
     x: number;
     y: number;
 }
