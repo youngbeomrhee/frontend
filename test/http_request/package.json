@@ -1,0 +1,19 @@
+{
+  "name": "http_request",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test001.js",
+  "scripts": {
+    "test": "mocha --recursive './test/api/*.js'"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "supertest": "^4.0.2"
+  },
+  "dependencies": {
+    "async": "^2.6.2",
+    "dotenv": "^7.0.0",
+    "mocha": "^6.0.2"
+  }
+}
