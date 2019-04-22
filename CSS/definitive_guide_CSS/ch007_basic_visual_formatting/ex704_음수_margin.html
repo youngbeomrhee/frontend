@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>음수 margin</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            padding-left: 30px
+        }
+        .outline {
+            outline: 1px solid
+        }
+        .container {
+            width: 400px;
+        }
+        .paragraph {
+            margin-left: 10px;
+            width: auto;
+            margin-right: -50px;
+        }
+        .paragraph2 {
+            margin-left: 10px;
+            width: 500px;
+            margin-right: auto;
+        }
+        .paragraph3 {
+            margin-left: -50px;
+            width: auto;
+            margin-right: 10px;
+        }
+        .red {
+            color: red
+        }
+    </style>
+</head>
+<body>
+<h3>음수 margin을 갖는 경우 (부모영역의 width는 400px)</h3>
+<section class="outline container">
+    <p class="outline paragraph">
+        margin-left: 10px;
+        width: auto;
+        <span class="red">
+            margin-right: -50px;
+        </span>
+    </p>
+    <p class="outline">또 다른 문단입니다</p>
+</section>
+<section class="outline container">
+    <p class="outline paragraph2">
+        margin-left: 10px;
+        <span class="red">
+            width: 500px;
+            margin-right: auto;
+        </span>
+    </p>
+    <p class="outline">또 다른 문단입니다</p>
+</section>
+<section class="outline container">
+    <p class="outline paragraph3">
+        <span class="red">
+            margin-left: -50px;
+            width: auto;
+        </span>
+        margin-right: 10px;
+    </p>
+    <p class="outline">또 다른 문단입니다</p>
+</section>
+</body>
+</html>

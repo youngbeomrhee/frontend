@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>white-space 요소</title>
+    <style>
+        .container {
+            width: 500px;
+            outline: 1px solid black;
+        }
+        code {
+            color: red;
+        }
+        em {
+            color: blue;
+        }
+        .normal {
+            white-space: normal;
+        }
+        .nowrap {
+            white-space: nowrap;
+        }
+        .pre {
+            white-space: pre;
+        }
+        .pre-wrap {
+            white-space: pre-wrap;
+        }
+        .pre-line {
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+<p class="container">
+    <span class="normal"><code>{ white-space: normal }</code> 연속된 공백이 하나로 병합됩니다. 소스 안의 줄바꿈 문자는 다른 공백 문자와 같이 취급됩니다. 줄 박스를 채우기 위해 필요에 따라 줄을 끊습니다.
+        => <em>"     "</em> 쌍따옴표 사이에 공백문자 5개
+        줄내림 후의 문자</span><br><br>
+    <span class="nowrap"><code>{ white-space: nowrap }</code> normal 과 같이 공백 문자를 병합하지만, 텍스트 줄바꿈(text wrapping)을 하지 않습니다.
+        => <em>"     "</em> 쌍따옴표 사이에 공백문자 5개
+        줄내림 후의 문자</span><br><br>
+    <span class="pre"><code>{ white-space: pre }</code> 연속된 공백이 보존됩니다. 줄은 오로지 소스의 줄바꿈 문자나 br 요소에서만 끊어집니다.
+        => <em>"     "</em> 쌍따옴표 사이에 공백문자 5개
+        줄내림 후의 문자</span><br><br>
+    <span class="pre-wrap"><code>{ white-space: pre-wrap }</code> 연속된 공백이 보존됩니다. 줄은 줄바꿈 문자, br, 그리고 줄 박스를 채우기 위해 필요에 따라 끊어집니다.
+        => <em>"     "</em> 쌍따옴표 사이에 공백문자 5개
+        줄내림 후의 문자</span><br><br>
+    <span class="pre-line"><code>{ white-space: pre-line }</code> 연속된 공백이 병합됩니다. 줄은 줄바꿈 문자, br, 그리고 줄 박스를 채우기 위해 필요에 따라 끊어집니다.
+        => <em>"     "</em> 쌍따옴표 사이에 공백문자 5개
+        줄내림 후의 문자</span>
+</p>
+</body>
+</html>

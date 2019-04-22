@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>음수 margin</title>
+    <style>
+        .up1 {
+            margin-bottom: 5px;
+            background-color: silver;
+        }
+        .down1 {
+            margin-top: 10px;
+            background-color: brown;
+        }
+        .up2 {
+            margin-bottom: 5px;
+            background-color: silver;
+        }
+        .down2 {
+            margin-top: -10px;
+            background-color: brown;
+        }
+    </style>
+</head>
+<body>
+<h3>margin의 병합 : 5px의 margin과 10px의 margin이 만나서 10px의 margin으로 병합</h3>
+<div class="container">
+    <p class="up1">
+        margin-bottom: 5px
+    </p>
+    <p class="down1">
+        margin-top: 10px;
+    </p>
+</div>
+<h3>
+    음수 값으로 설정된 margin은 끌어당기는(pulling) 효과가 있다.<br>
+    5px의 Margin과 -10px의 Margin이 만나서 -5px의 Margin이 됐다. 즉, 하단의 Block이 위로 끌어올려진다.<br>
+    브라우져는 항상 처음부터 끝까지 렌더링되기 때문에, Normal flow에서 두 요소가 겹쳐진다고 가정했을 때 Document 상에서 나중에 나오는 요소가 이전의 요소를 덮어쓰게 될 것을 예상할 수 있다.
+</h3>
+<div class="container">
+    <p class="up2">
+        margin-bottom: 5px
+    </p>
+    <p class="down2">
+        margin-top: -10px;
+    </p>
+</div>
+</body>
+</html>

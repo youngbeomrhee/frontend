@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>서로 다른 정렬 상태에서 텍스트 라인의 모습</title>
+    <style>
+        p {
+            width: 610px;
+            border: 1px dotted gray;
+        }
+        span {
+            background-color: silver;
+        }
+        .left {
+            text-align: left;
+        }
+        .right {
+            text-align: right;
+        }
+        .center {
+            text-align: center;
+        }
+        .justify {
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+    <p class="left">
+        <span>이 문단은 <code>{ text-align: left; }</code>의 스타일이 적용되어 있는데, 이는 요소의 라인 박스를 문단의 왼쪽 끝으로 정렬 시킨다.</span>
+    </p>
+    <p class="right">
+        <span>이 문단은 <code>{ text-align: right; }</code>의 스타일이 적용되어 있는데, 이는 요소의 라인 박스를 문단의 오른쪽 끝으로 정렬 시킨다.</span>
+    </p>
+    <p class="center">
+        <span>이 문단은 <code>{ text-align: center; }</code>의 스타일이 적용되어 있는데, 이는 요소의 라인 박스를 문단의 중앙으로 정렬 시킨다.</span>
+    </p>
+    <p class="justify">
+        <span>이 문단은 <code>{ text-align: justify; }</code>의 스타일이 적용되어 있는데, 이는 요소를 문단의 양쪽 끝으로 정렬 시킨다. 맨 마지막의 행은 예외적인데, 오른쪽 끝이 문단의 오른쪽으로 정렬되지 않는다(오른쪽에서 왼쪽으로 읽고 쓰는 언어에서는 마지막 행이 왼쪽끝으로 정렬되지 않을 것이다).</span>
+    </p>
+</body>
+</html>

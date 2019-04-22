@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>여러 줄의 인라인 요소</title>
+    <style>
+        p {
+            width: 500px;
+            border: 1px dashed red;
+        }
+        .span1 {
+            border: 1px dashed green;
+        }
+        .span2 {
+            border: 1px dashed blue;
+        }
+    </style>
+</head>
+<body>
+<p>
+    <span class="span1">이것은 감싸고 있는 요소(이 경우엔 문단) 안쪽에 있는 <code>span</code>안에 들어있는 텍스트 콘텐츠이다.</span><span class="span2">텍스트 라인 각각의 보더와 각 라인의 상, 하단 경계가 서로 닿아 있다(위 줄의 하단 보더가 아래 줄의 상단보더보다 아래에 있다). 이것은 여러분이 모니터를 사용한다고 가정하고 보더가 실제로는 각 라인 외곽의 다음 픽셀에 그려지기 때문이다.</span>
+</p>
+</body>
+</html>

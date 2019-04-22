@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>음수 margin</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            padding-left: 30px
+        }
+        .outline {
+            outline: 1px solid
+        }
+        .container {
+            width: 500px;
+        }
+        .paragraph {
+            width: 67%;
+            padding-right: 5%;
+            padding-left: 5%;
+            margin-right: auto;
+            margin-left: 5%;
+        }
+        .paragraph2 {
+            width: 67%;
+            padding-right: 2em;
+            padding-left: 2em;
+            margin-right: auto;
+            margin-left: 5em;
+        }
+        .paragraph3 {
+            width: 67%;
+            padding-right: 15px;
+            padding-left: 10px;
+            margin-right: auto;
+            margin-left: 5em;
+        }
+        .red {
+            color: red
+        }
+    </style>
+</head>
+<body>
+<h3>부모의 영역은 500px</h3>
+<section class="outline container">
+    Percent 값 이용하기
+    <p class="outline paragraph">
+        width: 67%;
+        padding-right: 5%;
+        padding-left: 5%;
+        margin-right: auto;
+        margin-left: 5%;
+    </p>
+    <p class="outline">또 다른 문단입니다</p>
+</section>
+<section class="outline container">
+    Percent 값과 특정 치수 혼합
+    <p class="outline paragraph2">
+        width: 67%;
+        padding-right: 2em;
+        padding-left: 2em;
+        margin-right: auto;
+        margin-left: 5em;
+    </p>
+    <p class="outline">또 다른 문단입니다</p>
+</section>
+<section class="outline container">
+    더 많은 혼용
+    <p class="outline paragraph3">
+        width: 67%;
+        padding-right: 15px;
+        padding-left: 10px;
+        margin-right: auto;
+        margin-left: 5em;
+    </p>
+    <p class="outline">또 다른 문단입니다</p>
+</section>
+</body>
+</html>

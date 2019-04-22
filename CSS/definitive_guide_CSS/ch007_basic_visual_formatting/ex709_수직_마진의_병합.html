@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>수직 마진의 병합</title>
+    <style>
+        ul.ex1 li {
+            margin-top: 10px; margin-bottom: 15px;
+        }
+        ul.ex2 {
+            margin-bottom: 15px;
+        }
+        ul.ex2 li {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            margin-top: 28px;
+        }
+        ul.ex3 {
+            margin-bottom: 15px;
+            border: 1px solid red;
+        }
+        ul {
+            background-color: silver;
+        }
+        li {
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+<h3>수직으로 인접한 마진 간의 병합</h3>
+<ul class="ex1">
+    <li>
+        li {
+            margin-top: 10px; margin-bottom: 15px;
+        }
+    </li>
+    <li>
+        li {
+            margin-top: 10px; margin-bottom: 15px;
+        }
+    </li>
+    <li>
+        li {
+            margin-top: 10px; margin-bottom: 15px;
+        }
+    </li>
+    <li>
+        li {
+            margin-top: 10px; margin-bottom: 15px;
+        }
+    </li>
+</ul>
+
+<h3>margin이 중첩될때 하나로 병합된다.</h3>
+<ul class="ex2">
+    <li>
+        ul.ex2 { margin-bottom: 15px }
+        ul.ex2 li { margin-bottom: 20px }
+    </li>
+</ul>
+<h4>
+    h4 { margin-top: 28px }
+</h4>
+</ul>
+
+<h3>Containing block에 border나 padding을 추가하는 경우, li는 ul에 포함되므로 ul의 margin과 h1의 margin만 병합된다.</h3>
+<ul class="ex3">
+    <li>
+        ul.ex3 { margin-bottom: 15px; border: 1px solid; }
+        ul.ex2 li { margin-bottom: 20px }
+    </li>
+</ul>
+<h4>
+    h4 { margin-top: 28px }
+</h4>
+</ul>
+</body>
+</html>

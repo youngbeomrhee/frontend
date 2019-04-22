@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>높이 값으로 사용되는 퍼센트</title>
+    <style>
+        div, div p {
+            outline: 1px solid black
+        }
+        .container1 {
+            height: auto;
+            background: silver;
+        }
+        .container2 {
+            height: auto;
+            border-top: 1px solid;
+            border-bottom: 1px solid;
+            background: silver;
+        }
+        .content {
+            margin-top: 2em;
+            margin-bottom: 2em;
+        }
+    </style>
+</head>
+<body>
+<p>Normal flow에서 height:auto를 가진 블록 레벨 요소가 블록 레벨의 자식 요소만을 갖는다면 기본 높이는 가장 상단에 있는 자식 블록 레벨 요소의 바깥쪽 보더 상단에서 가장 아랫쪽에 있는 요소의 바깥쪽 보더 하단까지의 거리가 될 것이다. 그렇게 되면 자식 요소의 마진은 그들을 감싸고 있는 요소 밖으로 튀어나오게 될 것이다. 하지만 만약 블록 레벨 요소가 상단 패딩이나 하단 패딩을 가지고 있거나 혹은 상단이나 하단 보더를 가지고 있다면 그것의 높이는 가장 상단에 있는 자식 요소의 마진 경계선의 상단 끝에서부터 가장 하단에 있는 자식 요소의 하단 마진 경계선의 바깥쪽까지의 거리가 될 것이다.</p>
+<div class="container1">
+    <p class="content">
+        .container1 {
+            height: auto;
+            background: silver;
+        }
+        .content {
+            margin-top: 2em;
+            margin-bottom: 2em;
+        }
+    </p>
+</div>
+<div class="container2">
+    <p class="content">
+        .container2 {
+            height: auto;
+            <span style="color:red">
+                border-top: 1px solid;
+                border-bottom: 1px solid;
+            </span>
+            background: silver;
+        }
+        .content {
+            margin-top: 2em;
+            margin-bottom: 2em;
+        }
+    </p>
+</div>
+</body>
+</html>

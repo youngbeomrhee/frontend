@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>수직속성</title>
+    <style>
+        div {
+            outline: 1px solid;
+            box-sizing: border-box;
+        }
+        .container {
+            height: 300px;
+        }
+        .content {
+            border: 1px solid red;
+            width: 300px;
+            height: auto;
+            margin: auto;
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    .container
+    <div class="content">
+        .content {
+            border: 1px solid red;
+            width: 100px;
+            height: auto;
+            margin: auto;
+            padding: 50px;
+        }
+        normal flow에서 margin에 준 auto는 0으로 설정된다.
+    </div>
+</div>
+</body>
+</html>

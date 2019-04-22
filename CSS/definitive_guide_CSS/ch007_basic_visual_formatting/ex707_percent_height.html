@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>높이 값으로 사용되는 퍼센트</title>
+    <style>
+        div, div p {
+            outline: 1px solid black
+        }
+        .container1 {
+            height: 6em
+        }
+        .container2 {
+            height: auto
+        }
+        .content1 {
+            height: 50%
+        }
+    </style>
+</head>
+<body>
+<h3>Containing block의 height가 명시적인 경우</h3>
+<div class="container1">
+    .container1 {
+        height: 6em
+    }
+    <p class="content1">
+        절반의 높이
+    </p>
+</div>
+<h3>Containing block의 height가 auto인 경우</h3>
+<div class="container2">
+    .container2 {
+        height: auto
+    }
+    <p class="content1">
+        height가 auto로 재설정되어 절반의 높이로 표현되지 않는다.
+    </p>
+</div>
+</body>
+</html>

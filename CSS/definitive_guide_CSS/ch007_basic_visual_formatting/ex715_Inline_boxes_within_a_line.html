@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inline boxes within a line</title>
+</head>
+<body>
+    <h3>하단의 p element에 { line-height: 0.25em }를 줬지만 내용이 없으면 문단은 아무것도 보이지 않는다.</h3>
+    <p style="line-height: 0.25em; outline: 1px solid black;"></p>
+    <h3>하단의 p element에 { line-height: 0.25em }를 주고 문자를 하나 추가했다.</h3>
+    <p style="line-height: 0.25em; outline: 1px solid black;">x</p>
+    <h3>가상적인 태그의 나열</h3>
+    <p style="line-height: 24pt">
+        <line> 부모의 { line-height: 24pt }를 상속하는 </line>
+        <line> 컨텐츠를 구성하는 여러 행의 </line>
+        <line> 텍스트로 이루어진 </line>
+        <line> 문단. </line>
+    </p>
+</body>
+</html>
