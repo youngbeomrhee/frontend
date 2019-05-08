@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>computed and watch</title>
+    <style>
+        h1 {
+            margin-top: 30px
+        }
+    </style>
+</head>
+<body>
+<div id="example">
+    <h1>너무 많은 연산이 표현식에 포함된 경우</h1>
+    {{ message.split('').reverse().join('') }}
+</div>
+<div id="example2">
+    <h1>computed 사용</h1>
+    <p>원본 메시지: "{{ message }}"</p>
+    <p>역순으로 표시한 메시지: "{{ reversedMessage }}"</p>
+</div>
+<div id="example3">
+    <h1>Computed Caching vs Methods</h1>
+    <p>원본 메시지: "{{ message }}"</p>
+    <p>역순으로 표시한 메시지: "{{ reversedMessage() }}"</p>
+</div>
+<div id="example4">
+    <h1>Computed vs Watched Property</h1>
+    <div id="demo">{{ fullName }}</div>
+    <div id="demo2">{{ fullName }}</div>
+    <div id="demo3">{{ fullName }}</div>
+</div>
+<div id="watch-example">
+    <h1>Watchers</h1>
+    <p>
+        yes/no 질문을 물어보세요:
+        <input v-model="question">
+    </p>
+    <p>{{ answer }}</p>
+</div>
+<!-- development version, includes helpful console warnings -->
+<!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+<!-- production version, optimized for size and speed -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script><!-- 이미 Ajax 라이브러리의 풍부한 생태계와 범용 유틸리티 메소드 컬렉션이 있기 때문에, -->
+<!-- Vue 코어는 다시 만들지 않아 작게 유지됩니다. -->
+<!-- 이것은 이미 익숙한 것을 선택할 수 있는 자유를 줍니다. -->
+<script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+<script>
+    new Vue({
+        el: '#example',
+        data: {
+            message: 'Hello Vue!'
+        }
+    });
+
+    const vm2 = new Vue({
+        el: '#example2',
+        data: {
+            message: 'Hello Vue!'
+        },
+        computed: {
+            reversedMessage: function () {
+                // this는 vm 인스턴스를 가리킵니다
+                return this.message.split('').reverse().join('');
+            }
+        }
+    });
+
+    const vm3 = new Vue({
+        el: '#example3',
+        data: {
+            message: '3초 후 변경될 메시지'
+        },
+        methods: {
+            reversedMessage: function () {
+                // this는 vm 인스턴스를 가리킵니다
+                return this.message.split('').reverse().join('');
+            }
+        }
+    });
+
+    // watch를 사용한 명령형 프로그래밍
+    const vm4 = new Vue({
+        el: '#demo',
+        data: {
+            firstName: 'Foo',
+            lastName: 'Bar',
+            fullName: 'Foo Bar'
+        },
+        watch: {
+            firstName: function (val) {
+                this.fullName = val + ' ' + this.lastName
+            },
+            lastName: function (val) {
+                this.fullName = this.firstName + ' ' + val
+            }
+        }
+    });
+
+    // computed를 사용한 선언적 프로그래밍
+    const vm5 = new Vue({
+        el: '#demo2',
+        data: {
+            firstName: 'Foo',
+            lastName: 'Bar'
+        },
+        computed: {
+            fullName: function () {
+                return this.firstName + ' ' + this.lastName
+            }
+        }
+    });
+
+    // computed 속성은 기본적으로 getter 함수만 가지고 있지만, 필요한 경우 setter 함수를 만들어 쓸 수 있습니다.
+    const vm6 = new Vue({
+        el: '#demo3',
+        data: {
+            firstName: 'Foo',
+            lastName: 'Bar'
+        },
+        computed: {
+            fullName: {
+                // getter
+                get: function () {
+                    return this.firstName + ' ' + this.lastName
+                },
+                // setter
+                set: function (newValue) {
+                    var names = newValue.split(' ')
+                    this.firstName = names[0]
+                    this.lastName = names[names.length - 1]
+                }
+            }
+        }
+    });
+
+    // 위에서 작성한 reversedMessage 메서드는 reversedMessage에 대한 getter 메서드로 사용된다.
+    console.log(vm2.reversedMessage);
+    vm2.message = 'Goodbye';
+    console.log(vm2.reversedMessage);
+
+    // vm3와 같이 caching한 경우에는 원본데이터가 바뀌기 전까지는 새로고침이 일어나지 않는다.
+    setTimeout(() => {
+        vm3.message = '변경된 메시지'
+    }, 3000);
+
+    //
+    setTimeout(() => {
+        vm6.fullName = 'new name'
+    }, 3000);
+
+    const watchExampleVM = new Vue({
+        el: '#watch-example',
+        data: {
+            question: '',
+            answer: '질문을 하기 전까지는 대답할 수 없습니다.'
+        },
+        watch: {
+            // 질문이 변경될 때 마다 이 기능이 실행됩니다.
+            question: function (newQuestion) {
+                this.answer = '입력을 기다리는 중...'
+                this.getAnswer()
+            }
+        },
+        methods: {
+            // _.debounce는 lodash가 제공하는 기능으로
+            // 특히 시간이 많이 소요되는 작업을 실행할 수 있는 빈도를 제한합니다.
+            // 이 경우, 우리는 yesno.wtf/api 에 액세스 하는 빈도를 제한하고,
+            // 사용자가 ajax요청을 하기 전에 타이핑을 완전히 마칠 때까지 기다리길 바랍니다.
+            // _.debounce 함수(또는 이와 유사한 _.throttle)에 대한
+            // 자세한 내용을 보려면 https://lodash.com/docs#debounce 를 방문하세요.
+            getAnswer: _.debounce(
+                function () {
+                    if (this.question.indexOf('?') === -1) {
+                        this.answer = '질문에는 일반적으로 물음표가 포함 됩니다. ;-)'
+                        return
+                    }
+                    this.answer = '생각중...'
+                    var vm = this
+                    axios.get('https://yesno.wtf/api')
+                            .then(function (response) {
+                                vm.answer = _.capitalize(response.data.answer)
+                            })
+                            .catch(function (error) {
+                                vm.answer = '에러! API 요청에 오류가 있습니다. ' + error
+                            })
+                },
+                // 사용자가 입력을 기다리는 시간(밀리세컨드) 입니다.
+                500
+            )
+        }
+    })
+
+</script>
+</body>
+</html>

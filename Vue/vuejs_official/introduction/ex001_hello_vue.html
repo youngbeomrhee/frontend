@@ -3,37 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello Vue</title>
-    <!-- development version, includes helpful console warnings -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <!-- production version, optimized for size and speed -->
-    <!--<script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
+    <style>
+        h1 {
+            margin-top: 30px
+        }
+    </style>
 </head>
 <body>
 <div id="app">
-    <h1>{{ message }}</h1>
+    <h1>Declarative Rendering</h1>
+    <p>Vue.js의 핵심은 간단한 템플릿 구문을 사용해 선언적으로 DOM에 데이터를 렌더링하는 것입니다.</p>
+    <h3>{{ message }}</h3>
 </div>
+<div id="app-2">
+    <h1>It's Reactive</h1>
+    <span id="derectiveMsg" v-bind:title="message">
+        내 위에 3초 정도 마우스를 올리고 있으면 동적으로 바인딩 된 title을 볼 수 있습니다.
+    </span>
+</div>
+<div id="app-3">
+    <h1>Conditionals</h1>
+    <input type="button" value="Click me!"/>
+    <p v-if="seen">
+        이제 나를 볼 수 있어요
+    </p>
+</div>
+<div id="app-4">
+    <h1>Loops</h1>
+    <input id="addLoopsText" type="text"/><button id="addLoopsBtn">추가</button>
+    <ol>
+        <li v-for="todo in todos">
+            {{ todo.text }}
+        </li>
+    </ol>
+</div>
+<div id="app-5">
+    <h1>Handling User Input</h1>
+    <p>{{ message }}</p>
+    <button v-on:click="reverseMessage">Reverse Message</button>
+</div>
+<div id="app-6">
+    <h1>v-model: two-way binding between form input and app state</h1>
+    <p>{{ message }}</p>
+    <input v-model="message"/>
+</div>
+<!-- development version, includes helpful console warnings -->
+<!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+<!-- production version, optimized for size and speed -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script>
-    let idx = 0,
-        interval = 1000;
-    const messages = [
-        'Hello Vue!',
-        'Nice to see you.',
-        'Let\'s have some fun :)'
-        ],
+    const $ = document.querySelector.bind(document),
+        $$ = document.querySelectorAll.bind(document),
         app = new Vue({
             el: '#app',
             data: {
-                message: messages[idx]
+                message: 'Hello Vue!'
             }
         }),
-        it = setInterval(() => {
-            app.message = messages[++idx%messages.length];
-        }, interval);
-
-    setTimeout(() => {
-        clearInterval(it);
-        console.log('Iteration has stopped');
-    }, (messages.length - 1) * interval);
+        app2 = new Vue({
+            el: '#app-2',
+            data: {
+                message: `이 페이지는 ${new Date()}에 로드 되었습니다. 3초 후 메시지는 변경됩니다.`
+            }
+        }),
+        app3 = new Vue({
+            el: '#app-3',
+            data: {
+                seen: true
+            }
+        }),
+        app4 = new Vue({
+            el: '#app-4',
+            data: {
+                todos: [
+                    { text: 'JavaScript 배우기' },
+                    { text: 'Vue 배우기' },
+                    { text: '무언가 멋진 것을 만들기' }
+                ]
+            }
+        }),
+        app5 = new Vue({
+            el: '#app-5',
+            data: {
+                message: 'Hello Vue.js!'
+            },
+            methods: {
+                reverseMessage: function () {
+                    this.message = this.message.split('').reverse().join('')
+                }
+            }
+        }),
+        app6 = new Vue({
+            el: '#app-6',
+            data: {
+                message: 'Hello Vue.js!'
+            }
+        })
+    ;
+    $('#app-2').addEventListener('mouseover', ()=>{
+        setTimeout(() => app2.message = '3초 후 스크립트로 변경된 새로운 메시지', 3000);
+    });
+    $('#app-3 input[type=button]').addEventListener('click', ()=>{
+        app3.seen = app3.seen? false : true;
+    });
+    $('#addLoopsBtn').addEventListener('click', ()=>{
+        app4.todos.push({ text: $('#addLoopsText').value});
+    });
 
 </script>
 </body>

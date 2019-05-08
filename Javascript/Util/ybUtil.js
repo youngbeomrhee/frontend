@@ -87,6 +87,31 @@ var ybUtil = (function(){
         }
         return charSet;
     }
+
+    function isSameType(a, b) {
+        let typeA = typeof a,
+                typeB = typeof b;
+
+        // null에 대한 처리
+        if(a === null || b === null) {
+            return a === b ? true: false;
+        }
+
+        // object가 아닌 경우에는 단순히 타입만 비교하면 확인 가능
+        if(typeA !== 'object' || typeB !== 'object') {
+            return typeA === typeB;
+        } else {    // 둘 다 null이 아니고 object인 경우에 대한 비교
+            // 하나라도 배열인 경우
+            if(Array.isArray(a) || Array.isArray(b)) {
+                return Array.isArray(a) && Array.isArray(a);
+            } else {
+                return a.__proto__ === b.__proto__;
+            }
+        }
+
+        return true;
+    }
+
     return {
         'timer': timer,
         'lazyExec': lazyExec,
@@ -94,7 +119,8 @@ var ybUtil = (function(){
         'testTimeReport': testTimeReport,
         'getRandomNum': getRandomNum,
         'getSign': getSign,
-        'getCharSet': getCharSet
+        'getCharSet': getCharSet,
+        'isSameType': isSameType
     };
 })();
 

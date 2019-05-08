@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>트랜스파일링 standalone</title>
+</head>
+<body>
+<h2>See the console and source by debugger</h2>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel">
+
+    const tahoe = {
+        type: "lake",
+        name: "tahoe",
+        state: "california"
+    }
+
+    const {name, state} = tahoe
+
+    const tahoeCity = {
+        ...tahoe,
+        type: "city"
+    }
+
+    console.log(tahoeCity.type, state)
+
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template syntax</title>
+    <style>
+        h1 {
+            margin-top: 30px
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h1>문자열 바인딩</h1>
+    <span>메시지: {{ msg }}</span>
+</div>
+<div id="app2">
+    <h1>Data binding</h1>
+    <p>메시지: {{ msg }}</p>
+    <p v-once>한 번만 바인딩 된 메시지: {{ msg }}</p>
+    <input v-model="msg"/>
+</div>
+<div id="app3">
+    <h1>Raw HTML</h1>
+    <h3>Using mustaches:</h3>
+    <p>{{ rawHtml }}</p>
+    <h3>Using v-html directive:</h3>
+    <p v-html="rawHtml"></p>
+</div>
+
+<input type="text" disabled="false"/>
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            msg: 'Hello Vue!'
+        }
+    });
+    new Vue({
+        el: '#app2',
+        data: {
+            msg: 'Hello Vue!'
+        }
+    });
+    new Vue({
+        el: '#app3',
+        data: {
+            rawHtml: '<span style="color:red">This should be red.</span>'
+        }
+    });
+</script>
+</body>
+</html>
