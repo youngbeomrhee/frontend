@@ -1,0 +1,47 @@
+h1, h2, h3, h4 {
+    text-align: center
+}
+.player {
+    width: 50%;
+    float: left;
+}
+.board {
+    padding: 5%;
+}
+
+.row {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.row:after {
+    content:" ";
+    display:block;
+    clear:both;
+}
+
+.column {
+    outline: 1px solid black;
+    width: 20%;
+    height: 40px;
+    float: left;
+    text-align: center;
+    padding-top: 20px
+}
+
+.score div {
+    margin: 0 auto;
+}
+
+.score-board {
+    width: 60%;
+    height: 170px;
+    outline: 1px solid black;
+    margin: 0 auto;
+}
+
+.start {
+    padding: 10px;
+    text-align: center;
+}
+
