@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body oncontextmenu="return false;" style="width:1000px;height:1000px;background-color:silver;">
+
+<script>
+    document.body.addEventListener('mousedown', function(ev) {
+        if(ev.button === 2) {
+            ev.preventDefault();
+        }
+        return false;
+    });
+
+    document.body.addEventListener('contextmenu', function(ev) {
+        return false;
+    }, false);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Memo</title>
+    <link href="memo.css" rel="stylesheet">
+</head>
+<body>
+    <div id="container" class="wrap" oncontextmenu="alert.bind('hi')">
+    </div>
+
+    <script type="text/javascript" src="memo.js"></script>
+    <script>
+        const container = document.querySelector('#container');
+        $tmemo.render(container);
+    </script>
+</body>
+</html>

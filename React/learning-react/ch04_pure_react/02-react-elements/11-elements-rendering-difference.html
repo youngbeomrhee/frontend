@@ -16,14 +16,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
 
 <script type="text/babel">
-
+    // 순수 자바스크립트와 react를 사용하여 일정 시간마다 다시 랜더링 시킬 경우 랜더링 되는 범위 비교
     function tick() {
         const element = (
-                <div>
+            <div>
                 <h1>Using React</h1>
-        <h2>It is {new Date().toLocaleTimeString()}.</h2>
-        </div>
-    );
+                <h2>It is {new Date().toLocaleTimeString()}.</h2>
+            </div>
+        );
         ReactDOM.render(
                 element,
                 document.getElementById('react-container')

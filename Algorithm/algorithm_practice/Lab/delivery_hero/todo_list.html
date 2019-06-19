@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TODO list</title>
+    <!-- 코드의 양이 많지 않아 분리하지 않았습니다. 참고부탁 드립니다. -->
+    <style>
+        #container {
+            margin: 0 auto;
+            width: 400px;
+        }
+        #container ul {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <input id="todoInput" type="text" placeholder="할 일 항목 입력"/><input id="insert" type="button" value="저장"/>
+        <ul id="todoListUl">
+        </ul>
+    </div>
+<script>
+    const $ = document.querySelector.bind(document),
+        $$ = document.querySelectorAll.bind(document),
+        ls = localStorage,
+        todoList = JSON.parse(ls.getItem('todoList')) || {},    // sessionStorage 접근 최소화. 초기 로딩시에 sessionStorage에 값이 있으면 받아오고 없으면 초기화
+        todoListAttr = $('#todoListUl');
+
+    // 중복되지 않는 ID로 지정
+    // TODO : ID 관리에 대한 고도화
+    function getTime() {
+        return new Date().getTime();
+    }
+
+    function add(ele) {
+        if(!ele || !ele.value) {
+            alert('입력값이 누락되었습니다.');
+            return;
+        }
+        todoList[getTime()] = {value: ele.value, isRemoved: false};
+        ele.value = '';
+        render();
+    }
+
+    function save() {
+        ls.setItem('todoList', JSON.stringify(todoList));
+    }
+
+    function remove(ele) {
+
+    }
+
+    // 해당영역 고도화. 시간관계상 string으로 처리
+    function generateTodoList() {
+        let dom = '';
+        for(key in todoList) {
+            const temp = todoList[key];
+            if(!temp.flag) {
+                dom += `
+                <li>
+                    <input type="text" id="${key}" value="${temp.value}" readonly/>
+                    <input type="button" data-id="${key}" class="modify-btn" value="수정"/>
+                    <input type="button" data-id="${key}" class="remove-btn" value="삭제"/>
+                </li>`;
+            }
+        }
+        return dom;
+    }
+
+    function render() {
+        todoListAttr.innerHTML = generateTodoList();
+    }
+
+    // 초기 실행
+    render();
+
+    /* event 처리 */
+    $('#todoInput').addEventListener('keyup', function (evt) {
+        const keyCode = evt.which || evt.keyCode;
+        if(keyCode === 13) {
+            add(this);
+        }
+    });
+
+    window.onbeforeunload = function(){
+        save();
+    };
+
+    $$('.modify-btn').addEventListener('click', function (evt) {
+        alert('준비중입니다.')
+    });
+    $$('.remove-btn').addEventListener('click', function (evt) {
+        alert('준비중입니다.')
+    });
+
+
+
+</script>
+</body>
+</html>

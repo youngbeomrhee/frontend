@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .drag-obj {
+            outline: 1px solid black;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="dragObj"
+     class="drag-obj"
+     style="position: absolute"
+     draggable="true"
+     ontouchstart="dragStart(event, this)"
+     ontouchend="dragEnd(event, this)"
+     ontouchmove="drag(event, this)"
+     onmousedown="dragStart(event, this)"
+     onmouseup="dragEnd(event, this)"
+     onmousemove="drag(event, this)"
+>draggable</div>
+<script>
+
+    // const isDebugging = true;
+    const targetObject = {
+        distanceFromParentLeft: 0,
+        distanceFromParentTop: 0
+    }
+    function dragStart(ev, that) {
+        const container = that.parentElement;
+
+        targetObject.distanceFromParentLeft = ev.clientX - container.offsetLeft;
+        targetObject.distanceFromParentTop = ev.clientY - container.offsetTop;
+        console.log(`dragStart (container.offsetLeft, container.offsetTop) = (${container.offsetLeft}, ${container.offsetTop})`);
+        console.log(`dragStart (ev.clientX, ev.clientY) = (${ev.clientX}, ${ev.clientY})`);
+        console.log(`(distanceFromParentLeft, distanceFromParentTop) = (${targetObject.distanceFromParentLeft}, ${targetObject.distanceFromParentTop})`);
+    }
+    function dragEnd(ev, that) {
+        const container = that.parentElement;
+
+        // debugger;
+        // console.dir(ev);
+        that.parentElement.style.left = ev.clientX + targetObject.distanceFromParentLeft + 'px';
+        that.parentElement.style.top = ev.clientY + targetObject.distanceFromParentTop + 'px';
+    }
+
+
+</script>
+</body>
+</html>

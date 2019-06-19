@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>http request example</title>
+</head>
+<body>
+
+<script>
+    const xhttp = new XMLHttpRequest();
+    xhttp.addEventListener('load', function () {
+        console.dir(this);
+        console.log(this.responseText);
+    });
+    xhttp.open('GET', 'https://jsonplaceholder.typicode.com/todos/1', true);    // the third argument : asynchronous (default true)
+    xhttp.send();
+
+</script>
+
+</body>
+</html>

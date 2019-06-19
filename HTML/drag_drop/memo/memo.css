@@ -1,0 +1,100 @@
+html, body, div, span,
+h1, h2, h3, h4, h5, h6, p,
+a, em, img, strong,
+dl, dt, dd, ol, ul, li{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 15px;
+}
+html,body{
+    height: 100%;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+.blind{
+    overflow: hidden;
+    position: absolute;
+    clip: rect( 0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+}
+.wrap{
+    height: 100%;
+    background-color: #f2f2f2;
+}
+.wrap .header{
+    position: relative;
+    height: 15px;
+    background-color: #f9f978;
+    border-bottom: 1px solid #eee;
+    cursor:move;
+}
+.memo{
+    position: absolute;
+    background-color: lightyellow;
+    border: 1px solid #eee;
+    padding-bottom: 10px;
+    resize: both;
+    overflow:auto;
+}
+.content{
+    position: relative;
+    overflow-x:hidden;
+    overflow-y:auto;
+    padding: 10px;
+}
+.content .textarea{
+    outline: none;
+}
+.btn_close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 15px;
+    height: 15px;
+    appearance: button;
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    border: 0;
+    background-color: #fff;
+    cursor: pointer;
+    outline:0;
+    text-align: center;
+}
+.btn_close:after{
+    position: absolute;
+    top: -1px;
+    right: 0;
+    width: 15px;
+    content:"\d7";
+    font-size: 15px;
+    line-height: 15px;
+    color: #666;
+    text-align: center;
+}
+.btn_size{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 15px;
+    height: 15px;
+    appearance: button;
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    border: 0;
+    background: transparent;
+    cursor: nwse-resize;
+    outline:0;
+    text-align: center;
+}

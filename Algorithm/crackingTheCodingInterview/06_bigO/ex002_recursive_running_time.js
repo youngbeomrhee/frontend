@@ -1,0 +1,12 @@
+"use strict";
+function f(n, label) {
+    console.count(label);
+    if (n <= 1) {
+        return 1;
+    }
+    return f(n - 1, label) + f(n - 1, label);
+}
+console.log();
+f(5, 'test1');
+console.log();
+f(4, 'test2');

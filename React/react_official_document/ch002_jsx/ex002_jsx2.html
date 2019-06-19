@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello React</title>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone/babel.min.js"></script>
+
+<script type="text/babel">
+    function formatName(user) {
+        return user.firstName + ' ' + user.lastName;
+    }
+
+    const user = {
+        firstName: 'Harper',
+        lastName: 'Perez'
+    }, element = (
+        <h1>Hello, {formatName(user)}</h1>
+    );
+
+    ReactDOM.render(
+        element,
+        document.querySelector('#root')
+    );
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .drag-obj {
+            outline: 1px solid black;
+            /*width: 100px;*/
+            /*height: 100px;*/
+        }
+    </style>
+</head>
+<body>
+<div id="dragObj"
+     class="drag-obj"
+     style="position:absolute;left:100px;top:100px;resize:both;overflow:auto;"
+>draggable</div>
+<div id="dragObj2"
+     class="drag-obj"
+     style="position:absolute;left:200px;top:100px;resize:both;overflow:auto;"
+>draggable</div>
+<script>
+    // ondragstart ondrag ondragenter ondragover ondragleave ondragend
+    // function dragleave(ev, that) {
+    //     ev.preventDefault();
+    //     console.dir(ev);
+    //     that.style.left = ev.clientX + 'px';
+    //     that.style.top = ev.clientY + 'px';
+    // }
+    // function dragover(ev, that) {
+    //     ev.preventDefault();
+    //     console.dir(ev);
+    //     that.style.left = ev.clientX + 'px';
+    //     that.style.top = ev.clientY + 'px';
+    // }
+
+    const ro = new ResizeObserver(console.log.bind(console, 'hi'));
+    ro.observe(document.querySelectorAll('.drag-obj')[0]);
+    // ro.observe(document.querySelectorAll('.drag-obj')[1]);
+
+</script>
+</body>
+</html>
