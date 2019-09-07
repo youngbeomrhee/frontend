@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const newWindow = window.open('http://www.google.com');
+    function handleEvent() {
+        alert('hi');
+    }
+    window.addEventListener('message', (msg)=>alert(msg))
+    newWindow.addEventListener('message', (msg)=>alert(msg))
+
+    // newWindow.addEventListener('beforeunload', ()=>alert('beforeunload'));
+    newWindow.addEventListener('focus', ()=>alert('focus'));
+    newWindow.addEventListener('load', ()=>alert('load'));
+    // newWindow.addEventListener('click', ()=>alert('click'));
+</script>
+
+</body>
+</html>

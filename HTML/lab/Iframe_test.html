@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Iframe test</title>
+</head>
+<script>
+
+    function injectJS() {
+        window.postMessage('hello papa');
+    }
+</script>
+<body>
+<iframe id="testFrame"
+        title="Inline Frame Example"
+        width="300"
+        height="200"
+        frameborder="0"
+        onload="injectJS()"
+        >
+</iframe>
+<button id="btn">자식에게 메시지 전송</button>
+<script>
+    const $ = document.querySelector.bind(document);
+    const $$ = document.querySelectorAll.bind(document);
+    // $('#testFrame').src = "https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik";
+    $('#testFrame').src = "https://login.kt.com/wamui/OneAthAppReq.do?kt=864C8061DE1DDD12D9812FA171054484AF312A06FBA9FA7A93F3E8AF1D82085C7A31C9E2BC09848A6FD84F524769D948CACE3D6BAB9673B1A4ED8154DACE0865&ts=1565161478527";
+
+    var btn = $('#btn');       // 메시지 전송 버튼
+    var child = $('#testFrame');   // iframe
+
+    // 버튼 클릭하면 메시지 전달 함수 호출
+    btn.addEventListener( 'click', function( e ) {
+        sendMsgToChild( '아들! 딸!' );
+    });
+
+    // 자식에게 메시지 전달
+    function sendMsgToChild( msg ) {
+        child.contentWindow.postMessage( msg, '*' );
+    }
+
+    window.addEventListener( 'message', function( e ) {
+        // e.data가 전달받은 메시지
+        console.log( e.data );
+    } );
+
+</script>
+</body>
+</html>

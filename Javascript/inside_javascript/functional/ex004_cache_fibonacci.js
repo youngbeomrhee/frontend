@@ -17,3 +17,9 @@ var fibo = function() {
 }();
 
 console.log(fibo(10));
+
+
+const dynamicFibo = arr => {
+
+
+}

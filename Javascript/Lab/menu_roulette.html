@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메뉴고르기</title>
+    <style>
+        .result {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<div class="result">
+    <div>
+        <h1 class="content">메뉴 고르는 중...</h1>
+    </div>
+</div>
+<script>
+    const menu = [
+        '코리아',
+        '한식뷔페',
+        '가메스시',
+        '소주',
+        '고기살롱',
+        '해달밥술',
+        '로야토야',
+        '밀방',
+        '돈가츠에국수',
+        '봉평막국수',
+        '생선구이',
+        '미소국수',
+        '별천지설농탕',
+        '북창동순두부',
+        '주막털래기',
+        '또보겠지',
+        '교동짬뽕',
+        '은희네해장국',
+        '섬소년',
+        '마레파스타',
+        '잘생긴밥집',
+        '명호야',
+        '2층 부대찌게',
+        '낙곱새',
+        '리틀파파포',
+        '프랑스포차'
+    ];
+
+    function getRandomIntInclusive(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    const dimInterval = setInterval(_=> {
+        const opacity = document.querySelector('.content').style.opacity;
+        console.log(opacity ? 0 : 1);
+        document.querySelector('.content').style.opacity = Number.parseInt(opacity) ? 0 : 1;
+    }, 300);
+
+    setTimeout(_=>{
+        document.querySelector('.content').innerHTML = menu[getRandomIntInclusive(0, menu.length - 1)];
+        clearInterval(dimInterval);
+        document.querySelector('.content').style.opacity  = 1;
+    }, 2400);
+</script>
+</body>
+</html>

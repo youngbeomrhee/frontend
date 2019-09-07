@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="articles-list"></div>
+    <script
+        src="https://code.jquery.com/jquery-2.2.4.js"
+        integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+        crossorigin="anonymous"></script>
+    <script>
+        function getArticles(data) {
+            console.dir(data);
+        }
+        function solution() {
+            $.ajax({
+                url: 'https://www.example.com/articles',
+                // url: 'https://jsonplaceholder.typicode.com/todos/1',
+                dataType: 'jsonp',
+                crossDomain: true,
+                jsonpCallback: "getArticles",
+                success: function(data) {
+                    alert(data)
+                }
+            })
+        }
+        solution();
+    </script>
+</body>
+</html>

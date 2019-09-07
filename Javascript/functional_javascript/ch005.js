@@ -455,7 +455,6 @@ var composedMapcat = _.compose(splat(cat), _.map);
 
 log("composedMapcat([[1,2], [3,4], [5]], _.identity) => ", composedMapcat([[1,2], [3,4], [5]], _.identity));
 
-
 /* 조립을 이용해서 선행조건과 후행조건 만들기 */
 var sqrPost = condition1(
     validator('result shoud be a number', _.isNumber),

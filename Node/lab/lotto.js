@@ -12,7 +12,7 @@ class Lottery {
     }
     whoIsWinner(num=1) {
         for (let i = 1; i < num; i++) {
-            let winnerIdx = getRandomIntInclusive(1, this.candidates.length-1),
+            let winnerIdx = getRandomInt(1, this.candidates.length-1),
                 winner = this.candidates[winnerIdx];
         }
     }
