@@ -1,0 +1,17 @@
+{
+  "name": "20_examples",
+  "version": "1.0.0",
+  "dependencies": {
+    "@reactivex/rxjs": "^6.5.3",
+    "commonjs": "0.0.1",
+    "rxjs": "^6.5.3",
+    "rxjs-compat": "^6.5.3"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script src="https://unpkg.com/@reactivex/rxjs@version/dist/global/Rx.js"></script>
+<script>
+    const clicks = Rx.Observable.fromEvent(document, 'click')
+
+    clicks.subscribe(click => console.log(click))
+
+</script>
+</body>
+</html>
