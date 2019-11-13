@@ -10,6 +10,10 @@ const App = () => (
             <Route path="/about" component={About} />
             <Route path="/topics" component={Topics} />
         </div>
+
+
+
+
     </Router>
 );
 
