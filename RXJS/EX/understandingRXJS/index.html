@@ -1,0 +1,65 @@
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Monitoring in RxJS</title>
+    <style>
+        #form {
+            margin-bottom: 20px;
+        }
+
+        .location {
+            float: left;
+            padding: 10px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .location p {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .zip {
+            font-size: 2em;
+        }
+
+        .temp {
+            font-size: 4em;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app-container">
+        <div id="form">
+            <label>Zip Code:</label>
+            <input type="text" id="zipcode-input">
+            <button id="add-location">Add Location</button>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/4.1.0/rx.all.min.js"></script>
+    <script>
+        // our code will go here
+        console.log('RxJS included?', !!Rx);
+
+        // Grab HTML elements
+        const appContainer = document.getElementById('app-container');
+        const zipcodeInput = document.getElementById('zipcode-input');
+        const addLocationBtn = document.getElementById('add-location');
+
+        // Get stream of button clicks
+        const btnClickStream =
+            Rx.Observable
+                .fromEvent(addLocationBtn, 'click')
+                .map(e => e.target.value)
+                .filter(zip => zip.length === 5)
+                .forEach(val => console.log('zipInputStream val', val));
+
+    </script>
+</body>
+
+</html>
