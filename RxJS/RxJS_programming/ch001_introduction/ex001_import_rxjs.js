@@ -1,3 +1,4 @@
 const { range } = require('rxjs');
 
-range(1, 10);
+console.log(range(1, 10));
+
