@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flex layout</title>
+    <style>
+        div {
+            outline: 1px solid black;
+        }
+        .container {
+            display: flex;
+            flex-flow: row wrap;
+            align-items: stretch;
+        }
+        header, .banner, .menu, .favorite-area, .festival, .transport, footer {
+            flex: 1 100%;
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <header>header</header>
+    <div class="banner">banner</div>
+    <div class="menu">menu</div>
+    <div class="favorite-area">favorite-area</div>
+    <div class="festival">festival</div>
+    <div class="transport">trasport</div>
+    <footer>footer</footer>
+  </div>
+</body>
+</html>

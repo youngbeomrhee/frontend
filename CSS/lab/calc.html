@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    :root {
+      --width-r: 1980;
+      --height-r: 1080;
+      --compress-to-r: 2;
+      --px: 1px;
+      --min-width: calc(var(--width-r) / var(--compress-to-r) * 1px);
+      --min-height: calc(var(--height-r) / var(--compress-to-r) * 1px);
+      --width-unit: calc(var(--width-r) / var(--compress-to-r));
+      --height-unit: calc(1 / var(--height-r) * 100%);
+    }
+    html, body {
+      height: 100%;
+      box-sizing: border-box;
+      margin: 0;
+    }
+    div {
+      outline: 1px solid black;
+    }
+    .container {
+      /*width: calc(var(--min-width));*/
+      height: 100%;
+      min-height: var(--min-height);
+    }
+    .logo-container {
+      /*width: calc(100% / var(--width-unit) * 500);*/
+      /*height: calc(var(--height-unit) * 80);*/
+      height: calc(var(--height-unit) * 80);  /* 80 / 1080 * 100 */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo-container">
+      logo
+    </div>
+  </div>
+<!--  <div>-->
+<!--    <div class="height-unit">height-unit</div>-->
+<!--  </div>-->
+</body>
+</html>
