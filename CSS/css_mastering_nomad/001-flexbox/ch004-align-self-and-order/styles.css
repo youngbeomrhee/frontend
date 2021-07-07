@@ -1,0 +1,25 @@
+.parent {
+    display: flex;
+    justify-content: flex-start;
+    height: 100vh;
+}
+
+.children {
+    width: 200px;
+    height: 200px;
+    background: peru;
+    color: white;
+    outline: 1px solid white;
+}
+
+/* nth-child는 0이 아니라 1부터 시작 */
+.children:nth-child(1) {
+    order: 2;
+}
+.children:nth-child(2) {
+    order: 3;
+    align-self: center;
+}
+.children:nth-last-child(3) {
+    align-self: flex-end;
+}

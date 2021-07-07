@@ -1,0 +1,41 @@
+
+.wrapper-row {
+    display: flex;
+    flex-direction: row;
+    /* Main axis */
+    justify-content: flex-end;
+    /* Cross axis */
+    align-items: center;
+    height: 50vh;
+    border: 1px solid black;
+}
+
+.wrapper-column {
+    display: flex;
+    flex-direction: column;
+    /* Main axis */
+    justify-content: flex-end;
+    /* Cross axis */
+    align-items: center;
+    height: 100vh;
+    border: 1px solid black;
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+    background: peru;
+    color: white;
+    outline: 1px solid white;
+}
+
+/* 마지막 요소를 끝으로 정렬할 경우 : justify-content 선언이 무의미해진다 */
+/*
+.wrapper-row .box:last-child {
+    margin-left: auto;
+}
+.wrapper-column .box:last-child {
+    margin-top: auto;
+}
+*/
+
