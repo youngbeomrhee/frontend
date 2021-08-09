@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            margin: 20px;
+            background-color: red;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<article id="container">
+    <h1>Click box and check "i" variable</h1>
+</article>
+<script>
+  var div, container = document.querySelector('#container');
+  for (var i = 0; i < 5; i++) {
+    div = document.createElement('div');
+    div.className = 'box';
+    div.innerHTML = `<h1>var ${i}</h1>`;
+    div.onclick = function () {
+      alert('이것은 박스 #' + i + '입니다.');
+    }
+    container.appendChild(div);
+  }
+
+  const lineBreak = document.createElement('div');
+  lineBreak.style.clear = 'both';
+  container.appendChild(lineBreak);
+
+  for (let i = 0; i < 5; i++) {
+    div = document.createElement('div');
+    div.className = 'box';
+    div.innerHTML = `<h1>let ${i}</h1>`;
+    div.onclick = function () {
+      alert('이것은 박스 #' + i + '입니다.');
+    }
+    container.appendChild(div);
+  }
+</script>
+</body>
+</html>
