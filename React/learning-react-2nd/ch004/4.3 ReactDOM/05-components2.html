@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no" />
+  <meta charset="utf-8">
+  <title>조리법</title>
+</head>
+<body>
+<article id="container"></article>
+
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+<script>
+  
+  const secretIngredients = [
+    "연어 500그램",
+    "잣 1 컵",
+    "버터 상추 2 컵",
+    "옐로 스쿼시(Yellow Squash, 호박의 한 종류) 1개",
+    "올리브 오일 1/2 컵",
+    "마늘 3 쪽"
+  ];
+  
+  // function IngredientsList(props) {
+  //   const {items} = props;
+  function IngredientsList({items}) {
+    return React.createElement(
+      "ul",
+      {"className": "ingredients"},
+      items.map((ingredient, i) => React.createElement('li', {key: 'ingredient-' + i}, ingredient))
+    );
+  }
+
+  ReactDOM.render(
+    React.createElement(IngredientsList, { items: secretIngredients }, null),
+    document.getElementById('container')
+  )
+
+</script>
+
+</body>
+</html>

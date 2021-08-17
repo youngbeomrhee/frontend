@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no" />
+  <meta charset="utf-8">
+  <title>조리법</title>
+</head>
+<body>
+<h1>조리법</h1>
+
+<section id="baked-salmon">
+  <h1>구운 연어</h1>
+    <article id="container"></article>
+  <!--
+  <ul class="ingredients">
+    <li>연어 500그램</li>
+    <li>잣 1 컵</li>
+    <li>버터 상추 2 컵</li>
+    <li>옐로 스쿼시(Yellow Squash, 호박의 한 종류) 1개</li>
+    <li>올리브 오일 1/2 컵</li>
+    <li>마늘 3 쪽</li>
+  </ul>
+  -->
+  <section class="instructions">
+    <h2>조리절차</h2>
+    <p>오븐을 350도로 예열한다.</p>
+    <p>유리 베이킹 그릇에 올리브 오일을 두른다.</p>
+    <p>연어, 마늘, 잣을 그릇에 담는다.</p>
+    <p>오븐에서 15분간 익힌다.</p>
+    <p>옐로 스쿼시를 추가하고 다시 30분간 오븐에서 익힌다.</p>
+    <p>오븐에서 그릇을 꺼내서 15분간 식힌다음에
+  상추를 곁들여서 내놓는다.</p>
+  </section>
+</section>
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+<script>
+  const ul = React.createElement(
+    'ul',
+    null,
+    React.createElement('li', null, '연어 500그램'),
+    React.createElement('li', null, '잣 1 컵'),
+    React.createElement('li', null, '버터 상추 2 컵'),
+    React.createElement('li', null, '옐로 스쿼시(Yellow Squash, 호박의 한 종류) 1개'),
+    React.createElement('li', null, '올리브 오일 1/2 컵'),
+    React.createElement('li', null, '마늘 3 쪽')
+  );
+  console.log(ul);
+  ReactDOM.render(ul, document.querySelector('#container'));
+
+</script>
+
+</body>
+</html>
