@@ -24,8 +24,8 @@ function GitHubUser({ login }) {
   }, [login]);
 
   if (loading) return <h1>loading...</h1>;
-  if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>;
-  // if (error || (data && !data.login)) return <pre>{JSON.stringify(error || data, null, 2)}</pre>;
+  // if (error) return <pre>{JSON.stringify(error, null, 2)}</pre>;
+  if (error || (data && !data.login)) return <pre>{JSON.stringify(error || data, null, 2)}</pre>;
   if (!data) return null;
 
   return (

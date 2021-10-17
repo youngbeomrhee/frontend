@@ -1,6 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import { UserRepositories } from "./UserRepositories";
 import { Fetch } from "./Fetch";
+import {SearchForm} from "./SearchForm";
+import RepositoryReadme from "./RepositoryReadme";
 
 function UserDetails({ data }) {
   return (
@@ -11,11 +13,11 @@ function UserDetails({ data }) {
           <h1>{data.login}</h1>
           {data.name && <p>{data.name}</p>}
           {data.location && <p>{data.location}</p>}
-        </div>
+        </div>{/*
         <UserRepositories
           login={data.login}
           onSelect={repoName => console.log(`${repoName} selected`)}
-        />
+        />*/}
       </div>
     ) : (
       <>
@@ -24,6 +26,7 @@ function UserDetails({ data }) {
     )
   );
 }
+
 function GitHubUser({ login }) {
   return (
     <Fetch
@@ -34,5 +37,31 @@ function GitHubUser({ login }) {
 }
 
 export default function App() {
-  return <GitHubUser login="moonhighwaysa" />;
+  const [login, setLogin] = useState('moonhighway');
+  const [repo, setRepo] = useState('learning-react');
+
+  const handleSearch = login => {
+    if (login) return setLogin(login);
+    setLogin("");
+    setRepo("");
+  }
+
+  if (!login) return (<SearchForm value={login} onSearch={setLogin} />)
+
+  return (
+    <>
+      <SearchForm value={login} onSearch={setLogin} />
+      {login && <GitHubUser login={login} />}
+      {login &&
+        <UserRepositories
+          login={login}
+          repo={repo}
+          onSelect={setRepo}
+        />
+      }
+      {login && repo && (
+        <RepositoryReadme login={login} repo={repo} />
+      )}
+    </>
+  );
 }

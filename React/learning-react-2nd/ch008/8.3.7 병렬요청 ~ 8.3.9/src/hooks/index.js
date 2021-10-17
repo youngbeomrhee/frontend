@@ -1,17 +1,28 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import {useState, useEffect, useCallback, useMemo, useRef} from "react";
 
 export function useFetch(uri) {
   const [data, setData] = useState();
   const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
+  // mount 여부 확인
+  const mounted = useMountedRef();
 
   useEffect(() => {
     if (!uri) return;
     fetch(uri)
+      .then(data => {
+        if (!mounted.current) throw new Error("component is not mounted");
+        return data;
+      })
       .then(data => data.json())
       .then(setData)
       .then(() => setLoading(false))
-      .catch(setError);
+      // .catch(setError);
+      .catch(error => {
+        // debugger;
+        if(!mounted.current) return;
+        setError(error);
+      });
   }, [uri]);
 
   return {
@@ -41,3 +52,15 @@ export const useIterator = (items = [], initialValue = 0) => {
 
   return [item || items[0], prev, next];
 };
+
+// 마운트 여부를 확인할 수 있는 hook
+export function useMountedRef() {
+  const mounted = useRef(false);
+  // 최초 실행시 true로 설정
+  useEffect(() => {
+    mounted.current = true;
+    // mount 해제시 false로 설정
+    return () => mounted.current = false;
+  });
+  return mounted;
+}

@@ -34,5 +34,5 @@ function GitHubUser({ login }) {
 }
 
 export default function App() {
-  return <GitHubUser login="moonhighwaysa" />;
+  return <GitHubUser login="moonhighway" />;
 }

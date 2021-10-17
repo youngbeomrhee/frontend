@@ -8,8 +8,8 @@ import AppAsIs from "./AppAsIs";
 // 가상화 된 리스트(오프스크린)을 지원하는 react-window를 사용하여 렌더링 하는 경우 성능 비교
 ReactDOM.render(
   <React.StrictMode>
-    {/*<App />*/}
-    <AppAsIs />
+    <App />
+    {/*<AppAsIs />*/}
   </React.StrictMode>,
   document.getElementById('root')
 );

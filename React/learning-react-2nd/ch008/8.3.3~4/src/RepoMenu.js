@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useIterator } from "./hooks";
 
 export default function RepoMenu({ repositories, onSelect = f => f }) {
-  const [{ name }, previous, next] = useIterator(repositories);
-
+  const [{ name } = {}, previous, next] = useIterator(repositories);
+  debugger
   useEffect(() => {
     if (!name) return;
     onSelect(name);
