@@ -5,7 +5,7 @@ function Recipe({ name, ingredients, steps }) {
         <section
             id={name.toLowerCase().replace(/ /g, "-")}
         >
-            <h1>{name}</h1>
+            <h1>{name}!!</h1>
             <ul className="ingredients">
                 {ingredients.map((ingredient, i) => (
                     <li key={i}>{ingredient.name}</li>
