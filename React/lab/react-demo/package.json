@@ -27,7 +27,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "easymock": "^0.2.28",
+    "easymock": "^0.2.29",
     "mockserver": "^3.0.0"
   }
 }
